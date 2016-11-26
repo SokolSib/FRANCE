@@ -31,3 +31,15 @@
 # Debug files
 *.dSYM/
 *.su
+
+#Ignore files build by Visual Studio
+*.obj
+!signtool.exe
+*.pdb
+*.user
+*.suo
+[Bb]in
+[Dd]ebug*/
+[Oo]bj/
+[Rr]elease*/
+
