@@ -771,11 +771,11 @@ namespace TicketWindow.Services
 
         private static void ClickCurrency(object sender)
         {
-            if (((Button) sender).ToolTip != null)
+            if (((Button) sender).Tag != null)
             {
                 Guid g;
 
-                if (Guid.TryParse(((Button) sender).ToolTip.ToString(), out g))
+                if (Guid.TryParse(((Button) sender).Tag.ToString(), out g))
                 {
                     var ws = Window.GetWindow((Button) sender) as WGridPay;
                     var currency = RepositoryCurrency.Currencys.Find(l => l.CustomerId == g);
