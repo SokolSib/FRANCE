@@ -10,6 +10,7 @@ using TicketWindow.DAL.Models;
 using TicketWindow.DAL.Repositories;
 using TicketWindow.Extensions;
 using TicketWindow.Global;
+using TicketWindow.Services;
 using TicketWindow.Winows.OtherWindows.Payment;
 // ReSharper disable StringIndexOfIsCultureSpecific.1
 
@@ -190,6 +191,7 @@ namespace TicketWindow.Class
                         )
                     );
             }
+            b.ToolTip = FunctionsTranslateService.GetTranslatedFunction(funcType);
 
             RepositoryXmlFile.Save(doc, type, typePayId);
         }
