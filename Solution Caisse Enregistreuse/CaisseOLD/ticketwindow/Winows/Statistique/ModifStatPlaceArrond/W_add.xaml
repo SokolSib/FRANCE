@@ -1,0 +1,23 @@
+﻿<Window x:Class="ticketwindow.Winows.Statistique.ModifStatPlaceArrond.W_add"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="W_add"  Height="300" Width="300" >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label>NamePlaceArrond</Label>
+        <Label Grid.Row="1">QTY</Label>
+        <TextBox Grid.Column="1" Name="xNamePlaceArrond" />
+        <TextBox Grid.Column="1" Grid.Row="1" x:Name="xQTY">0</TextBox>
+        <Button Grid.Row="2" IsDefault="True" Click="Button_Click">Ok</Button>
+        <Button Grid.Row="2" Grid.Column="1" Click="Button_Click_1" >Cancel</Button>
+    </Grid>
+</Window>
+

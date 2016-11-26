@@ -1,0 +1,950 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FED92161-CCE7-46FD-A3D8-F58018978C5A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TicketWindow</RootNamespace>
+    <AssemblyName>TicketWindow</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <PublishUrl>D:\cassie\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>6</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>86C994856E50B370BB6DC174032AC7E9B5AC9D78</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>ticketwindow_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>TicketWindow.App</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>logo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Accessibility" />
+    <Reference Include="BarcodeLib">
+      <HintPath>Dll\BarcodeLib.dll</HintPath>
+    </Reference>
+    <Reference Include="DotLiquid, Version=1.8.0.0, Culture=neutral, PublicKeyToken=82e46016ecf9f07c, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotLiquid.1.8.0\lib\NET40\DotLiquid.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="LibUsbDotNet">
+      <HintPath>..\packages\LibUsbDotNet.2.2.8\lib\LibUsbDotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationUI, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="ReachFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Controls.Input.Toolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WPFToolkit.3.5.50211.1\lib\System.Windows.Controls.Input.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Controls.Layout.Toolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WPFToolkit.3.5.50211.1\lib\System.Windows.Controls.Layout.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>obj\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WPFToolkit.3.5.50211.1\lib\WPFToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="WPFUtils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dll\WPFUtils.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.1.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.1.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.1.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.1.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.1.0\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.1.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Exception\ExceptionService.cs" />
+    <Compile Include="Exception\ExceptionWindow.xaml.cs">
+      <DependentUpon>ExceptionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PortClasses\ClassBallance.cs" />
+    <Compile Include="Properties\Resources.fr-FR.Designer.cs">
+      <DependentUpon>Resources.fr-FR.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Properties\Resources.ru-RU1.Designer.cs">
+      <DependentUpon>Resources.ru-RU.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Services\CheckService.cs" />
+    <Compile Include="PortClasses\ClassCustomerDisplay.cs" />
+    <Compile Include="Services\CassieService.cs" />
+    <Compile Include="Services\DbService.cs" />
+    <Compile Include="Services\DotLiquidService.cs" />
+    <Compile Include="Services\FunctionsTranslateService.cs" />
+    <Compile Include="Services\ProgressHelper.cs" />
+    <Compile Include="Winows\AdditionalClasses\ClassETC_fun.cs" />
+    <Compile Include="Services\FunctionsService.cs" />
+    <Compile Include="Class\ClassGridGroup.cs" />
+    <Compile Include="Class\ClassGridProduct.cs" />
+    <Compile Include="Class\ClassGridStatistique_Region_et_Pays.cs" />
+    <Compile Include="Classes\ClassImageBarCode.cs" />
+    <Compile Include="Classes\EuroConverter.cs" />
+    <Compile Include="Class\ClassPrintCheck.cs" />
+    <Compile Include="Class\ClassProMode.cs" />
+    <Compile Include="Classes\ClassDataTimeSrv.cs" />
+    <Compile Include="Winows\AdditionalClasses\IsRun.cs" />
+    <Compile Include="Services\SyncService.cs" />
+    <Compile Include="PortClasses\ClassUsbTicket.cs" />
+    <Compile Include="Winows\AdditionalClasses\InkInputHelper.cs" />
+    <Compile Include="Classes\InputPanelConfiguration.cs.cs" />
+    <Compile Include="Winows\AdditionalClasses\CalculatorBox.cs" />
+    <Compile Include="Winows\AdminWindows\GroupProductWindow\GroupsProductWindow.xaml.cs">
+      <DependentUpon>GroupsProductWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\AdminWindows\TextWindow.xaml.cs">
+      <DependentUpon>TextWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\AdminWindows\TvaWindow\TvasesWindow.xaml.cs">
+      <DependentUpon>TvasesWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\addProduct\AddProduct.xaml.cs">
+      <DependentUpon>AddProduct.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Ballance\W_Ballance.xaml.cs">
+      <DependentUpon>W_Ballance.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Calculator\AppCalculator.xaml.cs">
+      <DependentUpon>AppCalculator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Color\W_Color.xaml.cs">
+      <DependentUpon>W_Color.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\DetailsProducts\W_DetailsProducts.xaml.cs">
+      <DependentUpon>W_DetailsProducts.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Discount\W_discount.xaml.cs">
+      <DependentUpon>W_discount.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Discount\W_DiscountMini.xaml.cs">
+      <DependentUpon>W_DiscountMini.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Discount\W_InfoClients.xaml.cs">
+      <DependentUpon>W_InfoClients.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Divers\W_Divers.xaml.cs">
+      <DependentUpon>W_Divers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Divers\W_ModifierPrix.xaml.cs">
+      <DependentUpon>W_ModifierPrix.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\EnAttente\W_enAttente.xaml.cs">
+      <DependentUpon>W_enAttente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\History\W_AllHistory_old.xaml.cs">
+      <DependentUpon>W_AllHistory_old.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\History\W_AllHistory.xaml.cs">
+      <DependentUpon>W_AllHistory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\History\W_G_History.xaml.cs">
+      <DependentUpon>W_G_History.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\History\W_history.xaml.cs">
+      <DependentUpon>W_history.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Keyboard\W.xaml.cs">
+      <DependentUpon>W.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Keyboard\W_keyboard.xaml.cs">
+      <DependentUpon>W_keyboard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Keyboard\W_KeyBoard_NumPad.xaml.cs">
+      <DependentUpon>W_KeyBoard_NumPad.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Keyboard\W_NumPapComplet.xaml.cs">
+      <DependentUpon>W_NumPapComplet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Keyboard\W_NumPadMini.xaml.cs">
+      <DependentUpon>W_NumPadMini.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Loading\W_Loading.xaml.cs">
+      <DependentUpon>W_Loading.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\LoginWindow\LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Message\W_Message.xaml.cs">
+      <DependentUpon>W_Message.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Message\W_MessageSB.xaml.cs">
+      <DependentUpon>W_MessageSB.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Message\W_MessageTimeList.xaml.cs">
+      <DependentUpon>W_MessageTimeList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Message\W_MessageTime.xaml.cs">
+      <DependentUpon>W_MessageTime.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Payment\CreateNewCurrency\W_CreateNewCurrency.xaml.cs">
+      <DependentUpon>W_CreateNewCurrency.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Payment\TypePayCreate\W_Pay_Create.xaml.cs">
+      <DependentUpon>W_Pay_Create.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Payment\W_GridPay.xaml.cs">
+      <DependentUpon>W_GridPay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Payment\W_PayETC.xaml.cs">
+      <DependentUpon>W_PayETC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Payment\W_TypePay.xaml.cs">
+      <DependentUpon>W_TypePay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Product\AddProduct\W_Add_Product.xaml.cs">
+      <DependentUpon>W_Add_Product.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Product\ChangeProduct\W_Change_Product.xaml.cs">
+      <DependentUpon>W_Change_Product.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Product\FindProduct\W_Find_Product.xaml.cs">
+      <DependentUpon>W_Find_Product.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Product\FindProduct\RemoveProduct\W_Remove_Product.xaml.cs">
+      <DependentUpon>W_Remove_Product.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Product\W_Grid_Product.xaml.cs">
+      <DependentUpon>W_Grid_Product.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Product\W_setProduct.xaml.cs">
+      <DependentUpon>W_setProduct.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Pro\W_ProList.xaml.cs">
+      <DependentUpon>W_ProList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Pro\W_Pro_add.xaml.cs">
+      <DependentUpon>W_Pro_add.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Return\W_How.xaml.cs">
+      <DependentUpon>W_How.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Return\W_AnnulationDeTicket.xaml.cs">
+      <DependentUpon>W_AnnulationDeTicket.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Return\W_Return.xaml.cs">
+      <DependentUpon>W_Return.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Return\W_ReturnProduct.xaml.cs">
+      <DependentUpon>W_ReturnProduct.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\AdminWindows\RoleWindow\AddRole.xaml.cs">
+      <DependentUpon>AddRole.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\AdminWindows\RoleWindow\RolesWindow.xaml.cs">
+      <DependentUpon>RolesWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Setting\W_Close_TicketWindow.xaml.cs">
+      <DependentUpon>W_Close_TicketWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Setting\W_dateTimeSrv.xaml.cs">
+      <DependentUpon>W_dateTimeSrv.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Setting\W_offline.xaml.cs">
+      <DependentUpon>W_offline.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Setting\W_open_ticket.xaml.cs">
+      <DependentUpon>W_open_ticket.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Setting\W_open_ticlet_g.xaml.cs">
+      <DependentUpon>W_open_ticlet_g.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Setting\W_Panel.xaml.cs">
+      <DependentUpon>W_Panel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Statistique\ModifStatNationPopup\W_add.xaml.cs">
+      <DependentUpon>W_add.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Statistique\ModifStatNationPopup\W_del.xaml.cs">
+      <DependentUpon>W_del.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Statistique\ModifStatNationPopup\W_Grid.xaml.cs">
+      <DependentUpon>W_Grid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Statistique\ModifStatNationPopup\W_mod.xaml.cs">
+      <DependentUpon>W_mod.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Statistique\ModifStatPlaceArrond\W_add.xaml.cs">
+      <DependentUpon>W_add.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Statistique\ModifStatPlaceArrond\W_del.xaml.cs">
+      <DependentUpon>W_del.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Statistique\ModifStatPlaceArrond\W_Grid.xaml.cs">
+      <DependentUpon>W_Grid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Statistique\ModifStatPlaceArrond\W_mod.xaml.cs">
+      <DependentUpon>W_mod.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Statistique\W_Stat.xaml.cs">
+      <DependentUpon>W_Stat.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\UpdateDB\W_updateDB.xaml.cs">
+      <DependentUpon>W_updateDB.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\AdminWindows\UsersWindow\AddUser.xaml.cs">
+      <DependentUpon>AddUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\AdminWindows\UsersWindow\UsersWindow.xaml.cs">
+      <DependentUpon>UsersWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\ProgressWindow.xaml.cs">
+      <DependentUpon>ProgressWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\SettingsWindow.xaml.cs">
+      <DependentUpon>SettingsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\OtherWindows\Product\W_product.xaml.cs">
+      <DependentUpon>W_product.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Winows\SyncSettingWindow\SyncSettingWindow.xaml.cs">
+      <DependentUpon>SyncSettingWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Exception\ExceptionWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <None Include="Template\RaportPrice.mxaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Template\FactPrint.mxaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Template\ReturnPrint.mxaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Template\CheckPrint.mxaml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <Page Include="Styles\Brushes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Core.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Icons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Style.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Template\FlowDocument2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Brushes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Brushes_old.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Core.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Icons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\MyIcons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Style.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Core_old.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Icons_old.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Winows\AdminWindows\GroupProductWindow\GroupsProductWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\AdminWindows\TextWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\AdminWindows\TvaWindow\TvasesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\addProduct\AddProduct.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\Ballance\W_Ballance.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\Calculator\AppCalculator.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Winows\OtherWindows\Color\W_Color.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\DetailsProducts\W_DetailsProducts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\Discount\W_discount.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\Discount\W_DiscountMini.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\Discount\W_InfoClients.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\Divers\W_Divers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\Divers\W_ModifierPrix.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\EnAttente\W_enAttente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\History\W_AllHistory_old.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Winows\OtherWindows\History\W_AllHistory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\History\W_G_History.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\History\W_history.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\Keyboard\W.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\Keyboard\W_keyboard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Winows\OtherWindows\Keyboard\W_KeyBoard_NumPad.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\Keyboard\W_NumPapComplet.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Winows\OtherWindows\Keyboard\W_NumPadMini.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Winows\OtherWindows\Loading\W_Loading.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\LoginWindow\LoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\Message\W_Message.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\Message\W_MessageSB.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\Message\W_MessageTimeList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Winows\OtherWindows\Message\W_MessageTime.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\Payment\CreateNewCurrency\W_CreateNewCurrency.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\Payment\TypePayCreate\W_Pay_Create.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\Payment\W_GridPay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\Payment\W_PayETC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Winows\OtherWindows\Payment\W_TypePay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\Product\AddProduct\W_Add_Product.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\Product\ChangeProduct\W_Change_Product.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\Product\FindProduct\W_Find_Product.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\Product\FindProduct\RemoveProduct\W_Remove_Product.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\Product\W_Grid_Product.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\Product\W_setProduct.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\Pro\W_ProList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\Pro\W_Pro_add.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\Return\W_How.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\Return\W_AnnulationDeTicket.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Winows\OtherWindows\Return\W_Return.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\Return\W_ReturnProduct.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\AdminWindows\RoleWindow\AddRole.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\AdminWindows\RoleWindow\RolesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\Setting\W_Close_TicketWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\Setting\W_dateTimeSrv.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\Setting\W_offline.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\Setting\W_open_ticket.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\Setting\W_open_ticlet_g.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\Setting\W_Panel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\Statistique\ModifStatNationPopup\W_add.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\Statistique\ModifStatNationPopup\W_del.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\Statistique\ModifStatNationPopup\W_Grid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\Statistique\ModifStatNationPopup\W_mod.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\Statistique\ModifStatPlaceArrond\W_add.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\Statistique\ModifStatPlaceArrond\W_del.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\Statistique\ModifStatPlaceArrond\W_Grid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Winows\OtherWindows\Statistique\ModifStatPlaceArrond\W_mod.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\Statistique\W_Stat.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\UpdateDB\W_updateDB.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\AdminWindows\UsersWindow\AddUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\AdminWindows\UsersWindow\UsersWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\ProgressWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\SettingsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\OtherWindows\Product\W_product.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Winows\SyncSettingWindow\SyncSettingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.fr-FR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.fr-FR.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.ru-RU.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.ru-RU1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 et x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="logo.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\logo.png" />
+    <SplashScreen Include="images\SplashScreen2.png" />
+    <Resource Include="Data\1.xml" />
+    <Resource Include="Data\7.xml" />
+    <Resource Include="Data\check.xml" />
+    <Resource Include="Data\Currency.xml" />
+    <Resource Include="Data\en_attenete.xml" />
+    <Resource Include="Data\6.xml" />
+    <Resource Include="Data\8.xml" />
+    <Content Include="Data\Beep.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Data\b.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Content Include="Data\Computer_Error.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\GridStatistique_Region_et_Pays.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\GridRigthBottom.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Data\Establishment.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\TypePay.xml" />
+    <Resource Include="Dll\WPFUtils.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Content Include="Dll\barcode.dll" />
+    <Content Include="images\anahit_9.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="images\cubes.png" />
+    <Resource Include="Dll\BarcodeLib.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <EmbeddedResource Include="Data\checkHead.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Data\checkBody.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Data\checkFooter.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <Content Include="Data\GridLeft.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\GridEvro.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\GridTypePay.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Resource Include="Dll\dragonz.actb.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Dll\InputSimulator.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Dll\Microsoft.Expression.Interactions.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Dll\System.Windows.Interactivity.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Data\GridProduct.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Data\GridGroup.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Data\2014\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TicketWindow.DAL\TicketWindow.DAL.csproj">
+      <Project>{4584cf40-d602-4f13-85e6-b96d3854378a}</Project>
+      <Name>TicketWindow.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TicketWindow.Extensions\TicketWindow.Extensions.csproj">
+      <Project>{9741da73-d170-432a-b7e8-ece082cecde3}</Project>
+      <Name>TicketWindow.Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TicketWindow.Global\TicketWindow.Global.csproj">
+      <Project>{47c10739-69e8-47a2-a675-ef92b2e06abe}</Project>
+      <Name>TicketWindow.Global</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TicketWindow.Print\TicketWindow.Print.csproj">
+      <Project>{5f9a8ec3-2454-4377-a7e4-12f43e887e73}</Project>
+      <Name>TicketWindow.Print</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4584CF40-D602-4F13-85E6-B96D3854378A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TicketWindow.DAL</RootNamespace>
+    <AssemblyName>TicketWindow.DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Dapper, Version=1.40.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.1.42\lib\net40\Dapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Additional\CountCurrency.cs" />
+    <Compile Include="Additional\PriceGrosType.cs" />
+    <Compile Include="Additional\Privelege.cs" />
+    <Compile Include="Additional\SyncEnum.cs" />
+    <Compile Include="Additional\TesProduct.cs" />
+    <Compile Include="Additional\TesReglament.cs" />
+    <Compile Include="FileService.cs" />
+    <Compile Include="Models\AccountRole.cs" />
+    <Compile Include="Models\AccountUser.cs" />
+    <Compile Include="Models\ActionCashBox.cs" />
+    <Compile Include="Models\Base\CheckTicketBase.cs" />
+    <Compile Include="Models\Base\CloseTicketBase.cs" />
+    <Compile Include="Models\Base\PayProductBase.cs" />
+    <Compile Include="Models\Base\PayTicketBase.cs" />
+    <Compile Include="Models\CheckTicket.cs" />
+    <Compile Include="Models\CheckTicketTmp.cs" />
+    <Compile Include="Models\Pro.cs" />
+    <Compile Include="Models\ClientInfo.cs" />
+    <Compile Include="Models\CloseTicketCheckDiscount.cs" />
+    <Compile Include="Models\CloseTicketG.cs" />
+    <Compile Include="Models\CloseTicketTmp.cs" />
+    <Compile Include="Models\CloseTicket.cs" />
+    <Compile Include="Models\Country.cs" />
+    <Compile Include="Models\Currency.cs" />
+    <Compile Include="Models\DevisIdType.cs" />
+    <Compile Include="Models\DevisWebType.cs" />
+    <Compile Include="Models\DiscountCard.cs" />
+    <Compile Include="Models\Discount.cs" />
+    <Compile Include="Models\Establishment.cs" />
+    <Compile Include="Models\GeneralType.cs" />
+    <Compile Include="Models\GroupProduct.cs" />
+    <Compile Include="Models\InfoClientsDiscountsTypeType.cs" />
+    <Compile Include="Models\LastUpdateType.cs" />
+    <Compile Include="Models\OpenTicketWindow.cs" />
+    <Compile Include="Models\PayProduct.cs" />
+    <Compile Include="Models\PayProductTmp.cs" />
+    <Compile Include="Models\ProDiscount.cs" />
+    <Compile Include="Models\ProductBc.cs" />
+    <Compile Include="Models\ProductType.cs" />
+    <Compile Include="Models\StatNation.cs" />
+    <Compile Include="Models\StatNationPopup.cs" />
+    <Compile Include="Models\StatPlaceArrond.cs" />
+    <Compile Include="Models\StockLogs.cs" />
+    <Compile Include="Models\StockReal.cs" />
+    <Compile Include="Models\SubGroupProduct.cs" />
+    <Compile Include="Models\SyncIsLoading.cs" />
+    <Compile Include="Models\SyncPlus.cs" />
+    <Compile Include="Models\SyncPlusProductType.cs" />
+    <Compile Include="Models\Tes.cs" />
+    <Compile Include="Models\Tva.cs" />
+    <Compile Include="Models\TypePay.cs" />
+    <Compile Include="Models\XmlFile.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ConnectionFactory.cs" />
+    <Compile Include="Repositories\Base\RepositoryCheckTicketBase.cs" />
+    <Compile Include="Repositories\Base\RepositoryPayProductBase.cs" />
+    <Compile Include="Repositories\RepositoryProDiscount.cs" />
+    <Compile Include="Repositories\RepositoryAccountRole.cs" />
+    <Compile Include="Repositories\RepositoryAccountUser.cs" />
+    <Compile Include="Repositories\RepositoryCheckTicketTmp.cs" />
+    <Compile Include="Repositories\RepositoryPro.cs" />
+    <Compile Include="Repositories\RepositoryCloseTicketTmp.cs" />
+    <Compile Include="Repositories\RepositoryDevisId.cs" />
+    <Compile Include="Repositories\RepositoryDevisWeb.cs" />
+    <Compile Include="Repositories\RepositoryGeneral.cs" />
+    <Compile Include="Repositories\RepositoryHistoryChangeProduct.cs" />
+    <Compile Include="Repositories\RepositoryInfoClientsDiscountsType.cs" />
+    <Compile Include="Repositories\RepositoryPayProductTmp.cs" />
+    <Compile Include="Repositories\RepositoryCheck.cs" />
+    <Compile Include="Repositories\RepositoryCheckTicket.cs" />
+    <Compile Include="Repositories\RepositoryClientInfo.cs" />
+    <Compile Include="Repositories\RepositoryCloseTicket.cs" />
+    <Compile Include="Repositories\RepositoryCloseTicketCheckDiscount.cs" />
+    <Compile Include="Repositories\RepositoryCloseTicketG.cs" />
+    <Compile Include="Repositories\RepositoryCountry.cs" />
+    <Compile Include="Repositories\RepositoryCurrencyRelations.cs" />
+    <Compile Include="Repositories\RepositoryActionHashBox.cs" />
+    <Compile Include="Repositories\RepositoryCurrency.cs" />
+    <Compile Include="Repositories\RepositoryDiscount.cs" />
+    <Compile Include="Repositories\RepositoryDiscountCard.cs" />
+    <Compile Include="Repositories\RepositoryEstablishment.cs" />
+    <Compile Include="Repositories\RepositoryGroupProduct.cs" />
+    <Compile Include="Repositories\RepositoryLastUpdate.cs" />
+    <Compile Include="Repositories\RepositoryOpenTicketWindow.cs" />
+    <Compile Include="Repositories\RepositoryPayProduct.cs" />
+    <Compile Include="Repositories\RepositoryPriceGros.cs" />
+    <Compile Include="Repositories\RepositoryProductBc.cs" />
+    <Compile Include="Repositories\RepositoryProduct.cs" />
+    <Compile Include="Repositories\RepositoryStatNation.cs" />
+    <Compile Include="Repositories\RepositoryStatNationPopup.cs" />
+    <Compile Include="Repositories\RepositoryStatPlaceArrond.cs" />
+    <Compile Include="Repositories\RepositoryStockLogs.cs" />
+    <Compile Include="Repositories\RepositoryStockReal.cs" />
+    <Compile Include="Repositories\RepositorySubGroupProduct.cs" />
+    <Compile Include="Repositories\RepositorySyncIsLoading.cs" />
+    <Compile Include="Repositories\RepositorySyncPlus.cs" />
+    <Compile Include="Repositories\RepositorySyncPlusProduct.cs" />
+    <Compile Include="Repositories\RepositoryTes.cs" />
+    <Compile Include="Repositories\RepositoryTva.cs" />
+    <Compile Include="Repositories\RepositoryTypePay.cs" />
+    <Compile Include="Repositories\RepositoryXmlFile.cs" />
+    <Compile Include="Serializator.cs" />
+    <Compile Include="XmlStruct\ActionsCaisse.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TicketWindow.Extensions\TicketWindow.Extensions.csproj">
+      <Project>{9741da73-d170-432a-b7e8-ece082cecde3}</Project>
+      <Name>TicketWindow.Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TicketWindow.Global\TicketWindow.Global.csproj">
+      <Project>{47c10739-69e8-47a2-a675-ef92b2e06abe}</Project>
+      <Name>TicketWindow.Global</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

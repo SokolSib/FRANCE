@@ -1,0 +1,43 @@
+﻿<Window x:Class="TicketWindow.Winows.OtherWindows.Discount.WInfoClients"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Properties="clr-namespace:TicketWindow.Properties"
+        Title="W_InfoClients" GotFocus="WindowGotFocus" >
+    <Grid MaxHeight="768" MaxWidth="1024">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label Content="{x:Static Properties:Resources.LabelBarcode}"/> <TextBox x:Name="ebarcode" Grid.Column="1" KeyUp="EbarcodeKeyUp"></TextBox>
+        <Label Grid.Row="1" x:Name="lTypeClient"></Label>
+        <Label Grid.Row="2" x:Name="lName"></Label>
+        <Label Grid.Row="3" x:Name="lSurname"></Label>
+        <Label Grid.Row="4" x:Name="lNameCompany"></Label>
+        <Label Grid.Row="5" x:Name="lSIRET"></Label>
+        <Label Grid.Row="6" x:Name="lFRTVA"></Label>
+        <Label Grid.Row="7" x:Name="lOfficeAddress"></Label>
+        <Label Grid.Row="8" x:Name="lOfficeZipCode"></Label>
+        <Label Grid.Row="1" Grid.Column="1" x:Name="lOfficeCity"></Label>
+        <Label Grid.Row="2" Grid.Column="1" x:Name="lHomeAddress"></Label>
+        <Label Grid.Row="3" Grid.Column="1"  x:Name="lHomeZipCode"></Label>
+        <Label Grid.Row="4" Grid.Column="1" x:Name="lHomeCity"></Label>
+        <Label Grid.Row="5" Grid.Column="1" x:Name="lTelephone"></Label>
+        <Label Grid.Row="6" Grid.Column="1" x:Name="lMail"></Label>
+        <Label Grid.Row="7" Grid.Column="1" x:Name="lnumberCard"></Label>
+        <Label Grid.Row="8" Grid.Column="1" x:Name="lpoints"></Label>
+        <Label Grid.Row="9" Grid.Column="1" x:Name="lActive"></Label>
+        <Button Grid.Row="10" Grid.Column="1" Click="ButtonClick" Content="{x:Static Properties:Resources.BtnClose}" />
+    </Grid>
+</Window>

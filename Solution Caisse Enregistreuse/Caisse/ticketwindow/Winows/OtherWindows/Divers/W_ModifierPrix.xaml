@@ -1,0 +1,43 @@
+﻿<Window x:Class="TicketWindow.Winows.OtherWindows.Divers.WModifierPrix"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStyle="SingleBorderWindow"
+        xmlns:Properties="clr-namespace:TicketWindow.Properties"
+        xmlns:keyboard="clr-namespace:TicketWindow.Winows.OtherWindows.Keyboard"
+        Loaded="WindowLoaded"  Title="W_MofierPrix" Height="365" Width="650" 
+        Background="#333" FontSize="20" >
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <Label Grid.Row="0" Grid.Column="0" FontWeight="Bold" Margin="10" VerticalAlignment="Center" Content="{x:Static Properties:Resources.LabelPrixTTC}" />
+        <TextBox Grid.Row="0" Grid.Column="1" Name="xValue" Margin="10" Height="50" />
+
+        <Label Grid.Row="1" Grid.Column="0" FontWeight="Bold" Margin="10" VerticalAlignment="Center" Content="{x:Static Properties:Resources.LabelName}" />
+        <TextBox Grid.Row="1" Grid.Column="1" Name="xNameProduct" Margin="10" Height="50" />
+
+        <Grid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button Name="xEnter" Grid.Column="0" ToolTip="Click modifier le prix" Click="XEnterClick" Visibility="Collapsed" IsDefault="True" Background="Green" Content="{x:Static Properties:Resources.BtnOk}"/>
+            <Button Grid.Column="1" ToolTip="Click modifier le prix de BD" Click="XEnterClick" Background="Green" Content="{x:Static Properties:Resources.BtnRegister}"/>
+            <Button Height="50" Grid.Column="2" Click="ButtonClick" Background="Red" Content="{x:Static Properties:Resources.BtnCancel}"/>
+        </Grid>
+
+        <keyboard:WNumPadMini x:Name="numPad" Grid.Row="0" Grid.RowSpan="3" Grid.Column="2" Margin="20" />
+
+    </Grid>
+</Window>

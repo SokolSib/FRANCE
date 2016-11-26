@@ -1,0 +1,342 @@
+﻿<Window x:Class="WpDoc.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <ToolBarTray>
+            <ToolBar>
+                <Button Click="new_ButonClick">New</Button>
+                <Button Click="open_ButonClick">Open</Button>
+                <Button Click="save_ButonClick">Save</Button>
+            </ToolBar>
+            <ToolBar FontFamily="Times New Roman">
+                <Button FontWeight="Bold" Command="EditingCommands.ToggleBold">B</Button>
+                <Button FontStyle="Italic" Command="EditingCommands.ToggleItalic">I</Button>
+                <Button Command="EditingCommands.ToggleUnderline">U</Button>
+            </ToolBar>
+            <ToolBar>
+                <Button Content="Обновить разметку" Click="updatexaml_Click"/>
+            </ToolBar>
+        </ToolBarTray>
+        <TextBlock Margin="10" Text="Загруженный документ:" Grid.Row="1"/>
+        <RichTextBox x:Name="richTextBox" Margin="10,0" Grid.Row="2" BorderBrush="LightBlue" BorderThickness="2">
+
+            <FlowDocument xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" ColumnWidth="280" FontSize="8pt" FontFamily="Arial" LineHeight="1">
+
+                <BlockUIContainer>
+                    <Image Source="images/anahit_9.jpg"/>
+                </BlockUIContainer>
+
+
+
+
+                <Paragraph TextAlignment="Center">
+                    9 Boulevard de la Liberté - 13001 MARSEILLE
+                </Paragraph>
+                <Paragraph TextAlignment="Center">
+                    Tél : 04 56 25 12 45
+                </Paragraph>
+
+                <Paragraph TextAlignment="Center" FontWeight="Bold" Margin="0,10,0,0">***VENTE***</Paragraph>
+
+
+
+                <!-- Products -->
+                <Paragraph FontSize="8pt" FontWeight="Bold">Divers</Paragraph>
+
+
+                <Table>
+                    <Table.Columns>
+                        <TableColumn Width="215"></TableColumn>
+                        <TableColumn Width="55"></TableColumn>
+                    </Table.Columns>
+                    <TableRowGroup>
+
+                        <TableRow>
+                            <TableCell>
+                                <Paragraph>ab</Paragraph>
+                            </TableCell>
+                            <TableCell TextAlignment="Right">
+                                <Paragraph>2,21</Paragraph>
+                            </TableCell>
+                        </TableRow>
+
+
+
+                        <TableRow>
+                            <TableCell>
+                                <Paragraph>Horeng</Paragraph>
+                            </TableCell>
+                            <TableCell TextAlignment="Right">
+                                <Paragraph>2,32</Paragraph>
+                            </TableCell>
+                        </TableRow>
+
+
+
+                        <TableRow>
+                            <TableCell>
+                                <Paragraph>MARLENKA TORT MIEL 800GR</Paragraph>
+                            </TableCell>
+                            <TableCell TextAlignment="Right">
+                                <Paragraph>10,99</Paragraph>
+                            </TableCell>
+                        </TableRow>
+
+
+
+                    </TableRowGroup>
+                </Table>
+
+
+
+
+                <!-- Total TTC -->
+                <Table>
+                    <Table.Columns>
+                        <TableColumn Width="215"></TableColumn>
+                        <TableColumn Width="55"></TableColumn>
+                    </Table.Columns>
+                    <TableRowGroup>
+                        <TableRow>
+                            <TableCell>
+                                <Paragraph TextAlignment="Right" FontWeight="Bold" >TOTAL :</Paragraph>
+                            </TableCell>
+                            <TableCell>
+                                <Paragraph TextAlignment="Right" FontWeight="Bold">15,52</Paragraph>
+                            </TableCell>
+                        </TableRow>
+                    </TableRowGroup>
+                </Table>
+
+
+                <!-- PaYs -->
+
+                <Paragraph>En Espèces : 15,52 €</Paragraph>
+
+
+                <!-- Rendu -->
+
+
+                <!-- TVA -->
+                <Paragraph TextAlignment="Center" FontWeight="Bold" Margin="0,10,0,0">***TVA***</Paragraph>
+                <Table FontSize="8pt">
+                    <Table.Columns>
+                        <TableColumn Width="70"></TableColumn>
+                        <TableColumn Width="60"></TableColumn>
+                        <TableColumn Width="70"></TableColumn>
+                        <TableColumn Width="60"></TableColumn>
+                    </Table.Columns>
+
+                    <TableRowGroup>
+                        <TableRow>
+                            <TableCell>
+                                <Paragraph TextAlignment="Center">TVA 5,5% :</Paragraph>
+                            </TableCell>
+                            <TableCell>
+                                <Paragraph TextAlignment="Right">0,81 €</Paragraph>
+                            </TableCell>
+                            <TableCell>
+                                <Paragraph TextAlignment="Center">HT :</Paragraph>
+                            </TableCell>
+                            <TableCell>
+                                <Paragraph TextAlignment="Right">14,71 €</Paragraph>
+                            </TableCell>
+                        </TableRow>
+                    </TableRowGroup>
+                </Table>
+
+
+
+                <!-- Card Discount -->
+
+
+
+
+                <!-- BARCODE-->
+                <BlockUIContainer>
+                    <Image Source="d:\bc4111449387.jpg" Width="200" />
+                </BlockUIContainer>
+
+
+                <Paragraph TextAlignment="Center">211122014111449387</Paragraph>
+                <Paragraph TextAlignment="Center">
+                    Caisse 2 - 12.11.2014 - 11:15</Paragraph>
+
+                <!--FOOTER-->
+                <Paragraph TextAlignment="Center" Margin="0,10,0,0">Facebook : SARL ANAHIT 
+
+*****************************************************</Paragraph>
+
+                <BlockUIContainer>
+                    <Image Source="images/anahit_9.jpg"/>
+                </BlockUIContainer>
+
+
+
+
+                <Paragraph TextAlignment="Center">
+                    9 Boulevard de la Liberté - 13001 MARSEILLE
+                </Paragraph>
+                <Paragraph TextAlignment="Center">
+                    Tél : 04 56 25 12 45
+                </Paragraph>
+
+                <Paragraph TextAlignment="Center" FontWeight="Bold" Margin="0,10,0,0">***VENTE***</Paragraph>
+
+
+
+                <!-- Products -->
+                <Paragraph FontSize="8pt" FontWeight="Bold">Divers</Paragraph>
+
+
+                <Table>
+                    <Table.Columns>
+                        <TableColumn Width="215"></TableColumn>
+                        <TableColumn Width="55"></TableColumn>
+                    </Table.Columns>
+                    <TableRowGroup>
+
+                        <TableRow>
+                            <TableCell>
+                                <Paragraph>CAFE NAJAR  BLEU</Paragraph>
+                            </TableCell>
+                            <TableCell TextAlignment="Right">
+                                <Paragraph>3,99</Paragraph>
+                            </TableCell>
+                        </TableRow>
+
+
+
+                        <TableRow>
+                            <TableCell>
+                                <Paragraph>ab</Paragraph>
+                            </TableCell>
+                            <TableCell TextAlignment="Right">
+                                <Paragraph>2,21</Paragraph>
+                            </TableCell>
+                        </TableRow>
+
+
+
+                        <TableRow>
+                            <TableCell>
+                                <Paragraph>Horeng</Paragraph>
+                            </TableCell>
+                            <TableCell TextAlignment="Right">
+                                <Paragraph>2,32</Paragraph>
+                            </TableCell>
+                        </TableRow>
+
+
+
+                        <TableRow>
+                            <TableCell>
+                                <Paragraph>MARLENKA TORT MIEL 800GR</Paragraph>
+                            </TableCell>
+                            <TableCell TextAlignment="Right">
+                                <Paragraph>10,99</Paragraph>
+                            </TableCell>
+                        </TableRow>
+
+
+
+                    </TableRowGroup>
+                </Table>
+
+
+
+
+                <!-- Total TTC -->
+                <Table>
+                    <Table.Columns>
+                        <TableColumn Width="215"></TableColumn>
+                        <TableColumn Width="55"></TableColumn>
+                    </Table.Columns>
+                    <TableRowGroup>
+                        <TableRow>
+                            <TableCell>
+                                <Paragraph TextAlignment="Right" FontWeight="Bold" >TOTAL :</Paragraph>
+                            </TableCell>
+                            <TableCell>
+                                <Paragraph TextAlignment="Right" FontWeight="Bold">19,51</Paragraph>
+                            </TableCell>
+                        </TableRow>
+                    </TableRowGroup>
+                </Table>
+
+
+                <!-- PaYs -->
+
+                <Paragraph>En Espèces : 19,51 €</Paragraph>
+
+
+                <!-- Rendu -->
+
+
+                <!-- TVA -->
+                <Paragraph TextAlignment="Center" FontWeight="Bold" Margin="0,10,0,0">***TVA***</Paragraph>
+                <Table FontSize="8pt">
+                    <Table.Columns>
+                        <TableColumn Width="70"></TableColumn>
+                        <TableColumn Width="60"></TableColumn>
+                        <TableColumn Width="70"></TableColumn>
+                        <TableColumn Width="60"></TableColumn>
+                    </Table.Columns>
+
+                    <TableRowGroup>
+                        <TableRow>
+                            <TableCell>
+                                <Paragraph TextAlignment="Center">TVA 5,5% :</Paragraph>
+                            </TableCell>
+                            <TableCell>
+                                <Paragraph TextAlignment="Right">1,02 €</Paragraph>
+                            </TableCell>
+                            <TableCell>
+                                <Paragraph TextAlignment="Center">HT :</Paragraph>
+                            </TableCell>
+                            <TableCell>
+                                <Paragraph TextAlignment="Right">18,49 €</Paragraph>
+                            </TableCell>
+                        </TableRow>
+                    </TableRowGroup>
+                </Table>
+
+
+
+                <!-- Card Discount -->
+
+
+
+
+                <!-- BARCODE-->
+                <BlockUIContainer>
+                    <Image Source="d:\bc4112019218.jpg" Width="200" />
+                </BlockUIContainer>
+
+
+                <Paragraph TextAlignment="Center">211122014112019218</Paragraph>
+                <Paragraph TextAlignment="Center">
+                    Caisse 2 - 12.11.2014 - 11:20</Paragraph>
+
+                <!--FOOTER-->
+                <Paragraph TextAlignment="Center" Margin="0,10,0,0">Facebook : SARL ANAHIT 
+
+*****************************************************</Paragraph>
+
+            </FlowDocument>
+        </RichTextBox>
+        <GridSplitter Margin="5,10" HorizontalAlignment="Stretch" Height="4" Background="#aaa" Grid.Row="3"/>
+        <TextBlock Margin="10,0" Text="XAML-разметка: " Grid.Row="4" MaxHeight="30"/>
+        <TextBox x:Name="txb_xaml" Margin="10" TextWrapping="Wrap" Padding="5" Grid.Row="5" BorderBrush="LightBlue" BorderThickness="2"
+                 VerticalScrollBarVisibility="Visible"/>
+    </Grid>
+</Window>

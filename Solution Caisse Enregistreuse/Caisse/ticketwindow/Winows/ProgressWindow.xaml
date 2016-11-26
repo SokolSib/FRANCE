@@ -1,0 +1,22 @@
+﻿<Window x:Class="TicketWindow.Winows.ProgressWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ProgressWindow" Height="180" Width="600" 
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Name="BoxName" Text="progress" Margin="10" VerticalAlignment="Center" FontSize="20"/>
+
+        <ProgressBar Grid.Row="1" Name="BoxProgress" Margin="20" Height="50"/>
+        <TextBlock Grid.Row="1" Name="BoxText" Text="progress" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25"/>
+        
+    </Grid>
+
+</Window>
+

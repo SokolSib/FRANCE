@@ -1,0 +1,114 @@
+﻿<Window x:Class="ticketwindow.Winows.Discount.W_discount"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:UserControl="clr-namespace:ticketwindow.Winows.Keyboard"
+        Title="W_discount" Height="500" Width="800" FontSize="21">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TabControl   >
+            <TabItem Header="All Products">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="60"></RowDefinition>
+                            <RowDefinition Height="60"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Label>Total</Label>
+                            <TextBlock Grid.Column="1" x:Name="tbTotal">.....</TextBlock>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Label >Remise</Label>
+                            <TextBox Grid.Column="1" x:Name="tbRemise"></TextBox>
+                        </Grid>
+
+                        <UserControl:W_NumPadMini x:Name="numPad"  Grid.Row="2" Margin="0,0,0,0"  />
+
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="60"></RowDefinition>
+                            <RowDefinition Height="60"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Label>New Total</Label>
+                            <TextBlock Grid.Column="1" x:Name="xNewToal">.....</TextBlock>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Label >Remise</Label>
+                            <TextBox Grid.Column="1" x:Name="xRemiseP"></TextBox>
+                        </Grid>
+
+                        <Grid  Grid.Row="2" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Button ToolTip="discount" Grid.Column="0">1%</Button>
+                            <Button ToolTip="discount" Grid.Column="1">2%</Button>
+                            <Button ToolTip="discount" Grid.Column="2">5%</Button>
+                            <Button ToolTip="discount" Grid.Column="3">7%</Button>
+
+                            <Button ToolTip="discount" Grid.Row="1" Grid.Column="0">10%</Button>
+                            <Button ToolTip="discount" Grid.Row="1" Grid.Column="1">15%</Button>
+                            <Button ToolTip="discount" Grid.Row="1" Grid.Column="2">17%</Button>
+                            <Button ToolTip="discount" Grid.Row="1" Grid.Column="3">20%</Button>
+
+                            <Button ToolTip="discount" Grid.Row="2" Grid.Column="0">30%</Button>
+                            <Button ToolTip="discount" Grid.Row="2" Grid.Column="1">40%</Button>
+                            <Button ToolTip="discount" Grid.Row="2" Grid.Column="2">50%</Button>
+                            <Button ToolTip="discount" Grid.Row="2" Grid.Column="3">100%</Button>
+
+
+                        </Grid>
+                    </Grid>
+                </Grid>
+
+            </TabItem>
+            <TabItem Header="Item Product">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition>
+                </ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button IsDefault="True">OK</Button>
+            <Button  Grid.Column="1" Click="Button_Click">Cancel</Button>
+        </Grid>
+    </Grid>
+</Window>

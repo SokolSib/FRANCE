@@ -1,0 +1,26 @@
+﻿<Window x:Class="TicketWindow.Winows.OtherWindows.Return.WHow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:properties="clr-namespace:TicketWindow.Properties"
+        Title="W_How" Background="#333" FontSize="18" WindowStartupLocation="CenterScreen" WindowStyle="None"  >
+    <Grid Height="200" Width="400">
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <TextBox x:Name="TQty" Grid.Row="1" Grid.Column="0" VerticalContentAlignment="Center" FontSize="20"/>
+        <Label   x:Name="LQty" Grid.Row="1" Grid.Column="1" Foreground="White" FontSize="28" Content="{x:Static properties:Resources.LabelPieceOrKg}" />
+        <Label   x:Name="LError" Grid.Row="2" Grid.Column="0" Foreground="Red" FontSize="28" Content="{x:Static properties:Resources.LabelError}" />
+        <TextBlock  TextAlignment="Left" TextWrapping="WrapWithOverflow"  x:Name="TError"  Grid.Row="2" Grid.Column="1" Foreground="Red" FontSize="16" > Information sur le message d'erreur </TextBlock>
+
+        <Button Grid.Row="3" Grid.Column="0" Background="Green" Click="ButtonClick" IsDefault="True" Content="{x:Static properties:Resources.BtnOk}"/>
+        <Button Grid.Row="3" Grid.Column="1" Background="Red" Click="ButtonClick1" Content="{x:Static properties:Resources.BtnCancel}" />
+
+    </Grid>
+</Window>

@@ -1,0 +1,22 @@
+﻿<Window x:Class="ticketwindow.Winows.Setting.W_offline"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="W_offline" Height="300" Width="600" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button IsDefault="True" Click="Button_Click" Background="Green">Forcé la Clôture</Button>
+            <Button  Grid.Column="1" Background="Red" Click="Button_Click_1">Annuler</Button>
+        </Grid>
+
+    </Grid>
+</Window>

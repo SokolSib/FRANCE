@@ -1,0 +1,70 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ticketwindow.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Column1WidthSetting" Type="System.Windows.GridLength" Scope="User">
+      <Value Profile="(Default)">500</Value>
+    </Setting>
+    <Setting Name="Row1HeightSetting" Type="System.Windows.GridLength" Scope="User">
+      <Value Profile="(Default)">400</Value>
+    </Setting>
+    <Setting Name="Row2HeightSetting" Type="System.Windows.GridLength" Scope="User">
+      <Value Profile="(Default)">25</Value>
+    </Setting>
+    <Setting Name="Row3HeightSetting" Type="System.Windows.GridLength" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="Row4HeightSetting" Type="System.Windows.GridLength" Scope="User">
+      <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="BDCA_testConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=anahit.fr;Initial Catalog=BDCA_test;Persist Security Info=True;User ID=sa&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=anahit.fr;Initial Catalog=BDCA_test;Persist Security Info=True;User ID=sa</Value>
+    </Setting>
+    <Setting Name="Name" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ST CHARLE</Value>
+    </Setting>
+    <Setting Name="IdEstablishment" Type="System.Guid" Scope="Application">
+      <Value Profile="(Default)">e27d5a4d-d6d3-4ee5-810b-f95b32e0bb93</Value>
+    </Setting>
+    <Setting Name="gridModif" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="fromLoadSyncAll" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="utc" Type="System.Int16" Scope="Application">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="CustumerId" Type="System.Guid" Scope="Application">
+      <Value Profile="(Default)">cf1a1661-e2a7-45f3-b3d2-f055b51e2910</Value>
+    </Setting>
+    <Setting Name="nameTicket" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Caisse 1</Value>
+    </Setting>
+    <Setting Name="user" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Test</Value>
+    </Setting>
+    <Setting Name="numberTicket" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="Bureau" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="BDCA_testConnectionString1" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=cam.anahit.fr;Initial Catalog=BDCA_test;Persist Security Info=True;User ID=sa&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=cam.anahit.fr;Initial Catalog=BDCA_test;Persist Security Info=True;User ID=sa</Value>
+    </Setting>
+    <Setting Name="IdEstablishment_GROS" Type="System.Guid" Scope="Application">
+      <Value Profile="(Default)">33a6114d-cb17-4bdc-a51f-984fc849093f</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

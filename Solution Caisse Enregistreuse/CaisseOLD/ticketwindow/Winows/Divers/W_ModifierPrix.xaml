@@ -1,0 +1,55 @@
+﻿<Window x:Class="ticketwindow.Winows.Divers.W_ModifierPrix"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStyle="SingleBorderWindow" 
+        xmlns:UserControl="clr-namespace:ticketwindow.Winows.Keyboard" 
+        Loaded="Window_Loaded"  Title="W_MofierPrix" Height="365" Width="650" 
+        Background="#333" FontSize="20" >
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+          
+            <Grid.RowDefinitions>
+               
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" FontWeight="Bold" Height="35" >Prix TTC :</Label>
+            <TextBox Grid.Row="0" Name="xValue" Height="50" Margin="108,26,10,25" />
+            <Label  Grid.Row="1" FontWeight="Bold" Content="NameProduct :" Height="35"/>
+            <TextBox Grid.Row="1" Name="xNameProduct" Height="50" Margin="10,26" />
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Name="xEnter" ToolTip="Click modifier le prix" Click="xEnter_Click" Visibility="Hidden" Grid.Column="0" Height="50" IsDefault="True" Background="Green">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Width="93" FontSize="25">Valider</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button Height="50" ToolTip="Click modifier le prix de BD" Click="xEnter_Click" Grid.Column="1" Background="Green">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Center" Width="130" FontSize="25">Enregistrer</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button Height="50" Grid.Column="0" Click="Button_Click" Background="Red">
+                    <StackPanel Orientation="Horizontal" >
+                        <TextBlock HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Center" Width="130" FontSize="25">Annuler</TextBlock>
+                    </StackPanel>
+                </Button>
+            </Grid>
+        </Grid>
+
+        <StackPanel Grid.Column="1">
+            <UserControl:W_NumPadMini x:Name="numPad"  />
+        </StackPanel>
+
+
+    </Grid>
+</Window>

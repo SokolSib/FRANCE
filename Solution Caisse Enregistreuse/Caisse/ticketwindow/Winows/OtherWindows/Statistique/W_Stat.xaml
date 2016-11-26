@@ -1,0 +1,23 @@
+﻿<Window x:Class="TicketWindow.Winows.OtherWindows.Statistique.WStat"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Properties="clr-namespace:TicketWindow.Properties"
+        Title="W_Stat" Height="300" Width="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <ListBox Grid.Column="0" Grid.Row="1"  x:Name="xNation"/>
+        <ListBox Grid.Column="1" Grid.Row="1"  x:Name="xPlaceArround" />
+        <Button Content="{x:Static Properties:Resources.BtnOk}" x:Name="Ok" Grid.Column="0" Grid.Row="2" Click="OkClick"/>
+        <Button Content="{x:Static Properties:Resources.BtnCancel}" x:Name="Cancel" Grid.Column="1" Grid.Row="2" Click="CancelClick"/>
+        <Button Grid.Column="0" Grid.Row="0" x:Name="xBNation" ToolTip="show_grid_StatNationPopup" Click="XbNationClick" Margin="0,-5,0,5" Content="{x:Static Properties:Resources.BtnRedact}"/>
+        <Button Grid.Column="1" Grid.Row="0" x:Name="xBPlaceArround" ToolTip="show_grid_StatPlaceArrond" Click="XbNationClick" Content="{x:Static Properties:Resources.BtnRedact}"/>
+    </Grid>
+</Window>

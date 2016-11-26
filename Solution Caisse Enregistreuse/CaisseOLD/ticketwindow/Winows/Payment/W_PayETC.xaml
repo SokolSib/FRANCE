@@ -1,0 +1,27 @@
+﻿<Window x:Class="ticketwindow.Winows.Payment.W_PayETC"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="W_PayCard"  Background="#333" FontSize="20" WindowStartupLocation="CenterScreen" 
+        GotFocus="Window_GotFocus" WindowState="Maximized"
+       WindowStyle="SingleBorderWindow" xmlns:UserControl="clr-namespace:ticketwindow.Winows.Keyboard"
+        MinHeight="300" Width="409" Loaded="Window_Loaded">
+    <Grid MinHeight="300" Width="400" >
+
+        <Label x:Name="_typesPay" Height="43" Width="400" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,0,450" />
+
+        <Label HorizontalAlignment="Center" Height="40" Width="100" VerticalAlignment="Center" FontWeight="Bold" Foreground="Aqua" Margin="68,44,232,390" >Montant</Label>
+        <TextBox x:Name="tbS" Height="40" Width="165" HorizontalAlignment="Left" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="173,44,0,390" />
+
+
+
+        <Button x:Name="xEnter" ToolTip="click_ok_Currency" IsDefault="True" Click="Button_Click" Background="Green" Height="50" Width="133" Margin="267,103,0,321">Valider</Button>
+
+        <ToggleButton x:Name="NumPadVisible" ToolTip="ClavierNumPad" IsChecked="False"  Click="InvisibleClick" Height="50" Width="135" Margin="131,103,134,321" >NumPad</ToggleButton>
+
+        <Button  Background="Red" Height="50" Width="133" Margin="0,103,267,321" Click="Button_Click_1">Annuler</Button>
+
+        <StackPanel x:Name="xNumPad" Visibility="Visible" Margin="0,350,0,0" >
+            <UserControl:W_NumPadMini x:Name="numPad" />
+        </StackPanel>
+    </Grid>
+</Window>

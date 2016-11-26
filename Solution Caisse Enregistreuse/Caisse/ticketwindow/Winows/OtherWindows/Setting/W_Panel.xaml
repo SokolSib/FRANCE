@@ -1,0 +1,13 @@
+﻿<Window x:Class="TicketWindow.Winows.OtherWindows.Setting.WPanel"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Loaded="WindowLoaded"
+         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+         xmlns:behaviors="clr-namespace:WPFUtils.Behaviors;assembly=WPFUtils" 
+        Topmost="True"
+        Title="W_Panel" Height="50" Width="50" AllowsTransparency="True" WindowStyle="None" BorderThickness="0">
+   
+    <Grid>
+        <ToggleButton BorderThickness="0"></ToggleButton>
+    </Grid>
+</Window>

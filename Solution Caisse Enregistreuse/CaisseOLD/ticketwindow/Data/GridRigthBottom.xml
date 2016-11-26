@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Grid>
+  <rec>
+    <id>0</id>
+    <Date_upd>15/08/2014 20:55:51</Date_upd>
+    <X>0</X>
+    <Y>0</Y>
+    <Caption>Paiement</Caption>
+    <Color>255,128,0,128</Color>
+    <foreground>255,0,0,0</foreground>
+    <Img></Img>
+    <Fun>Le mode de Paiement</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>15/08/2014 20:59:17</Date_upd>
+    <X>1</X>
+    <Y>0</Y>
+    <Caption>Especes</Caption>
+    <Color>255,0,128,0</Color>
+    <foreground>255,0,0,0</foreground>
+    <Img></Img>
+    <Fun>TypesPayDynamic1</Fun>
+  </rec>
+  <rec>
+    <id>1</id>
+    <Date_upd>15/08/2014 20:59:34</Date_upd>
+    <X>1</X>
+    <Y>1</Y>
+    <Caption>CB</Caption>
+    <Color>255,0,0,255</Color>
+    <foreground>255,0,0,0</foreground>
+    <Img></Img>
+    <Fun>TypesPayDynamic4</Fun>
+  </rec>
+  <rec>
+    <id>2</id>
+    <Date_upd>15/08/2014 21:01:09</Date_upd>
+    <X>1</X>
+    <Y>2</Y>
+    <Caption>Cheques</Caption>
+    <Color>255,0,255,255</Color>
+    <foreground>255,0,0,0</foreground>
+    <Img></Img>
+    <Fun>TypesPayDynamic5</Fun>
+  </rec>
+  <rec>
+    <id>3</id>
+    <Date_upd>15/08/2014 21:00:48</Date_upd>
+    <X>1</X>
+    <Y>3</Y>
+    <Caption>Ticket RESTO</Caption>
+    <Color>255,178,34,34</Color>
+    <foreground>255,0,0,0</foreground>
+    <Img></Img>
+    <Fun>TypesPayDynamic6</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>15/08/2014 21:07:54</Date_upd>
+    <X>0</X>
+    <Y>1</Y>
+    <Caption>Aff_TOTAL</Caption>
+    <Color>255,143,188,143</Color>
+    <foreground>255,0,0,0</foreground>
+    <Img></Img>
+    <Fun>Afficher un Total</Fun>
+  </rec>
+</Grid>

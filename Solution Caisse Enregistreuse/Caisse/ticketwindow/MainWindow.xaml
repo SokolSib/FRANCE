@@ -1,0 +1,539 @@
+﻿<Window x:Class="TicketWindow.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" 
+        xmlns:Properties="clr-namespace:TicketWindow.Properties"
+        Background="#333"
+        FontSize="14" 
+        Title="Caisse" WindowStartupLocation="CenterScreen" 
+        WindowStyle="None" WindowState="Maximized" Name="MainWindow_"
+        GotFocus="WindowGotFocus" 
+        Closing="WindowClosing">
+
+    <Window.Resources>
+        <Style x:Key="BigFontButton">
+            <Style.Setters>
+                <Setter Property="Control.FontFamily" Value="Times New Roman" />
+                <Setter Property="Control.FontSize" Value="18" />
+
+            </Style.Setters>
+            <Style.Triggers>
+                <Trigger Property="Control.IsFocused" Value="True">
+                    <Setter Property="Control.Foreground" Value="DarkRed" />
+                </Trigger>
+                <Trigger Property="Control.IsMouseOver" Value="True">
+                    <Setter Property="Control.Foreground" Value="LightYellow" />
+                    <Setter Property="Control.FontWeight" Value="Bold" />
+                </Trigger>
+                <Trigger Property="Button.IsPressed" Value="True">
+                    <Setter Property="Control.Foreground" Value="Red" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="{x:Type Grid}">
+            <Style.Triggers>
+                <Trigger Property="Button.IsFocused" Value="True">
+                    <Setter Property = "Background" Value="Red"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="{x:Type DataGridCell}">
+            <Style.Triggers>
+                <Trigger Property="DataGridCell.IsSelected" Value="True">
+                    <Setter Property="Background" Value="Black" />
+                    <Setter Property="FontSize" Value="12pt" />
+                    <Setter Property="Foreground" Value="White" />
+                    <Setter Property="Height" Value="30px" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="{x:Type TextBox}">
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="BorderBrush"  Value="Red"/>
+                    <Setter Property="BorderThickness" Value="2" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="ScrollBar">
+            <Setter Property="ScrollViewer.Width" Value="40" />
+        </Style>
+
+    </Window.Resources>
+    <Grid>
+        <!-- Width="1024" Height="768" -->
+        <Grid x:Name="MainGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition MaxHeight="40"></RowDefinition>
+                <RowDefinition ></RowDefinition>
+            </Grid.RowDefinitions>
+            
+            <ToolBar x:Name="MainBar" >
+                <Button Click="ButtonUsersClick" Name="BtnUsers" Content="{x:Static Properties:Resources.MenuUsers}"/>
+                <Separator/>
+                <Button Click="ButtonRolesClick" Name="BtnRoles" Content="{x:Static Properties:Resources.MenuRoles}"/>
+                <Separator/>
+                <Button Click="ButtonTvaClick" Name="BtnTva" Content="{x:Static Properties:Resources.MenuVats}" />
+                <Separator/>
+                <Button Click="ButtonGroupsProductClick" Name="BtnGroupsProduct" Content="{x:Static Properties:Resources.MenuGroupsProduct}"/>
+                <Separator/>
+                <Button Click="ButtonSyncSettingsClick" Name="BtnSyncSettings" Content="{x:Static Properties:Resources.MenuSyncSetting}"/>
+                <Separator/>
+                <Button Content="{x:Static Properties:Resources.MenuLanguage}" Name="MenuLanguage" Click="MenuLanguage_OnClick" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <Button.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Русский" IsCheckable="True" Click="MenuItem_OnClick" Tag="ru-RU" />
+                            <MenuItem Header="Français" IsCheckable="True" Click="MenuItem_OnClick" Tag="fr-FR" />
+                            <MenuItem Header="English" IsCheckable="True" Click="MenuItem_OnClick" Tag="en-US" Name="DefoultLangMenu" />
+                        </ContextMenu>
+                    </Button.ContextMenu>
+                </Button>
+            </ToolBar>
+            
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <StatusBar>
+                    <StatusBarItem />
+                    <StatusBarItem x:Name="ldt"/>
+                    <StatusBarItem x:Name="lnm"/>
+                    <StatusBarItem x:Name="lnt"/>
+                    <StatusBarItem x:Name="lnu"/>
+                    <StatusBarItem x:Name="ldtc"/>
+
+                </StatusBar>
+                <StatusBar Grid.Column="1">
+                    <StatusBarItem />
+                    <StatusBarItem x:Name="lProcentDiscount" Content="Remise en %" />
+                    <StatusBarItem x:Name="lNameClient" Content="Inconnu" />
+                    <StatusBarItem x:Name="lPointsClient" Content="Les points de fidelité X" HorizontalAlignment="Center" />
+                    <StatusBarItem x:Name="lrendu" HorizontalContentAlignment="Right" HorizontalAlignment="Right" FontSize="12pt" FontWeight="ExtraBold" />
+                    <StatusBarItem x:Name="ltotal" FontSize="12pt" FontWeight="ExtraBold" HorizontalAlignment="Right"/>
+                </StatusBar>
+                <TextBlock Visibility="Hidden" IsEnabled="False" MinWidth="120" MaxWidth="1024" Grid.Column="0"   FontSize="10" Foreground="White"   Background="#333" Opacity="1" x:Name="status_message" />
+                <TextBlock Visibility="Hidden" Grid.Column="1"  IsEnabled="False"  FontSize="10" Foreground="Red"   Background="#333" Opacity="1" x:Name="error_message" />
+
+            </Grid>
+            
+            <Grid Grid.Row="2" DataContext="{Binding}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Name="MyColumn1" Width="{Binding Column1WidthSetting, Mode=TwoWay}" />
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition Name="MyColumn2" Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <GridSplitter Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Width="5" VerticalAlignment="Stretch" HorizontalAlignment="Center"/>
+                <Grid x:Name="gidLeft">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button Name="b_0x0" Grid.Column="0" Grid.Row="0" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_1x0" Grid.Column="1" Grid.Row="0" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_2x0" Grid.Column="2" Grid.Row="0" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_3x0" Grid.Column="3" Grid.Row="0" MouseRightButtonDown="ButtonMouseRightButtonDown"/>
+                    <Button Name="b_4x0" Grid.Column="4" Grid.Row="0" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_5x0" Grid.Column="5" Grid.Row="0" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+
+                    <Button Name="b_0x1" Grid.Column="0" Grid.Row="1" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_1x1" Grid.Column="1" Grid.Row="1" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_2x1" Grid.Column="2" Grid.Row="1" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_3x1" Grid.Column="3" Grid.Row="1" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_4x1" Grid.Column="4" Grid.Row="1" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_5x1" Grid.Column="5" Grid.Row="1" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+
+                    <Button Name="b_0x2" Grid.Column="0" Grid.Row="2" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_1x2" Grid.Column="1" Grid.Row="2" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_2x2" Grid.Column="2" Grid.Row="2" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_3x2" Grid.Column="3" Grid.Row="2" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_4x2" Grid.Column="4" Grid.Row="2" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_5x2" Grid.Column="5" Grid.Row="2" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+
+
+                    <Button Name="b_0x3" Grid.Column="0" Grid.Row="3" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_1x3" Grid.Column="1" Grid.Row="3" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_2x3" Grid.Column="2" Grid.Row="3" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_3x3" Grid.Column="3" Grid.Row="3" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_4x3" Grid.Column="4" Grid.Row="3" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_5x3" Grid.Column="5" Grid.Row="3" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+
+
+                    <Button Name="b_0x4" Grid.Column="0" Grid.Row="4" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_1x4" Grid.Column="1" Grid.Row="4" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_2x4" Grid.Column="2" Grid.Row="4" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_3x4" Grid.Column="3" Grid.Row="4" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_4x4" Grid.Column="4" Grid.Row="4" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_5x4" Grid.Column="5" Grid.Row="4" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+
+
+                    <Button Name="b_0x5" Grid.Column="0" Grid.Row="5" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_1x5" Grid.Column="1" Grid.Row="5" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_2x5" Grid.Column="2" Grid.Row="5" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_3x5" Grid.Column="3" Grid.Row="5" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_4x5" Grid.Column="4" Grid.Row="5" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_5x5" Grid.Column="5" Grid.Row="5" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+
+
+                    <Button Name="b_0x6" Grid.Column="0" Grid.Row="6" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_1x6" Grid.Column="1" Grid.Row="6" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_2x6" Grid.Column="2" Grid.Row="6" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_3x6" Grid.Column="3" Grid.Row="6" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_4x6" Grid.Column="4" Grid.Row="6" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_5x6" Grid.Column="5" Grid.Row="6" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+
+
+                    <Button Name="b_0x7" Grid.Column="0" Grid.Row="7" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_1x7" Grid.Column="1" Grid.Row="7" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_2x7" Grid.Column="2" Grid.Row="7" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_3x7" Grid.Column="3" Grid.Row="7" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_4x7" Grid.Column="4" Grid.Row="7" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_5x7" Grid.Column="5" Grid.Row="7" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+
+                    <Button Name="b_0x8" Grid.Column="0" Grid.Row="8" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_1x8" Grid.Column="1" Grid.Row="8" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_2x8" Grid.Column="2" Grid.Row="8" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_3x8" Grid.Column="3" Grid.Row="8" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_4x8" Grid.Column="4" Grid.Row="8" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_5x8" Grid.Column="5" Grid.Row="8" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+
+                    <Button Name="b_0x9" Grid.Column="0" Grid.Row="9" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_1x9" Grid.Column="1" Grid.Row="9" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_2x9" Grid.Column="2" Grid.Row="9" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_3x9" Grid.Column="3" Grid.Row="9" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_4x9" Grid.Column="4" Grid.Row="9" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_5x9" Grid.Column="5" Grid.Row="9" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+
+                    <Button Name="b_0x10" Grid.Column="0" Grid.Row="10" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_1x10" Grid.Column="1" Grid.Row="10" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_2x10" Grid.Column="2" Grid.Row="10" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_3x10" Grid.Column="3" Grid.Row="10" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_4x10" Grid.Column="4" Grid.Row="10" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_5x10" Grid.Column="5" Grid.Row="10" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+
+                    <Button Name="b_0x11" Grid.Column="0" Grid.Row="11" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_1x11" Grid.Column="1" Grid.Row="11" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_2x11" Grid.Column="2" Grid.Row="11" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_3x11" Grid.Column="3" Grid.Row="11" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_4x11" Grid.Column="4" Grid.Row="11" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                    <Button Name="b_5x11" Grid.Column="5" Grid.Row="11" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                </Grid>
+                <Grid Name="xGrid" Visibility="Hidden" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button  Focusable="False"    Grid.Row="0" Grid.Column="0" Name="_b_0x0" MouseRightButtonDown="ButtonMouseRightButtonDown" >
+                        <TextBlock TextWrapping="WrapWithOverflow"  Style="{StaticResource CenterAlignStyle}" />
+                    </Button>
+                    <Button  Focusable="False"    Grid.Row="0" Grid.Column="1" Name="_b_0x1" MouseRightButtonDown="ButtonMouseRightButtonDown">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource CenterAlignStyle}" />
+                    </Button>
+                    <Button  Focusable="False"    Grid.Row="0" Grid.Column="2" Name="_b_0x2" MouseRightButtonDown="ButtonMouseRightButtonDown">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource CenterAlignStyle}" />
+                    </Button>
+                    <Button  Focusable="False"    Grid.Row="0" Grid.Column="3" Name="_b_0x3" MouseRightButtonDown="ButtonMouseRightButtonDown">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource CenterAlignStyle}" />
+                    </Button>
+                    <Button  Focusable="False"    Grid.Row="0" Grid.Column="4" Name="_b_0x4" MouseRightButtonDown="ButtonMouseRightButtonDown">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource CenterAlignStyle}" />
+                    </Button>
+                    <Button  Focusable="False"    Grid.Row="0" Grid.Column="5" Name="_b_0x5" MouseRightButtonDown="ButtonMouseRightButtonDown">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource CenterAlignStyle}" />
+                    </Button>
+
+                    <Button  Focusable="False"    Grid.Row="1" Grid.Column="0" Name="_b_1x0" MouseRightButtonDown="ButtonMouseRightButtonDown">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource CenterAlignStyle}" />
+                    </Button>
+                    <Button  Focusable="False"    Grid.Row="1" Grid.Column="1" Name="_b_1x1" MouseRightButtonDown="ButtonMouseRightButtonDown">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource CenterAlignStyle}" />
+                    </Button>
+                    <Button  Focusable="False"    Grid.Row="1" Grid.Column="2" Name="_b_1x2" MouseRightButtonDown="ButtonMouseRightButtonDown">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource CenterAlignStyle}" />
+                    </Button>
+                    <Button  Focusable="False"    Grid.Row="1" Grid.Column="3" Name="_b_1x3" MouseRightButtonDown="ButtonMouseRightButtonDown">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource CenterAlignStyle}" />
+                    </Button>
+                    <Button  Focusable="False"    Grid.Row="1" Grid.Column="4" Name="_b_1x4" MouseRightButtonDown="ButtonMouseRightButtonDown">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource CenterAlignStyle}" />
+                    </Button>
+                    <Button  Focusable="False"    Grid.Row="1" Grid.Column="5" Name="_b_1x5" MouseRightButtonDown="ButtonMouseRightButtonDown">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource CenterAlignStyle}" />
+                    </Button>
+
+                    <Button  Focusable="False"    Grid.Row="2" Grid.Column="0" Name="_b_2x0" MouseRightButtonDown="ButtonMouseRightButtonDown">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource CenterAlignStyle}" />
+                    </Button>
+                    <Button  Focusable="False"    Grid.Row="2" Grid.Column="1" Name="_b_2x1" MouseRightButtonDown="ButtonMouseRightButtonDown">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource CenterAlignStyle}" />
+                    </Button>
+                    <Button  Focusable="False"    Grid.Row="2" Grid.Column="2" Name="_b_2x2" MouseRightButtonDown="ButtonMouseRightButtonDown">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource CenterAlignStyle}" />
+                    </Button>
+                    <Button  Focusable="False"    Grid.Row="2" Grid.Column="3" Name="_b_2x3" MouseRightButtonDown="ButtonMouseRightButtonDown">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource CenterAlignStyle}" />
+                    </Button>
+                    <Button  Focusable="False"    Grid.Row="2" Grid.Column="4" Name="_b_2x4" MouseRightButtonDown="ButtonMouseRightButtonDown">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource CenterAlignStyle}" />
+                    </Button>
+                    <Button  Focusable="False"    Grid.Row="2" Grid.Column="5" Name="_b_2x5" MouseRightButtonDown="ButtonMouseRightButtonDown">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource CenterAlignStyle}" />
+                    </Button>
+
+                    <Button  Focusable="False"    Grid.Row="3" Grid.Column="0" Name="_b_3x0" MouseRightButtonDown="ButtonMouseRightButtonDown">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource CenterAlignStyle}" />
+                    </Button>
+                    <Button  Focusable="False"    Grid.Row="3" Grid.Column="1" Name="_b_3x1" MouseRightButtonDown="ButtonMouseRightButtonDown">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource CenterAlignStyle}" />
+                    </Button>
+                    <Button  Focusable="False"    Grid.Row="3" Grid.Column="2" Name="_b_3x2" MouseRightButtonDown="ButtonMouseRightButtonDown">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource CenterAlignStyle}" />
+                    </Button>
+                    <Button  Focusable="False"    Grid.Row="3" Grid.Column="3" Name="_b_3x3" MouseRightButtonDown="ButtonMouseRightButtonDown">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource CenterAlignStyle}" />
+                    </Button>
+                    <Button  Focusable="False"    Grid.Row="3" Grid.Column="4" Name="_b_3x4" MouseRightButtonDown="ButtonMouseRightButtonDown">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource CenterAlignStyle}" />
+                    </Button>
+                    <Button  Focusable="False"    Grid.Row="3" Grid.Column="5" Name="_b_3x5" MouseRightButtonDown="ButtonMouseRightButtonDown">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource CenterAlignStyle}" />
+                    </Button>
+
+                    <Button  Focusable="False"    Grid.Row="4" Grid.Column="0" Name="_b_4x0" MouseRightButtonDown="ButtonMouseRightButtonDown">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource CenterAlignStyle}" />
+                    </Button>
+                    <Button  Focusable="False"    Grid.Row="4" Grid.Column="1" Name="_b_4x1" MouseRightButtonDown="ButtonMouseRightButtonDown">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource CenterAlignStyle}" />
+                    </Button>
+                    <Button  Focusable="False"    Grid.Row="4" Grid.Column="2" Name="_b_4x2" MouseRightButtonDown="ButtonMouseRightButtonDown">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource CenterAlignStyle}" />
+                    </Button>
+                    <Button  Focusable="False"    Grid.Row="4" Grid.Column="3" Name="_b_4x3" MouseRightButtonDown="ButtonMouseRightButtonDown">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource CenterAlignStyle}" />
+                    </Button>
+                    <Button  Focusable="False"    Grid.Row="4" Grid.Column="4" Name="_b_4x4" MouseRightButtonDown="ButtonMouseRightButtonDown">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource CenterAlignStyle}" />
+                    </Button>
+                    <Button Focusable="False"    Grid.Row="4" Grid.Column="5" Name="_b_4x5" MouseRightButtonDown="ButtonMouseRightButtonDown">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource CenterAlignStyle}" />
+                    </Button>
+
+                    <Button Focusable="False"   Grid.Row="5" Grid.Column="0" Name="_b_5x0" MouseRightButtonDown="ButtonMouseRightButtonDown">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource CenterAlignStyle}" />
+                    </Button>
+                    <Button Focusable="False"    Grid.Row="5" Grid.Column="1" Name="_b_5x1" MouseRightButtonDown="ButtonMouseRightButtonDown">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource CenterAlignStyle}" />
+                    </Button>
+                    <Button  Focusable="False"    Grid.Row="5" Grid.Column="2" Name="_b_5x2" MouseRightButtonDown="ButtonMouseRightButtonDown">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource CenterAlignStyle}" />
+                    </Button>
+                    <Button  Focusable="False"   Grid.Row="5" Grid.Column="3" Name="_b_5x3" MouseRightButtonDown="ButtonMouseRightButtonDown">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource CenterAlignStyle}" />
+                    </Button>
+                    <Button  Focusable="False"   Grid.Row="5" Grid.Column="4" Name="_b_5x4" MouseRightButtonDown="ButtonMouseRightButtonDown">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource CenterAlignStyle}" />
+                    </Button>
+                    <Button  Focusable="False"   Grid.Row="5" Grid.Column="5" Name="_b_5x5" MouseRightButtonDown="ButtonMouseRightButtonDown">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource CenterAlignStyle}" />
+                    </Button>
+
+                    <Button  Focusable="False"   Grid.Row="6" Grid.Column="0" Name="_b_6x0" MouseRightButtonDown="ButtonMouseRightButtonDown">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource CenterAlignStyle}" />
+                    </Button>
+                    <Button  Focusable="False"   Grid.Row="6" Grid.Column="1" Name="_b_6x1" MouseRightButtonDown="ButtonMouseRightButtonDown">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource CenterAlignStyle}" />
+                    </Button>
+                    <Button  Focusable="False"   Grid.Row="6" Grid.Column="2" Name="_b_6x2" MouseRightButtonDown="ButtonMouseRightButtonDown">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource CenterAlignStyle}" />
+                    </Button>
+                    <Button  Focusable="False"   Grid.Row="6" Grid.Column="3" Name="_b_6x3" MouseRightButtonDown="ButtonMouseRightButtonDown">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource CenterAlignStyle}" />
+                    </Button>
+                    <Button  Focusable="False"   Grid.Row="6" Grid.Column="4" Name="_b_6x4" MouseRightButtonDown="ButtonMouseRightButtonDown">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource CenterAlignStyle}" />
+                    </Button>
+                    <Button  Focusable="False"   Grid.Row="6" Grid.Column="5" Name="_b_6x5" MouseRightButtonDown="ButtonMouseRightButtonDown">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource CenterAlignStyle}" />
+                    </Button>
+
+                    <Button  Focusable="False"   Grid.Row="7" Grid.Column="0" Name="_b_7x0" MouseRightButtonDown="ButtonMouseRightButtonDown">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource CenterAlignStyle}" />
+                    </Button>
+                    <Button  Focusable="False"   Grid.Row="7" Grid.Column="1" Name="_b_7x1" MouseRightButtonDown="ButtonMouseRightButtonDown">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource CenterAlignStyle}" />
+                    </Button>
+                    <Button  Focusable="False"   Grid.Row="7" Grid.Column="2" Name="_b_7x2" MouseRightButtonDown="ButtonMouseRightButtonDown">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource CenterAlignStyle}" />
+                    </Button>
+                    <Button  Focusable="False"   Grid.Row="7" Grid.Column="3" Name="_b_7x3" MouseRightButtonDown="ButtonMouseRightButtonDown">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource CenterAlignStyle}" />
+                    </Button>
+                    <Button  Focusable="False"   Grid.Row="7" Grid.Column="4" Name="_b_7x4" MouseRightButtonDown="ButtonMouseRightButtonDown">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource CenterAlignStyle}" />
+                    </Button>
+                    <Button  Focusable="False"   Grid.Row="7" Grid.Column="5" Name="_b_7x5" MouseRightButtonDown="ButtonMouseRightButtonDown">
+                        <TextBlock TextWrapping="WrapWithOverflow" Style="{StaticResource CenterAlignStyle}" />
+                    </Button>
+
+                </Grid>
+
+                <Grid Grid.Column="2" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Name="row1" Height="{Binding Row1HeightSetting, Mode=TwoWay}"/>
+                        <RowDefinition Height="5"/>
+                        <RowDefinition Name="row2" Height="{Binding Row2HeightSetting, Mode=TwoWay}"/>
+                        <RowDefinition Height="5"/>
+                        <RowDefinition Name="row3" Height="{Binding Row3HeightSetting, Mode=TwoWay}"/>
+                        <RowDefinition Height="5"/>
+                        <RowDefinition Name="row4" />
+                    </Grid.RowDefinitions>
+                    
+                    <GridSplitter Name="GS1" Grid.Row="1" HorizontalAlignment="Stretch" DragDelta="GridSplitterDragDelta"/>
+                    <GridSplitter Name="GS2" Grid.Row="3" HorizontalAlignment="Stretch"  DragDelta="GridSplitterDragDelta"/>
+                    <GridSplitter Name="GS3" Grid.Row="5" HorizontalAlignment="Stretch" DragDelta="GridSplitterDragDelta"/>
+                    <Grid Grid.Row="4" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button Name="a_0x0" Grid.Column="0" Grid.Row="0" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                        <Button Name="a_1x0" Grid.Column="1" Grid.Row="0" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                        <Button Name="a_2x0" Grid.Column="2" Grid.Row="0" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                        <Button Name="a_3x0" Grid.Column="3" Grid.Row="0" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                        <Button Name="a_4x0" Grid.Column="4" Grid.Row="0" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                        <Button Name="a_5x0" Grid.Column="5" Grid.Row="0" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+
+                        <Button Name="a_0x1" Grid.Column="0" Grid.Row="1" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                        <Button Name="a_1x1" Grid.Column="1" Grid.Row="1" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                        <Button Name="a_2x1" Grid.Column="2" Grid.Row="1" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                        <Button Name="a_3x1" Grid.Column="3" Grid.Row="1" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                        <Button Name="a_4x1" Grid.Column="4" Grid.Row="1" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                        <Button Name="a_5x1" Grid.Column="5" Grid.Row="1" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+
+                    </Grid>
+                    <Grid  Grid.Row="6">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button ToolTip="numpad" x:Name="k1" Grid.Column="0" >1</Button>
+                        <Button ToolTip="numpad" x:Name="k2" Grid.Column="1" >2</Button>
+                        <Button ToolTip="numpad" x:Name="k3" Grid.Column="2" >3</Button>
+                        <Button ToolTip="numpad" x:Name="k4" Grid.Column="0" Grid.Row="1">4</Button>
+                        <Button ToolTip="numpad" x:Name="k5" Grid.Column="1" Grid.Row="1">5</Button>
+                        <Button ToolTip="numpad" x:Name="k6" Grid.Column="2" Grid.Row="1">6</Button>
+                        <Button ToolTip="numpad" x:Name="k7" Grid.Column="0" Grid.Row="2">7</Button>
+                        <Button ToolTip="numpad" x:Name="k8" Grid.Column="1" Grid.Row="2">8</Button>
+                        <Button ToolTip="numpad" x:Name="k9" Grid.Column="2" Grid.Row="2">9</Button>
+                        <Button ToolTip="numpad" x:Name="kcl" Grid.Column="0" Grid.Row="3">cl</Button>
+                        <Button ToolTip="numpad" x:Name="k0" Grid.Column="1" Grid.Row="3">0</Button>
+                        <Button ToolTip="numpad" x:Name="_k" Grid.Column="2" Grid.Row="3">,enter</Button>
+
+                        <Button Name="e_0x0" Grid.Column="3" Grid.Row="0" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                        <Button Name="e_1x0" Grid.Column="4" Grid.Row="0" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                        <Button Name="e_0x1" Grid.Column="3" Grid.Row="1" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                        <Button Name="e_1x1" Grid.Column="4" Grid.Row="1" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                        <Button Name="e_0x2" Grid.Column="3" Grid.Row="2" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                        <Button Name="e_1x2" Grid.Column="4" Grid.Row="2" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                        <Button Name="e_0x3" Grid.Column="3" Grid.Row="3" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+                        <Button Name="e_1x3" Grid.Column="4" Grid.Row="3" MouseRightButtonDown="ButtonMouseRightButtonDown"></Button>
+
+                    </Grid>
+
+                    <DataGrid FontSize="12" ItemsSource="{Binding Path=Elements[product]}" AutoGenerateColumns="False" Height="Auto" Name="GridProducts" IsReadOnly="True" VerticalAlignment="Top" HorizontalAlignment="Stretch" ToolTip="CaseProducts" ScrollViewer.VerticalScrollBarVisibility="Hidden" MouseDoubleClick="GridProductsMouseDoubleClick">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn x:Name="ColumnCount" Width="80" CanUserResize="False" CanUserReorder="False" Header="{x:Static Properties:Resources.LabelQty}" Binding="{Binding Path=Element[qty].Value}" />
+                            <DataGridTextColumn x:Name="ColumnDescription" Width="*" CanUserResize="False" CanUserReorder="False" Header="{x:Static Properties:Resources.LabelDescription}"  Binding="{Binding Path=Element[Name].Value}" ElementStyle="{StaticResource LeftAlignStyle}"   />
+                            <DataGridTextColumn Width="30" CanUserResize="False" CanUserReorder="False" Header="%"  Binding="{Binding Path=Element[Discount].Value, StringFormat=\{0:p\}}" ElementStyle="{StaticResource CenterAlignStyle}"  />
+                            <DataGridTextColumn x:Name="ColumnDiscount" Width="50" CanUserResize="False" CanUserReorder="False" Header="{x:Static Properties:Resources.LabelDiscount}"   Binding="{Binding Path=Element[sumDiscount].Value, StringFormat=\{0:c\}}" ElementStyle="{StaticResource RightAlignStyle}"   />
+                            <DataGridTextColumn x:Name="ColumnTotal" Width="50" CanUserResize="False" CanUserReorder="False" Header="{x:Static Properties:Resources.LabelTotal}"  Binding="{Binding Path=Element[total].Value, StringFormat=C0, ConverterCulture=fr-FR}" ElementStyle="{StaticResource RightAlignStyle}"  />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Grid Grid.Row="2" >
+                        <Grid.Resources>
+                            <DataTemplate x:Key="AutoCompleteBoxItemTemplate">
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="{Binding Name}" Width="400" />
+                                    <Label Content="{Binding price}" FontStyle="Italic"  Foreground="DarkGray" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </Grid.Resources>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock x:Name="qty_label" TextAlignment="Right" VerticalAlignment="Center" Foreground="Red" Grid.Column="0" FontWeight="Bold" FontSize="18"></TextBlock>
+                        <TextBox x:Name="xProduct" Grid.Column="1" KeyUp="XProductKeyUp" Padding="0" />
+                        <!--
+                    <toolkit:AutoCompleteBox  
+                        
+                        x:Name="xProduct" KeyUp="xProduct_KeyUp"   Grid.Column="1"
+                                 ItemTemplate="{StaticResource AutoCompleteBoxItemTemplate}" 
+                                 ValueMemberPath="Name">
+                    </toolkit:AutoCompleteBox>-->
+                    </Grid>
+                </Grid>
+
+            </Grid>
+
+        </Grid>
+
+    </Grid>
+</Window>

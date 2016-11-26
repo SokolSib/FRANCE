@@ -1,0 +1,29 @@
+﻿<Window x:Class="ticketwindow.Winows.Statistique.ModifStatPlaceArrond.W_Grid"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="W_Grid" Height="300" Width="300" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <DataGrid Grid.Row="0" ItemsSource="{Binding}" AutoGenerateColumns="False"  x:Name="dataGrid" IsReadOnly="True"  VerticalAlignment="Top"  HorizontalAlignment="Stretch" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Path=NamePlaceArrond}"/>
+                <DataGridTextColumn Header="QTY" Width="80" Binding="{Binding Path=QTY}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" ToolTip="show_insert_PlaceArrond" Click="Button_Click">INS</Button>
+            <Button Grid.Column="1" ToolTip="show_modif_PlaceArrond" Click="Button_Click_1">MOD</Button>
+            <Button Grid.Column="2" ToolTip="show_delete_PlaceArrond" Click="Button_Click_1">DEL</Button>
+            <Button Grid.Column="3" Click="Button_Click_2">Cancel</Button>
+        </Grid>
+    </Grid>
+</Window>

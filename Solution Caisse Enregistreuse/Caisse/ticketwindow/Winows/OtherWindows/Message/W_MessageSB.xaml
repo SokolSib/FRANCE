@@ -1,0 +1,17 @@
+﻿<Window x:Class="TicketWindow.Winows.OtherWindows.Message.WMessageSb"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:properties="clr-namespace:TicketWindow.Properties"
+        Name="_W_MessageSB" WindowStyle="None"
+        Title="W_MessageSB" Height="300" Width="600" WindowStartupLocation="CenterScreen" KeyUp="WindowKeyUp">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock  x:Name="Message" TextWrapping="WrapWithOverflow" FontSize="25" Foreground="Red" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Message"/>
+        <Grid Grid.Row="1">
+            <Button Background="Green" Click="BcanClick" Content="{x:Static properties:Resources.BtnOk}"/>
+        </Grid>
+    </Grid>
+</Window>

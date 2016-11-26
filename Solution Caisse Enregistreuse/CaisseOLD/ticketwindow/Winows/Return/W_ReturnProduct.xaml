@@ -1,0 +1,85 @@
+﻿<Window x:Class="ticketwindow.Winows.Return.W_ReturnProduct"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Retours et Remboursements" Background="#333" FontSize="18" WindowStartupLocation="CenterScreen" 
+       WindowStyle="SingleBorderWindow" Height="768" Width="1024" WindowState="Maximized" GotFocus="Window_GotFocus">
+    <Grid Height="768" Width="1024">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="600*"></RowDefinition>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"></ColumnDefinition>
+                <ColumnDefinition Width="700"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+
+            </Grid.RowDefinitions>
+            <Label      Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Margin="0,0,623,0" VerticalAlignment="Center" Foreground="AliceBlue" >Code-barres EAN :</Label>
+            <TextBox    x:Name="codebare" Grid.Column="1" Grid.Row="0" KeyUp="TextBox_KeyUp" Margin="77,8,165,8" ></TextBox>
+            <Button     Grid.Column="1" Grid.Row="0" Click="Button_Click" Background="Green" Grid.ColumnSpan="2" Margin="542,3,84,-3">
+                <StackPanel Orientation="Horizontal">
+
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Width="93" FontSize="25">Valider</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button     Grid.Column="2" Grid.Row="0"  Background="Red" Grid.ColumnSpan="2" Margin="43,3,19,-3" Click="Button_Click_1">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Width="93" FontSize="25">Annuler</TextBlock>
+                </StackPanel>
+            </Button>
+        </Grid>
+        <Grid Grid.Row="1" Grid.RowSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <DataGrid x:Name="listDetails" IsReadOnly="True"  ItemsSource="{Binding}"
+           AutoGenerateColumns="False" Margin="0,10,0,0"  >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="QTY" Binding="{Binding Path=QTY }"/>
+                        <DataGridTextColumn Header="Description" Width="*" Binding="{Binding Path=Name }"/>
+                        <DataGridTextColumn Header="Code-barres" Binding="{Binding Path=Barcode }"/>
+                        <DataGridTextColumn Header="Montant" Binding="{Binding Path=Total }"/>
+                        <DataGridTextColumn Header="Price HT" Binding="{Binding Path=PriceHT }" ElementStyle="{StaticResource RightAlignStyle}" />
+
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+            <Grid Grid.Column="1" Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="89*"></RowDefinition>
+                    <RowDefinition Height="89*"></RowDefinition>
+                    <RowDefinition Height="89*"></RowDefinition>
+                    <RowDefinition Height="88*"></RowDefinition>
+                    <RowDefinition Height="89*"></RowDefinition>
+                    <RowDefinition Height="88*"></RowDefinition>
+                    <RowDefinition Height="89*"></RowDefinition>
+                    <RowDefinition Height="87*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Button Grid.Row="1" x:Name="plus" Content="+" Click="plus_Click" FontSize="81" Padding="0 -30 0 0" Background="GreenYellow" Margin="-1,2,1,87" Grid.RowSpan="2"></Button>
+                <Button Grid.Row="2" x:Name="mins" Content="-" Click="mins_Click" FontSize="81" Padding="0 -30 0 0" Background="Pink" Margin="-1,2,1,87" Grid.RowSpan="2"></Button>
+                <Button Grid.Row="4" x:Name="clr" Content="Clair" Click="clr_Click" Background="Blue" Margin="-1,2,1,87" Grid.RowSpan="2"></Button>
+                <Button Grid.Row="5" x:Name="ok" Content="Ok" Click="ok_Click" Background="Green" Margin="-1,1,1,87" Grid.RowSpan="2"></Button>
+            </Grid>
+            <Grid Grid.Column="2" >
+                <DataGrid x:Name="listDetailsget" AutoGenerateColumns="False" IsReadOnly="True"  ItemsSource="{Binding}" Margin="0,10,10,0" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="QTY" Binding="{Binding Path=QTY }"/>
+                        <DataGridTextColumn Header="Description" Width="*" Binding="{Binding Path=Name }"/>
+                        <DataGridTextColumn Header="Code-barres" Binding="{Binding Path=Barcode }"/>
+                        <DataGridTextColumn Header="Montant" Binding="{Binding Path=Total }"/>
+                        <DataGridTextColumn Header="Price HT" Binding="{Binding Path=PriceHT }" ElementStyle="{StaticResource RightAlignStyle}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

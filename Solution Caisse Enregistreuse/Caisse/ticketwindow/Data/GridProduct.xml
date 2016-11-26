@@ -1,0 +1,677 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GridProduct>
+  <_0x0>
+    <rec>
+      <id>0</id>
+      <Date_upd>26/08/2014 16:48:36</Date_upd>
+      <X>0</X>
+      <Y>4</Y>
+      <Description>CUISSE DE POULET BUD</Description>
+      <background>165,42,42</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>2</id>
+      <Date_upd>26/08/2014 16:56:34</Date_upd>
+      <X>1</X>
+      <Y>2</Y>
+      <Description>JAMBON RUBLONAYA 9.99</Description>
+      <background>165,42,42</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>3</id>
+      <Date_upd>26/08/2014 16:57:04</Date_upd>
+      <X>3</X>
+      <Y>1</Y>
+      <Description>SOUDJOUK ARMENIEN /KG</Description>
+      <background>165,42,42</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>6</id>
+      <Date_upd>26/08/2014 16:57:19</Date_upd>
+      <X>3</X>
+      <Y>2</Y>
+      <Description>MITCHI CONGELE KG</Description>
+      <background>255,127,80</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>9</id>
+      <Date_upd>26/08/2014 16:57:37</Date_upd>
+      <X>3</X>
+      <Y>3</Y>
+      <Description>BASTURMA ANAHIT /KG</Description>
+      <background>165,42,42</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>5</id>
+      <Date_upd>26/08/2014 16:58:05</Date_upd>
+      <X>5</X>
+      <Y>1</Y>
+      <Description>SAUCISSE MOLOCHNI KG</Description>
+      <background>165,42,42</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>10</id>
+      <Date_upd>26/08/2014 16:58:15</Date_upd>
+      <X>5</X>
+      <Y>2</Y>
+      <Description>REBROCHKA KOPCHONI MAT /KG LACKMAN</Description>
+      <background>165,42,42</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>15</id>
+      <Date_upd>26/08/2014 16:58:39</Date_upd>
+      <X>5</X>
+      <Y>3</Y>
+      <Description>BASTURMA ANAHIT /KG</Description>
+      <background>165,42,42</background>
+      <img />
+      <font></font>
+    </rec>
+  </_0x0>
+  <_0x1>
+    <rec>
+      <id>0</id>
+      <Date_upd>26/08/2014 17:24:42</Date_upd>
+      <X>1</X>
+      <Y>0</Y>
+      <Description>NOIX DECORTIQUE KG</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>1</id>
+      <Date_upd>26/08/2014 17:25:01</Date_upd>
+      <X>1</X>
+      <Y>1</Y>
+      <Description>NOISETTE  BLANC KG</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>2</id>
+      <Date_upd>26/08/2014 17:25:20</Date_upd>
+      <X>1</X>
+      <Y>2</Y>
+      <Description>PISTACHE KG</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>3</id>
+      <Date_upd>26/08/2014 17:26:22</Date_upd>
+      <X>1</X>
+      <Y>3</Y>
+      <Description>PEPIT TOURNESOL GRIS KG</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>4</id>
+      <Date_upd>26/08/2014 17:26:38</Date_upd>
+      <X>1</X>
+      <Y>4</Y>
+      <Description>PEPIT TOURNESOL NOIR KG</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>0</id>
+      <Date_upd>26/08/2014 17:26:54</Date_upd>
+      <X>3</X>
+      <Y>0</Y>
+      <Description>NOIX COQUE KG</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>3</id>
+      <Date_upd>26/08/2014 17:27:09</Date_upd>
+      <X>3</X>
+      <Y>1</Y>
+      <Description>NOISETTE COQUE KG</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>6</id>
+      <Date_upd>26/08/2014 17:27:17</Date_upd>
+      <X>3</X>
+      <Y>2</Y>
+      <Description>ARACHIDE G.S.</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>0</id>
+      <Date_upd>26/08/2014 17:27:29</Date_upd>
+      <X>5</X>
+      <Y>0</Y>
+      <Description>NOISETTE NOIR KG</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>5</id>
+      <Date_upd>26/08/2014 17:27:37</Date_upd>
+      <X>5</X>
+      <Y>1</Y>
+      <Description>AMANDE DECORTIQUE KG</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>10</id>
+      <Date_upd>26/08/2014 17:27:47</Date_upd>
+      <X>5</X>
+      <Y>2</Y>
+      <Description>ABRICOT SEC KG</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>15</id>
+      <Date_upd>26/08/2014 17:28:03</Date_upd>
+      <X>5</X>
+      <Y>3</Y>
+      <Description>FIGUE SECHE /KG</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>20</id>
+      <Date_upd>26/08/2014 17:28:27</Date_upd>
+      <X>5</X>
+      <Y>4</Y>
+      <Description>DATTES /KG</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+  </_0x1>
+  <_0x2>
+    <rec>
+      <id>0</id>
+      <Date_upd>26/08/2014 17:28:58</Date_upd>
+      <X>0</X>
+      <Y>0</Y>
+      <Description>MAIS A ECLATER 1KG ANAHIT</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>0</id>
+      <Date_upd>26/08/2014 17:29:08</Date_upd>
+      <X>2</X>
+      <Y>0</Y>
+      <Description>COUSCOUS 1KG ANAHIT</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>0</id>
+      <Date_upd>26/08/2014 17:29:27</Date_upd>
+      <X>4</X>
+      <Y>0</Y>
+      <Description>POIS CHICHE 1KG ANAHIT</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>0</id>
+      <Date_upd>26/08/2014 17:29:47</Date_upd>
+      <X>6</X>
+      <Y>0</Y>
+      <Description>SEMOULE 1KG ANAHIT</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>0</id>
+      <Date_upd>26/08/2014 17:30:20</Date_upd>
+      <X>0</X>
+      <Y>2</Y>
+      <Description>HARICOT GEANT 1KG ANAHIT</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>0</id>
+      <Date_upd>26/08/2014 17:30:33</Date_upd>
+      <X>0</X>
+      <Y>3</Y>
+      <Description>HARICOT BLANC BOSTAN 900G</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>0</id>
+      <Date_upd>26/08/2014 17:30:46</Date_upd>
+      <X>0</X>
+      <Y>4</Y>
+      <Description>HARICOT OEUIL NOIR 1KG ANAHIT</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>0</id>
+      <Date_upd>26/08/2014 17:30:57</Date_upd>
+      <X>0</X>
+      <Y>5</Y>
+      <Description>HARICOT ROUGE 1KG ANAHIT</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>4</id>
+      <Date_upd>26/08/2014 17:31:23</Date_upd>
+      <X>2</X>
+      <Y>2</Y>
+      <Description>BOULGOUR BLOND FIN 1KG ANAHIT</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>6</id>
+      <Date_upd>26/08/2014 17:31:34</Date_upd>
+      <X>2</X>
+      <Y>3</Y>
+      <Description>BOULGOUR BRUN FIN 1KG ANAHIT</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>8</id>
+      <Date_upd>26/08/2014 17:32:05</Date_upd>
+      <X>2</X>
+      <Y>4</Y>
+      <Description>BOULGOUR BLOND GROS 1KG ANAHIT</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>10</id>
+      <Date_upd>26/08/2014 17:32:23</Date_upd>
+      <X>2</X>
+      <Y>5</Y>
+      <Description>BOULGOUR BRUN FIN 1KG ANAHIT</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>2</id>
+      <Date_upd>26/08/2014 17:32:35</Date_upd>
+      <X>2</X>
+      <Y>1</Y>
+      <Description>BLE ENTIER 1KG ANAHIT</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>8</id>
+      <Date_upd>26/08/2014 17:32:45</Date_upd>
+      <X>4</X>
+      <Y>2</Y>
+      <Description>FEVE 1KG ANAHIT</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>12</id>
+      <Date_upd>26/08/2014 17:32:55</Date_upd>
+      <X>4</X>
+      <Y>3</Y>
+      <Description>FOUL ENTIER 1KG ANAHIT</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>16</id>
+      <Date_upd>26/08/2014 17:33:07</Date_upd>
+      <X>4</X>
+      <Y>4</Y>
+      <Description>LENTILLE VERT1KG</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>20</id>
+      <Date_upd>26/08/2014 17:33:21</Date_upd>
+      <X>4</X>
+      <Y>5</Y>
+      <Description>LENTILLE BLOND 1KG ANAHIT</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>12</id>
+      <Date_upd>26/08/2014 17:33:38</Date_upd>
+      <X>6</X>
+      <Y>2</Y>
+      <Description>RIZ BASMATIC 1KG ANAHIT</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>18</id>
+      <Date_upd>26/08/2014 17:33:46</Date_upd>
+      <X>6</X>
+      <Y>3</Y>
+      <Description>RIZ JAUNE 1KG ANAHIT</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>24</id>
+      <Date_upd>26/08/2014 17:33:59</Date_upd>
+      <X>6</X>
+      <Y>4</Y>
+      <Description>RIZ PARFUME 1KG ANAHIT</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>25</id>
+      <Date_upd>26/08/2014 17:34:49</Date_upd>
+      <X>5</X>
+      <Y>5</Y>
+      <Description>LENTILLE ROUGE 1KG ANAHIT</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>7</id>
+      <Date_upd>26/08/2014 17:35:34</Date_upd>
+      <X>7</X>
+      <Y>1</Y>
+      <Description>EPEAUTRE 1KG ANAHIT</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>14</id>
+      <Date_upd>26/08/2014 17:35:42</Date_upd>
+      <X>7</X>
+      <Y>2</Y>
+      <Description>KORKOT 1KG ANAHIT</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>21</id>
+      <Date_upd>26/08/2014 17:35:56</Date_upd>
+      <X>7</X>
+      <Y>3</Y>
+      <Description>SARAZIN 1KG ANAHIT</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+  </_0x2>
+  <_0x3>
+    <rec>
+      <id>1</id>
+      <Date_upd>26/08/2014 17:36:51</Date_upd>
+      <X>1</X>
+      <Y>1</Y>
+      <Description>POIVRON DOLMA /KG</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>0</id>
+      <Date_upd>26/08/2014 17:37:04</Date_upd>
+      <X>3</X>
+      <Y>0</Y>
+      <Description>PIMENT FORT/DOUX /KG</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>6</id>
+      <Date_upd>26/08/2014 17:37:19</Date_upd>
+      <X>3</X>
+      <Y>2</Y>
+      <Description>RAISAIN</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>8</id>
+      <Date_upd>26/08/2014 17:37:29</Date_upd>
+      <X>4</X>
+      <Y>2</Y>
+      <Description>CHOUX FRAIS KG</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>10</id>
+      <Date_upd>26/08/2014 17:37:41</Date_upd>
+      <X>5</X>
+      <Y>2</Y>
+      <Description>PASTEQUE</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>12</id>
+      <Date_upd>26/08/2014 17:37:56</Date_upd>
+      <X>6</X>
+      <Y>2</Y>
+      <Description>MELON</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>6</id>
+      <Date_upd>26/08/2014 17:38:07</Date_upd>
+      <X>6</X>
+      <Y>1</Y>
+      <Description>ONION 5KG</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>24</id>
+      <Date_upd>26/08/2014 17:38:16</Date_upd>
+      <X>6</X>
+      <Y>4</Y>
+      <Description>POMME DE TERRE 5KG</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>20</id>
+      <Date_upd>26/08/2014 17:38:23</Date_upd>
+      <X>5</X>
+      <Y>4</Y>
+      <Description>pomme de terre 10kg</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>12</id>
+      <Date_upd>26/08/2014 17:38:41</Date_upd>
+      <X>3</X>
+      <Y>4</Y>
+      <Description>CONCOMBRE /KG</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+  </_0x3>
+  <_0x4>
+    <rec>
+      <id>0</id>
+      <Date_upd>26/08/2014 17:39:12</Date_upd>
+      <X>1</X>
+      <Y>0</Y>
+      <Description>FROMAGE BLANC COMBI KG</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>2</id>
+      <Date_upd>26/08/2014 17:39:43</Date_upd>
+      <X>1</X>
+      <Y>2</Y>
+      <Description>FROMAGE ROND KG</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>4</id>
+      <Date_upd>26/08/2014 17:39:56</Date_upd>
+      <X>1</X>
+      <Y>4</Y>
+      <Description>FROMAGE BREBIS KG</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+  </_0x4>
+  <_0x5>
+    <rec>
+      <id>2</id>
+      <Date_upd>26/08/2014 17:40:36</Date_upd>
+      <X>2</X>
+      <Y>1</Y>
+      <Description>PAIN ROND</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>6</id>
+      <Date_upd>26/08/2014 17:40:46</Date_upd>
+      <X>2</X>
+      <Y>3</Y>
+      <Description>PAIN BATON</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>6</id>
+      <Date_upd>26/08/2014 17:40:57</Date_upd>
+      <X>3</X>
+      <Y>2</Y>
+      <Description>SIMIT</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>4</id>
+      <Date_upd>26/08/2014 17:41:08</Date_upd>
+      <X>4</X>
+      <Y>1</Y>
+      <Description>PAIN ARMENIEN 1.90</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>12</id>
+      <Date_upd>26/08/2014 17:41:21</Date_upd>
+      <X>4</X>
+      <Y>3</Y>
+      <Description>PAIN ARMENIEN 3.6</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>12</id>
+      <Date_upd>26/08/2014 17:41:33</Date_upd>
+      <X>6</X>
+      <Y>2</Y>
+      <Description>PAIN LIBANNAIS</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+  </_0x5>
+  <_0x6>
+    <rec>
+      <id>0</id>
+      <Date_upd>26/08/2014 17:42:27</Date_upd>
+      <X>0</X>
+      <Y>0</Y>
+      <Description>DIMES ABRICOT 24</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+    <rec>
+      <id>0</id>
+      <Date_upd>26/08/2014 17:42:35</Date_upd>
+      <X>0</X>
+      <Y>1</Y>
+      <Description>DIMES PECHE 24</Description>
+      <background>0,0,0</background>
+      <img />
+      <font></font>
+    </rec>
+  </_0x6>
+</GridProduct>

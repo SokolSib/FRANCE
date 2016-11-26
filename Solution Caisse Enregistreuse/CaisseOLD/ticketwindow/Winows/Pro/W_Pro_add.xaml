@@ -1,0 +1,70 @@
+﻿<Window x:Class="ticketwindow.Winows.Pro.W_Pro_add"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ticketwindow.Winows.Pro"
+        mc:Ignorable="d"
+        Name="w_pro_add"
+         Title="W_pro_add" Height="568" Width="1024" WindowState="Normal" FontSize="20"  Background="#333" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+
+            
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+
+        </Grid.RowDefinitions>
+        <Label  Name="lxNameCompany" Grid.Row="0" Grid.Column="1" Style="{StaticResource FontClairL}" >NameCompany</Label>
+        <Label Name="lxMail" Grid.Row="0" Grid.Column="0" Style="{StaticResource FontClairL}" >Mail</Label>
+        <Label Name="lxCodePostal" Grid.Row="2" Grid.Column="0" Style="{StaticResource FontClairL}" >Code postal</Label>
+        <Label Name="lxVille" Grid.Row="2" Grid.Column="1" Style="{StaticResource FontClairL}" >Ville</Label>
+        <Label Name="lxAdress" Grid.Row="4" Grid.Column="0" Style="{StaticResource FontClairL}" >Adress</Label>
+        <Label Name="lxTel" Grid.Row="4" Grid.Column="1" Style="{StaticResource FontClairL}" >Tel.</Label>
+   <!--     <Label  Name="lxSex" Grid.Row="4" Grid.Column="0" Style="{StaticResource FontClairL}" >Sex</Label>
+        <Label  Name="lxName" Grid.Row="4" Grid.Column="1" Style="{StaticResource FontClairL}" >Name</Label>
+        <Label  Name="lxSurName" Grid.Row="6" Grid.Column="0" Style="{StaticResource FontClairL}" >Sur Name</Label>
+        
+        <Label Name="lxNClient" Grid.Row="6" Grid.Column="1" Style="{StaticResource FontClairL}" >Nclient</Label>
+-->
+        <TextBox TabIndex="0" Name="xMail" LostFocus="_LostFocus" Grid.Row="1" Grid.Column="0" Height="Auto" />
+
+        <TextBox TabIndex="1" Name="xNameCompany" LostFocus="_LostFocus" Grid.Row="1" Grid.Column="1" Height="Auto" />
+
+        <TextBox TabIndex="2" Name="xCodePostal" LostFocus="_LostFocus" Grid.Row="3" Grid.Column="0" Height="Auto" />
+
+        <TextBox TabIndex="3" Name="xVille" LostFocus="_LostFocus" Grid.Row="3" Grid.Column="1" Height="Auto" />
+
+        <TextBox TabIndex="4" Name="xAdress" LostFocus="_LostFocus" Grid.Row="5" Grid.Column="0" Height="Auto" />
+
+        <TextBox TabIndex="5" Name="xTel" LostFocus="_LostFocus" Grid.Row="5" Grid.Column="1" Height="Auto" />
+
+       <!-- <ComboBox Name="xSex" LostFocus="_LostFocus" Grid.Row="5" Grid.Column="0" Height="Auto" FontSize="20"  >
+            <ComboBoxItem Content="M." IsSelected="True" ></ComboBoxItem>
+            <ComboBoxItem Content="Mme."></ComboBoxItem>
+            <ComboBoxItem Content="Mlle."></ComboBoxItem>
+        </ComboBox>
+
+        <TextBox  Name="xName" LostFocus="_LostFocus" Grid.Row="5" Grid.Column="1"  Height="Auto" />
+        
+        <TextBox  Name="xSurName" LostFocus="_LostFocus" Grid.Row="7" Grid.Column="0"  Height="Auto"  />
+
+        <TextBox Name="xNclient" LostFocus="_LostFocus" Grid.Row="7" Grid.Column="1"  Height="Auto" FontSize="20"  />
+        -->
+        <Button Grid.Row="7" Grid.Column="0" Name="Save" ToolTip="addPro" Background="Green">Valider</Button>
+        
+        <Button Grid.Row="7" Grid.Column="1" Name="Cancel" ToolTip="closeWindow" Background="Red">Annuler</Button>
+
+    </Grid>
+</Window>

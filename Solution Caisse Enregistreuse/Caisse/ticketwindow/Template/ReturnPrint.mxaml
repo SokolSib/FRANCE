@@ -1,0 +1,27 @@
+﻿<FlowDocument xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" ColumnWidth="280" FontSize="10pt" FontFamily="Arial" LineHeight="1">
+  
+  <BlockUIContainer>
+    <Image Source="images/anahit_9.jpg"/>
+  </BlockUIContainer>
+
+  
+
+  <Paragraph TextAlignment="Center">
+    9-11-13 Boulevard de la Liberté
+  </Paragraph>
+  <Paragraph TextAlignment="Center">
+    13001 MARSEILLE
+  </Paragraph>
+  <Paragraph TextAlignment="Center">
+    Tél : 04 91 50 87 61
+  </Paragraph>
+
+  <Paragraph TextAlignment="Center" FontWeight="Bold" Margin="0,10,0,0">***RENDU TICKET***</Paragraph>
+
+
+  <Paragraph FontFamily="Code 3 de 9" TextAlignment="Center" FontSize="27pt" > {{ incodeBarcode }} </Paragraph>
+  <Paragraph TextAlignment="Center">{{BARCODE}}</Paragraph>
+ 
+  <Paragraph TextAlignment="Center">{{ MONEY }}</Paragraph>  
+
+</FlowDocument>

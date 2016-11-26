@@ -1,0 +1,32 @@
+﻿<Window x:Class="TicketWindow.Winows.OtherWindows.Statistique.ModifStatNationPopup.WAdd"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         xmlns:toolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
+         xmlns:Properties="clr-namespace:TicketWindow.Properties"
+         Title="W_add" Height="300" Width="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label>Name Nation</Label>
+        <Label Grid.Row="1" Content="{x:Static Properties:Resources.LabelQty}"/>
+   
+       
+        <toolkit:AutoCompleteBox 
+                                Name="xNameNation"
+                                
+                                 ValueMemberPath="Name">
+        </toolkit:AutoCompleteBox>
+      
+        <TextBox Grid.Column="1" Grid.Row="1" x:Name="xQTY">0</TextBox>
+        <Button Grid.Row="2" IsDefault="True" Click="ButtonClick" Content="{x:Static Properties:Resources.BtnOk}"/>
+        <Button Grid.Row="2" Grid.Column="1" Click="ButtonClick1" Content="{x:Static Properties:Resources.BtnCancel}"/>
+ 
+    </Grid>
+</Window>

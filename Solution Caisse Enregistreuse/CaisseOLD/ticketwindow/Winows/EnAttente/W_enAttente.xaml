@@ -1,0 +1,48 @@
+﻿<Window x:Class="ticketwindow.Winows.EnAttente.W_enAttente"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="W_enAttente" Background="#333" FontSize="18" WindowStartupLocation="CenterScreen" 
+       WindowStyle="SingleBorderWindow"  Height="384" Width="1024">
+    <Grid  MaxHeight="384" MaxWidth="1024">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+        <DataGrid x:Name="xcasse" IsReadOnly="True" ItemsSource="{Binding}" AutoGenerateColumns="false" SelectedCellsChanged="list_SelectedCellsChanged"   Grid.Column="0" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name caisse" Binding="{Binding Path=nameCasse }"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid x:Name="xcheck" IsReadOnly="True" ItemsSource="{Binding}" AutoGenerateColumns="false" SelectedCellsChanged="xcheck_SelectedCellsChanged"   Grid.Column="1" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Date" Binding="{Binding Path=date }"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid  x:Name="listDetails" IsReadOnly="True"  ItemsSource="{Binding}"
+           AutoGenerateColumns="false" Grid.Column="2"  >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="QTY" Width="70" Binding="{Binding Path=Element[qty].Value }" ElementStyle="{StaticResource CenterAlignStyle}"/>
+                <DataGridTextColumn Header="Desciprion" Width="*" Binding="{Binding Path=Element[Name].Value }"/>
+                <DataGridTextColumn Header="Code-barres EAN" Width="200" Binding="{Binding Path=Element[CodeBare].Value }"/>
+                <DataGridTextColumn Header="Prix" Width="70" Binding="{Binding Path=Element[price_ht].Value }" ElementStyle="{StaticResource RightAlignStyle}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        </Grid>
+            
+            <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Click="Button_Click" IsDefault="True"  Background="Green">Valider</Button>
+            <Button Grid.Column="1" Click="Button_Click_1" Background="Red" >Annuler</Button>
+        </Grid>
+        
+    </Grid>
+</Window>

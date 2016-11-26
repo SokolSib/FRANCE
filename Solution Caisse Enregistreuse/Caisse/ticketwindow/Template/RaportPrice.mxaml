@@ -1,0 +1,48 @@
+﻿<FlowDocument xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" ColumnWidth="280" FontSize="8pt" FontFamily="Arial" LineHeight="1">
+  <Paragraph TextAlignment="Center">
+    13001 MARSEILLE
+  </Paragraph>
+  
+  <Paragraph TextAlignment="Center" FontWeight="Bold" Margin="0,10,0,0">Report du changement de prix</Paragraph>
+
+  <Paragraph TextAlignment="Center" FontSize="8pt" FontWeight="Bold">{{ dt }}</Paragraph>
+
+  <Paragraph TextAlignment="Center" FontSize="8pt" FontWeight="Bold"> № {{ group }}</Paragraph>
+
+
+  <Table>
+    <Table.Columns>
+      <TableColumn Width="215"></TableColumn>
+      <TableColumn Width="55"></TableColumn>
+    </Table.Columns>
+    <TableRowGroup>
+      {% for p in products -%}
+      <TableRow>
+        <TableCell>
+          <Paragraph>{{p[0]}}</Paragraph>
+        </TableCell>
+        <TableCell TextAlignment="Right">
+          <Paragraph>{{p[2]}}</Paragraph>
+        </TableCell>
+      </TableRow>      
+      <TableRow>
+        <TableCell ColumnSpan="2">
+          <Paragraph FontSize="6pt" FontStyle="Italic">{{p[1]}}</Paragraph>
+        </TableCell>
+      </TableRow>
+     
+
+
+      {% endfor -%}
+    </TableRowGroup>
+  </Table>
+  
+  
+  
+  
+
+
+
+ 
+
+</FlowDocument>

@@ -1,0 +1,916 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BtnAdd" xml:space="preserve">
+    <value>Добавить</value>
+    <comment>кнопка добавить</comment>
+  </data>
+  <data name="BtnCancel" xml:space="preserve">
+    <value>Отмена</value>
+    <comment>кнопка отмена</comment>
+  </data>
+  <data name="BtnClear" xml:space="preserve">
+    <value>Очистить</value>
+    <comment>кнопка очистить</comment>
+  </data>
+  <data name="BtnClose" xml:space="preserve">
+    <value>Закрыть</value>
+    <comment>кнопка закрыть</comment>
+  </data>
+  <data name="BtnDel" xml:space="preserve">
+    <value>Удалить</value>
+    <comment>кнопка удалить (сокращение)</comment>
+  </data>
+  <data name="BtnDelete" xml:space="preserve">
+    <value>Удалить</value>
+    <comment>кнопка удалить</comment>
+  </data>
+  <data name="BtnEnter" xml:space="preserve">
+    <value>Ввод</value>
+    <comment>кнопка Enter</comment>
+  </data>
+  <data name="BtnFinish" xml:space="preserve">
+    <value>Завершить</value>
+    <comment>кнопка завершить</comment>
+  </data>
+  <data name="BtnLogon" xml:space="preserve">
+    <value>Вход</value>
+    <comment>кнопка вход</comment>
+  </data>
+  <data name="BtnOk" xml:space="preserve">
+    <value>Готово</value>
+    <comment>кнопка ок</comment>
+  </data>
+  <data name="BtnRedact" xml:space="preserve">
+    <value>Изменить</value>
+    <comment>кнопка изменить</comment>
+  </data>
+  <data name="BtnRegister" xml:space="preserve">
+    <value>Зарегистрировать</value>
+    <comment>кнопка зарегистрировать</comment>
+  </data>
+  <data name="BtnRemoveRow" xml:space="preserve">
+    <value>Удалить строку</value>
+    <comment>кнопка удалить строку</comment>
+  </data>
+  <data name="BtnReset" xml:space="preserve">
+    <value>Сброс</value>
+    <comment>кнопка сброс</comment>
+  </data>
+  <data name="BtnReweigh" xml:space="preserve">
+    <value>Повторное взвешивание</value>
+    <comment>кнопка повторное взвешивание</comment>
+  </data>
+  <data name="FuncTotal" xml:space="preserve">
+    <value>Показать Сумму</value>
+    <comment>кнопка вывод на экран клиента Суммы</comment>
+  </data>
+  <data name="FuncCancelBay" xml:space="preserve">
+    <value>Отменить последнию покупку</value>
+    <comment>кнопка для отмены последней покупки</comment>
+  </data>
+  <data name="FuncToWait" xml:space="preserve">
+    <value>В ожидание</value>
+    <comment>кнопка для отправки клиента в ожидание или передачи другой кассы</comment>
+  </data>
+  <data name="FuncHistory" xml:space="preserve">
+    <value>История</value>
+    <comment>кнопка история покупки в течение открытия кассы</comment>
+  </data>
+  <data name="FuncCalculator" xml:space="preserve">
+    <value>Калькулятор</value>
+    <comment>кнопка для вызова калькулятора</comment>
+  </data>
+  <data name="FuncDiscountCard" xml:space="preserve">
+    <value>Карта скидок</value>
+    <comment>кнопка для поиска информации о карте скидок</comment>
+  </data>
+  <data name="FuncCaseProducts" xml:space="preserve">
+    <value>Продукт</value>
+    <comment>кнопка для создания "Кнопки артикля"</comment>
+  </data>
+  <data name="FuncCloseCashbox" xml:space="preserve">
+    <value>Закрытие кассы</value>
+    <comment>кнопка для Закрытия кассы</comment>
+  </data>
+  <data name="FuncDiscountReset" xml:space="preserve">
+    <value>Выбор/Сброс скидки</value>
+    <comment>кнопка для выбора/сброса скидки в процентах %</comment>
+  </data>
+  <data name="FuncHistoryOfAllCards" xml:space="preserve">
+    <value>История всех касс</value>
+    <comment>кнопка для вывода истории всех закрытий касс</comment>
+  </data>
+  <data name="FuncHistoryChecks" xml:space="preserve">
+    <value>История чеков</value>
+    <comment>кнопка для вывода всеё истории покупок</comment>
+  </data>
+  <data name="FuncPaymentMethod" xml:space="preserve">
+    <value>Метод оплаты</value>
+    <comment>кнопка для создания метода оплаты (Наличка, Банк. карта и т.п.)</comment>
+  </data>
+  <data name="FuncEditProduct" xml:space="preserve">
+    <value>Изменить продукт</value>
+    <comment>кнопка для редактирования характеристики товара</comment>
+  </data>
+  <data name="FuncEditPrice" xml:space="preserve">
+    <value>Изменить цену</value>
+    <comment>кнопка для изменения цены как для данной покупки - так и для всей базы</comment>
+  </data>
+  <data name="FuncOpenCashBox" xml:space="preserve">
+    <value>Открыть кассу-сдача</value>
+    <comment>кнопка для открытия кассы-сдача</comment>
+  </data>
+  <data name="FuncResetBtn" xml:space="preserve">
+    <value>Обнулить кнопку</value>
+    <comment>сброс всех настроек данной кнопки</comment>
+  </data>
+  <data name="FuncReturnProduct" xml:space="preserve">
+    <value>Возврат товара</value>
+    <comment>кнопка для возврата товара</comment>
+  </data>
+  <data name="FuncProductMenu" xml:space="preserve">
+    <value>Доп. меню товара</value>
+    <comment>кнопка для создания дополнительное меню товаров</comment>
+  </data>
+  <data name="FuncSetBarCode" xml:space="preserve">
+    <value>Режим штрихкода</value>
+    <comment>кнопка для включения режима штрихкода, при этом можно в ручную ввести штрихкод</comment>
+  </data>
+  <data name="FuncShowPro" xml:space="preserve">
+    <value>Режим оптовой продажи</value>
+    <comment>кнопка для вызова Режима ПРО - оптовая продажа</comment>
+  </data>
+  <data name="FuncClearProducts" xml:space="preserve">
+    <value>Очистить полку товаров</value>
+    <comment>кнопка для очистки всех продуктов с полки товаров (Сброс полки товаров)</comment>
+  </data>
+  <data name="FuncDelProduct" xml:space="preserve">
+    <value>Удалить товар</value>
+    <comment>кнопка для выборочного удаления продуктов с полки товаров</comment>
+  </data>
+  <data name="FunTurn" xml:space="preserve">
+    <value>Свернуть</value>
+    <comment>кнопку для сворачивания программы</comment>
+  </data>
+  <data name="FuncToPro" xml:space="preserve">
+    <value>Отпправка покупки на сайт ПРО</value>
+    <comment>кнопка для отправки данной покупки на сайт ПРО.АНАИТ</comment>
+  </data>
+  <data name="FuncUpdateDB" xml:space="preserve">
+    <value>Обновление БД</value>
+    <comment>кнопка для запуска обновлений базы данных продуктов с сервера</comment>
+  </data>
+  <data name="LabelAmount" xml:space="preserve">
+    <value>Сумма</value>
+    <comment>надпись сумма</comment>
+  </data>
+  <data name="LabelBalanceKg" xml:space="preserve">
+    <value>Весы кг</value>
+    <comment>надпись весы кг</comment>
+  </data>
+  <data name="LabelBarcode" xml:space="preserve">
+    <value>Штрихкод</value>
+    <comment>надпись штрихкод</comment>
+  </data>
+  <data name="LabelButtonColor" xml:space="preserve">
+    <value>Цвет кнопки</value>
+    <comment>надпись цвет кнопки</comment>
+  </data>
+  <data name="LabelButtonName" xml:space="preserve">
+    <value>Название кнопки</value>
+    <comment>надпись название кнопки</comment>
+  </data>
+  <data name="LabelCreateProductButton" xml:space="preserve">
+    <value>Создание кнопки продукта</value>
+    <comment>надпись создание кнопки продукта</comment>
+  </data>
+  <data name="LabelDate" xml:space="preserve">
+    <value>Дата</value>
+    <comment>надпись дата</comment>
+  </data>
+  <data name="LabelDescription" xml:space="preserve">
+    <value>Описание</value>
+    <comment>надпись описание</comment>
+  </data>
+  <data name="LabelDiscount" xml:space="preserve">
+    <value>Скидка</value>
+    <comment>надпись скидка</comment>
+  </data>
+  <data name="LabelFIO" xml:space="preserve">
+    <value>ФИО</value>
+    <comment>надпись ФИО</comment>
+  </data>
+  <data name="LabelGroup" xml:space="preserve">
+    <value>Группа</value>
+    <comment>надпись группа</comment>
+  </data>
+  <data name="LabelImportantFunctions" xml:space="preserve">
+    <value>Основные функции</value>
+    <comment>надпись основные функции</comment>
+  </data>
+  <data name="LabelLogin" xml:space="preserve">
+    <value>Логин</value>
+    <comment>надпись логин</comment>
+  </data>
+  <data name="LabelName" xml:space="preserve">
+    <value>Название</value>
+    <comment>надпись название</comment>
+  </data>
+  <data name="LabelNewTotal" xml:space="preserve">
+    <value>Новое значение итого</value>
+    <comment>надпись новое значение итого</comment>
+  </data>
+  <data name="LabelNone" xml:space="preserve">
+    <value>Отсутствует</value>
+    <comment>надпись отсутствует</comment>
+  </data>
+  <data name="LabelPassword" xml:space="preserve">
+    <value>Пароль</value>
+    <comment>надпись пароль</comment>
+  </data>
+  <data name="LabelPermissions" xml:space="preserve">
+    <value>Разрешения</value>
+    <comment>надпись привелегии</comment>
+  </data>
+  <data name="LabelPrice" xml:space="preserve">
+    <value>Цена</value>
+    <comment>надпись цена</comment>
+  </data>
+  <data name="LabelPrixTTC" xml:space="preserve">
+    <value>Цена с НДС</value>
+    <comment>надпись цена с налогом на добавленную стоимость</comment>
+  </data>
+  <data name="LabelQty" xml:space="preserve">
+    <value>Количество</value>
+    <comment>надпись количество</comment>
+  </data>
+  <data name="LabelRole" xml:space="preserve">
+    <value>Роль</value>
+    <comment>надпись роль</comment>
+  </data>
+  <data name="LabelSearchByEAN" xml:space="preserve">
+    <value>Поиск по EAN штрих-коду</value>
+    <comment>кнопка поиск по EAN штрих-коду</comment>
+  </data>
+  <data name="LabelSubgroup" xml:space="preserve">
+    <value>Подгруппа</value>
+    <comment>надпись подгруппа</comment>
+  </data>
+  <data name="LabelTextColor" xml:space="preserve">
+    <value>Цвет текста</value>
+    <comment>надпись цвет текста</comment>
+  </data>
+  <data name="LabelTotal" xml:space="preserve">
+    <value>Итого</value>
+    <comment>надпись итого</comment>
+  </data>
+  <data name="LabelVat" xml:space="preserve">
+    <value>НДС</value>
+    <comment>надпись НДС</comment>
+  </data>
+  <data name="MenuGroupsProduct" xml:space="preserve">
+    <value>Группы продуктов</value>
+    <comment>меню группы продукторв</comment>
+  </data>
+  <data name="MenuLanguage" xml:space="preserve">
+    <value>Язык</value>
+    <comment>меню язык</comment>
+  </data>
+  <data name="MenuRoles" xml:space="preserve">
+    <value>Роли</value>
+    <comment>меню роли</comment>
+  </data>
+  <data name="MenuUsers" xml:space="preserve">
+    <value>Пользователи</value>
+    <comment>меню пользователи</comment>
+  </data>
+  <data name="MenuVats" xml:space="preserve">
+    <value>Ндс</value>
+    <comment>меню ндс</comment>
+  </data>
+  <data name="PermissionAll" xml:space="preserve">
+    <value>Разрешение на все</value>
+    <comment>разрешение на все</comment>
+  </data>
+  <data name="PermissionRedactButton" xml:space="preserve">
+    <value>Разрешение на редактирование кнопок</value>
+    <comment>разрешение на редактирование кнопок</comment>
+  </data>
+  <data name="PermissionRedactGroupsProduct" xml:space="preserve">
+    <value>Разрешение на редактирование групп продуктов</value>
+    <comment>разрешение на редактирование групп продуктов</comment>
+  </data>
+  <data name="PermissionRedactRole" xml:space="preserve">
+    <value>Разрешение на редактирование ролей</value>
+    <comment>разрешение на редактирование ролей</comment>
+  </data>
+  <data name="PermissionRedactUser" xml:space="preserve">
+    <value>Разрешение на редактирование пользователей</value>
+    <comment>разрешение на редактирование пользователей</comment>
+  </data>
+  <data name="PermissionRedactVat" xml:space="preserve">
+    <value>Разрешение на редактирование ндс</value>
+    <comment>разрешение на редактирование ндс</comment>
+  </data>
+  <data name="TabCashFunctions" xml:space="preserve">
+    <value>Функции кассы</value>
+    <comment>панель функции кассы</comment>
+  </data>
+  <data name="TabDisplaySettings" xml:space="preserve">
+    <value>Настройки отображения</value>
+    <comment>панель настройка отображения</comment>
+  </data>
+  <data name="TabProducts" xml:space="preserve">
+    <value>Продукты</value>
+    <comment>панель продукты</comment>
+  </data>
+  <data name="TabQuickPaymentsMethods" xml:space="preserve">
+    <value>Быстрые способы оплаты</value>
+    <comment>панель быстрые способы оплаты</comment>
+  </data>
+  <data name="LabelNumpad" xml:space="preserve">
+    <value>Клавиатура</value>
+    <comment>надпись клавиатура</comment>
+  </data>
+  <data name="LabelLogonError" xml:space="preserve">
+    <value>Неверный логин или пароль</value>
+    <comment>надпись ошибка авторизации</comment>
+  </data>
+  <data name="TypePayBankCards" xml:space="preserve">
+    <value>Банковская карта</value>
+    <comment>тип платежа банковская карта</comment>
+  </data>
+  <data name="TypePayBankChecks" xml:space="preserve">
+    <value>Чек</value>
+    <comment>тип платежа банковский чек</comment>
+  </data>
+  <data name="TypePayBondAchat" xml:space="preserve">
+    <value>Купон на покупку</value>
+    <comment>тип платежа облигации</comment>
+  </data>
+  <data name="TypePayCash" xml:space="preserve">
+    <value>Наличка</value>
+    <comment>тип платежа наличка</comment>
+  </data>
+  <data name="TypePayResto" xml:space="preserve">
+    <value>Ресторанная карта</value>
+    <comment>тип платежа ресторанная карта</comment>
+  </data>
+  <data name="BtnApplyFilter" xml:space="preserve">
+    <value>Применить фильтр</value>
+    <comment>кнопка применить фильтр</comment>
+  </data>
+  <data name="BtnCancelProMode" xml:space="preserve">
+    <value>Отменить PRO режим</value>
+    <comment>кнопка отменить Про режим</comment>
+  </data>
+  <data name="BtnCloseLocal" xml:space="preserve">
+    <value>Закрыть локально</value>
+    <comment>кнопка закрыть локально</comment>
+  </data>
+  <data name="BtnCloseTotal" xml:space="preserve">
+    <value>Закрыть полностью</value>
+    <comment>кнопка закрыть полностью</comment>
+  </data>
+  <data name="BtnContinue" xml:space="preserve">
+    <value>Продолжить</value>
+    <comment>кнопка продолжить</comment>
+  </data>
+  <data name="BtnForceClose" xml:space="preserve">
+    <value>Закрыть принудительно</value>
+    <comment>кнопка закрыть принудительно</comment>
+  </data>
+  <data name="BtnFullUpdate" xml:space="preserve">
+    <value>Полное обновление</value>
+    <comment>кнопка полное обновление</comment>
+  </data>
+  <data name="BtnNew" xml:space="preserve">
+    <value>Новый</value>
+    <comment>кнопка новый</comment>
+  </data>
+  <data name="BtnNewPro" xml:space="preserve">
+    <value>Новый PRO</value>
+    <comment>кнопка новый Про</comment>
+  </data>
+  <data name="BtnNext" xml:space="preserve">
+    <value>Далее</value>
+    <comment>кнопка далее</comment>
+  </data>
+  <data name="BtnOpenLocal" xml:space="preserve">
+    <value>Открыть смену</value>
+    <comment>кнопка открыть смену (локально)</comment>
+  </data>
+  <data name="BtnOpenTotal" xml:space="preserve">
+    <value>Открыть кассу</value>
+    <comment>кнопка открыть кассу</comment>
+  </data>
+  <data name="BtnPrev" xml:space="preserve">
+    <value>Назад</value>
+    <comment>кнопка назад</comment>
+  </data>
+  <data name="BtnPrint" xml:space="preserve">
+    <value>Печать</value>
+    <comment>кнопка печать</comment>
+  </data>
+  <data name="BtnPrintDuplicate" xml:space="preserve">
+    <value>Печать дубликата</value>
+    <comment>кнопка печать дубликата</comment>
+  </data>
+  <data name="BtnRemove" xml:space="preserve">
+    <value>Удалить</value>
+    <comment>кнопка удалить</comment>
+  </data>
+  <data name="BtnSearch" xml:space="preserve">
+    <value>Поиск</value>
+    <comment>кнопка поиск</comment>
+  </data>
+  <data name="BtnSelect" xml:space="preserve">
+    <value>Выбрать</value>
+    <comment>кнопка выбрать</comment>
+  </data>
+  <data name="BtnUpdate" xml:space="preserve">
+    <value>Обновить</value>
+    <comment>кнопка обновить</comment>
+  </data>
+  <data name="ChpCat" xml:space="preserve">
+    <value>??????????</value>
+    <comment>надпись на форме AddProduct</comment>
+  </data>
+  <data name="ChpCat_s" xml:space="preserve">
+    <value>??????????</value>
+    <comment>надпись на форме AddProduct</comment>
+  </data>
+  <data name="ChpFam" xml:space="preserve">
+    <value>??????????</value>
+    <comment>надпись на форме AddProduct</comment>
+  </data>
+  <data name="ChpFam_s" xml:space="preserve">
+    <value>??????????</value>
+    <comment>надпись на форме AddProduct</comment>
+  </data>
+  <data name="ChpssFam_s" xml:space="preserve">
+    <value>??????????</value>
+    <comment>надпись на форме AddProduct</comment>
+  </data>
+  <data name="LabelAddress" xml:space="preserve">
+    <value>Адрес</value>
+    <comment>надпись адрес</comment>
+  </data>
+  <data name="LabelB" xml:space="preserve">
+    <value>В</value>
+    <comment>надпись Весы (Активны или нет)</comment>
+  </data>
+  <data name="LabelBalance" xml:space="preserve">
+    <value>Весы</value>
+    <comment>надпись Весы</comment>
+  </data>
+  <data name="LabelCashBox" xml:space="preserve">
+    <value>Касса</value>
+    <comment>надпись касса</comment>
+  </data>
+  <data name="LabelCashboxTime" xml:space="preserve">
+    <value>Время кассы</value>
+    <comment>надпись время кассы</comment>
+  </data>
+  <data name="LabelCassieData" xml:space="preserve">
+    <value>Данные кассы</value>
+    <comment>надпись данные кассы</comment>
+  </data>
+  <data name="LabelCB" xml:space="preserve">
+    <value>Банковская карта</value>
+    <comment>надпись банковская карта</comment>
+  </data>
+  <data name="LabelCheck" xml:space="preserve">
+    <value>Банковский чек</value>
+    <comment>надпись банковский чек</comment>
+  </data>
+  <data name="LabelCheckTicket" xml:space="preserve">
+    <value>Чеки об оплате</value>
+    <comment>надпись чеки об оплате</comment>
+  </data>
+  <data name="LabelCheckTicketTmp" xml:space="preserve">
+    <value>Чеки об оплате - Архив</value>
+    <comment>надпись чеки об оплате - Архив</comment>
+  </data>
+  <data name="LabelCity" xml:space="preserve">
+    <value>Город</value>
+    <comment>надпись город</comment>
+  </data>
+  <data name="LabelClientInfo" xml:space="preserve">
+    <value>Клиенты</value>
+    <comment>надпись для загрузки данных о Клиентах</comment>
+  </data>
+  <data name="LabelClose" xml:space="preserve">
+    <value>Закрытие</value>
+    <comment>надпись закрытие</comment>
+  </data>
+  <data name="LabelCloseTicket" xml:space="preserve">
+    <value>История закрытых касс</value>
+    <comment>надпись для загрузки истории о закрытых кассах</comment>
+  </data>
+  <data name="LabelColor" xml:space="preserve">
+    <value>Цвет</value>
+    <comment>надпись цвет</comment>
+  </data>
+  <data name="LabelCompanyName" xml:space="preserve">
+    <value>Название компании</value>
+    <comment>надпись название компании</comment>
+  </data>
+  <data name="LabelConnectionTest" xml:space="preserve">
+    <value>Проверка соединения</value>
+    <comment>надпись проверка соединения</comment>
+  </data>
+  <data name="LabelContenance" xml:space="preserve">
+    <value>?????????? </value>
+    <comment>Contenance</comment>
+  </data>
+  <data name="LabelCurrency" xml:space="preserve">
+    <value>Валюта</value>
+    <comment>надпись валюта</comment>
+  </data>
+  <data name="LabelDataLoading" xml:space="preserve">
+    <value>Загрузка данных</value>
+    <comment>надпись загрузка данных</comment>
+  </data>
+  <data name="LabelDetails" xml:space="preserve">
+    <value>Подробности</value>
+    <comment>надпись детали</comment>
+  </data>
+  <data name="LabelDevisWeb" xml:space="preserve">
+    <value>Web</value>
+    <comment>надпись для загрузки данных из таблицы DevisWeb</comment>
+  </data>
+  <data name="LabelDiscountCard" xml:space="preserve">
+    <value>Дисконтные карты</value>
+    <comment>надпись для загрузки данных из таблицы DiscountCard</comment>
+  </data>
+  <data name="LabelError" xml:space="preserve">
+    <value>Ошибка</value>
+    <comment>надпись ошибка</comment>
+  </data>
+  <data name="LabelEst" xml:space="preserve">
+    <value>Магазины</value>
+    <comment>надпись магазины</comment>
+  </data>
+  <data name="LabelFunction" xml:space="preserve">
+    <value>Функция</value>
+    <comment>надпись функция</comment>
+  </data>
+  <data name="LabelHighter" xml:space="preserve">
+    <value>Высший</value>
+    <comment>надпись высший</comment>
+  </data>
+  <data name="LabelId" xml:space="preserve">
+    <value>Ид</value>
+    <comment>надпись Id</comment>
+  </data>
+  <data name="LabelImage" xml:space="preserve">
+    <value>Изображение</value>
+    <comment>надпись картинка</comment>
+  </data>
+  <data name="LabelLocalOpeningKey" xml:space="preserve">
+    <value>Ключ открытия смены</value>
+    <comment>надпись Ключ открытия смены</comment>
+  </data>
+  <data name="LabelNameNation" xml:space="preserve">
+    <value>Национальность</value>
+    <comment>надпись на форме W_del</comment>
+  </data>
+  <data name="LabelNamePlaceArround" xml:space="preserve">
+    <value>Микрорайон</value>
+    <comment>надпись микрорайон</comment>
+  </data>
+  <data name="LabelNew" xml:space="preserve">
+    <value>Новое</value>
+    <comment>надпись новое</comment>
+  </data>
+  <data name="LabelNow" xml:space="preserve">
+    <value>Сегодня</value>
+    <comment>надпись сейчас</comment>
+  </data>
+  <data name="LabelNumberCashBox" xml:space="preserve">
+    <value>N° кассы</value>
+    <comment>надпись номер кассы</comment>
+  </data>
+  <data name="LabelNumberCheck" xml:space="preserve">
+    <value>N° чека</value>
+    <comment>надпись номер чека</comment>
+  </data>
+  <data name="LabelOld" xml:space="preserve">
+    <value>Старое</value>
+    <comment>надпись старое</comment>
+  </data>
+  <data name="LabelOpen" xml:space="preserve">
+    <value>Открытие</value>
+    <comment>надпись открытие</comment>
+  </data>
+  <data name="LabelPaymentMeans" xml:space="preserve">
+    <value>Средства платежа</value>
+    <comment>надпись средства платежа</comment>
+  </data>
+  <data name="LabelPayProduct" xml:space="preserve">
+    <value>Проданные продукты</value>
+    <comment>надпись для загрузки данных из таблицы PayProduct</comment>
+  </data>
+  <data name="LabelPayProductTmp" xml:space="preserve">
+    <value>Проданные продукты TEMP</value>
+    <comment>надпись для загрузки данных из таблицы PayProductTmp</comment>
+  </data>
+  <data name="LabelPhone" xml:space="preserve">
+    <value>Телефон</value>
+    <comment>надпись телефон</comment>
+  </data>
+  <data name="LabelPieceOrKg" xml:space="preserve">
+    <value>Штук или килограмм</value>
+    <comment>надпись штук или килограмм</comment>
+  </data>
+  <data name="LabelPleaseWaitWhileLoading" xml:space="preserve">
+    <value>Пожалуйста подождите, идет загрузка !</value>
+    <comment>надпись пожалуйста подождите, идет загрузка</comment>
+  </data>
+  <data name="LabelPost" xml:space="preserve">
+    <value>Номер устройства</value>
+    <comment>надпись номер устройства</comment>
+  </data>
+  <data name="LabelPostalCode" xml:space="preserve">
+    <value>Индекс</value>
+    <comment>надпись индекс</comment>
+  </data>
+  <data name="LabelProduct" xml:space="preserve">
+    <value>Продукт</value>
+    <comment>надпись продукт</comment>
+  </data>
+  <data name="LabelProducts" xml:space="preserve">
+    <value>Продукты</value>
+    <comment>надпись продукты</comment>
+  </data>
+  <data name="LabelProviders" xml:space="preserve">
+    <value>Поставщики</value>
+    <comment>надпись поставщики</comment>
+  </data>
+  <data name="LabelRest" xml:space="preserve">
+    <value>Остальное</value>
+    <comment>надпись остальное</comment>
+  </data>
+  <data name="LabelServerTime" xml:space="preserve">
+    <value>Время сервера</value>
+    <comment>надпись серверное время</comment>
+  </data>
+  <data name="LabelStock" xml:space="preserve">
+    <value>Склад</value>
+    <comment>надпись склад</comment>
+  </data>
+  <data name="LabelTare" xml:space="preserve">
+    <value>Тара</value>
+    <comment>надпись тара</comment>
+  </data>
+  <data name="LabelTicketR" xml:space="preserve">
+    <value />
+    <comment>надпись ???????????</comment>
+  </data>
+  <data name="LabelTicketRetour" xml:space="preserve">
+    <value>Купон возрата</value>
+    <comment>надпись купона возврата</comment>
+  </data>
+  <data name="LabelTotalOpeningKey" xml:space="preserve">
+    <value>Ключ открытия кассы</value>
+    <comment>надпись ключ открытия кассы</comment>
+  </data>
+  <data name="LabelType" xml:space="preserve">
+    <value>Тип</value>
+    <comment>надпись тип??????????</comment>
+  </data>
+  <data name="LabelTypesPays" xml:space="preserve">
+    <value>Виды платежей</value>
+    <comment>надпись виды платежей</comment>
+  </data>
+  <data name="LabelTypeVat" xml:space="preserve">
+    <value>Тип НДС</value>
+    <comment>надпись тип НДС</comment>
+  </data>
+  <data name="LabelUnitContenance" xml:space="preserve">
+    <value>?????????? не нужно</value>
+    <comment>Unit Contenance</comment>
+  </data>
+  <data name="LabelUserName" xml:space="preserve">
+    <value>Имя пользователя</value>
+    <comment>надпись имя пользователя</comment>
+  </data>
+  <data name="LabelViewing" xml:space="preserve">
+    <value>Просмотр</value>
+    <comment>надпись просмотр</comment>
+  </data>
+  <data name="LabelXmlFile" xml:space="preserve">
+    <value>Параметры программы</value>
+    <comment>надпись для загрузки Параметров программы</comment>
+  </data>
+  <data name="MenuSyncSetting" xml:space="preserve">
+    <value>Настройки синхронизации</value>
+    <comment>меню настройки синхронизации</comment>
+  </data>
+  <data name="PermissionRedactSync" xml:space="preserve">
+    <value>Редактирование синхронизации</value>
+    <comment>разрешение редактировать синхронизацию</comment>
+  </data>
+  <data name="LabelOpenedBy" xml:space="preserve">
+    <value>Открыта</value>
+    <comment>надпись кем была открыта</comment>
+  </data>
+  <data name="LabelOpenLocal" xml:space="preserve">
+    <value>Смена открыта</value>
+    <comment>надпись смена открыта</comment>
+  </data>
+  <data name="LabelOpenTotalTW" xml:space="preserve">
+    <value>Касса открыта</value>
+    <comment>надпись касса открыта</comment>
+  </data>
+  <data name="LabelProductNotFind" xml:space="preserve">
+    <value>Продукт не найден</value>
+    <comment>надпись продукт не найден</comment>
+  </data>
+  <data name="LabelQuestion" xml:space="preserve">
+    <value>Вопрос</value>
+    <comment>надпись вопрос</comment>
+  </data>
+  <data name="LabelSelectProduct" xml:space="preserve">
+    <value>Выберите продукт</value>
+    <comment>надпись выберите продукт</comment>
+  </data>
+  <data name="LabelWarning" xml:space="preserve">
+    <value>Предупреждение</value>
+    <comment>надпись предупреждение</comment>
+  </data>
+  <data name="MessageDeleteQuestion" xml:space="preserve">
+    <value>Подтвердите удаление</value>
+    <comment>надпись подтвердите удаление</comment>
+  </data>
+  <data name="MessageIsAdmin" xml:space="preserve">
+    <value>Это администратор</value>
+    <comment>сообщение это администратор</comment>
+  </data>
+  <data name="PermissionDeleteProductFromCheck" xml:space="preserve">
+    <value>Разрешение удалять продукт из чека</value>
+    <comment>разрешение удалять продукт из чека</comment>
+  </data>
+  <data name="LabelNotPermission" xml:space="preserve">
+    <value>Нет прав</value>
+    <comment>надпись нет прав</comment>
+  </data>
+  <data name="LabelPin" xml:space="preserve">
+    <value>Пин код</value>
+    <comment>надпись пин код</comment>
+  </data>
+  <data name="LabelFrom" xml:space="preserve">
+    <value>Из</value>
+    <comment>надпись из</comment>
+  </data>
+  <data name="LabelDataError" xml:space="preserve">
+    <value>Ошибка - дата не изменилась! Перезагрузка в режиме администратора</value>
+    <comment>надпись ошибка даты</comment>
+  </data>
+  <data name="LabelCashBoxDate" xml:space="preserve">
+    <value>Время кассы</value>
+    <comment>надпись время кассы</comment>
+  </data>
+  <data name="LabelDateUpdate" xml:space="preserve">
+    <value>Дата обновления</value>
+    <comment>надпись дата обновления</comment>
+  </data>
+  <data name="LabelNofFound" xml:space="preserve">
+    <value>Не найдено</value>
+    <comment>надпись не найдено</comment>
+  </data>
+  <data name="LabelExcess" xml:space="preserve">
+    <value>Превышение</value>
+    <comment>надпись превышение</comment>
+  </data>
+  <data name="LabelInvalidNumberFormat" xml:space="preserve">
+    <value>Недопустимый формат номера</value>
+    <comment>надпись недопустимый формат номера</comment>
+  </data>
+  <data name="LabelPieceNotFractional" xml:space="preserve">
+    <value>Шт не может быть дробным числом</value>
+    <comment>надпись шт не может быть дробным числом</comment>
+  </data>
+  <data name="LabelProductRemoved" xml:space="preserve">
+    <value>Продукт удален</value>
+    <comment>надпись продукт удален</comment>
+  </data>
+</root>

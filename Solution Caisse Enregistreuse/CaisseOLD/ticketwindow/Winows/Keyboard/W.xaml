@@ -1,0 +1,18 @@
+﻿<Window x:Class="ticketwindow.Winows.Keyboard.W"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:UC="clr-namespace:ticketwindow.Winows.Keyboard"
+       
+       
+                    Focusable="True"  
+                       MouseDown="W_keyboard_MouseDown"
+        Title="W" Height="250" Width="700" WindowState="Normal"  WindowStartupLocation="CenterOwner" 
+        AllowsTransparency="True" WindowStyle="None">
+    <Grid >
+        
+        <UC:W_keyboard x:Name="kb"  Focusable="True"
+            Margin="0,40,0,0" Width="Auto" Height="Auto"
+                       >
+        </UC:W_keyboard>
+    </Grid>
+</Window>

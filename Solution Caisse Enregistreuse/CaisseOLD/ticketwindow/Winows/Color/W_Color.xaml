@@ -1,0 +1,8 @@
+﻿<Window x:Class="ticketwindow.Winows.Color.W_Color"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="W_Color" Height="300" Width="300">
+    <Grid>
+        
+    </Grid>
+</Window>

@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Grid>
+  <rec>
+    <id>0</id>
+    <Date_upd>15/08/2014 20:50:24</Date_upd>
+    <X>0</X>
+    <Y>0</Y>
+    <Caption>Modif</Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,240,248,255</foreground>
+    <Img></Img>
+    <Fun>Modification des Articles</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>15/08/2014 20:51:50</Date_upd>
+    <X>1</X>
+    <Y>0</Y>
+    <Caption>SUP Ligne</Caption>
+    <Color>255,255,255,0</Color>
+    <foreground>255,0,0,0</foreground>
+    <Img></Img>
+    <Fun>Supprimer une Ligne</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>15/08/2014 20:52:17</Date_upd>
+    <X>2</X>
+    <Y>0</Y>
+    <Caption>Sup Ticket</Caption>
+    <Color>255,255,165,0</Color>
+    <foreground>255,0,0,0</foreground>
+    <Img></Img>
+    <Fun>Supprimer le Ticket</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>15/08/2014 20:54:46</Date_upd>
+    <X>4</X>
+    <Y>0</Y>
+    <Caption>Controle</Caption>
+    <Color>255,138,43,226</Color>
+    <foreground>255,0,0,0</foreground>
+    <Img></Img>
+    <Fun>Bande de Contrôle</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>15/08/2014 20:55:28</Date_upd>
+    <X>5</X>
+    <Y>0</Y>
+    <Caption>Retour</Caption>
+    <Color>255,128,128,128</Color>
+    <foreground>255,0,0,0</foreground>
+    <Img></Img>
+    <Fun>Retours et Remboursements</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>15/08/2014 21:10:05</Date_upd>
+    <X>0</X>
+    <Y>1</Y>
+    <Caption>+1</Caption>
+    <Color>255,153,50,204</Color>
+    <foreground>255,0,0,0</foreground>
+    <Img></Img>
+    <Fun>Attente +1</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>26/08/2014 17:43:58</Date_upd>
+    <X>3</X>
+    <Y>0</Y>
+    <Caption>Clôture</Caption>
+    <Color>255,0,0,255</Color>
+    <foreground>255,255,0,0</foreground>
+    <Img></Img>
+    <Fun>Clôture</Fun>
+  </rec>
+</Grid>

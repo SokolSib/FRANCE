@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ets>
+  <rec>
+    <CustomerId>42e89ba9-1012-4327-95f9-40712e232849</CustomerId>
+    <Type>1</Type>
+    <Name>Marignane</Name>
+    <CP>13700</CP>
+    <Ville>MARIGNANE</Ville>
+    <Adresse>Avenue du 8 Mai 1945</Adresse>
+    <Phone>04 42 09 47 41</Phone>
+    <Mail>sarl.anahit@gmail.com</Mail>
+  </rec>
+  <rec>
+    <CustomerId>7bbde47d-3dfe-4670-9de5-d2e264e79bfa</CustomerId>
+    <Type>0</Type>
+    <Name>Internet</Name>
+    <CP>13001</CP>
+    <Ville>MARSEILLE</Ville>
+    <Adresse>9-11-13 Boulevard de la Liberté</Adresse>
+    <Phone>04 91 50 87 61</Phone>
+    <Mail>sarl.anahit@yahoo.fr</Mail>
+  </rec>
+  <rec>
+    <CustomerId>e27d5a4d-d6d3-4ee5-810b-f95b32e0bb93</CustomerId>
+    <Type>1</Type>
+    <Name>ST CHARLE</Name>
+    <CP>13001</CP>
+    <Ville>MARSEILLE</Ville>
+    <Adresse>9 Boulevard de la Liberté</Adresse>
+    <Phone>04 91 50 87 61</Phone>
+    <Mail>sarl.anahit@yahoo.fr</Mail>
+  </rec>
+</ets>

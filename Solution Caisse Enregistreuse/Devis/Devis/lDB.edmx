@@ -1,0 +1,887 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище BDCAtestModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DevisId">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="Close" Type="bit" />
+          <Property Name="infoClientsCustomerId" Type="uniqueidentifier" />
+          <Property Name="Total" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="DevisWeb">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IdDevis" Type="int" Nullable="false" />
+          <Property Name="PrixHT" Type="decimal" Precision="16" Scale="2" Nullable="false" />
+          <Property Name="MonPrixHT" Type="decimal" Precision="16" Scale="2" Nullable="false" />
+          <Property Name="QTY" Type="decimal" Precision="15" Scale="3" Nullable="false" />
+          <Property Name="TotalHT" Type="decimal" Precision="16" Scale="2" Nullable="false" />
+          <Property Name="PayementType" Type="smallint" Nullable="false" />
+          <Property Name="Operator" Type="bit" Nullable="false" />
+          <Property Name="ProductsCustumerId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="InfoClients_custumerId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Establishment">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Type" Type="int" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="CP" Type="nvarchar(max)" />
+          <Property Name="Ville" Type="nvarchar(max)" />
+          <Property Name="Adresse" Type="nvarchar(max)" />
+          <Property Name="Phone" Type="nvarchar(max)" />
+          <Property Name="Mail" Type="nvarchar(max)" />
+          <Property Name="SIRET" Type="nvarchar(max)" />
+          <Property Name="NTVA" Type="nvarchar(max)" />
+          <Property Name="CodeNAF" Type="nvarchar(max)" />
+          <Property Name="Fax" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="GrpProductSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="GroupName" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InfoClients">
+          <Key>
+            <PropertyRef Name="custumerId" />
+          </Key>
+          <Property Name="custumerId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TypeClient" Type="int" Nullable="false" />
+          <Property Name="Sex" Type="int" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Surname" Type="nvarchar(max)" />
+          <Property Name="NameCompany" Type="nvarchar(max)" />
+          <Property Name="SIRET" Type="nchar" MaxLength="14" />
+          <Property Name="FRTVA" Type="nchar" MaxLength="13" />
+          <Property Name="OfficeAddress" Type="nvarchar(max)" />
+          <Property Name="OfficeZipCode" Type="nvarchar(max)" />
+          <Property Name="OfficeCity" Type="nvarchar(max)" />
+          <Property Name="HomeAddress" Type="nvarchar(max)" />
+          <Property Name="HomeZipCode" Type="nvarchar(max)" />
+          <Property Name="HomeCity" Type="nvarchar(max)" />
+          <Property Name="Telephone" Type="nvarchar(max)" />
+          <Property Name="Mail" Type="varchar(max)" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="Countrys_CustomerId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FavoritesProductAutoCustomerId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Nclient" Type="char" MaxLength="6" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="CustumerId" />
+          </Key>
+          <Property Name="CustumerId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CodeBare" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Desc" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Chp_cat" Type="smallint" Nullable="false" />
+          <Property Name="Balance" Type="bit" Nullable="false" />
+          <Property Name="Contenance" Type="decimal" Precision="15" Scale="3" Nullable="false" />
+          <Property Name="UniteContenance" Type="int" Nullable="false" />
+          <Property Name="Tare" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="TVACustumerId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ProductsWeb_CustomerId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SubGrpProduct_Id" Type="int" Nullable="false" />
+          <Property Name="FavoritesProductCustomerId" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="ProductsBC">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CustomerIdProduct" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CodeBar" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="QTY" Type="decimal" Precision="15" Scale="3" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ProductsWeb">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Visible" Type="bit" Nullable="false" />
+          <Property Name="Images" Type="nvarchar(max)" />
+          <Property Name="DescrCourt" Type="nvarchar(max)" />
+          <Property Name="DescrLong" Type="nvarchar(max)" />
+          <Property Name="Volume" Type="decimal" Precision="15" Scale="3" />
+          <Property Name="UniteVolume" Type="int" />
+          <Property Name="ContenanceBox" Type="decimal" Precision="15" Scale="3" />
+          <Property Name="ContenancePallet" Type="decimal" Precision="15" Scale="3" />
+          <Property Name="Weight" Type="decimal" Precision="15" Scale="3" />
+          <Property Name="Frozen" Type="bit" />
+        </EntityType>
+        <EntityType Name="StockReal">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="QTY" Type="decimal" Precision="15" Scale="3" Nullable="false" />
+          <Property Name="MinQTY" Type="decimal" Precision="15" Scale="3" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="15" Scale="3" Nullable="false" />
+          <Property Name="ProductsCustumerId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Establishment_CustomerId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SubGrpNameSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SubGroupName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="GrpProductId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TranslateNameGroups">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Type" Type="int" Nullable="false" />
+          <Property Name="IdGroupSub" Type="int" Nullable="false" />
+          <Property Name="cod_lng" Type="nvarchar(max)" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Details" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="TranslateNameProductsSet">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ProductCustomerId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="cod_lng" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Details" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="TranslateUniteContenance">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IdUnite" Type="int" Nullable="false" />
+          <Property Name="cod_lng" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="nameUnite" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TVA">
+          <Key>
+            <PropertyRef Name="CustumerId" />
+          </Key>
+          <Property Name="CustumerId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Id" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="val" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_EstablishmentStockReal">
+          <End Role="Establishment" Type="Self.Establishment" Multiplicity="1" />
+          <End Role="StockReal" Type="Self.StockReal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Establishment">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="StockReal">
+              <PropertyRef Name="Establishment_CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GrpProductSubGrpName">
+          <End Role="GrpProductSet" Type="Self.GrpProductSet" Multiplicity="1" />
+          <End Role="SubGrpNameSet" Type="Self.SubGrpNameSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GrpProductSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubGrpNameSet">
+              <PropertyRef Name="GrpProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InfoClientsDevisWeb">
+          <End Role="InfoClients" Type="Self.InfoClients" Multiplicity="1" />
+          <End Role="DevisWeb" Type="Self.DevisWeb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InfoClients">
+              <PropertyRef Name="custumerId" />
+            </Principal>
+            <Dependent Role="DevisWeb">
+              <PropertyRef Name="InfoClients_custumerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductsDevisWeb">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="DevisWeb" Type="Self.DevisWeb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="CustumerId" />
+            </Principal>
+            <Dependent Role="DevisWeb">
+              <PropertyRef Name="ProductsCustumerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductsProductsWeb">
+          <End Role="ProductsWeb" Type="Self.ProductsWeb" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductsWeb">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="ProductsWeb_CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductsStockReal">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="StockReal" Type="Self.StockReal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="CustumerId" />
+            </Principal>
+            <Dependent Role="StockReal">
+              <PropertyRef Name="ProductsCustumerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubGrpProductProducts">
+          <End Role="SubGrpNameSet" Type="Self.SubGrpNameSet" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubGrpNameSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="SubGrpProduct_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TVAProducts">
+          <End Role="TVA" Type="Self.TVA" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TVA">
+              <PropertyRef Name="CustumerId" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="TVACustumerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище BDCAtestModelContainer">
+          <EntitySet Name="DevisId" EntityType="Self.DevisId" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DevisWeb" EntityType="Self.DevisWeb" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Establishment" EntityType="Self.Establishment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GrpProductSet" EntityType="Self.GrpProductSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InfoClients" EntityType="Self.InfoClients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductsBC" EntityType="Self.ProductsBC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductsWeb" EntityType="Self.ProductsWeb" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StockReal" EntityType="Self.StockReal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubGrpNameSet" EntityType="Self.SubGrpNameSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TranslateNameGroups" EntityType="Self.TranslateNameGroups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TranslateNameProductsSet" EntityType="Self.TranslateNameProductsSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TranslateUniteContenance" EntityType="Self.TranslateUniteContenance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TVA" EntityType="Self.TVA" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_EstablishmentStockReal" Association="Self.FK_EstablishmentStockReal">
+            <End Role="Establishment" EntitySet="Establishment" />
+            <End Role="StockReal" EntitySet="StockReal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GrpProductSubGrpName" Association="Self.FK_GrpProductSubGrpName">
+            <End Role="GrpProductSet" EntitySet="GrpProductSet" />
+            <End Role="SubGrpNameSet" EntitySet="SubGrpNameSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InfoClientsDevisWeb" Association="Self.FK_InfoClientsDevisWeb">
+            <End Role="InfoClients" EntitySet="InfoClients" />
+            <End Role="DevisWeb" EntitySet="DevisWeb" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductsDevisWeb" Association="Self.FK_ProductsDevisWeb">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="DevisWeb" EntitySet="DevisWeb" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductsProductsWeb" Association="Self.FK_ProductsProductsWeb">
+            <End Role="ProductsWeb" EntitySet="ProductsWeb" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductsStockReal" Association="Self.FK_ProductsStockReal">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="StockReal" EntitySet="StockReal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubGrpProductProducts" Association="Self.FK_SubGrpProductProducts">
+            <End Role="SubGrpNameSet" EntitySet="SubGrpNameSet" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TVAProducts" Association="Self.FK_TVAProducts">
+            <End Role="TVA" EntitySet="TVA" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BDCAtestModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DevisId">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="Close" Type="Boolean" />
+          <Property Name="infoClientsCustomerId" Type="Guid" />
+          <Property Name="Total" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="DevisWeb">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="Guid" Nullable="false" />
+          <Property Name="IdDevis" Type="Int32" Nullable="false" />
+          <Property Name="PrixHT" Type="Decimal" Precision="16" Scale="2" Nullable="false" />
+          <Property Name="MonPrixHT" Type="Decimal" Precision="16" Scale="2" Nullable="false" />
+          <Property Name="QTY" Type="Decimal" Precision="15" Scale="3" Nullable="false" />
+          <Property Name="TotalHT" Type="Decimal" Precision="16" Scale="2" Nullable="false" />
+          <Property Name="PayementType" Type="Int16" Nullable="false" />
+          <Property Name="Operator" Type="Boolean" Nullable="false" />
+          <Property Name="ProductsCustumerId" Type="Guid" Nullable="false" />
+          <Property Name="InfoClients_custumerId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="InfoClients" Relationship="Self.FK_InfoClientsDevisWeb" FromRole="DevisWeb" ToRole="InfoClients" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_ProductsDevisWeb" FromRole="DevisWeb" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Establishment">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="Guid" Nullable="false" />
+          <Property Name="Type" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CP" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Ville" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Adresse" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Mail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SIRET" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NTVA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CodeNAF" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="StockReal" Relationship="Self.FK_EstablishmentStockReal" FromRole="Establishment" ToRole="StockReal" />
+        </EntityType>
+        <EntityType Name="GrpProductSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="GroupName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="SubGrpNameSet" Relationship="Self.FK_GrpProductSubGrpName" FromRole="GrpProductSet" ToRole="SubGrpNameSet" />
+        </EntityType>
+        <EntityType Name="InfoClients">
+          <Key>
+            <PropertyRef Name="custumerId" />
+          </Key>
+          <Property Name="custumerId" Type="Guid" Nullable="false" />
+          <Property Name="TypeClient" Type="Int32" Nullable="false" />
+          <Property Name="Sex" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Surname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NameCompany" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SIRET" Type="String" MaxLength="14" FixedLength="true" Unicode="true" />
+          <Property Name="FRTVA" Type="String" MaxLength="13" FixedLength="true" Unicode="true" />
+          <Property Name="OfficeAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OfficeZipCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OfficeCity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HomeAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HomeZipCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HomeCity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Telephone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Mail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Countrys_CustomerId" Type="Guid" Nullable="false" />
+          <Property Name="FavoritesProductAutoCustomerId" Type="Guid" Nullable="false" />
+          <Property Name="Nclient" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="DevisWeb" Relationship="Self.FK_InfoClientsDevisWeb" FromRole="InfoClients" ToRole="DevisWeb" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="CustumerId" />
+          </Key>
+          <Property Name="CustumerId" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CodeBare" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Chp_cat" Type="Int16" Nullable="false" />
+          <Property Name="Balance" Type="Boolean" Nullable="false" />
+          <Property Name="Contenance" Type="Decimal" Precision="15" Scale="3" Nullable="false" />
+          <Property Name="UniteContenance" Type="Int32" Nullable="false" />
+          <Property Name="Tare" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TVACustumerId" Type="Guid" Nullable="false" />
+          <Property Name="ProductsWeb_CustomerId" Type="Guid" Nullable="false" />
+          <Property Name="SubGrpProduct_Id" Type="Int32" Nullable="false" />
+          <Property Name="FavoritesProductCustomerId" Type="Guid" />
+          <NavigationProperty Name="DevisWeb" Relationship="Self.FK_ProductsDevisWeb" FromRole="Products" ToRole="DevisWeb" />
+          <NavigationProperty Name="ProductsWeb" Relationship="Self.FK_ProductsProductsWeb" FromRole="Products" ToRole="ProductsWeb" />
+          <NavigationProperty Name="StockReal" Relationship="Self.FK_ProductsStockReal" FromRole="Products" ToRole="StockReal" />
+          <NavigationProperty Name="SubGrpNameSet" Relationship="Self.FK_SubGrpProductProducts" FromRole="Products" ToRole="SubGrpNameSet" />
+          <NavigationProperty Name="TVA" Relationship="Self.FK_TVAProducts" FromRole="Products" ToRole="TVA" />
+        </EntityType>
+        <EntityType Name="ProductsBC">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="Guid" Nullable="false" />
+          <Property Name="CustomerIdProduct" Type="Guid" Nullable="false" />
+          <Property Name="CodeBar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="QTY" Type="Decimal" Precision="15" Scale="3" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ProductsWeb">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="Guid" Nullable="false" />
+          <Property Name="Visible" Type="Boolean" Nullable="false" />
+          <Property Name="Images" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DescrCourt" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DescrLong" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Volume" Type="Decimal" Precision="15" Scale="3" />
+          <Property Name="UniteVolume" Type="Int32" />
+          <Property Name="ContenanceBox" Type="Decimal" Precision="15" Scale="3" />
+          <Property Name="ContenancePallet" Type="Decimal" Precision="15" Scale="3" />
+          <Property Name="Weight" Type="Decimal" Precision="15" Scale="3" />
+          <Property Name="Frozen" Type="Boolean" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_ProductsProductsWeb" FromRole="ProductsWeb" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="StockReal">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="Guid" Nullable="false" />
+          <Property Name="QTY" Type="Decimal" Precision="15" Scale="3" Nullable="false" />
+          <Property Name="MinQTY" Type="Decimal" Precision="15" Scale="3" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="15" Scale="3" Nullable="false" />
+          <Property Name="ProductsCustumerId" Type="Guid" Nullable="false" />
+          <Property Name="Establishment_CustomerId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Establishment" Relationship="Self.FK_EstablishmentStockReal" FromRole="StockReal" ToRole="Establishment" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_ProductsStockReal" FromRole="StockReal" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="SubGrpNameSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubGroupName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GrpProductId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GrpProductSet" Relationship="Self.FK_GrpProductSubGrpName" FromRole="SubGrpNameSet" ToRole="GrpProductSet" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_SubGrpProductProducts" FromRole="SubGrpNameSet" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="TranslateNameGroups">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="Guid" Nullable="false" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <Property Name="IdGroupSub" Type="Int32" Nullable="false" />
+          <Property Name="cod_lng" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TranslateNameProductsSet">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="Guid" Nullable="false" />
+          <Property Name="ProductCustomerId" Type="Guid" Nullable="false" />
+          <Property Name="cod_lng" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TranslateUniteContenance">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="Guid" Nullable="false" />
+          <Property Name="IdUnite" Type="Int32" Nullable="false" />
+          <Property Name="cod_lng" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nameUnite" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TVA">
+          <Key>
+            <PropertyRef Name="CustumerId" />
+          </Key>
+          <Property Name="CustumerId" Type="Guid" Nullable="false" />
+          <Property Name="Id" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="val" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_TVAProducts" FromRole="TVA" ToRole="Products" />
+        </EntityType>
+        <Association Name="FK_InfoClientsDevisWeb">
+          <End Role="InfoClients" Type="Self.InfoClients" Multiplicity="1" />
+          <End Role="DevisWeb" Type="Self.DevisWeb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InfoClients">
+              <PropertyRef Name="custumerId" />
+            </Principal>
+            <Dependent Role="DevisWeb">
+              <PropertyRef Name="InfoClients_custumerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductsDevisWeb">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="DevisWeb" Type="Self.DevisWeb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="CustumerId" />
+            </Principal>
+            <Dependent Role="DevisWeb">
+              <PropertyRef Name="ProductsCustumerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EstablishmentStockReal">
+          <End Role="Establishment" Type="Self.Establishment" Multiplicity="1" />
+          <End Role="StockReal" Type="Self.StockReal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Establishment">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="StockReal">
+              <PropertyRef Name="Establishment_CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GrpProductSubGrpName">
+          <End Role="GrpProductSet" Type="Self.GrpProductSet" Multiplicity="1" />
+          <End Role="SubGrpNameSet" Type="Self.SubGrpNameSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GrpProductSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubGrpNameSet">
+              <PropertyRef Name="GrpProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductsProductsWeb">
+          <End Role="ProductsWeb" Type="Self.ProductsWeb" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductsWeb">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="ProductsWeb_CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductsStockReal">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="StockReal" Type="Self.StockReal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="CustumerId" />
+            </Principal>
+            <Dependent Role="StockReal">
+              <PropertyRef Name="ProductsCustumerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubGrpProductProducts">
+          <End Role="SubGrpNameSet" Type="Self.SubGrpNameSet" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubGrpNameSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="SubGrpProduct_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TVAProducts">
+          <End Role="TVA" Type="Self.TVA" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TVA">
+              <PropertyRef Name="CustumerId" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="TVACustumerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BDCAtestEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DevisId" EntityType="Self.DevisId" />
+          <EntitySet Name="DevisWeb" EntityType="Self.DevisWeb" />
+          <EntitySet Name="Establishment" EntityType="Self.Establishment" />
+          <EntitySet Name="GrpProductSet" EntityType="Self.GrpProductSet" />
+          <EntitySet Name="InfoClients" EntityType="Self.InfoClients" />
+          <EntitySet Name="Products" EntityType="Self.Products" />
+          <EntitySet Name="ProductsBC" EntityType="Self.ProductsBC" />
+          <EntitySet Name="ProductsWeb" EntityType="Self.ProductsWeb" />
+          <EntitySet Name="StockReal" EntityType="Self.StockReal" />
+          <EntitySet Name="SubGrpNameSet" EntityType="Self.SubGrpNameSet" />
+          <EntitySet Name="TranslateNameGroups" EntityType="Self.TranslateNameGroups" />
+          <EntitySet Name="TranslateNameProductsSet" EntityType="Self.TranslateNameProductsSet" />
+          <EntitySet Name="TranslateUniteContenance" EntityType="Self.TranslateUniteContenance" />
+          <EntitySet Name="TVA" EntityType="Self.TVA" />
+          <AssociationSet Name="FK_InfoClientsDevisWeb" Association="Self.FK_InfoClientsDevisWeb">
+            <End Role="InfoClients" EntitySet="InfoClients" />
+            <End Role="DevisWeb" EntitySet="DevisWeb" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductsDevisWeb" Association="Self.FK_ProductsDevisWeb">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="DevisWeb" EntitySet="DevisWeb" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EstablishmentStockReal" Association="Self.FK_EstablishmentStockReal">
+            <End Role="Establishment" EntitySet="Establishment" />
+            <End Role="StockReal" EntitySet="StockReal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GrpProductSubGrpName" Association="Self.FK_GrpProductSubGrpName">
+            <End Role="GrpProductSet" EntitySet="GrpProductSet" />
+            <End Role="SubGrpNameSet" EntitySet="SubGrpNameSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductsProductsWeb" Association="Self.FK_ProductsProductsWeb">
+            <End Role="ProductsWeb" EntitySet="ProductsWeb" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductsStockReal" Association="Self.FK_ProductsStockReal">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="StockReal" EntitySet="StockReal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubGrpProductProducts" Association="Self.FK_SubGrpProductProducts">
+            <End Role="SubGrpNameSet" EntitySet="SubGrpNameSet" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TVAProducts" Association="Self.FK_TVAProducts">
+            <End Role="TVA" EntitySet="TVA" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище BDCAtestModelContainer" CdmEntityContainer="BDCAtestEntities">
+          <EntitySetMapping Name="DevisId">
+            <EntityTypeMapping TypeName="BDCAtestModel.DevisId">
+              <MappingFragment StoreEntitySet="DevisId">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Close" ColumnName="Close" />
+                <ScalarProperty Name="infoClientsCustomerId" ColumnName="infoClientsCustomerId" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DevisWeb">
+            <EntityTypeMapping TypeName="BDCAtestModel.DevisWeb">
+              <MappingFragment StoreEntitySet="DevisWeb">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="IdDevis" ColumnName="IdDevis" />
+                <ScalarProperty Name="PrixHT" ColumnName="PrixHT" />
+                <ScalarProperty Name="MonPrixHT" ColumnName="MonPrixHT" />
+                <ScalarProperty Name="QTY" ColumnName="QTY" />
+                <ScalarProperty Name="TotalHT" ColumnName="TotalHT" />
+                <ScalarProperty Name="PayementType" ColumnName="PayementType" />
+                <ScalarProperty Name="Operator" ColumnName="Operator" />
+                <ScalarProperty Name="ProductsCustumerId" ColumnName="ProductsCustumerId" />
+                <ScalarProperty Name="InfoClients_custumerId" ColumnName="InfoClients_custumerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Establishment">
+            <EntityTypeMapping TypeName="BDCAtestModel.Establishment">
+              <MappingFragment StoreEntitySet="Establishment">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CP" ColumnName="CP" />
+                <ScalarProperty Name="Ville" ColumnName="Ville" />
+                <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="SIRET" ColumnName="SIRET" />
+                <ScalarProperty Name="NTVA" ColumnName="NTVA" />
+                <ScalarProperty Name="CodeNAF" ColumnName="CodeNAF" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GrpProductSet">
+            <EntityTypeMapping TypeName="BDCAtestModel.GrpProductSet">
+              <MappingFragment StoreEntitySet="GrpProductSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InfoClients">
+            <EntityTypeMapping TypeName="BDCAtestModel.InfoClients">
+              <MappingFragment StoreEntitySet="InfoClients">
+                <ScalarProperty Name="custumerId" ColumnName="custumerId" />
+                <ScalarProperty Name="TypeClient" ColumnName="TypeClient" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="NameCompany" ColumnName="NameCompany" />
+                <ScalarProperty Name="SIRET" ColumnName="SIRET" />
+                <ScalarProperty Name="FRTVA" ColumnName="FRTVA" />
+                <ScalarProperty Name="OfficeAddress" ColumnName="OfficeAddress" />
+                <ScalarProperty Name="OfficeZipCode" ColumnName="OfficeZipCode" />
+                <ScalarProperty Name="OfficeCity" ColumnName="OfficeCity" />
+                <ScalarProperty Name="HomeAddress" ColumnName="HomeAddress" />
+                <ScalarProperty Name="HomeZipCode" ColumnName="HomeZipCode" />
+                <ScalarProperty Name="HomeCity" ColumnName="HomeCity" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Countrys_CustomerId" ColumnName="Countrys_CustomerId" />
+                <ScalarProperty Name="FavoritesProductAutoCustomerId" ColumnName="FavoritesProductAutoCustomerId" />
+                <ScalarProperty Name="Nclient" ColumnName="Nclient" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="BDCAtestModel.Products">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="CustumerId" ColumnName="CustumerId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CodeBare" ColumnName="CodeBare" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+                <ScalarProperty Name="Chp_cat" ColumnName="Chp_cat" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="Contenance" ColumnName="Contenance" />
+                <ScalarProperty Name="UniteContenance" ColumnName="UniteContenance" />
+                <ScalarProperty Name="Tare" ColumnName="Tare" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="TVACustumerId" ColumnName="TVACustumerId" />
+                <ScalarProperty Name="ProductsWeb_CustomerId" ColumnName="ProductsWeb_CustomerId" />
+                <ScalarProperty Name="SubGrpProduct_Id" ColumnName="SubGrpProduct_Id" />
+                <ScalarProperty Name="FavoritesProductCustomerId" ColumnName="FavoritesProductCustomerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductsBC">
+            <EntityTypeMapping TypeName="BDCAtestModel.ProductsBC">
+              <MappingFragment StoreEntitySet="ProductsBC">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="CustomerIdProduct" ColumnName="CustomerIdProduct" />
+                <ScalarProperty Name="CodeBar" ColumnName="CodeBar" />
+                <ScalarProperty Name="QTY" ColumnName="QTY" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductsWeb">
+            <EntityTypeMapping TypeName="BDCAtestModel.ProductsWeb">
+              <MappingFragment StoreEntitySet="ProductsWeb">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="Visible" ColumnName="Visible" />
+                <ScalarProperty Name="Images" ColumnName="Images" />
+                <ScalarProperty Name="DescrCourt" ColumnName="DescrCourt" />
+                <ScalarProperty Name="DescrLong" ColumnName="DescrLong" />
+                <ScalarProperty Name="Volume" ColumnName="Volume" />
+                <ScalarProperty Name="UniteVolume" ColumnName="UniteVolume" />
+                <ScalarProperty Name="ContenanceBox" ColumnName="ContenanceBox" />
+                <ScalarProperty Name="ContenancePallet" ColumnName="ContenancePallet" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Frozen" ColumnName="Frozen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StockReal">
+            <EntityTypeMapping TypeName="BDCAtestModel.StockReal">
+              <MappingFragment StoreEntitySet="StockReal">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="QTY" ColumnName="QTY" />
+                <ScalarProperty Name="MinQTY" ColumnName="MinQTY" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ProductsCustumerId" ColumnName="ProductsCustumerId" />
+                <ScalarProperty Name="Establishment_CustomerId" ColumnName="Establishment_CustomerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubGrpNameSet">
+            <EntityTypeMapping TypeName="BDCAtestModel.SubGrpNameSet">
+              <MappingFragment StoreEntitySet="SubGrpNameSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SubGroupName" ColumnName="SubGroupName" />
+                <ScalarProperty Name="GrpProductId" ColumnName="GrpProductId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TranslateNameGroups">
+            <EntityTypeMapping TypeName="BDCAtestModel.TranslateNameGroups">
+              <MappingFragment StoreEntitySet="TranslateNameGroups">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="IdGroupSub" ColumnName="IdGroupSub" />
+                <ScalarProperty Name="cod_lng" ColumnName="cod_lng" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Details" ColumnName="Details" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TranslateNameProductsSet">
+            <EntityTypeMapping TypeName="BDCAtestModel.TranslateNameProductsSet">
+              <MappingFragment StoreEntitySet="TranslateNameProductsSet">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="ProductCustomerId" ColumnName="ProductCustomerId" />
+                <ScalarProperty Name="cod_lng" ColumnName="cod_lng" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Details" ColumnName="Details" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TranslateUniteContenance">
+            <EntityTypeMapping TypeName="BDCAtestModel.TranslateUniteContenance">
+              <MappingFragment StoreEntitySet="TranslateUniteContenance">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="IdUnite" ColumnName="IdUnite" />
+                <ScalarProperty Name="cod_lng" ColumnName="cod_lng" />
+                <ScalarProperty Name="nameUnite" ColumnName="nameUnite" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TVA">
+            <EntityTypeMapping TypeName="BDCAtestModel.TVA">
+              <MappingFragment StoreEntitySet="TVA">
+                <ScalarProperty Name="CustumerId" ColumnName="CustumerId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="val" ColumnName="val" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

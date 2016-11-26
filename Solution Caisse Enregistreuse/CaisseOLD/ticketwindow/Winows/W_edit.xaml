@@ -1,0 +1,189 @@
+﻿<Window x:Class="ticketwindow.W_edit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Background="#333"     
+        xmlns:toolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        Title="MainWindow2" Height="500" Width="600" Loaded="Window_Loaded"
+        WindowStartupLocation="CenterScreen" FontSize="16" WindowStyle="SingleBorderWindow">
+    <Grid MaxHeight="500" MaxWidth="600">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <TabControl x:Name="xtbc" SelectionChanged="xtbc_SelectionChanged"  >
+
+            <TabItem Header="Personnalisation de l'Affichage" Height="40" Width="auto">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="256"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red" >Nom du bouton</Label>
+                    <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red" >Сouleur du bouton</Label>
+                    <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red" >Couleur du texte</Label>
+
+                    <TextBox Grid.Row="0" Grid.Column="1"  FontSize="20"  Name="xCaption" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Height="Auto" Margin="20,10,20,10" >Caption=</TextBox>
+
+                    <xctk:ColorPicker x:Name="xColor" DisplayColorAndName="True" Grid.Row="1" Grid.Column="1" Height="30" Width="150"/>
+
+                    <xctk:ColorPicker  x:Name="xColorFont" DisplayColorAndName="True" Grid.Row="2" Grid.Column="1" Height="30" Width="150"/>
+
+
+                    <Label  Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Name="xName" Visibility="Hidden" >X=</Label>
+                    <Label Grid.Row="1" Grid.Column="1"  HorizontalAlignment="Left" VerticalAlignment="Center" Name="yName" Visibility="Hidden" >Y=</Label>
+
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Fonction de la Caisse" Height="40" Width="auto">
+                <GroupBox FontSize="16" Name="xGBFunction" Header="Fonctions Importantes" >
+                    <Grid Name="gridF">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" Name="panelA" >
+                            <RadioButton>None - Vide</RadioButton>
+                            <RadioButton>Section des Articles</RadioButton>
+                            <RadioButton>CaseProducts</RadioButton>
+                            <RadioButton>Fermer</RadioButton>
+                            <RadioButton>svernut</RadioButton>
+                            <RadioButton>Reset main Grid</RadioButton>
+                            <RadioButton>SetBarCode</RadioButton>
+                            <RadioButton>Open CashBox</RadioButton>
+                            <RadioButton>Calculatrice</RadioButton>
+                            <RadioButton>Carte de Fidélité</RadioButton>
+                            <RadioButton>DiscountMini</RadioButton>
+                            <RadioButton>Show Pro</RadioButton>
+                            <RadioButton>toDevis</RadioButton>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" Name="panelB">
+                            <RadioButton>Modification des Articles</RadioButton>
+                            <RadioButton>Modifier le prix</RadioButton>
+                            <RadioButton>Afficher un Total</RadioButton>
+                            <RadioButton>Supprimer une Ligne</RadioButton>
+                            <RadioButton>Supprimer le Ticket</RadioButton>
+                            <RadioButton>Annulation de ticket</RadioButton>
+                            <RadioButton>Attente +1</RadioButton>
+                            <RadioButton>Bande de Contrôle</RadioButton> 
+                            <RadioButton>Le mode de Paiement</RadioButton>
+                            <RadioButton>Retours et Remboursements</RadioButton>
+                            <RadioButton>General History of closing</RadioButton>
+                            <RadioButton>Histoire de ticket</RadioButton>
+                            <RadioButton>Clôture</RadioButton>
+
+                            <!--<RadioButton>DiscountSet</RadioButton>-->
+                            <!--<RadioButton>ClavierNumPad</RadioButton>-->
+                            <!--<RadioButton>ProductDivers</RadioButton>-->
+                            <!--<RadioButton>ProductDiversBallance</RadioButton>-->
+                            <!--<RadioButton>Mode de clavier</RadioButton>-->
+                            <!--<RadioButton>Countrys</RadioButton>-->
+                            <!--<RadioButton>Clavier</RadioButton>-->
+                        </StackPanel>
+                    </Grid>
+                </GroupBox>
+            </TabItem>
+            <TabItem Header="Moyen de paiement rapide" Height="40" Width="auto" >
+                <ComboBox Height="50" Width="300" x:Name="cb" DisplayMemberPath="Name" SelectionChanged="cb_SelectionChanged" />
+            </TabItem>
+            <TabItem Header="Produits" Height="auto" Width="auto">
+                <StackPanel HorizontalAlignment="Center">
+                    <Label Foreground="Orange">Création du button Produit</Label>
+                    <Grid >
+                        <Grid.Resources>
+                            <DataTemplate x:Key="AutoCompleteBoxItemTemplate">
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="{Binding Name}" Width="400" />
+                                    <Label Content="{Binding price}" FontStyle="Italic" Foreground="DarkGray" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </Grid.Resources>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="200"/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+
+                        </Grid.RowDefinitions>
+                        <Expander Grid.Row="1" Width="300" x:Name="_expander" Expanded="Expander_Expanded"  >
+                            <StackPanel >
+                                <Label x:Name="statusMes" >Rechercher</Label>
+                                <DataGrid FontSize="19" x:Name="list"  IsReadOnly="True" ItemsSource="{Binding}" AutoGenerateColumns="False"  >
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Name" Binding="{Binding Path=Name }"/>
+                                        <DataGridTextColumn Header="tva" Binding="{Binding Path=tva }"/>
+                                        <DataGridTextColumn Header="price" Binding="{Binding Path=price }"/>
+                                        <DataGridTextColumn Header="CodeBare" Binding="{Binding Path=CodeBare }"/>
+                                        <DataGridTextColumn Header="qty" Binding="{Binding Path=qty }"/>
+                                        <DataGridTextColumn Header="balance" Binding="{Binding Path=balance }"/>
+                                        <DataGridTextColumn Header="grp" Binding="{Binding Path=grp }"/>
+                                        <DataGridTextColumn Header="sgrp" Binding="{Binding Path=grp }"/>
+                                        <DataGridTextColumn Header="date" Binding="{Binding Path=date }"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+
+                            </StackPanel>
+                        </Expander>
+                        <toolkit:AutoCompleteBox 
+                                 Name="xDescription"
+                                 ItemTemplate="{StaticResource AutoCompleteBoxItemTemplate}" 
+                                 ValueMemberPath="Name">
+
+                        </toolkit:AutoCompleteBox>
+                    </Grid>
+                </StackPanel>
+            </TabItem>
+
+        </TabControl>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Button Grid.Row="0" Grid.Column="0" IsDefault="True" Click="Button_Click" Background="Green" ToolTip="Valider la configuration">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Width="93" FontSize="25">Valider</TextBlock>
+                </StackPanel>
+            </Button>
+
+            <Button Grid.Row="0" Grid.Column="1" Click="Button_Click" ToolTip="Réinitialiser la configuration" Background="Black">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Width="93" Foreground="Red" FontSize="25">Reset</TextBlock>
+                </StackPanel>
+            </Button>
+
+            <Button Grid.Row="0" Grid.Column="2" Click="Button_Click_1" Background="Red" >
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Width="93" FontSize="25">Annuler</TextBlock>
+                </StackPanel>
+            </Button>
+
+        </Grid>
+
+    </Grid>
+    <Window.Resources>
+
+    </Window.Resources>
+</Window>

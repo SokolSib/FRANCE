@@ -1,0 +1,8 @@
+﻿<Window x:Class="ticketwindow.Winows.Loading.W_Loading" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:WPFTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
+        Title="Veuillez patientez!" WindowStyle="None"  AllowsTransparency="True"  Background="Transparent"
+         WindowStartupLocation="CenterScreen" ResizeMode="NoResize" ShowInTaskbar="False" Loaded="Window_Loaded" >
+
+    <xctk:BusyIndicator x:Name="BusyIndicator" IsBusy="True" BusyContent="Veuillez patientez pendant le chargement !" >
+
+    </xctk:BusyIndicator>
+</Window>

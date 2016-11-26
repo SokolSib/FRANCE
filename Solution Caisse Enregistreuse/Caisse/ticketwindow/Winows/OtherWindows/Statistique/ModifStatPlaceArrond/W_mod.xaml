@@ -1,0 +1,23 @@
+﻿<Window x:Class="TicketWindow.Winows.OtherWindows.Statistique.ModifStatPlaceArrond.WMod"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Properties="clr-namespace:TicketWindow.Properties"
+        Title="W_mod"  Height="300" Width="300" >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label Content="{x:Static Properties:Resources.LabelNamePlaceArround}"/>
+        <Label Grid.Row="1" Content="{x:Static Properties:Resources.LabelQty}"/>
+        <TextBox Grid.Column="1" Name="xNamePlaceArrond" />
+        <TextBox Grid.Column="1" Grid.Row="1" x:Name="xQTY">0</TextBox>
+        <Button Grid.Row="2" IsDefault="True" Click="ButtonClick" Content="{x:Static Properties:Resources.BtnOk}"/>
+        <Button Grid.Row="2" Grid.Column="1" Click="ButtonClick1" Content="{x:Static Properties:Resources.BtnCancel}"/>
+    </Grid>
+   </Window>
