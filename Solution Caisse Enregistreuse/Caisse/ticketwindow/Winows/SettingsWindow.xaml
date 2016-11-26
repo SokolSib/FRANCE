@@ -128,17 +128,17 @@
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition/>
-                            <RowDefinition Height="200"/>
+                            <RowDefinition Height="300"/>
                             <RowDefinition/>
                             <RowDefinition/>
 
                         </Grid.RowDefinitions>
-                        <Expander Grid.Row="1" Width="300" x:Name="_expander" Expanded="ExpanderExpanded"  >
+                        <Expander Grid.Row="1" x:Name="_expander" Expanded="ExpanderExpanded" HorizontalAlignment="Stretch" Width="580" >
                             <StackPanel >
                                 <Label x:Name="statusMes" >Rechercher</Label>
                                 <DataGrid FontSize="19" x:Name="list"  IsReadOnly="True" ItemsSource="{Binding}" AutoGenerateColumns="False"  >
                                     <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Name" Binding="{Binding Path=Name }"/>
+                                        <DataGridTextColumn Header="Name" Binding="{Binding Path=Name }" Width="*"/>
                                         <DataGridTextColumn Header="tva" Binding="{Binding Path=tva }"/>
                                         <DataGridTextColumn Header="price" Binding="{Binding Path=price }"/>
                                         <DataGridTextColumn Header="CodeBare" Binding="{Binding Path=CodeBare }"/>
