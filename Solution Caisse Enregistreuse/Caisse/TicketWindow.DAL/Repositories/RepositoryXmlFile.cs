@@ -14,6 +14,11 @@ namespace TicketWindow.DAL.Repositories
     /// </summary>
     public class RepositoryXmlFile
     {
+        public static string PathGridGroup = AppDomain.CurrentDomain.BaseDirectory + @"Data\GridGroup.xml";
+        public static string PathGridLeft = AppDomain.CurrentDomain.BaseDirectory + @"Data\GridLeft.xml";
+        public static string PathGridTypePay = AppDomain.CurrentDomain.BaseDirectory + @"Data\GridTypePay.xml";
+        public static string PathGridRigthBottom = AppDomain.CurrentDomain.BaseDirectory + @"Data\GridRigthBottom.xml";
+
         private static readonly ConnectionFactory ConnectionFactory = new ConnectionFactory(Config.ConnectionString);
 
         private static void InsertToDb(XmlFile xmlFile)
@@ -34,7 +39,9 @@ namespace TicketWindow.DAL.Repositories
         {
             if (SyncData.IsConnect)
                 using (var connection = ConnectionFactory.CreateConnection())
-                    return connection.Query<XmlFile>(SelectQuery + " WHERE UserName = @userName AND FileName = @fileName", new {userName, fileName}).FirstOrDefault();
+                    return
+                        connection.Query<XmlFile>(SelectQuery + " WHERE UserName = @userName AND FileName = @fileName",
+                            new {userName, fileName}).FirstOrDefault();
 
             return null;
         }
@@ -58,7 +65,8 @@ namespace TicketWindow.DAL.Repositories
                         var xmlFile = GetFromDb(fileName, Config.User);
 
                         if (xmlFile == null)
-                            InsertToDb(new XmlFile(Guid.NewGuid(), fileName, DateTime.Now, true, Config.User, document.ToString(), Config.IdEstablishment));
+                            InsertToDb(new XmlFile(Guid.NewGuid(), fileName, DateTime.Now, true, Config.User,
+                                           document.ToString(), Config.IdEstablishment));
                         else
                         {
                             xmlFile.Upd = true;
@@ -84,6 +92,50 @@ namespace TicketWindow.DAL.Repositories
                 SetFromDb(AppDomain.CurrentDomain.BaseDirectory + @"Data\GridRigthBottom.xml");
                 SetFromDb(AppDomain.CurrentDomain.BaseDirectory + @"Data\GridProduct.xml");
             }
+        }
+
+        public static XDocument Load(XmlDocEnum docType, int payId = -1)
+        {
+            var path = GetPathByType(docType, payId);
+            if (File.Exists(path))
+                return XDocument.Load(path);
+
+            var document = new XDocument(new XElement("Grid"));
+            document.Save(path);
+            return document;
+        }
+
+        public static string GetPathByType(XmlDocEnum docType, int payId = -1)
+        {
+            switch (docType)
+            {
+                case XmlDocEnum.A:
+                    return PathGridLeft;
+                case XmlDocEnum.B:
+                    return PathGridGroup;
+                case XmlDocEnum.C:
+                    return PathGridTypePay;
+                case XmlDocEnum.E:
+                    return PathGridRigthBottom;
+                case XmlDocEnum.M:
+                    if (payId < 0)
+                        throw new Exception("TicketWindow.DAL.Repositories.RepositoryXmlFile.Load : Unknown docType");
+                    return AppDomain.CurrentDomain.BaseDirectory + @"\Data\" + payId + ".xml";
+                default:
+                    throw new Exception("TicketWindow.DAL.Repositories.RepositoryXmlFile.GetPathByType : Unknown docType");
+            }
+        }
+
+        public static void Save(XDocument document, XmlDocEnum docType, int payId = -1)
+        {
+            var path = GetPathByType(docType, payId);
+            document.Save(path);
+            SaveToDb(path,document);
+        }
+        
+        public static XmlDocEnum ToXmlDocEnum(string text)
+        {
+            return (XmlDocEnum) Enum.Parse(typeof(XmlDocEnum), text.Substring(0, 1).ToUpper());
         }
 
         #region sqripts
@@ -118,5 +170,33 @@ Establishment_CustomerId = @EstablishmentCustomerId
 @EstablishmentCustomerId)";
 
         #endregion
+    }
+
+    public enum XmlDocEnum
+    {
+        /// <summary>
+        /// GridLeft
+        /// </summary>
+        A,
+
+        /// <summary>
+        /// GridGroup
+        /// </summary>
+        B,
+
+        /// <summary>
+        /// GridTypePay
+        /// </summary>
+        C,
+
+        /// <summary>
+        /// GridRigthBottom
+        /// </summary>
+        E,
+
+        /// <summary>
+        /// By PayId
+        /// </summary>
+        M
     }
 }

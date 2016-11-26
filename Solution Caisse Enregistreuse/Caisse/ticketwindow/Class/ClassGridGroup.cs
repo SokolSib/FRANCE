@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,10 +17,6 @@ namespace TicketWindow.Class
 {
     public class ClassGridGroup
     {
-        public static string PathGridGroup = AppDomain.CurrentDomain.BaseDirectory + @"Data\GridGroup.xml";
-        public static string PathGridLeft = AppDomain.CurrentDomain.BaseDirectory + @"Data\GridLeft.xml";
-        public static string PathGridTypePay = AppDomain.CurrentDomain.BaseDirectory + @"Data\GridTypePay.xml";
-        public static string PathGridRigthBottom = AppDomain.CurrentDomain.BaseDirectory + @"Data\GridRigthBottom.xml";
         public static Elm[,] Grid = new Elm[12, 12];
         public static Elm[,] GridLeft = new Elm[12, 12];
         public static Elm[,] GridTypePay = new Elm[12, 12];
@@ -30,30 +25,22 @@ namespace TicketWindow.Class
 
         public static void Initialize()
         {
-            Grid = Load(PathGridGroup);
-            GridLeft = Load(PathGridLeft);
-            GridTypePay = Load(PathGridTypePay);
-            GridRigthBottom = Load(PathGridRigthBottom);
+            GridLeft = Load(XmlDocEnum.A);
+            Grid = Load(XmlDocEnum.B);
+            GridTypePay = Load(XmlDocEnum.C);
+            GridRigthBottom = Load(XmlDocEnum.E);
 
             foreach (var p in RepositoryTypePay.TypePays)
             {
                 if (p.CurMod ?? false)
-                {
-                    var path = AppDomain.CurrentDomain.BaseDirectory + @"\Data\" + p.Id + ".xml";
-
-                    if (File.Exists(path))
-                        GridCurrencyPath.Add(Load(path));
-                    else
-                    {
-                        var doc = new XDocument(new XElement("Grid"));
-                        doc.Save(path);
-                    }
-                }
+                    GridCurrencyPath.Add(Load(XmlDocEnum.M, p.Id));
             }
         }
 
         public static Elm[,] GridCurrencyPathGetPath(TypePay tp)
         {
+            Initialize();
+
             var r = new Elm[12, 12];
 
             foreach (var elm in GridCurrencyPath)
@@ -64,10 +51,10 @@ namespace TicketWindow.Class
             return r;
         }
 
-        public static Elm[,] Load(string path)
+        public static Elm[,] Load(XmlDocEnum type, int payId = -1)
         {
             var g = new Elm[12, 12];
-            var xmlGrid = XDocument.Load(path);
+            var xmlGrid = RepositoryXmlFile.Load(type, payId);
 
             var xId = (from el in xmlGrid.Elements("Grid").Elements("rec").Elements("id") select el).ToList();
             var xX = (from el in xmlGrid.Elements("Grid").Elements("rec").Elements("X") select el).ToList();
@@ -80,7 +67,7 @@ namespace TicketWindow.Class
             
             for (var i = 0; i < xId.Count; i++)
             {
-                var f = new Elm(path, xX[i].Value.ToByte(), xY[i].Value.ToByte(), xCaption[i].Value, xFunc[i].Value);
+                var f = new Elm(RepositoryXmlFile.GetPathByType(type, payId), xX[i].Value.ToByte(), xY[i].Value.ToByte(), xCaption[i].Value, xFunc[i].Value);
 
                 var argbtColor = xColor[i].Value.Split(',');
                 var argbtForeground = xForeground.Count != xId.Count ? new[] { "255", "255", "255", "255" } : xForeground[i].Value.Split(',');
@@ -120,7 +107,7 @@ namespace TicketWindow.Class
             }
             return g;
         }
-        
+
         public static void Save(Button b)
         {
             var windowGridPay = Window.GetWindow(b) as WGridPay;
@@ -134,29 +121,29 @@ namespace TicketWindow.Class
             var sForeground = b.Foreground as SolidColorBrush;
 
             if (sBackground != null)
-                cr = sBackground.Color.A + "," + sBackground.Color.R + "," + sBackground.Color.G + "," + sBackground.Color.B;
+                cr = sBackground.Color.A + "," + sBackground.Color.R + "," + sBackground.Color.G + "," +
+                     sBackground.Color.B;
             if (sForeground != null)
-                cr1 = sForeground.Color.A + "," + sForeground.Color.R + "," + sForeground.Color.G + "," + sForeground.Color.B;
+                cr1 = sForeground.Color.A + "," + sForeground.Color.R + "," + sForeground.Color.G + "," +
+                      sForeground.Color.B;
 
             string funcType = null;
-            if (b.Tag != null)
-                funcType = ((Elm) b.Tag).Func;
+            var elmTag = b.Tag as Elm;
+            funcType = elmTag != null ? elmTag.Func : b.Tag.ToString();
 
-            XDocument doc = null;
-            if (b.Name.Substring(0, 1) == "e") doc = XDocument.Load(PathGridRigthBottom);
-            if (b.Name.Substring(0, 1) == "c") doc = XDocument.Load(PathGridTypePay);
-            if (b.Name.Substring(0, 1) == "a") doc = XDocument.Load(PathGridLeft);
-            if (b.Name.Substring(0, 1) == "b") doc = XDocument.Load(PathGridGroup);
-            if (b.Name.Substring(0, 1) == "m")
-            {
-                doc = XDocument.Load(AppDomain.CurrentDomain.BaseDirectory + @"\Data\" + windowGridPay.TypesPay.Id + ".xml");
+            var typePayId = windowGridPay.TypesPay.Id;
+            var type = RepositoryXmlFile.ToXmlDocEnum(b.Name);
+            if (type == XmlDocEnum.M)
                 caption = ((Label) ((StackPanel) b.Content).FindName("mlb_" + x + "x" + y)).Content.ToString();
-            }
+
+            var doc = RepositoryXmlFile.Load(type, typePayId);
             XElement target;
 
             try
             {
-                target = doc.GetXElements("Grid", "rec").Single(e => (e.GetXElementValue("X") == x) & (e.GetXElementValue("Y") == y));
+                target =
+                    doc.GetXElements("Grid", "rec")
+                        .Single(e => (e.GetXElementValue("X") == x) & (e.GetXElementValue("Y") == y));
             }
             catch
             {
@@ -186,7 +173,6 @@ namespace TicketWindow.Class
             else
             {
                 if (cr != "Default")
-                {
                     doc.GetXElement("Grid").Add(
                         new XElement("rec",
                             new XElement("id", (int.Parse(x)*int.Parse(y)).ToString()),
@@ -198,34 +184,11 @@ namespace TicketWindow.Class
                             new XElement("foreground", cr1),
                             new XElement("Img", ""),
                             new XElement("Fun", funcType)
-                            )
-                        );
-                }
+                        )
+                    );
             }
-            
-            switch (b.Name.Substring(0, 1))
-            {
-                case "m":
-                    doc.Save(AppDomain.CurrentDomain.BaseDirectory + @"Data\" + windowGridPay.TypesPay.Id + ".xml");
-                    RepositoryXmlFile.SaveToDb(AppDomain.CurrentDomain.BaseDirectory + @"Data\" + windowGridPay.TypesPay.Id + ".xml", doc);
-                    break;
-                case "c":
-                    doc.Save(PathGridTypePay);
-                    RepositoryXmlFile.SaveToDb(PathGridTypePay, doc);
-                    break;
-                case "a":
-                    doc.Save(PathGridLeft);
-                    RepositoryXmlFile.SaveToDb(PathGridLeft, doc);
-                    break;
-                case "b":
-                    doc.Save(PathGridGroup);
-                    RepositoryXmlFile.SaveToDb(PathGridGroup, doc);
-                    break;
-                case "e":
-                    doc.Save(PathGridRigthBottom);
-                    RepositoryXmlFile.SaveToDb(PathGridRigthBottom, doc);
-                    break;
-            }
+
+            RepositoryXmlFile.Save(doc, type, typePayId);
         }
 
         #region Nested type: elm

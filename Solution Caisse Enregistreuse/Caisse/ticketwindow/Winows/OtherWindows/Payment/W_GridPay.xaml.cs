@@ -33,7 +33,7 @@ namespace TicketWindow.Winows.OtherWindows.Payment
 
                         ((Label)((StackPanel)b.Content).FindName(s + "lb_" + i + "x" + j)).Content = grid[i, j].Caption;
                         b.Background = grid[i, j].Background;
-                        b.ToolTip = grid[i, j].Func;
+                        b.Tag = grid[i, j].Func;
                     }
                 }
             }
@@ -65,8 +65,8 @@ namespace TicketWindow.Winows.OtherWindows.Payment
             we.xCaption.Text = l.Content ==null ? "" : l.Content.ToString();
             we.xColor.Background = b.Background;
 
-            if (b.ToolTip != null)
-                we.cb.SelectedValue = b.ToolTip;
+            if (b.Tag != null)
+                we.cb.SelectedValue = b.Tag;
             
             try
             {

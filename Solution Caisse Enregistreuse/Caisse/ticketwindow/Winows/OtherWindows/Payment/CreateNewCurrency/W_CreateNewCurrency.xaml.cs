@@ -30,7 +30,7 @@ namespace TicketWindow.Winows.OtherWindows.Payment.CreateNewCurrency
 
                 ((Label)((StackPanel)B.Content).FindName(Sub + "lb_" + xName.Content + "x" + yName.Content)).Content = (xCaption.Text);
 
-                B.ToolTip = ((DAL.Models.Currency)cb.SelectedItem).CustomerId;
+                B.Tag = ((DAL.Models.Currency)cb.SelectedItem).CustomerId;
                 ClassGridGroup.Save(B);
                 Close();
             }
@@ -44,12 +44,12 @@ namespace TicketWindow.Winows.OtherWindows.Payment.CreateNewCurrency
 
             var name = Sub + "_" + xName.Content + "x" + yName.Content;
 
-            B = (Button)(GridPay.FindName(name));
+            B = (Button) GridPay.FindName(name);
 
             if (B != null)
             {
                 Guid id;
-                if ((B.ToolTip != null)&&(Guid.TryParse( B.ToolTip.ToString(), out id)))
+                if ((B.Tag != null) && Guid.TryParse(B.Tag.ToString(), out id))
                     cb.SelectedItem = RepositoryCurrency.Currencys.Find(l => l.CustomerId == id);
             }
         }

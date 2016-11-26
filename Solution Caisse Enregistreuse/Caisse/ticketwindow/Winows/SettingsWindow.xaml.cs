@@ -163,7 +163,7 @@ namespace TicketWindow.Winows
                 button.Content = (xCaption.Text);
 
                 var elm = button.Tag as ClassGridGroup.Elm ?? new ClassGridGroup.Elm(
-                    ClassGridGroup.PathGridGroup,
+                    RepositoryXmlFile.GetPathByType(XmlDocEnum.B),
                     (byte) X,
                     (byte) Y,
                     button.Content.ToString(),
