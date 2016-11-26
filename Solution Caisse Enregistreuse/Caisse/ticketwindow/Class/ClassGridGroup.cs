@@ -131,7 +131,10 @@ namespace TicketWindow.Class
             var elmTag = b.Tag as Elm;
             funcType = elmTag != null ? elmTag.Func : b.Tag.ToString();
 
-            var typePayId = windowGridPay.TypesPay.Id;
+            var typePayId = -1;
+            if (windowGridPay != null)
+                typePayId = windowGridPay.TypesPay.Id;
+
             var type = RepositoryXmlFile.ToXmlDocEnum(b.Name);
             if (type == XmlDocEnum.M)
                 caption = ((Label) ((StackPanel) b.Content).FindName("mlb_" + x + "x" + y)).Content.ToString();

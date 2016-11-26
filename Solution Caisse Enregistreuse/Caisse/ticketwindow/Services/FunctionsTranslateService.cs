@@ -8,6 +8,7 @@ namespace TicketWindow.Services
         {
             switch (name)
             {
+                case "None - Vide":
                 case "None":
                     return Resources.LabelNone;
                 case "Section des Articles":
@@ -34,7 +35,6 @@ namespace TicketWindow.Services
                     return Resources.FuncShowPro;
                 case "toDevis":
                     return Resources.FuncToPro;
-
                 case "Modification des Articles":
                     return Resources.FuncEditProduct;
                 case "Modifier le prix":

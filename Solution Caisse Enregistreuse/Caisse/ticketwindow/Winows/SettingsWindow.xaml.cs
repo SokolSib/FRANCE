@@ -184,6 +184,7 @@ namespace TicketWindow.Winows
                 {
                     button.ClearValue(BackgroundProperty);
                     button.Content = string.Empty;
+                    button.ToolTip = Properties.Resources.LabelNone;
                 }
                 ClassGridGroup.Save(button);
                 Close();
