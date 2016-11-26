@@ -68,10 +68,10 @@
                         <StackPanel Grid.Column="0" Name="PanelA" >
                             <RadioButton Tag="None" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.LabelNone}"/>
                             <RadioButton Tag="Section des Articles" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncProductMenu}"/>
-                            <RadioButton Tag="CaseProducts" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncCaseProducts}"/>
+                            <!--<RadioButton Tag="CaseProducts" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncCaseProducts}"/>-->
                             <RadioButton Tag="Fermer" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.BtnClose}"/>
                             <RadioButton Tag="svernut" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FunTurn}"/>
-                            <RadioButton Tag="Reset main Grid" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncResetBtn}"/>
+                            <!--<RadioButton Tag="Reset main Grid" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncResetBtn}"/>-->
                             <RadioButton Tag="SetBarCode" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncSetBarCode}"/>
                             <RadioButton Tag="Open CashBox" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncOpenCashBox}"/>
                             <RadioButton Tag="Calculatrice" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncCalculator}"/>
@@ -79,10 +79,10 @@
                             <RadioButton Tag="DiscountMini" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncDiscountReset}"/>
                             <RadioButton Tag="Show Pro" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncShowPro}"/>
                             <RadioButton Tag="toDevis" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncToPro}"/>
+                            <RadioButton Tag="Modification des Articles" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncEditProduct}"/>
                         </StackPanel>
 
                         <StackPanel Grid.Column="1" Name="PanelB">
-                            <RadioButton Tag="Modification des Articles" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncEditProduct}"/>
                             <RadioButton Tag="Modifier le prix" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncEditPrice}"/>
                             <RadioButton Tag="Afficher un Total" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncTotal}"/>
                             <RadioButton Tag="Supprimer une Ligne" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncDelProduct}"/>
@@ -90,7 +90,7 @@
                             <RadioButton Tag="Annulation de ticket" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncCancelBay}"/>
                             <RadioButton Tag="Attente +1" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncToWait}"/>
                             <RadioButton Tag="Bande de Contrôle" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncHistory}"/>
-                            <RadioButton Tag="Le mode de Paiement" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncPaymentMethod}"/>
+                            <!--<RadioButton Tag="Le mode de Paiement" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncPaymentMethod}"/>-->
                             <RadioButton Tag="Retours et Remboursements" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncReturnProduct}"/>
                             <RadioButton Tag="General History of closing" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncHistoryOfAllCards}"/>
                             <RadioButton Tag="Histoire de ticket" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncHistoryChecks}"/>
