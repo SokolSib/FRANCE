@@ -23,11 +23,11 @@ namespace TicketWindow.Winows.OtherWindows.Payment.TypePayCreate
 
         private void ButtonClick(object sender, RoutedEventArgs e)
         {
-           if (B != null)
+           if (B != null && cb.SelectedItem != null)
             {
                 B.Background = new SolidColorBrush(xColor.SelectedColor);
                 B.Content = (xCaption.Text);
-                B.ToolTip = ((TypePay)cb.SelectedItem).Id;
+                B.Tag = ((TypePay)cb.SelectedItem).Id;
                 ClassGridGroup.Save(B);
                 Close();
             }
