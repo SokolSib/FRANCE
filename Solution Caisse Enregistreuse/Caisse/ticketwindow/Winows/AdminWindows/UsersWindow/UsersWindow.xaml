@@ -12,7 +12,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         
-        <DataGrid Name="DataGrid" AutoGenerateColumns="False" CanUserDeleteRows="False" CanUserAddRows="False" GridLinesVisibility="Horizontal" SelectionMode="Single">
+        <DataGrid Name="DataGrid" AutoGenerateColumns="False" CanUserDeleteRows="False" IsReadOnly="True" CanUserAddRows="False" GridLinesVisibility="Horizontal" SelectionMode="Single">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="{x:Static Properties:Resources.LabelFIO}" Binding="{Binding Fio}" Width="*" FontSize="20" />
                 <DataGridTextColumn Header="{x:Static Properties:Resources.LabelLogin}" Binding="{Binding Login}" FontSize="20" />

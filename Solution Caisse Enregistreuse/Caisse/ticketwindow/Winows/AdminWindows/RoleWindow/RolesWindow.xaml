@@ -12,7 +12,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <DataGrid Name="DataGrid" AutoGenerateColumns="False" CanUserDeleteRows="False" CanUserAddRows="False" GridLinesVisibility="Horizontal" SelectionMode="Single" Margin="10,0,-10,0">
+        <DataGrid Name="DataGrid" AutoGenerateColumns="False" IsReadOnly="True" CanUserDeleteRows="False" CanUserAddRows="False" GridLinesVisibility="Horizontal" SelectionMode="Single" Margin="10,0,-10,0">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="{x:Static Properties:Resources.LabelRole}" Binding="{Binding RoleName}" FontSize="20" />
                 <!--<DataGridTextColumn Header="{x:Static Properties:Resources.LabelPermissions}" Binding="{Binding PrivelegiesToText, Mode=OneWay}" Width="*" FontSize="20" />-->
