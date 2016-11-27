@@ -14,6 +14,7 @@ using System.Xml.Linq;
 using TicketWindow.Class;
 using TicketWindow.Classes;
 using TicketWindow.DAL.Additional;
+using TicketWindow.DAL.Models;
 using TicketWindow.DAL.Repositories;
 using TicketWindow.Extensions;
 using TicketWindow.Global;
@@ -122,13 +123,19 @@ namespace TicketWindow
 
                         b.Tag = grid[i, j];
 
-                        b.ToolTip = FunctionsTranslateService.GetTranslatedFunction(grid[i, j].Func);
+                        ProductType product;
+                        b.ToolTip = FunctionsTranslateService.GetTranslatedFunctionWithProd(grid[i, j].Func, out product);
                         if (!string.IsNullOrEmpty(grid[i, j].ProductId))
                         {
-                            var product = RepositoryProduct.Products.FirstOrDefault(p => p.CustomerId == new Guid(grid[i, j].ProductId));
-                            if (product != null) b.ToolTip = product.Name;
+                            product = RepositoryProduct.Products.FirstOrDefault(p => p.CustomerId == new Guid(grid[i, j].ProductId));
+                            if (product != null)
+                            {
+                                b.ToolTip = product.Name;
+                                if (string.IsNullOrEmpty(b.Content?.ToString()))
+                                    b.Content = product.Name;
+                            }
                         }
-                        if (b.ToolTip == null || string.IsNullOrEmpty(b.ToolTip.ToString())) b.ToolTip = grid[i, j].Caption;
+                        if (string.IsNullOrEmpty(b.ToolTip?.ToString())) b.ToolTip = grid[i, j].Caption;
                     }
                 }
         }

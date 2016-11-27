@@ -123,7 +123,10 @@
                         </Grid.RowDefinitions>
                         
                         <Label x:Name="StatusMes" >Rechercher</Label>
-                        <TextBox Grid.Row="0" Name="FilterBox" Margin="5" TextChanged="FilterBoxTextChanged" />
+                        <StackPanel Orientation="Horizontal" Grid.Row="0">
+                            <TextBox Width="410" Name="FilterBox" Margin="5" />
+                            <Button Name="BtnFind" Padding="10,5" Margin="5" Content="{x:Static properties:Resources.BtnApplyFilter}" Click="BtnFind_OnClick" />
+                        </StackPanel>
                         <DataGrid Grid.Row="1" FontSize="19" x:Name="DataGrid"  IsReadOnly="True" ItemsSource="{Binding}" AutoGenerateColumns="False" >
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Name" Binding="{Binding Path=Name }" Width="*" MinWidth="250"/>

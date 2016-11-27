@@ -191,7 +191,11 @@ namespace TicketWindow.Class
                         )
                     );
             }
-            b.ToolTip = FunctionsTranslateService.GetTranslatedFunction(funcType);
+            ProductType product;
+            b.ToolTip = FunctionsTranslateService.GetTranslatedFunctionWithProd(funcType, out product);
+
+            if (string.IsNullOrEmpty(b.Content?.ToString()))
+                b.Content = product.Name;
 
             RepositoryXmlFile.Save(doc, type, typePayId);
         }

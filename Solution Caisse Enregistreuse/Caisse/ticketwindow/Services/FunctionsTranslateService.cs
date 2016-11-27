@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using TicketWindow.DAL.Models;
 using TicketWindow.DAL.Repositories;
 using TicketWindow.Properties;
 
@@ -7,8 +8,9 @@ namespace TicketWindow.Services
 {
     public class FunctionsTranslateService
     {
-        public static string GetTranslatedFunction(string name)
+        public static string GetTranslatedFunctionWithProd(string name, out ProductType product)
         {
+            product = null;
             switch (name)
             {
                 case "None - Vide":
@@ -73,7 +75,8 @@ namespace TicketWindow.Services
             {
                 name = name.Substring(context.Length, name.Length - context.Length - 1);
                 var guid = new Guid(name);
-                name = RepositoryProduct.Products.FirstOrDefault(p => p.CustomerId == guid)?.Name;
+                product = RepositoryProduct.Products.FirstOrDefault(p => p.CustomerId == guid);
+                name = product?.Name;
             }
             return name;
         }

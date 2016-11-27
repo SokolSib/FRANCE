@@ -150,5 +150,15 @@ namespace TicketWindow.Global
         {
             get { return "dd/MM/yyyy HH:mm:ss"; }
         }
+
+        public static char[] SymbolsForReplace
+        {
+            get { return new [] { 'è', 'È' }; }
+        }
+
+        public static char[] SymbolsToReplace
+        {
+            get { return new[] { 'e', 'E' }; }
+        }
     }
 }

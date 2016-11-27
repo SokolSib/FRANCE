@@ -196,11 +196,22 @@ namespace TicketWindow.Winows
         private void BtnFind_OnClick(object sender, RoutedEventArgs e)
         {
             if (FilterBox.Text.Length > 0)
+            {
+                var text1 = FilterBox.Text;
+                var text2 = FilterBox.Text;
+                for (var i = 0; i < Config.SymbolsForReplace.Length; i++)
+                {
+                    text2 = text2.Replace(Config.SymbolsForReplace[i], Config.SymbolsToReplace[i]);
+                }
+                
                 DataGrid.ItemsSource =
                     RepositoryProduct.Products.Where(
-                        p => p.Name.IndexOf(FilterBox.Text, StringComparison.OrdinalIgnoreCase) != -1 ||
-                             p.Desc.IndexOf(FilterBox.Text, StringComparison.OrdinalIgnoreCase) != -1 ||
-                             p.CodeBare.IndexOf(FilterBox.Text, StringComparison.OrdinalIgnoreCase) != -1);
+                        p => p.Name.IndexOf(text1, StringComparison.OrdinalIgnoreCase) != -1 ||
+                             p.Desc.IndexOf(text1, StringComparison.OrdinalIgnoreCase) != -1 ||
+                             p.Name.IndexOf(text2, StringComparison.OrdinalIgnoreCase) != -1 ||
+                             p.Desc.IndexOf(text2, StringComparison.OrdinalIgnoreCase) != -1 ||
+                             p.CodeBare.IndexOf(text1, StringComparison.OrdinalIgnoreCase) != -1);
+            }
         }
     }
 }
