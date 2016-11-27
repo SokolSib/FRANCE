@@ -1,4 +1,4 @@
-﻿<Window x:Class="TicketWindow.Winows.SettingsWindow"
+﻿<Window xmlns:Controls="clr-namespace:TicketWindow.Controls"  x:Class="TicketWindow.Winows.SettingsWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Background="#333"     
@@ -123,23 +123,8 @@
                         </Grid.RowDefinitions>
                         
                         <Label x:Name="StatusMes" >Rechercher</Label>
-                        <StackPanel Orientation="Horizontal" Grid.Row="0">
-                            <TextBox Width="410" Name="FilterBox" Margin="5" />
-                            <Button Name="BtnFind" Padding="10,5" Margin="5" Content="{x:Static properties:Resources.BtnApplyFilter}" Click="BtnFind_OnClick" />
-                        </StackPanel>
-                        <DataGrid Grid.Row="1" FontSize="19" x:Name="DataGrid"  IsReadOnly="True" ItemsSource="{Binding}" AutoGenerateColumns="False" >
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Name" Binding="{Binding Path=Name }" Width="*" MinWidth="250"/>
-                                <DataGridTextColumn Header="CodeBare" Binding="{Binding Path=CodeBare }" MinWidth="100"/>
-                                <DataGridTextColumn Header="tva" Binding="{Binding Path=tva }"/>
-                                <DataGridTextColumn Header="price" Binding="{Binding Path=price }"/>
-                                <DataGridTextColumn Header="qty" Binding="{Binding Path=qty }"/>
-                                <DataGridTextColumn Header="balance" Binding="{Binding Path=balance }"/>
-                                <DataGridTextColumn Header="grp" Binding="{Binding Path=grp }"/>
-                                <DataGridTextColumn Header="sgrp" Binding="{Binding Path=grp }"/>
-                                <DataGridTextColumn Header="date" Binding="{Binding Path=date }"/>
-                            </DataGrid.Columns>
-                        </DataGrid>
+                        <Controls:FindProductControl x:Name="FindProduct" Grid.Row="0" />
+                        
                         
                     </Grid>
                 </StackPanel>

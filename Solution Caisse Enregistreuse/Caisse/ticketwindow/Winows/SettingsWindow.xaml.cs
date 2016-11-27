@@ -63,12 +63,8 @@ namespace TicketWindow.Winows
             if (cb.SelectedItem != null)
                 res = "_TypesPayDynamic" + ((TypePay) cb.SelectedItem).Id;
 
-            if (FilterBox.Text.Trim() != "")
-            {
-                var selected = (ProductType)DataGrid.SelectedItem;
-                if (selected != null)
-                    res = "Products id=[" + selected.CustomerId + "]";
-            }
+            if (FindProduct.Product != null)
+                res = "Products id=[" + FindProduct.Product.CustomerId + "]";
 
             return res;
         }
@@ -112,15 +108,11 @@ namespace TicketWindow.Winows
                         break;
                     case 1:
                         StatusMes.Content = "";
-                        FilterBox.Text = products[0].Name;
-                        BtnFind_OnClick(null, null);
-                        var selected = ((IEnumerable<ProductType>) DataGrid.ItemsSource).FirstOrDefault(p => p.CustomerId == products[0].CustomerId);
-                        DataGrid.SelectedItem = selected;
+                        FindProduct.Product = products[0];
                         break;
                     default:
-                        if (!(DataGrid.SelectedItem is ProductType))
-                            xtbc.SelectedIndex = 3;
-                        FilterBox.Text = products[0].Name;
+                        xtbc.SelectedIndex = 3;
+                        FindProduct.Product = products[0];
                         break;
                 }
             }
@@ -191,27 +183,6 @@ namespace TicketWindow.Winows
         private void ButtonClick1(object sender, RoutedEventArgs e)
         {
             Close();
-        }
-
-        private void BtnFind_OnClick(object sender, RoutedEventArgs e)
-        {
-            if (FilterBox.Text.Length > 0)
-            {
-                var text1 = FilterBox.Text;
-                var text2 = FilterBox.Text;
-                for (var i = 0; i < Config.SymbolsForReplace.Length; i++)
-                {
-                    text2 = text2.Replace(Config.SymbolsForReplace[i], Config.SymbolsToReplace[i]);
-                }
-                
-                DataGrid.ItemsSource =
-                    RepositoryProduct.Products.Where(
-                        p => p.Name.IndexOf(text1, StringComparison.OrdinalIgnoreCase) != -1 ||
-                             p.Desc.IndexOf(text1, StringComparison.OrdinalIgnoreCase) != -1 ||
-                             p.Name.IndexOf(text2, StringComparison.OrdinalIgnoreCase) != -1 ||
-                             p.Desc.IndexOf(text2, StringComparison.OrdinalIgnoreCase) != -1 ||
-                             p.CodeBare.IndexOf(text1, StringComparison.OrdinalIgnoreCase) != -1);
-            }
         }
     }
 }

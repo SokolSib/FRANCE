@@ -157,6 +157,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\FindProductControl.xaml.cs">
+      <DependentUpon>FindProductControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Exception\ExceptionService.cs" />
     <Compile Include="Exception\ExceptionWindow.xaml.cs">
       <DependentUpon>ExceptionWindow.xaml</DependentUpon>
@@ -405,6 +408,10 @@
     <Compile Include="Winows\SyncSettingWindow\SyncSettingWindow.xaml.cs">
       <DependentUpon>SyncSettingWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Controls\FindProductControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Exception\ExceptionWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

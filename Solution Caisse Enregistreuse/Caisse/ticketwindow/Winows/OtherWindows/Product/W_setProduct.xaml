@@ -1,4 +1,4 @@
-﻿<Window x:Class="TicketWindow.Winows.OtherWindows.Product.WSetProduct"
+﻿<Window xmlns:Controls="clr-namespace:TicketWindow.Controls"  x:Class="TicketWindow.Winows.OtherWindows.Product.WSetProduct"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:toolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
@@ -7,72 +7,24 @@
         Title="" Height="520" Width="812" WindowStartupLocation="CenterScreen" AllowsTransparency="True"
         Background="#333" FontSize="18" WindowStyle="None">
    
-    <Grid >
-      
-
-
-
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="80"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="80"/>
             <RowDefinition Height="80"/>
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
+        <Controls:FindProductControl x:Name="FindProduct" Grid.ColumnSpan="2" />
 
-        <Grid.Resources>
-            <DataTemplate x:Key="AutoCompleteBoxItemTemplate">
-                <StackPanel Orientation="Horizontal">
-                    <Label
-            Content="{Binding Name}"
-            Width="400" />
-                    <Label
-            Content="{Binding price}"
-            FontStyle="Italic"
-            Foreground="DarkGray" />
-                </StackPanel>
-            </DataTemplate>
-        </Grid.Resources>
-        <toolkit:AutoCompleteBox Grid.Row="0" Padding="20 0" Grid.ColumnSpan="2"
-                                 VerticalAlignment="Center"  Name="xDescription"
-                                 ItemTemplate="{StaticResource AutoCompleteBoxItemTemplate}" 
+        <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="AliceBlue" Content="{x:Static Properties:Resources.LabelButtonColor}" />
+        <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="AliceBlue" Content="{x:Static Properties:Resources.LabelTextColor}" />
 
-                                 ValueMemberPath="Name">
-            
-         
-        </toolkit:AutoCompleteBox>
-
-
-        <Grid Grid.Row="1" Grid.ColumnSpan="2">
-            <Expander x:Name="_expander" Expanded="ExpanderExpanded"  >
-                <StackPanel >
-                    <Label x:Name="statusMes" >Rechercher</Label>
-                    <DataGrid FontSize="19" x:Name="list"  IsReadOnly="True" ItemsSource="{Binding}" AutoGenerateColumns="False"  >
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Description" Binding="{Binding Path=Name }"/>
-                            <DataGridTextColumn Header="TVA" Binding="{Binding Path=tva }"/>
-                            <DataGridTextColumn Header="Prix" Binding="{Binding Path=price }"/>
-                            <DataGridTextColumn Header="Code-barres EAN" Binding="{Binding Path=CodeBare }"/>
-                            <DataGridTextColumn Header="Date" Binding="{Binding Path=date,  StringFormat=y }"/>
-                            <DataGridTextColumn Header="QTY" Binding="{Binding Path=qty }"/>
-                            <DataGridTextColumn Header="Balance" Binding="{Binding Path=balance }"/>
-                            <DataGridTextColumn Header="GRP" Binding="{Binding Path=grp }"/>
-                            <DataGridTextColumn Header="Ss-GRP" Binding="{Binding Path=grp }"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </StackPanel>
-            </Expander>
-        </Grid>
-
-        <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="AliceBlue" Content="{x:Static Properties:Resources.LabelButtonColor}" />
-        <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="AliceBlue" Content="{x:Static Properties:Resources.LabelTextColor}" />
-
-        <xctk:ColorPicker x:Name="xFontColor" HorizontalAlignment="Left" DisplayColorAndName="True" Grid.Row="2"  Grid.Column="1" Height="50" Width="200" />
-        <xctk:ColorPicker x:Name="xColor" HorizontalAlignment="Left" DisplayColorAndName="True" Grid.Row="3" Grid.Column="1" Height="50" Width="200" />
+        <xctk:ColorPicker x:Name="xColor" HorizontalAlignment="Left" DisplayColorAndName="True" Grid.Row="1"  Grid.Column="1" Height="50" Width="200" />
+        <xctk:ColorPicker x:Name="xFontColor" HorizontalAlignment="Left" DisplayColorAndName="True" Grid.Row="2" Grid.Column="1" Height="50" Width="200" />
 
         <Grid Grid.Row="4" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>

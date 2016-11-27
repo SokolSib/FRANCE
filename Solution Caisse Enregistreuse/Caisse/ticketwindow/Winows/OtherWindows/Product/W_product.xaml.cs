@@ -53,7 +53,7 @@ namespace TicketWindow.Winows.OtherWindows.Product
             string y = s[1];
 
             w.X = int.Parse(x);
-            w.y = int.Parse(y);
+            w.Y = int.Parse(y);
 
             int X = Convert.ToInt16(x);
             int Y = Convert.ToInt16(y);
@@ -63,7 +63,7 @@ namespace TicketWindow.Winows.OtherWindows.Product
             {
                 w.xColor.Background = gridElm[I, J, X, Y].Background;
                 w.xFontColor.Background = gridElm[I, J, X, Y].Font;
-                w.xDescription.Text = gridElm[I, J, X, Y].Description;
+                w.FindProduct.FilterBox.Text = gridElm[I, J, X, Y].Description;
             }
             
             w.WindowStyle = WindowStyle.None;

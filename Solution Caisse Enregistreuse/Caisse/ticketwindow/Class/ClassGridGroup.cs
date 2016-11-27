@@ -194,7 +194,7 @@ namespace TicketWindow.Class
             ProductType product;
             b.ToolTip = FunctionsTranslateService.GetTranslatedFunctionWithProd(funcType, out product);
 
-            if (string.IsNullOrEmpty(b.Content?.ToString()))
+            if (string.IsNullOrEmpty(b.Content?.ToString()) && product != null)
                 b.Content = product.Name;
 
             RepositoryXmlFile.Save(doc, type, typePayId);

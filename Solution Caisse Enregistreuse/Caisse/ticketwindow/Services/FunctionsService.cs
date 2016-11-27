@@ -119,7 +119,7 @@ namespace TicketWindow.Services
         public static void AddCurrency(Currency currency, int count, WGridPay ws)
         {
             var sumMoney = RepositoryCurrencyRelations.AddCurrency(currency, count);
-            var odd = (RepositoryCurrencyRelations.Residue() - sumMoney);
+            var odd = RepositoryCurrencyRelations.Residue() - sumMoney;
 
             if (odd < 0)
             {
@@ -279,7 +279,6 @@ namespace TicketWindow.Services
             {
                 var countBufCheck = RepositoryCheck.GetCountOfProductInCheckFromBuf() + RepositoryCheck.GetCountOfProductInCheckFromEnAttenete();
                 if (countBufCheck == 0)
-                {
                     if (!SyncData.IsSync)
                     {
                         Application.Current.Shutdown();
@@ -287,7 +286,6 @@ namespace TicketWindow.Services
                         GlobalVar.IsBreak = true;
                     }
                     else ShowMessageSb("Synchronisation en cours, a quitté plus tard");
-                }
                 else ShowMessageSb("Veuillez d'abord éditer la note!" + Environment.NewLine + countBufCheck + " article(s).");
             }
             catch
@@ -324,7 +322,10 @@ namespace TicketWindow.Services
                         else
                         {
                             var productData = ClassGridProduct.Grid[i, j, ii, jj];
-                            b.ToolTip = "Products id=[" + productData.CustomerId + "]";
+                            ProductType product;
+                            b.ToolTip =
+                                FunctionsTranslateService.GetTranslatedFunctionWithProd(
+                                    "Products id=[" + productData.CustomerId + "]", out product);
 
                             ((TextBlock)b.Content).Text = productData.Description;
                             b.Background = productData.Background;
@@ -353,16 +354,20 @@ namespace TicketWindow.Services
                         {
                             Owner = MainAppWindow,
                             X = x,
-                            y = y
+                            Y = y
                         };
 
                 var gridElm = ClassGridProduct.Grid;
 
                 if (gridElm[i, j, x, y] != null)
                 {
-                    w.xColor.Background = gridElm[i, j, x, y].Background;
-                    w.xFontColor.Background = gridElm[i, j, x, y].Font;
-                    w.xDescription.Text = gridElm[i, j, x, y].Description;
+                    var background = (SolidColorBrush) gridElm[i, j, x, y].Background;
+                    var font = (SolidColorBrush)gridElm[i, j, x, y].Font;
+
+                    w.xColor.SelectedColor = background.Color;
+                    w.xFontColor.SelectedColor = font.Color;
+                    w.FindProduct.Product =
+                        RepositoryProduct.Products.FirstOrDefault(p => p.Name == gridElm[i, j, x, y].Description);
                 }
                 w.ShowDialog();
             }
