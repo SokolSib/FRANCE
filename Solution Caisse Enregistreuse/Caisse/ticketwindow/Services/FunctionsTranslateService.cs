@@ -1,4 +1,7 @@
-﻿using TicketWindow.Properties;
+﻿using System;
+using System.Linq;
+using TicketWindow.DAL.Repositories;
+using TicketWindow.Properties;
 
 namespace TicketWindow.Services
 {
@@ -63,9 +66,16 @@ namespace TicketWindow.Services
                     return Resources.FuncCloseCashbox;
                 case "UpdateDb":
                     return Resources.FuncUpdateDB;
-                default:
-                    return name;
             }
+            var context = "Products id=[";
+            var idx = name.IndexOf(context, StringComparison.Ordinal);
+            if (idx >= 0)
+            {
+                name = name.Substring(context.Length, name.Length - context.Length - 1);
+                var guid = new Guid(name);
+                name = RepositoryProduct.Products.FirstOrDefault(p => p.CustomerId == guid)?.Name;
+            }
+            return name;
         }
     }
 }

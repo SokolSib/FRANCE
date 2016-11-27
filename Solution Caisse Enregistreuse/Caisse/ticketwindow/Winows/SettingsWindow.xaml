@@ -115,49 +115,29 @@
                 <StackPanel HorizontalAlignment="Center">
                     <Label Foreground="Orange" Content="{x:Static properties:Resources.LabelCreateProductButton}" />
                     <Grid >
-                        <Grid.Resources>
-                            <DataTemplate x:Key="AutoCompleteBoxItemTemplate">
-                                <StackPanel Orientation="Horizontal">
-                                    <Label Content="{Binding Name}" Width="400" />
-                                    <Label Content="{Binding price}" FontStyle="Italic" Foreground="DarkGray" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </Grid.Resources>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition/>
-                            <RowDefinition Height="300"/>
                             <RowDefinition/>
+                            <RowDefinition Height="*"/>
                             <RowDefinition/>
-
                         </Grid.RowDefinitions>
-                        <Expander Grid.Row="1" x:Name="_expander" Expanded="ExpanderExpanded" HorizontalAlignment="Stretch" Width="580" >
-                            <StackPanel >
-                                <Label x:Name="statusMes" >Rechercher</Label>
-                                <DataGrid FontSize="19" x:Name="list"  IsReadOnly="True" ItemsSource="{Binding}" AutoGenerateColumns="False"  >
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Name" Binding="{Binding Path=Name }" Width="*"/>
-                                        <DataGridTextColumn Header="tva" Binding="{Binding Path=tva }"/>
-                                        <DataGridTextColumn Header="price" Binding="{Binding Path=price }"/>
-                                        <DataGridTextColumn Header="CodeBare" Binding="{Binding Path=CodeBare }"/>
-                                        <DataGridTextColumn Header="qty" Binding="{Binding Path=qty }"/>
-                                        <DataGridTextColumn Header="balance" Binding="{Binding Path=balance }"/>
-                                        <DataGridTextColumn Header="grp" Binding="{Binding Path=grp }"/>
-                                        <DataGridTextColumn Header="sgrp" Binding="{Binding Path=grp }"/>
-                                        <DataGridTextColumn Header="date" Binding="{Binding Path=date }"/>
-                                    </DataGrid.Columns>
-                                </DataGrid>
-
-                            </StackPanel>
-                        </Expander>
-                        <toolkit:AutoCompleteBox 
-                                 Name="xDescription"
-                                 ItemTemplate="{StaticResource AutoCompleteBoxItemTemplate}" 
-                                 ValueMemberPath="Name">
-
-                        </toolkit:AutoCompleteBox>
+                        
+                        <Label x:Name="StatusMes" >Rechercher</Label>
+                        <TextBox Grid.Row="0" Name="FilterBox" Margin="5" TextChanged="FilterBoxTextChanged" />
+                        <DataGrid Grid.Row="1" FontSize="19" x:Name="DataGrid"  IsReadOnly="True" ItemsSource="{Binding}" AutoGenerateColumns="False" >
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Name" Binding="{Binding Path=Name }" Width="*" MinWidth="250"/>
+                                <DataGridTextColumn Header="CodeBare" Binding="{Binding Path=CodeBare }" MinWidth="100"/>
+                                <DataGridTextColumn Header="tva" Binding="{Binding Path=tva }"/>
+                                <DataGridTextColumn Header="price" Binding="{Binding Path=price }"/>
+                                <DataGridTextColumn Header="qty" Binding="{Binding Path=qty }"/>
+                                <DataGridTextColumn Header="balance" Binding="{Binding Path=balance }"/>
+                                <DataGridTextColumn Header="grp" Binding="{Binding Path=grp }"/>
+                                <DataGridTextColumn Header="sgrp" Binding="{Binding Path=grp }"/>
+                                <DataGridTextColumn Header="date" Binding="{Binding Path=date }"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        
                     </Grid>
                 </StackPanel>
             </TabItem>

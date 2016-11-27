@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Media;
 using TicketWindow.Class;
 using TicketWindow.DAL.Models;
@@ -27,10 +26,7 @@ namespace TicketWindow.Winows
             yName.Content = Y = y;
 
             cb.ItemsSource = RepositoryTypePay.TypePays;
-            xDescription.ItemsSource = RepositoryProduct.Products;
-            xDescription.ItemFilter += (searchText, obj) =>
-                searchText.Length > 1 &&
-                ((ProductType) obj).Name.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) != -1;
+            //DataGrid.ItemsSource = RepositoryProduct.Products;
 
             _buttons = new List<RadioButton>();
             _buttons.AddRange(PanelA.Children.Cast<RadioButton>());
@@ -40,8 +36,8 @@ namespace TicketWindow.Winows
         }
 
         public string Sub { get; set; }
-        public int X { get; private set; }
-        public int Y { get; private set; }
+        public int X { get; }
+        public int Y { get; }
 
         private void HideOnlyServerButtons()
         {
@@ -67,30 +63,11 @@ namespace TicketWindow.Winows
             if (cb.SelectedItem != null)
                 res = "_TypesPayDynamic" + ((TypePay) cb.SelectedItem).Id;
 
-            if (xDescription.Text.TrimEnd() != "")
+            if (FilterBox.Text.Trim() != "")
             {
-                var lp = RepositoryProduct.GetProductsByName(xDescription.Text);
-
-                switch (lp.Count)
-                {
-                    case 0:
-                        statusMes.Content = (Properties.Resources.LabelProductNotFind);
-                        xtbc.SelectedIndex = 3;
-                        _expander.IsExpanded = true;
-                        break;
-                    case 1:
-                        statusMes.Content = ("");
-                        res = "Products id=[" + lp[0].CustomerId + "]";
-                        break;
-                    default:
-                        if (!(list.SelectedItem is ProductType))
-                        {
-                            xtbc.SelectedIndex = 3;
-                            _expander.IsExpanded = true;
-                        }
-                        else res = "Products id=[" + lp[0].CustomerId + "]";
-                        break;
-                }
+                var selected = (ProductType)DataGrid.SelectedItem;
+                if (selected != null)
+                    res = "Products id=[" + selected.CustomerId + "]";
             }
 
             return res;
@@ -110,14 +87,14 @@ namespace TicketWindow.Winows
                 }
             }
 
-            if ((!flag) && (textSelector.Substring(0, textSelector.Length > 15 ? 15 : 0) == "_TypesPayDynamic"))
+            if (!flag && (textSelector.Substring(0, textSelector.Length > 15 ? 15 : 0) == "_TypesPayDynamic"))
             {
                 int indx;
                 if (int.TryParse(textSelector.Replace("_TypesPayDynamic", string.Empty), out indx))
                     cb.SelectedItem = RepositoryTypePay.GetById(indx);
             }
 
-            if ((!flag) && (textSelector.Substring(0, textSelector.Length > 13 ? 13 : 0) == "Products id=["))
+            if (!flag && (textSelector.Substring(0, textSelector.Length > 13 ? 13 : 0) == "Products id=["))
             {
                 var sd = textSelector.Substring(
                     textSelector.IndexOf("[", StringComparison.Ordinal) + 1,
@@ -130,21 +107,19 @@ namespace TicketWindow.Winows
                 switch (products.Count)
                 {
                     case 0:
-                        statusMes.Content = (Properties.Resources.LabelProductNotFind);
+                        StatusMes.Content = Properties.Resources.LabelProductNotFind;
                         xtbc.SelectedIndex = 3;
-                        _expander.IsExpanded = true;
                         break;
                     case 1:
-                        statusMes.Content = ("");
-                        xDescription.Text = products[0].Name;
+                        StatusMes.Content = "";
+                        FilterBox.Text = products[0].Name;
+                        var selected = ((IEnumerable<ProductType>) DataGrid.ItemsSource).FirstOrDefault(p => p.CustomerId == products[0].CustomerId);
+                        DataGrid.SelectedItem = selected;
                         break;
                     default:
-                        if (!(list.SelectedItem is ProductType))
-                        {
+                        if (!(DataGrid.SelectedItem is ProductType))
                             xtbc.SelectedIndex = 3;
-                            _expander.IsExpanded = true;
-                        }
-                        xDescription.Text = products[0].Name;
+                        FilterBox.Text = products[0].Name;
                         break;
                 }
             }
@@ -154,13 +129,13 @@ namespace TicketWindow.Winows
         {
             var main = Owner as MainWindow;
             var name = Sub + "_" + xName.Content + "x" + yName.Content;
-            var button = (Button) (main.FindName(name));
+            var button = (Button) main.FindName(name);
 
             if (button != null)
             {
                 button.Background = new SolidColorBrush(xColor.SelectedColor);
                 button.Foreground = new SolidColorBrush(xColorFont.SelectedColor);
-                button.Content = (xCaption.Text);
+                button.Content = xCaption.Text;
 
                 var elm = button.Tag as ClassGridGroup.Elm ?? new ClassGridGroup.Elm(
                     RepositoryXmlFile.GetPathByType(XmlDocEnum.B),
@@ -211,22 +186,18 @@ namespace TicketWindow.Winows
             foreach (var bs in _buttons)
                 bs.Click += RadioButtonClick;
         }
-
-        private void ExpanderExpanded(object sender, RoutedEventArgs e)
-        {
-            statusMes.Content = (Properties.Resources.LabelSelectProduct);
-            var val = xDescription.Text;
-
-            if (val != string.Empty)
-            {
-                list.DataContext = RepositoryProduct.GetProductsByName(val);
-                CollectionViewSource.GetDefaultView(list.ItemsSource).Refresh();
-            }
-        }
-
+        
         private void ButtonClick1(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void FilterBoxTextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (FilterBox.Text.Length > 2)
+                DataGrid.ItemsSource =
+                    RepositoryProduct.Products.Where(
+                        p => p.Name.IndexOf(FilterBox.Text, StringComparison.OrdinalIgnoreCase) != -1);
         }
     }
 }
