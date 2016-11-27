@@ -113,6 +113,7 @@ namespace TicketWindow.Winows
                     case 1:
                         StatusMes.Content = "";
                         FilterBox.Text = products[0].Name;
+                        BtnFind_OnClick(null, null);
                         var selected = ((IEnumerable<ProductType>) DataGrid.ItemsSource).FirstOrDefault(p => p.CustomerId == products[0].CustomerId);
                         DataGrid.SelectedItem = selected;
                         break;
@@ -192,12 +193,14 @@ namespace TicketWindow.Winows
             Close();
         }
 
-        private void FilterBoxTextChanged(object sender, TextChangedEventArgs e)
+        private void BtnFind_OnClick(object sender, RoutedEventArgs e)
         {
-            if (FilterBox.Text.Length > 2)
+            if (FilterBox.Text.Length > 0)
                 DataGrid.ItemsSource =
                     RepositoryProduct.Products.Where(
-                        p => p.Name.IndexOf(FilterBox.Text, StringComparison.OrdinalIgnoreCase) != -1);
+                        p => p.Name.IndexOf(FilterBox.Text, StringComparison.OrdinalIgnoreCase) != -1 ||
+                             p.Desc.IndexOf(FilterBox.Text, StringComparison.OrdinalIgnoreCase) != -1 ||
+                             p.CodeBare.IndexOf(FilterBox.Text, StringComparison.OrdinalIgnoreCase) != -1);
         }
     }
 }
