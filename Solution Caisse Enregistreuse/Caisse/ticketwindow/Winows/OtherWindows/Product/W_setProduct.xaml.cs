@@ -18,39 +18,42 @@ namespace TicketWindow.Winows.OtherWindows.Product
         {
             InitializeComponent();
         }
-        
+
         private void Go(ProductType p)
         {
-            var wProduct = Owner as MainWindow;
-
-            var el = new Class.ClassGridProduct.Elm
-                     {
-                         Background = new SolidColorBrush(xColor.SelectedColor),
-                         Font = new SolidColorBrush(xFontColor.SelectedColor),
-                         X = Convert.ToByte(X),
-                         Y = Convert.ToByte(Y)
-                     };
-
-            if (FindProduct.Product != null)
+            if (p != null)
             {
-                el.Description = FindProduct.Product.Name;
-                el.CustomerId = p.CustomerId;
-            }
+                var wProduct = Owner as MainWindow;
 
-            var v = (Button)wProduct.FindName("_b_" + X + "x" + Y);
+                var el = new Class.ClassGridProduct.Elm
+                         {
+                             Background = new SolidColorBrush(xColor.SelectedColor),
+                             Font = new SolidColorBrush(xFontColor.SelectedColor),
+                             X = Convert.ToByte(X),
+                             Y = Convert.ToByte(Y)
+                         };
 
-            if (v != null)
-            {
-                ((TextBlock)v.Content).Text = el.Description;
+                if (FindProduct.Product != null)
+                {
+                    el.Description = FindProduct.Product.Name;
+                    el.CustomerId = p.CustomerId;
+                }
 
-                ProductType product;
-                v.ToolTip = FunctionsTranslateService.GetTranslatedFunctionWithProd(
-                    "Products id=[" + p.CustomerId + "]", out product);
+                var v = (Button) wProduct.FindName("_b_" + X + "x" + Y);
 
-                v.Background = new SolidColorBrush(xColor.SelectedColor);
-                v.Foreground = new SolidColorBrush(xFontColor.SelectedColor);
-                new Class.ClassGridProduct().Save(el, wProduct.I, wProduct.J);
-                Close();
+                if (v != null)
+                {
+                    ((TextBlock) v.Content).Text = el.Description;
+
+                    ProductType product;
+                    v.ToolTip = FunctionsTranslateService.GetTranslatedFunctionWithProd(
+                        "Products id=[" + p.CustomerId + "]", out product);
+
+                    v.Background = new SolidColorBrush(xColor.SelectedColor);
+                    v.Foreground = new SolidColorBrush(xFontColor.SelectedColor);
+                    new Class.ClassGridProduct().Save(el, wProduct.I, wProduct.J);
+                    Close();
+                }
             }
         }
 
