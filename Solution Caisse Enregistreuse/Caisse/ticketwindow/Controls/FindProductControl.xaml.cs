@@ -34,13 +34,16 @@ namespace TicketWindow.Controls
                 textTranslated = textTranslated.Replace(Config.SymbolsForReplace[i], Config.SymbolsToReplace[i]);
             }
 
-            if (!textOriginal.Contains(" "))
-            return RepositoryProduct.Products.Where(
+            var dic = new Dictionary<Guid, ProductType>();
+
+            foreach (var product in RepositoryProduct.Products.Where(
                 p => p.Name.IndexOf(textOriginal, StringComparison.OrdinalIgnoreCase) != -1 ||
                      p.Name.IndexOf(textTranslated, StringComparison.OrdinalIgnoreCase) != -1 ||
-                     p.CodeBare.IndexOf(textOriginal, StringComparison.OrdinalIgnoreCase) != -1).ToList();
+                     p.CodeBare.IndexOf(textOriginal, StringComparison.OrdinalIgnoreCase) != -1).ToList())
+            {
+                dic[product.CustomerId] = product;
+            }
 
-            var dic = new Dictionary<Guid, ProductType>();
             foreach (var word in textOriginal.Split(new [] {' '}, StringSplitOptions.RemoveEmptyEntries))
             {
                 foreach (var product in RepositoryProduct.Products.Where(
