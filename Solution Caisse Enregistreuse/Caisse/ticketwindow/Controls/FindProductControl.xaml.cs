@@ -22,22 +22,44 @@ namespace TicketWindow.Controls
         private void BtnFind_OnClick(object sender, RoutedEventArgs e)
         {
             if (FilterBox.Text.Length > 0)
-            {
-                var text1 = FilterBox.Text;
-                var text2 = FilterBox.Text;
-                for (var i = 0; i < Config.SymbolsForReplace.Length; i++)
-                {
-                    text2 = text2.Replace(Config.SymbolsForReplace[i], Config.SymbolsToReplace[i]);
-                }
+                DataGrid.ItemsSource = FindByText(FilterBox.Text);
+        }
 
-                DataGrid.ItemsSource =
-                    RepositoryProduct.Products.Where(
-                        p => p.Name.IndexOf(text1, StringComparison.OrdinalIgnoreCase) != -1 ||
-                             p.Desc.IndexOf(text1, StringComparison.OrdinalIgnoreCase) != -1 ||
-                             p.Name.IndexOf(text2, StringComparison.OrdinalIgnoreCase) != -1 ||
-                             p.Desc.IndexOf(text2, StringComparison.OrdinalIgnoreCase) != -1 ||
-                             p.CodeBare.IndexOf(text1, StringComparison.OrdinalIgnoreCase) != -1);
+        private static IEnumerable<ProductType> FindByText(string text)
+        {
+            var textOriginal = text.Trim();
+            var textTranslated = text.Trim();
+            for (var i = 0; i < Config.SymbolsForReplace.Length; i++)
+            {
+                textTranslated = textTranslated.Replace(Config.SymbolsForReplace[i], Config.SymbolsToReplace[i]);
             }
+
+            if (!textOriginal.Contains(" "))
+            return RepositoryProduct.Products.Where(
+                p => p.Name.IndexOf(textOriginal, StringComparison.OrdinalIgnoreCase) != -1 ||
+                     p.Name.IndexOf(textTranslated, StringComparison.OrdinalIgnoreCase) != -1 ||
+                     p.CodeBare.IndexOf(textOriginal, StringComparison.OrdinalIgnoreCase) != -1).ToList();
+
+            var dic = new Dictionary<Guid, ProductType>();
+            foreach (var word in textOriginal.Split(new [] {' '}, StringSplitOptions.RemoveEmptyEntries))
+            {
+                foreach (var product in RepositoryProduct.Products.Where(
+                p => p.Name.IndexOf(word, StringComparison.OrdinalIgnoreCase) != -1 ||
+                     p.CodeBare.IndexOf(textOriginal, StringComparison.OrdinalIgnoreCase) != -1))
+                {
+                    dic[product.CustomerId] = product;
+                }
+            }
+            foreach (var word in textTranslated.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                foreach (var product in RepositoryProduct.Products.Where(
+                p => p.Name.IndexOf(word, StringComparison.OrdinalIgnoreCase) != -1 ||
+                     p.CodeBare.IndexOf(textOriginal, StringComparison.OrdinalIgnoreCase) != -1))
+                {
+                    dic[product.CustomerId] = product;
+                }
+            }
+            return dic.Values.ToList();
         }
 
         public ProductType Product
@@ -48,10 +70,15 @@ namespace TicketWindow.Controls
             }
             set
             {
-                FilterBox.Text = value.Name;
-                BtnFind_OnClick(null, null);
-                var selected = ((IEnumerable<ProductType>)DataGrid.ItemsSource).FirstOrDefault(p => p.CustomerId == value.CustomerId);
-                DataGrid.SelectedItem = selected;
+                if (value != null)
+                {
+                    FilterBox.Text = value.Name;
+                    BtnFind_OnClick(null, null);
+                    var selected =
+                        ((IEnumerable<ProductType>) DataGrid.ItemsSource).FirstOrDefault(
+                            p => p.CustomerId == value.CustomerId);
+                    DataGrid.SelectedItem = selected;
+                }
             }
         }
     }

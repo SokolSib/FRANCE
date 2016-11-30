@@ -67,13 +67,17 @@ namespace TicketWindow.DAL.Repositories
 
         public static int AddRange(List<CloseTicketCheckDiscount> closeTicketCheckDiscount)
         {
-            int count;
+            int count = closeTicketCheckDiscount.Count;
 
-            using (var connection = ConnectionFactory.CreateConnection())
-                count = connection.Execute(InsertQuery, closeTicketCheckDiscount);
+            if (SyncData.IsConnect)
+            {
+                using (var connection = ConnectionFactory.CreateConnection())
+                    count = connection.Execute(InsertQuery, closeTicketCheckDiscount);
 
-            if (count == closeTicketCheckDiscount.Count)
-                CloseTicketCheckDiscounts.AddRange(closeTicketCheckDiscount);
+                if (count == closeTicketCheckDiscount.Count)
+                    CloseTicketCheckDiscounts.AddRange(closeTicketCheckDiscount);
+            }
+            else CloseTicketCheckDiscounts.AddRange(closeTicketCheckDiscount);
 
             return count;
         }

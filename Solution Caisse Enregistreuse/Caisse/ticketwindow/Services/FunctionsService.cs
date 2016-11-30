@@ -322,10 +322,11 @@ namespace TicketWindow.Services
                         else
                         {
                             var productData = ClassGridProduct.Grid[i, j, ii, jj];
+                            var text = "Products id=[" + productData.CustomerId + "]";
                             ProductType product;
                             b.ToolTip =
-                                FunctionsTranslateService.GetTranslatedFunctionWithProd(
-                                    "Products id=[" + productData.CustomerId + "]", out product);
+                                FunctionsTranslateService.GetTranslatedFunctionWithProd(text, out product);
+                            b.Tag = text;
 
                             ((TextBlock)b.Content).Text = productData.Description;
                             b.Background = productData.Background;
@@ -678,12 +679,12 @@ namespace TicketWindow.Services
 
         private static void MoveToCheck(object sender, Guid guidProduct)
         {
-            var wp = ClassEtcFun.GetParents(((Button) sender), 0) as WProduct;
+            var wp = ClassEtcFun.GetParents((Button) sender, 0) as WProduct;
             var mw = Window.GetWindow((Button) sender) as MainWindow;
 
             if (mw != null)
             {
-                var x = RepositoryProduct.GetXElementByElementName("CustomerId", guidProduct.ToString());
+                var x = RepositoryProduct.Products.FirstOrDefault(p => p.CustomerId == guidProduct);
 
                 if (x != null)
                     CheckService.AddProductCheck(x, GetQty(mw.qty_label));
@@ -691,7 +692,7 @@ namespace TicketWindow.Services
 
             if (wp != null)
             {
-                var x = RepositoryProduct.GetXElementByElementName("CustomerId", guidProduct.ToString());
+                var x = RepositoryProduct.Products.FirstOrDefault(p => p.CustomerId == guidProduct);
 
                 if (x != null)
                     CheckService.AddProductCheck(x, GetQty(MainAppWindow.qty_label));
@@ -1445,7 +1446,10 @@ namespace TicketWindow.Services
             if ((bN != "m_") && (bN != "c_"))
             {
                 var typeFun = elm != null ? elm.Func ?? "" : "";
-                
+
+                if (string.IsNullOrEmpty(typeFun) && frameworkElement.Tag != null)
+                    typeFun = frameworkElement.Tag.ToString();
+
                 if (string.IsNullOrEmpty(typeFun) && frameworkElement.ToolTip != null)
                     typeFun = frameworkElement.ToolTip.ToString();
 
