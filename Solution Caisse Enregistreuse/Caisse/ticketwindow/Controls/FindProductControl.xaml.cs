@@ -44,20 +44,24 @@ namespace TicketWindow.Controls
                 dic[product.CustomerId] = product;
             }
 
-            foreach (var word in textOriginal.Split(new [] {' '}, StringSplitOptions.RemoveEmptyEntries))
+            foreach (
+                var word in
+                textOriginal.Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries).Where(w => w.Length > 1))
             {
                 foreach (var product in RepositoryProduct.Products.Where(
-                p => p.Name.IndexOf(word, StringComparison.OrdinalIgnoreCase) != -1 ||
-                     p.CodeBare.IndexOf(textOriginal, StringComparison.OrdinalIgnoreCase) != -1))
+                    p => p.Name.IndexOf(word, StringComparison.OrdinalIgnoreCase) != -1 ||
+                         p.CodeBare.IndexOf(textOriginal, StringComparison.OrdinalIgnoreCase) != -1))
                 {
                     dic[product.CustomerId] = product;
                 }
             }
-            foreach (var word in textTranslated.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries))
+            foreach (
+                var word in
+                textTranslated.Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries).Where(w => w.Length > 1))
             {
                 foreach (var product in RepositoryProduct.Products.Where(
-                p => p.Name.IndexOf(word, StringComparison.OrdinalIgnoreCase) != -1 ||
-                     p.CodeBare.IndexOf(textOriginal, StringComparison.OrdinalIgnoreCase) != -1))
+                    p => p.Name.IndexOf(word, StringComparison.OrdinalIgnoreCase) != -1 ||
+                         p.CodeBare.IndexOf(textOriginal, StringComparison.OrdinalIgnoreCase) != -1))
                 {
                     dic[product.CustomerId] = product;
                 }
