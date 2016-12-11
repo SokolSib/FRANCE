@@ -285,8 +285,10 @@ namespace TicketWindow.Services
                         ClassCustomerDisplay.Bye();
                         GlobalVar.IsBreak = true;
                     }
-                    else ShowMessageSb("Synchronisation en cours, a quitté plus tard");
-                else ShowMessageSb("Veuillez d'abord éditer la note!" + Environment.NewLine + countBufCheck + " article(s).");
+                    else ShowMessageSb(Resources.LabelSyncProcess);
+                else
+                    ShowMessageSb(Resources.LabelEditListProducts + Environment.NewLine + Resources.LabelQty.ToLower() +
+                                  " " + countBufCheck);
             }
             catch
             {

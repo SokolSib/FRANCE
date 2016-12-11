@@ -979,6 +979,15 @@ namespace TicketWindow.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Please first edit the list products.
+        /// </summary>
+        public static string LabelEditListProducts {
+            get {
+                return ResourceManager.GetString("LabelEditListProducts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Error.
         /// </summary>
         public static string LabelError {
@@ -1569,6 +1578,15 @@ namespace TicketWindow.Properties {
         public static string LabelSubgroup {
             get {
                 return ResourceManager.GetString("LabelSubgroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Synchronization in progress, left later.
+        /// </summary>
+        public static string LabelSyncProcess {
+            get {
+                return ResourceManager.GetString("LabelSyncProcess", resourceCulture);
             }
         }
         

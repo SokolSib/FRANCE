@@ -9,7 +9,7 @@
             <RowDefinition></RowDefinition>
             <RowDefinition Height="50"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock  x:Name="Message" TextWrapping="WrapWithOverflow" FontSize="25" Foreground="Red" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Message"/>
+        <TextBlock x:Name="Message" TextWrapping="Wrap" FontSize="25" Foreground="Red" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Message"/>
         <Grid Grid.Row="1">
             <Button Background="Green" Click="BcanClick" Content="{x:Static properties:Resources.BtnOk}"/>
         </Grid>

@@ -925,6 +925,10 @@
     <value>Closing completed</value>
     <comment>надпись закрытие завершено</comment>
   </data>
+  <data name="LabelEditListProducts" xml:space="preserve">
+    <value>Please first edit the list products</value>
+    <comment>надпись список товаров не пуст</comment>
+  </data>
   <data name="LabelErrorClosing" xml:space="preserve">
     <value>Error closing</value>
     <comment>надпись ошибка закрытия</comment>
@@ -948,5 +952,9 @@
   <data name="LabelOperationComplete" xml:space="preserve">
     <value>Operation complete</value>
     <comment>надпись операция завершена</comment>
+  </data>
+  <data name="LabelSyncProcess" xml:space="preserve">
+    <value>Synchronization in progress, left later</value>
+    <comment>надпись процесс синхронизации</comment>
   </data>
 </root>
