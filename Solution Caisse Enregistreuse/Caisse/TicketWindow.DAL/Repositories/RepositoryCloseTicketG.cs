@@ -73,14 +73,12 @@ namespace TicketWindow.DAL.Repositories
         public static List<CloseTicketG> Get(Guid customerId)
         {
             if (SyncData.IsConnect)
-            {
                 if (customerId == Guid.Empty)
                     using (var connection = ConnectionFactory.CreateConnection())
                         return connection.Query<CloseTicketG>(SelectQuery).ToList();
                 else
                     using (var connection = ConnectionFactory.CreateConnection())
                         return connection.Query<CloseTicketG>(SelectQuery + " WHERE CustumerId = @customerId", new {customerId}).ToList();
-            }
 
             return customerId == Guid.Empty
                 ? CloseTicketGs.ToList()
@@ -109,67 +107,7 @@ namespace TicketWindow.DAL.Repositories
             Add(g);
             return g.CustomerId;
         }
-
-        public static bool Cls()
-        {
-            Mess = string.Empty;
-
-            if (RepositoryOpenTicketWindow.OpenTicketWindows.Count == 0) RepositoryOpenTicketWindow.Sync();
-
-            var otWind = RepositoryOpenTicketWindow.OpenTicketWindows.FindAll(otw => ((otw.IsOpen) && (otw.IdTicketWindowG == GlobalVar.TicketWindowG)));
-            var flag = false;
-
-            if (otWind.Count == 0)
-            {
-                var closeTickets = RepositoryCloseTicket.GetByCloseTicketGId(GlobalVar.TicketWindowG);
-                var closeTicketG = Get(GlobalVar.TicketWindowG).FirstOrDefault();
-                Mess += "Veuillez patienter! La clôture du " + Config.NameTicket + ". Exportation vers base de données..." + Environment.NewLine;
-
-                if (closeTicketG != null)
-                {
-                    foreach (var el in closeTickets)
-                    {
-                        closeTicketG.Pay1 += el.Pay1;
-                        closeTicketG.Pay2 += el.Pay2;
-                        closeTicketG.Pay3 += el.Pay3;
-                        closeTicketG.Pay4 += el.Pay4;
-                        closeTicketG.Pay5 += el.Pay5;
-                        closeTicketG.Pay6 += el.Pay6;
-                        closeTicketG.Pay7 += el.Pay7;
-                        closeTicketG.Pay8 += el.Pay8;
-                        closeTicketG.Pay9 += el.Pay9;
-                        closeTicketG.Pay10 += el.Pay10;
-                        closeTicketG.Pay11 += el.Pay11;
-                        closeTicketG.Pay12 += el.Pay12;
-                        closeTicketG.Pay13 += el.Pay13;
-                        closeTicketG.Pay14 += el.Pay14;
-                        closeTicketG.Pay15 += el.Pay15;
-                        closeTicketG.Pay16 += el.Pay16;
-                        closeTicketG.Pay17 += el.Pay17;
-                        closeTicketG.Pay18 += el.Pay18;
-                        closeTicketG.Pay19 += el.Pay19;
-                        closeTicketG.Pay20 += el.Pay20;
-                        closeTicketG.PayBankCards += el.PayBankCards;
-                        closeTicketG.PayBankChecks += el.PayBankChecks;
-                        closeTicketG.PayCash += el.PayCash;
-                        closeTicketG.PayResto += el.PayResto;
-                    }
-
-                    closeTicketG.DateClose = DateTime.Now;
-                    Update(closeTicketG);
-                    flag = true;
-                }
-                else Mess += "Erreur fatale N° 001" + Environment.NewLine;
-            }
-            else
-            {
-                foreach (var window in otWind)
-                    Mess += window.NameTicket + " est ouverte" + Environment.NewLine;
-            }
-
-            return flag;
-        }
-
+        
         #region Sqripts
 
         private const string SelectQuery = @"SELECT

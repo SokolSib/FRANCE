@@ -79,8 +79,8 @@ namespace TicketWindow.Services
 
             if (GlobalVar.IsOpen)
             {
-                Mess += "Clôture du" + Config.NameTicket + Environment.NewLine + Environment.NewLine + " Veuillez patienter! Exportation vers base de données..." +
-                        Environment.NewLine;
+                Mess += Properties.Resources.FuncCloseCashbox + Config.NameTicket + Environment.NewLine +
+                        Environment.NewLine + Properties.Resources.LabelPleaseWaitWhileLoading + Environment.NewLine;
 
                 var otw = RepositoryOpenTicketWindow.GetCurrent();
 
@@ -88,7 +88,7 @@ namespace TicketWindow.Services
                 RepositoryCheck.CloseTicket();
                 //PrintService.PrintCloseTicket(closeTicket, Config.NameTicket);
 
-                Mess += "Exportation vers base de données est terminé" + Environment.NewLine;
+                Mess += Properties.Resources.LabelOperationComplete + Environment.NewLine;
 
                 if (otw != null)
                 {
@@ -97,19 +97,23 @@ namespace TicketWindow.Services
                     otw.IdTicketWindow = Guid.Empty;
                     otw.IdTicketWindowG = Guid.Empty;
                     RepositoryOpenTicketWindow.Update(otw);
-                    Mess += Config.NameTicket + " clôture terminée..." + Environment.NewLine;
+                    Mess += Config.NameTicket + " " + Properties.Resources.LabelCloseEnd.ToLower() + "..." +
+                            Environment.NewLine;
 
                     GlobalVar.IsOpen = false;
                 }
-                else Mess += Config.NameTicket + " erreur de fermeture..." + Environment.NewLine;
+                else
+                    Mess += Config.NameTicket + " " + Properties.Resources.LabelErrorClosing.ToLower() + "..." +
+                            Environment.NewLine;
             }
-            else Mess += Config.NameTicket + " déjà clôturé..." + Environment.NewLine;
+            else
+                Mess += Config.NameTicket + " " + Properties.Resources.LabelAlreadyClosing.ToLower() + "..." +
+                        Environment.NewLine;
         }
 
         public static void StartCheck()
         {
             if (File.Exists(RepositoryCheck.Path))
-            {
                 try
                 {
                     RepositoryCheck.Document = XDocument.Load(RepositoryCheck.Path);
@@ -118,7 +122,6 @@ namespace TicketWindow.Services
                 {
                     FunctionsService.ShowMessageSb("ошибка файла check.xml " + ex.Message);
                 }
-            }
             else RepositoryCheck.OpenTicket();
 
             if (File.Exists(RepositoryCheck.PathEnAttenete))
@@ -242,7 +245,7 @@ namespace TicketWindow.Services
             return false;
         }
 
-        public static bool Cls()
+        public static bool CloseWithMessage()
         {
             RepositoryGeneral.Set();
             var general = RepositoryGeneral.Generals.Find(l => l.EstablishmentCustomerId == Config.IdEstablishment);
@@ -250,7 +253,7 @@ namespace TicketWindow.Services
 
             if (general.IsOpen ?? true)
             {
-                if (RepositoryCloseTicketG.Cls())
+                if (CloseOpenTicketWindows())
                 {
                     PrintCloseTicket(GlobalVar.TicketWindowG);
                     general.IsOpen = false;
@@ -259,14 +262,73 @@ namespace TicketWindow.Services
                     general.TicketWindowGeneral = Guid.Empty;
                     general.Date = DateTime.Now;
                     RepositoryGeneral.Update(general);
-                    RepositoryGeneral.Mess = "Clôture générale est terminé";
+                    RepositoryGeneral.Mess = Properties.Resources.LabelGeneralCloseEnd;
                     return true;
                 }
-                RepositoryGeneral.Mess += "Vous ne pouvez pas effectuer la clôture, car :" + Environment.NewLine + RepositoryCloseTicketG.Mess;
+                RepositoryGeneral.Mess += Properties.Resources.LabelErrorGeneralClosing + " :" + Environment.NewLine +
+                                          RepositoryCloseTicketG.Mess;
                 return false;
             }
-            RepositoryGeneral.Mess += "Clôture générale a été faite";
+            RepositoryGeneral.Mess += Properties.Resources.LabelAlreadyGeneralClosing;
             return false;
+        }
+
+
+        private static bool CloseOpenTicketWindows()
+        {
+            Mess = string.Empty;
+
+            if (RepositoryOpenTicketWindow.OpenTicketWindows.Count == 0) RepositoryOpenTicketWindow.Sync();
+
+            var openTicketWindows = RepositoryOpenTicketWindow.OpenTicketWindows.FindAll(otw => otw.IsOpen && (otw.IdTicketWindowG == GlobalVar.TicketWindowG));
+            var flag = false;
+
+            if (openTicketWindows.Count == 0)
+            {
+                var closeTicketG = RepositoryCloseTicketG.Get(GlobalVar.TicketWindowG).FirstOrDefault();
+                Mess += Config.NameTicket + Properties.Resources.LabelPleaseWaitWhileLoading + Environment.NewLine;
+
+                if (closeTicketG != null)
+                {
+                    foreach (var el in RepositoryCloseTicket.GetByCloseTicketGId(GlobalVar.TicketWindowG))
+                    {
+                        closeTicketG.Pay1 += el.Pay1;
+                        closeTicketG.Pay2 += el.Pay2;
+                        closeTicketG.Pay3 += el.Pay3;
+                        closeTicketG.Pay4 += el.Pay4;
+                        closeTicketG.Pay5 += el.Pay5;
+                        closeTicketG.Pay6 += el.Pay6;
+                        closeTicketG.Pay7 += el.Pay7;
+                        closeTicketG.Pay8 += el.Pay8;
+                        closeTicketG.Pay9 += el.Pay9;
+                        closeTicketG.Pay10 += el.Pay10;
+                        closeTicketG.Pay11 += el.Pay11;
+                        closeTicketG.Pay12 += el.Pay12;
+                        closeTicketG.Pay13 += el.Pay13;
+                        closeTicketG.Pay14 += el.Pay14;
+                        closeTicketG.Pay15 += el.Pay15;
+                        closeTicketG.Pay16 += el.Pay16;
+                        closeTicketG.Pay17 += el.Pay17;
+                        closeTicketG.Pay18 += el.Pay18;
+                        closeTicketG.Pay19 += el.Pay19;
+                        closeTicketG.Pay20 += el.Pay20;
+                        closeTicketG.PayBankCards += el.PayBankCards;
+                        closeTicketG.PayBankChecks += el.PayBankChecks;
+                        closeTicketG.PayCash += el.PayCash;
+                        closeTicketG.PayResto += el.PayResto;
+                    }
+
+                    closeTicketG.DateClose = DateTime.Now;
+                    RepositoryCloseTicketG.Update(closeTicketG);
+                    flag = true;
+                }
+                else Mess += Properties.Resources.LabelErrorClosing + Environment.NewLine;
+            }
+            else
+                foreach (var window in openTicketWindows)
+                    Mess += window.NameTicket + " " + Properties.Resources.LabelOpened.ToLower() + Environment.NewLine;
+
+            return flag;
         }
     }
 }

@@ -183,5 +183,13 @@ namespace TicketWindow.DAL.Repositories
                 return string.Empty;
             }
         }
+
+        public static Guid GetTicketWindow()
+        {
+            if (!File.Exists(Path)) return Guid.Empty;
+
+            if (Document == null) Document = XDocument.Load(Path);
+            return new Guid(Document.GetXAttribute("checks", "idTicketWindow").Value);
+        }
     }
 }

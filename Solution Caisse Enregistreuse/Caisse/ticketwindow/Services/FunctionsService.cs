@@ -1171,7 +1171,7 @@ namespace TicketWindow.Services
                     if (dg.Items.Count > 0)
                     {
                         CheckService.EnAttenete();
-                        ShowMessageTime(" Mis en attente +1 ");
+                        ShowMessageTime(Resources.LabelInputInMemory);
                         dg.DataContext = RepositoryCheck.DocumentProductCheck.Element("check");
                         CollectionViewSource.GetDefaultView(dg.ItemsSource).Refresh();
                     }
@@ -1196,30 +1196,23 @@ namespace TicketWindow.Services
 
         private static void CloseGeneral(object sender)
         {
-            var w = (Window.GetWindow((Button) sender) as WCloseTicketWindow);
-            var worker = new BackgroundWorker();
-            worker.DoWork += (o, ea) => { RepositoryGeneral.IsOpen = !CassieService.Cls(); };
+            var windowCloseTicket = Window.GetWindow((Button) sender) as WCloseTicketWindow;
+            if (windowCloseTicket != null)
+            {
+                RepositoryGeneral.IsOpen = !CassieService.CloseWithMessage();
 
-            worker.RunWorkerCompleted += (o, ea) =>
-                                         {
-                                             w.BusyIndicator.IsBusy = false;
+                if (!RepositoryGeneral.IsOpen)
+                    CloaseMainWindow();
 
-                                             if (!RepositoryGeneral.IsOpen)
-                                                 CloaseMainWindow();
-
-                                             w.errorlist.Text = RepositoryGeneral.Mess;
-                                         };
-
-            worker.RunWorkerAsync();
-
-            w.BusyIndicator.IsBusy = true;
+                windowCloseTicket.errorlist.Text = RepositoryGeneral.Mess;
+            }
         }
 
         public static void CloseTicketWindow(object sender)
         {
-            var w = (Window.GetWindow((Button) sender) as WCloseTicketWindow);
+            var closeTicketWindow = Window.GetWindow((Button) sender) as WCloseTicketWindow;
             CassieService.Close();
-            w.errorlist.Text = CassieService.Mess;
+            if (closeTicketWindow != null) closeTicketWindow.errorlist.Text = CassieService.Mess;
         }
 
         private static XDocument ShowMessageCustomerDisplay(XDocument oldXDocument)

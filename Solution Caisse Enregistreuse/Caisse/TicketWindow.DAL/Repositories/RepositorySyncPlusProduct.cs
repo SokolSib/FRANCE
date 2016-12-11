@@ -16,7 +16,7 @@ namespace TicketWindow.DAL.Repositories
     public class RepositorySyncPlusProduct
     {
         private static readonly ConnectionFactory ConnectionFactory = new ConnectionFactory(Config.ConnectionString);
-        private static readonly string Path = Config.AppPath + @"Data\ActionHashBoxes.xml";
+        private static readonly string Path = Config.AppPath + @"Data\SyncPlusProducts.xml";
 
         public static List<SyncPlusProductType> SyncPlusProducts = new List<SyncPlusProductType>();
 
@@ -64,27 +64,35 @@ namespace TicketWindow.DAL.Repositories
             SyncPlusProducts.Remove(current);
 
             var document = XDocument.Load(Path);
-            var statNationPopupElement = document.GetXElements("SyncPlusProducts", "rec").First(p => p.GetXElementValue("CustomerId").ToGuid() == customerId);
+            var statNationPopupElement =
+                document.GetXElements("SyncPlusProducts", "rec")
+                    .First(p => p.GetXElementValue("CustomerId").ToGuid() == customerId);
             statNationPopupElement.Remove();
             File.WriteAllText(Path, document.ToString());
 
-            const string query = "DELETE FROM SyncPlusProducts WHERE customerId = @customerId";
+            if (SyncData.IsConnect)
+            {
+                const string query = "DELETE FROM SyncPlusProducts WHERE customerId = @customerId";
 
-            using (var connection = ConnectionFactory.CreateConnection())
-                connection.Execute(query, new {customerId});
+                using (var connection = ConnectionFactory.CreateConnection())
+                    connection.Execute(query, new {customerId});
+            }
         }
 
         public static void Add(SyncPlusProductType syncPlusProduct)
         {
             SyncPlusProducts.Add(syncPlusProduct);
 
+            if (!File.Exists(Path)) SaveFile();
             var document = XDocument.Load(Path);
+
             var syncPlusProductsElement = document.GetXElement("SyncPlusProducts");
             syncPlusProductsElement.Add(SyncPlusProductType.ToXElement(syncPlusProduct));
             File.WriteAllText(Path, document.ToString());
 
-            using (var connection = ConnectionFactory.CreateConnection())
-                connection.Execute(InsertQuery, syncPlusProduct);
+            if (SyncData.IsConnect)
+                using (var connection = ConnectionFactory.CreateConnection())
+                    connection.Execute(InsertQuery, syncPlusProduct);
         }
 
         public static List<SyncPlusProductType> GetByIdSyncPlus(Guid customerIdSyncPlus)
@@ -92,6 +100,8 @@ namespace TicketWindow.DAL.Repositories
             if (SyncData.IsConnect)
                 using (var connection = ConnectionFactory.CreateConnection())
                     return connection.Query<SyncPlusProductType>(SelectQuery + " WHERE customerIdSyncPlus = @customerIdSyncPlus", new {customerIdSyncPlus}).ToList();
+
+            if (SyncPlusProducts.Count == 0) LoadFile();
 
             return SyncPlusProducts.FindAll(spp => spp.CustomerIdSyncPlus == customerIdSyncPlus);
         }
@@ -104,8 +114,8 @@ namespace TicketWindow.DAL.Repositories
 
             return SyncPlusProducts.FirstOrDefault(spp => spp.CustomerId == customerId);
         }
-
-        public static void SetCheckToDb(XDocument check)
+        
+        public static void SetCheck(XDocument check)
         {
             var suncPlus = RepositorySyncPlus.GetById(Config.CustomerId);
 

@@ -14,13 +14,15 @@ namespace TicketWindow.Winows.OtherWindows.Setting
     {
         public WCloseTicketWindow(string str)
         {
+            var tickedWindowId = GlobalVar.TicketWindow != Guid.Empty ? GlobalVar.TicketWindow.ToString() : string.Empty;
+
             str += Environment.NewLine +
                    Properties.Resources.LabelCashBox + " : " + Config.NameTicket + Environment.NewLine +
                    Properties.Resources.LabelNumberCheck + " : " + Config.NumberTicket + Environment.NewLine +
                    Properties.Resources.LabelUserName + " : " + Config.User + Environment.NewLine + Environment.NewLine +
                    "--------------------------------" + Environment.NewLine +
                    Properties.Resources.LabelOpenTotalTW + " : " + GlobalVar.TicketWindowG + Environment.NewLine +
-                   Properties.Resources.LabelOpenLocal + " : " + GlobalVar.TicketWindow + Environment.NewLine;
+                   Properties.Resources.LabelOpenLocal + " : " + tickedWindowId + Environment.NewLine;
 
             InitializeComponent();
             errorlist.Text = str;

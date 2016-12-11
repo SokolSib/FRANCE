@@ -913,4 +913,40 @@
     <value>Продукт удален</value>
     <comment>надпись продукт удален</comment>
   </data>
+  <data name="LabelAlreadyClosing" xml:space="preserve">
+    <value>Закрытие уже завершено</value>
+    <comment>надпись уже закрыто</comment>
+  </data>
+  <data name="LabelAlreadyGeneralClosing" xml:space="preserve">
+    <value>Генеральное закрытие уже завершено</value>
+    <comment>надпись генеральное закрытие уже завершено</comment>
+  </data>
+  <data name="LabelCloseEnd" xml:space="preserve">
+    <value>Закрытие завершено</value>
+    <comment>надпись закрытие завершено</comment>
+  </data>
+  <data name="LabelErrorClosing" xml:space="preserve">
+    <value>Ошибка закрытия</value>
+    <comment>надпись ошибка закрытия</comment>
+  </data>
+  <data name="LabelErrorGeneralClosing" xml:space="preserve">
+    <value>Ошибка генерального закрытия</value>
+    <comment>надпись ошибка генерального закрытия</comment>
+  </data>
+  <data name="LabelGeneralCloseEnd" xml:space="preserve">
+    <value>Генеральное закрытие завершено</value>
+    <comment>надпись генеральное закрытие завершено</comment>
+  </data>
+  <data name="LabelInputInMemory" xml:space="preserve">
+    <value>Перемещено в память</value>
+    <comment>надпись перемещено в память</comment>
+  </data>
+  <data name="LabelOpened" xml:space="preserve">
+    <value>Открыта</value>
+    <comment>надпись открыта</comment>
+  </data>
+  <data name="LabelOperationComplete" xml:space="preserve">
+    <value>Операция завершена</value>
+    <comment>надпись операция завершена</comment>
+  </data>
 </root>

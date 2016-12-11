@@ -71,10 +71,13 @@ FROM SyncPlus";
             SyncPluses.Add(syncPlus);
             SaveFile();
 
-            const string query = "INSERT INTO SyncPlus VALUES (@CustomerId, @Date, @NameCashBox)";
+            if (SyncData.IsConnect)
+            {
+                const string query = "INSERT INTO SyncPlus VALUES (@CustomerId, @Date, @NameCashBox)";
 
-            using (var connection = ConnectionFactory.CreateConnection())
-                connection.Execute(query, new {syncPlus.CustomerId, syncPlus.Date, syncPlus.NameCashBox});
+                using (var connection = ConnectionFactory.CreateConnection())
+                    connection.Execute(query, new {syncPlus.CustomerId, syncPlus.Date, syncPlus.NameCashBox});
+            }
         }
 
         public static void Delete(Guid customerId)
@@ -83,14 +86,19 @@ FROM SyncPlus";
             SyncPluses.Remove(current);
 
             var document = XDocument.Load(Path);
-            var statNationPopupElement = document.GetXElements("SyncPluses", "rec").First(p => p.GetXElementValue("CustomerId").ToGuid() == customerId);
+            var statNationPopupElement =
+                document.GetXElements("SyncPluses", "rec")
+                    .First(p => p.GetXElementValue("CustomerId").ToGuid() == customerId);
             statNationPopupElement.Remove();
             File.WriteAllText(Path, document.ToString());
 
-            const string query = "DELETE FROM SyncPlus WHERE customerId = @customerId";
+            if (SyncData.IsConnect)
+            {
+                const string query = "DELETE FROM SyncPlus WHERE customerId = @customerId";
 
-            using (var connection = ConnectionFactory.CreateConnection())
-                connection.Execute(query, new {customerId});
+                using (var connection = ConnectionFactory.CreateConnection())
+                    connection.Execute(query, new {customerId});
+            }
         }
 
         public static SyncPlus GetById(Guid customerId)

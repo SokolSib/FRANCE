@@ -73,12 +73,12 @@ namespace TicketWindow.Services
             }
 
             ProgressHelper.Instance.SetValue(progressValue++, Resources.LabelCassieData);
-        //    RepositoryGeneral.Set();
-          //  RepositoryOpenTicketWindow.Sync();
+            RepositoryGeneral.Set();
+            RepositoryOpenTicketWindow.Sync();
             RepositoryCloseTicketG.Sync();
             RepositorySyncIsLoading.LoadFile();
             RepositoryEstablishment.Sync();
-          /*  if (RepositoryEstablishment.Establishment != null)
+            if (RepositoryEstablishment.Establishment != null)
                 LogService.EstablishmentInfo = "Ville = " + RepositoryEstablishment.Establishment.Ville + "\r\n" +
                                                "Adress = " + RepositoryEstablishment.Establishment.Adress + "\r\n" +
                                                "Name = " + RepositoryEstablishment.Establishment.Name + "\r\n" +
@@ -90,7 +90,7 @@ namespace TicketWindow.Services
                                                "Cp = " + RepositoryEstablishment.Establishment.Cp + "\r\n" +
                                                "Ntva = " + RepositoryEstablishment.Establishment.Ntva + "\r\n" +
                                                "Siret = " + RepositoryEstablishment.Establishment.Siret;
-            */
+            
             ProgressHelper.Instance.SetValue(progressValue++, Resources.LabelProducts);
             RepositoryProduct.Set();
 
@@ -156,16 +156,14 @@ namespace TicketWindow.Services
                     RepositoryXmlFile.SetAllFromDb();
                 }
             }
-            //SQL.OCC.statusCassie_();
+
             ProgressHelper.Instance.SetValue(progressValue, Resources.LabelDataLoading);
             ClassGridGroup.Initialize();
             ClassGridProduct.Initialize();
             ClassGridStatistiqueRegionEtPays.Initialize();
-            CassieService.StartCheck();
             ProgressHelper.Instance.Stop();
 
             if (SyncData.IsConnect)
-            {
                 if (ClassDataTimeSrv.GetDateTimeFromSrv())
                 {
                     var text = Resources.LabelServerTime + " : " + ClassDataTimeSrv.DateTimeFromSrv + Environment.NewLine +
@@ -174,80 +172,81 @@ namespace TicketWindow.Services
                     var window = new WDateTimeSrv(text);
                     window.ShowDialog();
                 }
-            }
 
             if (!Config.Bureau)
             {
-            /*    var generalEstablishment = RepositoryGeneral.Generals.Find(l => l.EstablishmentCustomerId == Config.IdEstablishment);
+                var generalEstablishment =
+                    RepositoryGeneral.Generals.Find(l => l.EstablishmentCustomerId == Config.IdEstablishment);
+
+                GlobalVar.TicketWindowG = generalEstablishment.TicketWindowGeneral; //SQL.OCC.cassieInf.idTicketWindowG;
+                var openTicketWindow =
+                    RepositoryOpenTicketWindow.OpenTicketWindows.FirstOrDefault(l => l.CustomerId == Config.CustomerId);
+                if (openTicketWindow != null)
+                {
+                    GlobalVar.TicketWindow = openTicketWindow.IdTicketWindow;
+                    GlobalVar.IsOpen = openTicketWindow.IsOpen;
+                    if (!GlobalVar.IsOpen) openTicketWindow = null;
+                }
+                else GlobalVar.IsOpen = false;
 
                 if (generalEstablishment.Date.Date != DateTime.Now.Date
-                    //&& generalEstablishment.TicketWindowGeneral != Guid.Empty
-                    )
+                    && generalEstablishment.TicketWindowGeneral != Guid.Empty
+                )
                 {
-                    var errorlist = Resources.LabelNow + " : " + DateTime.Now.ToLongDateString() + "  " + DateTime.Now.ToLongTimeString() + Environment.NewLine +
+                    var errorlist = Resources.LabelNow + " : " + DateTime.Now.ToLongDateString() + "  " +
+                                    DateTime.Now.ToLongTimeString() + Environment.NewLine +
                                     "--------------------------------" + Environment.NewLine + Environment.NewLine;
 
-                    errorlist += " " + Resources.LabelOpenTotalTW + " : " + RepositoryGeneral.Generals.First().Date.ToLongDateString() + Environment.NewLine;
-                    errorlist += Resources.LabelOpenLocal + " : " +
-                                 RepositoryOpenTicketWindow.OpenTicketWindows.Find(l => l.CustomerId == Config.CustomerId).DateOpen.ToLongDateString() + Environment.NewLine;
+                    errorlist += " " + Resources.LabelOpenTotalTW + " : " +
+                                 RepositoryGeneral.Generals.First().Date.ToLongDateString() + Environment.NewLine;
+                    errorlist += Resources.LabelOpenLocal + " : ";
+                    errorlist += openTicketWindow?.DateOpen.ToLongDateString() ?? string.Empty + Environment.NewLine;
 
                     var window = new WCloseTicketWindow(errorlist);
                     window.ShowDialog();
-                    CassieService.StartCheck();
-               //     RepositoryGeneral.Set();
-               //     RepositoryOpenTicketWindow.Sync();
+                    RepositoryGeneral.Set();
+                    RepositoryOpenTicketWindow.Sync();
                 }
-                */
+
                 if (!GlobalVar.IsBreak)
                 {
-                   
+                    if (!RepositoryGeneral.IsOpen)
 
-                    //GlobalVar.TicketWindowG = SQL.OCC.cassieInf.idTicketWindowG;
-
-                    //GlobalVar.TicketWindow = SQL.OCC.cassieInf.idTicketWindow;
-
-                    //GlobalVar.IsOpen = GlobalVar.TicketWindow != Guid.Empty;
-
-                  //  if (!RepositoryGeneral.IsOpen)
-
-                    if( GlobalVar.TicketWindowG == Guid.Empty)
-                    {
-                        var status = Environment.NewLine + "--------------------------------" + Environment.NewLine +
-                                     Resources.LabelCashBox + " : " + Config.NameTicket + Environment.NewLine +
-                                     Resources.LabelPost + " : " + Config.NumberTicket + Environment.NewLine +
-                                     Resources.LabelOpenedBy + " : " + Config.User + Environment.NewLine + Environment.NewLine +
-                                     "--------------------------------" + Environment.NewLine + Environment.NewLine +
-                                     Resources.LabelTotalOpeningKey + " : " + GlobalVar.TicketWindowG + Environment.NewLine + Environment.NewLine +
-                                     Resources.LabelLocalOpeningKey + " : " + GlobalVar.TicketWindow + Environment.NewLine;
-
-                        var window = new WOpenTicletG(status);
-                        window.ShowDialog();
-                    }
-
-                    if (GlobalVar.TicketWindow == Guid.Empty)
-                    {
-                      //  if (!RepositoryOpenTicketWindow.IsOpen)
+                        if (GlobalVar.TicketWindowG == Guid.Empty)
                         {
                             var status = Environment.NewLine + "--------------------------------" + Environment.NewLine +
                                          Resources.LabelCashBox + " : " + Config.NameTicket + Environment.NewLine +
                                          Resources.LabelPost + " : " + Config.NumberTicket + Environment.NewLine +
-                                         Resources.LabelOpenedBy + " : " + Config.User + Environment.NewLine + Environment.NewLine +
-                                         "--------------------------------" + Environment.NewLine +
-                                         Resources.LabelTotalOpeningKey + " : " + GlobalVar.TicketWindowG + Environment.NewLine +
-                                         Resources.LabelLocalOpeningKey + " : " + GlobalVar.TicketWindow + Environment.NewLine;
-                            var window = new WOpenTicket(status);
+                                         Resources.LabelOpenedBy + " : " + Config.User + Environment.NewLine +
+                                         Environment.NewLine +
+                                         "--------------------------------" + Environment.NewLine + Environment.NewLine +
+                                         Resources.LabelTotalOpeningKey + " : " + GlobalVar.TicketWindowG +
+                                         Environment.NewLine + Environment.NewLine +
+                                         Resources.LabelLocalOpeningKey + " : " + GlobalVar.TicketWindow +
+                                         Environment.NewLine;
+
+                            var window = new WOpenTicletG(status);
                             window.ShowDialog();
                         }
+
+                    if (GlobalVar.TicketWindow == Guid.Empty)
+                    {
+                        var status = Environment.NewLine + "--------------------------------" + Environment.NewLine +
+                                     Resources.LabelCashBox + " : " + Config.NameTicket + Environment.NewLine +
+                                     Resources.LabelPost + " : " + Config.NumberTicket + Environment.NewLine +
+                                     Resources.LabelOpenedBy + " : " + Config.User + Environment.NewLine +
+                                     Environment.NewLine +
+                                     "--------------------------------" + Environment.NewLine +
+                                     Resources.LabelTotalOpeningKey + " : " + GlobalVar.TicketWindowG +
+                                     Environment.NewLine +
+                                     Resources.LabelLocalOpeningKey + " : " + GlobalVar.TicketWindow +
+                                     Environment.NewLine;
+                        var window = new WOpenTicket(status);
+                        window.ShowDialog();
                     }
                 }
             }
-
-            if (!Config.IsUseServer || !SyncData.IsConnect)
-            {
-                GlobalVar.IsOpen = true;
-                RepositoryCheck.OpenTicket();
-            }
-
+            
             DotLiquidService.SetPath(0);
             DotLiquidService.SetPath(1);
             DotLiquidService.SetPath(2);

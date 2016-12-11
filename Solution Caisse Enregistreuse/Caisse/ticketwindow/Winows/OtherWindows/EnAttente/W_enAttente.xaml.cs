@@ -13,38 +13,31 @@ namespace TicketWindow.Winows.OtherWindows.EnAttente
     /// </summary>
     public partial class WEnAttente : Window
     {
-        private SyncPlusProductType _x;
+        private SyncPlusProductType _selectedSyncPlusProduct;
 
         public WEnAttente()
         {
             InitializeComponent();
             if (RepositorySyncPlus.SyncPluses.Count == 0) RepositorySyncPlus.Sync();
-
-            if (Global.Config.IsUseServer)
-                xcasse.DataContext = RepositorySyncPlus.SyncPluses;
-            else
-                xcasse.DataContext = RepositoryCheck.DocumentEnAttenete.GetXElements("checks", "check");
+            Xcasse.DataContext = RepositorySyncPlus.SyncPluses;
         }
 
         private void ListSelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
         {
-            var s = (SyncPlus)xcasse.SelectedItem;
-
-            xcheck.DataContext = RepositorySyncPlusProduct.GetByIdSyncPlus(s.CustomerId);
-
-            CollectionViewSource.GetDefaultView(xcheck.ItemsSource).Refresh();
+            var syncPlus = (SyncPlus)Xcasse.SelectedItem;
+            Xcheck.DataContext = RepositorySyncPlusProduct.GetByIdSyncPlus(syncPlus.CustomerId);
+            CollectionViewSource.GetDefaultView(Xcheck.ItemsSource).Refresh();
         }
 
         private void ButtonClick(object sender, RoutedEventArgs e)
         {
-            if (_x != null)
-            {
+            if (_selectedSyncPlusProduct != null)
                 foreach (Window window in Application.Current.Windows)
                 {
                     if (window.GetType() == typeof (MainWindow))
                     {
-                        CheckService.BufAddXElm(_x.Check.Element("check"));
-                        var dg = (window as MainWindow).GridProducts;
+                        CheckService.BufAddXElm(_selectedSyncPlusProduct.Check.Element("check"));
+                        var dg = ((MainWindow) window).GridProducts;
 
                         dg.DataContext = RepositoryCheck.DocumentProductCheck.Element("check");
 
@@ -52,18 +45,17 @@ namespace TicketWindow.Winows.OtherWindows.EnAttente
 
                         Close();
 
-                        CheckService.SaveEnAttenete(_x.CustomerId);
+                        CheckService.SaveEnAttenete(_selectedSyncPlusProduct.CustomerId);
                     }
                 }
-            }
         }
 
         private void XcheckSelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
         {
-            var s = (SyncPlusProductType)xcheck.SelectedItem;
-            _x = s;
-            listDetails.DataContext = s.Check.GetXElements("check", "product");
-            CollectionViewSource.GetDefaultView(listDetails.ItemsSource).Refresh();
+            var s = (SyncPlusProductType)Xcheck.SelectedItem;
+            _selectedSyncPlusProduct = s;
+            ListDetails.DataContext = s.Check.GetXElements("check", "product");
+            CollectionViewSource.GetDefaultView(ListDetails.ItemsSource).Refresh();
         }
 
         private void ButtonClick1(object sender, RoutedEventArgs e)

@@ -361,7 +361,7 @@ namespace TicketWindow.Services
 
         public static void EnAttenete()
         {
-            if (Config.IsUseServer) RepositorySyncPlusProduct.SetCheckToDb(RepositoryCheck.DocumentProductCheck);
+            RepositorySyncPlusProduct.SetCheck(RepositoryCheck.DocumentProductCheck);
             RepositoryCheck.DocumentProductCheck = null;
             CassieService.OpenProductsCheck();
         }
