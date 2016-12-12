@@ -1480,6 +1480,24 @@ namespace TicketWindow.Services
                             }
                             Effect(new WAddProduct());
                             break;
+                        case "Change Product":
+                            if (arg != null)
+                            {
+                                if (RepositoryTva.Tvases.Count == 0)
+                                {
+                                    MessageBox.Show("необходимо заполнить НДС.", "Предупреждение", MessageBoxButton.OK,
+                                        MessageBoxImage.Warning);
+                                    break;
+                                }
+                                if (RepositoryGroupProduct.GroupProducts.Count == 0)
+                                {
+                                    MessageBox.Show("Необходимо заполнить группы и подгруппы", "Предупреждение",
+                                        MessageBoxButton.OK, MessageBoxImage.Warning);
+                                    break;
+                                }
+                                Effect(new WAddProduct((ProductType) arg));
+                            }
+                            break;
                         case "Set Product":
                             SetProduct(sender, arg);
                             break;

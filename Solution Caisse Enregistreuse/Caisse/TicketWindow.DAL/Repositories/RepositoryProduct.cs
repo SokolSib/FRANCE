@@ -207,6 +207,11 @@ namespace TicketWindow.DAL.Repositories
         {
             UpdateInXml(product);
 
+            var updatedProduct = Products.FirstOrDefault(p => p.CustomerId == product.CustomerId);
+            var idx = Products.IndexOf(updatedProduct);
+            Products.RemoveAt(idx);
+            Products.Insert(idx, product);
+
             if (SyncData.IsConnect)
                 UpdateFromDb(product);
         }
@@ -262,7 +267,9 @@ namespace TicketWindow.DAL.Repositories
             var barCodeText = barCode.Trim();
             return
                 elements.Where(
-                    el => el.GetXElementValue("CodeBare").Length > barCodeText.Length && el.GetXElementValue("CodeBare").Trim().Substring(0, barCodeText.Length) == barCodeText);
+                    el =>
+                        el.GetXElementValue("CodeBare").Length >= barCodeText.Length &&
+                        el.GetXElementValue("CodeBare").Trim().Contains(barCodeText));
         }
 
         public static IEnumerable<XElement> FiltrXElementsByElementNameMinMax(IEnumerable<XElement> elements, string elementName, decimal min, decimal max)

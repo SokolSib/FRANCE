@@ -165,43 +165,56 @@ namespace TicketWindow.Services
             FunctionsService.WriteTotal();
         }
 
-        public static IEnumerable<XElement> ProductsFilter(WFindProduct wind)
+        public static List<ProductType> ProductsFilter(WFindProduct wind)
         {
-            var products = RepositoryProduct.Document.GetXElements("Product", "rec");
+            var products = RepositoryProduct.Products;
 
             if (wind.xName.Visibility == Visibility.Visible)
-                return RepositoryProduct.FiltrXElementsByName(products, wind.xName.Text);
+                //return RepositoryProduct.FiltrXElementsByName(products, wind.xName.Text);
+                products = products.Where(p => p.Name.Contains(wind.xName.Text.Trim())).ToList();
 
             if (wind.xCodeBar.Visibility == Visibility.Visible)
-                return RepositoryProduct.FiltrXElementsByBarCode(products, wind.xCodeBar.Text);
+                //return RepositoryProduct.FiltrXElementsByBarCode(products, wind.xCodeBar.Text);
+                products = products.Where(p => p.CodeBare.Contains(wind.xCodeBar.Text.Trim())).ToList();
 
             if (wind.spPrice.Visibility == Visibility.Visible)
-                return RepositoryProduct.FiltrXElementsByElementNameMinMax(products, "price", wind.xPricea.Text.ToDecimal(), wind.xPriceb.Text.ToDecimal());
+                //return RepositoryProduct.FiltrXElementsByElementNameMinMax(products, "price", wind.xPricea.Text.ToDecimal(), wind.xPriceb.Text.ToDecimal());
+                products = products.Where(p => p.Price==wind.xPricea.Text.ToDecimal()).ToList();
 
             if (wind.xTVA.Visibility == Visibility.Visible)
-                return RepositoryProduct.FiltrXElementsByElementName(products, "tva", wind.xTVA.Text);
+                //return RepositoryProduct.FiltrXElementsByElementName(products, "tva", wind.xTVA.Text);
+                products = products.Where(p => p.Tva.Value == wind.xTVA.Text.ToInt()).ToList();
 
             if (wind.spQTY.Visibility == Visibility.Visible)
-                return RepositoryProduct.FiltrXElementsByElementNameMinMax(products, "qty", wind.xQTYa.Text.ToDecimal(), wind.xQTYb.Text.ToDecimal());
+                //return RepositoryProduct.FiltrXElementsByElementNameMinMax(products, "qty", wind.xQTYa.Text.ToDecimal(), wind.xQTYb.Text.ToDecimal());
+                products = products.Where(p => p.Qty == wind.xTVA.Text.ToDecimal()).ToList();
 
             if (wind.xGroup.Visibility == Visibility.Visible)
-                return RepositoryProduct.FiltrXElementsByElementName(products, "grp", wind.xGroup.SelectedValue.ToString());
+                //return RepositoryProduct.FiltrXElementsByElementName(products, "grp", wind.xGroup.SelectedValue.ToString());
+                products =
+                    products.Where(p => p.SubGrpProduct.Group.Id == ((GroupProduct) wind.xGroup.SelectedItem).Id).ToList();
 
             if (wind.xSub_group.Visibility == Visibility.Visible)
-                return RepositoryProduct.FiltrXElementsByElementName(products, "sgrp", wind.xSub_group.SelectedValue.ToString());
+                //return RepositoryProduct.FiltrXElementsByElementName(products, "sgrp", wind.xSub_group.SelectedValue.ToString());
+                products =
+                    products.Where(p => p.SubGrpProduct.Id == ((SubGroupProduct)wind.xSub_group.SelectedItem).Id).ToList();
 
             if (!wind.xBalance.IsChecked ?? false)
-                return RepositoryProduct.FiltrXElementsByElementName(products, "balance", true.ToString());
+                //return RepositoryProduct.FiltrXElementsByElementName(products, "balance", true.ToString());
+                products = products.Where(p => p.Balance).ToList();
 
             if (wind.spContenance.Visibility == Visibility.Visible)
-                return RepositoryProduct.FiltrXElementsByElementNameMinMax(products, "contenance", wind.xContenancea.Text.ToDecimal(), wind.xContenanceb.Text.ToDecimal());
+                //return RepositoryProduct.FiltrXElementsByElementNameMinMax(products, "contenance", wind.xContenancea.Text.ToDecimal(), wind.xContenanceb.Text.ToDecimal());
+                products = products.Where(p => p.Contenance == wind.xContenancea.Text.ToDecimal()).ToList();
 
             if (wind.spUnit_contenance.Visibility == Visibility.Visible)
-                return RepositoryProduct.FiltrXElementsByElementNameMinMax(products, "uniteContenance", wind.xUnit_contenancea.Text.ToDecimal(),
-                    wind.xUnit_contenanceb.Text.ToDecimal());
+                //return RepositoryProduct.FiltrXElementsByElementNameMinMax(products, "uniteContenance", wind.xUnit_contenancea.Text.ToDecimal(),
+                //    wind.xUnit_contenanceb.Text.ToDecimal());
+                products = products.Where(p => p.UniteContenance== wind.xUnit_contenancea.Text.ToDecimal()).ToList();
 
             if (wind.spTare.Visibility == Visibility.Visible)
-                return RepositoryProduct.FiltrXElementsByElementNameMinMax(products, "tare", wind.xTarea.Text.ToDecimal(), wind.xTareb.Text.ToDecimal());
+                //return RepositoryProduct.FiltrXElementsByElementNameMinMax(products, "tare", wind.xTarea.Text.ToDecimal(), wind.xTareb.Text.ToDecimal());
+                products = products.Where(p => p.Tare == wind.xTarea.Text.ToDecimal()).ToList();
 
             return products;
         }

@@ -16,7 +16,9 @@ namespace TicketWindow.Winows.OtherWindows.Product.AddProduct
     /// </summary>
     public partial class WAddProduct : Window
     {
-        public WAddProduct()
+        public ProductType Product { get; }
+
+        public WAddProduct(ProductType product = null)
         {
             var windowProducts = ClassEtcFun.FindWindow("NameWGridProduct");
 
@@ -28,6 +30,27 @@ namespace TicketWindow.Winows.OtherWindows.Product.AddProduct
             InitializeComponent();
             TvaBox.ItemsSource = RepositoryTva.Tvases;
             GroupBox.ItemsSource = RepositoryGroupProduct.GroupProducts;
+
+            if (product != null)
+            {
+                Save.Content = Properties.Resources.BtnUpdate;
+                Product = product;
+                xName.Text = product.Name;
+                xCodeBar.Text = product.CodeBare;
+                xPrice.Text = $"{product.Price}";
+                TvaBox.SelectedItem = product.Tva;
+                xBalance.IsChecked = product.Balance;
+
+                var group =
+                    RepositoryGroupProduct.GroupProducts.FirstOrDefault(g => g.Id == product.SubGrpProduct.Group.Id);
+                GroupBox.SelectedItem = group;
+
+                if (group != null)
+                {
+                    SubgroupBox.ItemsSource = group.SubGroups;
+                    SubgroupBox.SelectedItem = group.SubGroups.FirstOrDefault(s => s.Id == product.SubGrpProduct.Id);
+                }
+            }
         }
 
         private string ValidTextBox(object sender)
@@ -45,27 +68,27 @@ namespace TicketWindow.Winows.OtherWindows.Product.AddProduct
                     case "xCodeBar":
                         try
                         {
-                            var x = (RepositoryProduct.GetXElementByBarcode(tb.Text));
+                            var x = RepositoryProduct.GetXElementByBarcode(tb.Text);
                             if ((x != null) || (tb.Text.Length < 0))
-                                if ((x.Element("CodeBare").Value == tb.Text))
-                                    listError = ("Code-barres EAN existe déjà");
+                                if (x != null && (x.Element("CodeBare").Value == tb.Text))
+                                    listError = "Code-barres EAN existe déjà";
                         }
                         catch
                         {
-                            listError = ("Code-barres EAN incorrect");
+                            listError = "Code-barres EAN incorrect";
                         }
                         break;
                     case "xName":
-                        var n = (RepositoryProduct.GetXElementByElementName("Name", tb.Text.Trim().ToUpper()));
+                        var n = RepositoryProduct.GetXElementByElementName("Name", tb.Text.Trim().ToUpper());
                         if (tb.Text.Length < 2)
                             try
                             {
-                                if ((n.GetXElementValue("Name") == tb.Text))
-                                    listError = ("Nom");
+                                if (n.GetXElementValue("Name") == tb.Text)
+                                    listError = "Nom";
                             }
                             catch
                             {
-                                listError = ("Ce Nom de produit existe déjà");
+                                listError = "Ce Nom de produit existe déjà";
                             }
                         break;
                     case "xPrice":
@@ -73,21 +96,23 @@ namespace TicketWindow.Winows.OtherWindows.Product.AddProduct
                     case "xContenance":
                         decimal decimalValue;
                         if (!decimal.TryParse(tb.Text.Replace(".", ","), out decimalValue))
-                            listError = (string.Format("{0} incorrect", name));
+                            listError = $"{name} incorrect";
                         break;
                     case "xUnit_contenance":
                     case "xTare":
                         int intValue;
                         if (!int.TryParse(tb.Text, out intValue))
-                            listError = (string.Format("{0} incorrect", name));
+                            listError = $"{name} incorrect";
                         break;
                 }
 
-                tb.Foreground = (listError != null)
+                tb.Foreground = listError != null
                     ? new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 0, 0))
                     : new SolidColorBrush(System.Windows.Media.Color.FromRgb(0, 255, 0));
 
-                ((Label) FindName("l" + tb.Name)).Foreground = tb.Foreground;
+                var findName = (Label) FindName("l" + tb.Name);
+                if (findName != null)
+                    findName.Foreground = tb.Foreground;
             }
 
             var comboBox = sender as ComboBox;
@@ -97,11 +122,13 @@ namespace TicketWindow.Winows.OtherWindows.Product.AddProduct
 
                 listError = cb.SelectedItem == null ? "the Cb not correct" : null;
 
-                cb.Foreground = (listError != null)
+                cb.Foreground = listError != null
                     ? new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 0, 0))
                     : new SolidColorBrush(System.Windows.Media.Color.FromRgb(0, 255, 0));
 
-                ((Label) FindName("l" + cb.Name)).Foreground = cb.Foreground;
+                var findName = (Label) FindName("l" + cb.Name);
+                if (findName != null)
+                    findName.Foreground = cb.Foreground;
             }
             return listError;
         }
@@ -136,12 +163,21 @@ namespace TicketWindow.Winows.OtherWindows.Product.AddProduct
                 tvaId = TvaBox.SelectedValue.ToString();
 
             var tva = RepositoryTva.Tvases.FirstOrDefault(t => t.Id == tvaId.ToInt());
+            var id = Product?.CustomerId ?? Guid.NewGuid();
+            var idStock = Product?.CusumerIdRealStock ?? Guid.NewGuid();
+            var desc = Product?.Desc ?? string.Empty;
+            var chpCat = Product?.ChpCat ?? 0;
+            var contenance = Product?.Contenance ?? 0;
+            var uniteContenance = Product?.UniteContenance ?? 0;
+            var tare = Product?.Tare ?? 0;
+            var productsWebCustomerId = Product?.ProductsWebCustomerId ?? Guid.NewGuid();
 
-            var p = new ProductType(Guid.NewGuid(), xName.Text, xCodeBar.Text, string.Empty, 0, xBalance.IsChecked ?? false,
-                0, 0, 0, DateTime.Now, tva != null ? tva.CustomerId : Guid.Empty, Guid.NewGuid(), SubgroupBox.SelectedValue.ToString().ToInt())
+            var p = new ProductType(id, xName.Text, xCodeBar.Text, desc, chpCat, xBalance.IsChecked ?? false,
+                        contenance, uniteContenance, tare, DateTime.Now, tva?.CustomerId ?? Guid.Empty,
+                        productsWebCustomerId, SubgroupBox.SelectedValue.ToString().ToInt())
                     {
                         Price = xPrice.Text.ToDecimal(),
-                        CusumerIdRealStock = Guid.NewGuid()
+                        CusumerIdRealStock = idStock
                     };
 
             return p;
@@ -153,7 +189,7 @@ namespace TicketWindow.Winows.OtherWindows.Product.AddProduct
             foreach (Window window in Application.Current.Windows)
             {
                 if (window.GetType() == typeof (WGridProduct))
-                    returnValue = (window as WGridProduct);
+                    returnValue = window as WGridProduct;
             }
             return returnValue;
         }
@@ -161,15 +197,27 @@ namespace TicketWindow.Winows.OtherWindows.Product.AddProduct
         private void AddElm()
         {
             RepositoryProduct.Add(FormToVar());
-            var dg = (GetParents()).DataGrid;
+            var dg = GetParents().DataGrid;
             Close();
+            CollectionViewSource.GetDefaultView(dg.ItemsSource).Refresh();
+        }
+        
+        private void EditElm()
+        {
+            var product = FormToVar();
+            RepositoryProduct.Update(product);
+            RepositoryProduct.UpdateProductPrice(product);
+            var dg = GetParents().DataGrid;
+            Close();
+            dg.ItemsSource = RepositoryProduct.Products;
             CollectionViewSource.GetDefaultView(dg.ItemsSource).Refresh();
         }
 
         private void ButtonClick(object sender, RoutedEventArgs e)
         {
             if (IsValidTextBox())
-                AddElm();
+                if (Product == null) AddElm();
+                else EditElm();
         }
 
         private void CancelClick(object sender, RoutedEventArgs e)
