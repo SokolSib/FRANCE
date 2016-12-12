@@ -102,8 +102,8 @@ namespace TicketWindow.DAL.Repositories
 
         private static void SetStockReals(IEnumerable<ProductType> products)
         {
-            foreach (var product in products)
-                SetStockReal(product);
+            //foreach (var product in products)
+            //    SetStockReal(product);
         }
 
         private static void SetStockReal(ProductType product)
@@ -196,7 +196,9 @@ namespace TicketWindow.DAL.Repositories
         public static void Update(ProductType product)
         {
             UpdateInXml(product);
-            UpdateFromDb(product);
+
+            if (SyncData.IsConnect)
+                UpdateFromDb(product);
         }
 
         public static void UpdateInXml(ProductType product)

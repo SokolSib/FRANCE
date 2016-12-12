@@ -50,6 +50,8 @@ namespace TicketWindow.DAL.Repositories
         {
             if (File.Exists(Path))
             {
+                if (Document == null) Document = XDocument.Load(Path);
+
                 Document.GetXAttribute("checks", "closeDate").Value = DateTime.Now.ToString(Config.DateFormat);
 
                 var checkElement = Document.GetXElementOrNull("checks", "check");
