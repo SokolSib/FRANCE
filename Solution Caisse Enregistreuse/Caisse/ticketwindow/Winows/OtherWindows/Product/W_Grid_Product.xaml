@@ -1,10 +1,10 @@
 ﻿<Window x:Class="TicketWindow.Winows.OtherWindows.Product.WGridProduct"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:WPFTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
-        xmlns:Properties="clr-namespace:TicketWindow.Properties"
+        xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
+        xmlns:properties="clr-namespace:TicketWindow.Properties"
         Background="#333" FontSize="18" Title="W_Grid_Product" Height="768" Width="1024" WindowStyle="None"  WindowState="Maximized" Name="NameWGridProduct">
-    <WPFTool:BusyIndicator x:Name="BusyIndicator">
+    <wpfTool:BusyIndicator x:Name="BusyIndicator">
 
         <Grid Height="768" Width="1024">
             <Grid.RowDefinitions>
@@ -19,21 +19,21 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>              
                 
-                <Button x:Name="xSet" Click="AddClick" ToolTip="Set Product" Foreground="Yellow" FontSize="25" FontWeight="Bold" Content="{x:Static Properties:Resources.BtnAdd}"/>
-                <Button Grid.Column="1" x:Name="xFind" Click="AddClick" ToolTip="Find Product" Foreground="Blue" FontSize="25" FontWeight="Bold" Content="{x:Static Properties:Resources.BtnSearch}" />
-                <Button Grid.Column="2" x:Name="xClose" Click="CloseClick" Foreground="Red" FontSize="25" FontWeight="Bold" Content="{x:Static Properties:Resources.BtnClose}"/>
+                <Button x:Name="XSet" Click="AddClick" Tag="Set Product" Foreground="Yellow" FontSize="25" FontWeight="Bold" Content="{x:Static properties:Resources.BtnAdd}"/>
+                <Button Grid.Column="1" x:Name="XFind" Click="AddClick" Tag="Find Product" Foreground="Blue" FontSize="25" FontWeight="Bold" Content="{x:Static properties:Resources.BtnSearch}" />
+                <Button Grid.Column="2" x:Name="XClose" Click="CloseClick" Foreground="Red" FontSize="25" FontWeight="Bold" Content="{x:Static properties:Resources.BtnClose}"/>
             </Grid>
             <DataGrid Grid.Row="1" AutoGenerateColumns="False"  x:Name="DataGrid" IsReadOnly="True"  VerticalAlignment="Top"  HorizontalAlignment="Stretch" >
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="{x:Static Properties:Resources.LabelBarcode}" Width="120"                  Binding="{Binding CodeBare}"/>
-                    <DataGridTextColumn Header="{x:Static Properties:Resources.LabelName}" Width="*"                         Binding="{Binding Name}"/>
-                    <DataGridTextColumn Header="{x:Static Properties:Resources.LabelPrice}" Width="80"                       Binding="{Binding Price}" />
-                    <DataGridTextColumn Header="{x:Static Properties:Resources.LabelStock}" Width="70"                       Binding="{Binding Qty}" />
-                    <DataGridTextColumn Header="{x:Static Properties:Resources.LabelVat}" Width="70"                         Binding="{Binding Tva}" />
-                    <DataGridTextColumn Header="{x:Static Properties:Resources.LabelB}" Width="50"                           Binding="{Binding Balance}" />
-                    <DataGridTextColumn Visibility="Hidden" Header="{x:Static Properties:Resources.LabelContenance}"         Binding="{Binding contenance}" />
-                    <DataGridTextColumn Visibility="Hidden" Header="{x:Static Properties:Resources.LabelUnitContenance}"    Binding="{Binding uniteContenance}" />
-                    <DataGridTextColumn Visibility="Hidden" Header="{x:Static Properties:Resources.LabelTare}"               Binding="{Binding tare}" />
+                    <DataGridTextColumn Header="{x:Static properties:Resources.LabelBarcode}" Width="120"                  Binding="{Binding CodeBare}"/>
+                    <DataGridTextColumn Header="{x:Static properties:Resources.LabelName}" Width="*"                         Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="{x:Static properties:Resources.LabelPrice}" Width="80"                       Binding="{Binding Price}" />
+                    <DataGridTextColumn Header="{x:Static properties:Resources.LabelStock}" Width="70"                       Binding="{Binding Qty}" />
+                    <DataGridTextColumn Header="{x:Static properties:Resources.LabelVat}" Width="70"                         Binding="{Binding Tva}" />
+                    <DataGridTextColumn Header="{x:Static properties:Resources.LabelB}" Width="50"                           Binding="{Binding Balance}" />
+                    <DataGridTextColumn Visibility="Hidden" Header="{x:Static properties:Resources.LabelContenance}"         Binding="{Binding contenance}" />
+                    <DataGridTextColumn Visibility="Hidden" Header="{x:Static properties:Resources.LabelUnitContenance}"    Binding="{Binding uniteContenance}" />
+                    <DataGridTextColumn Visibility="Hidden" Header="{x:Static properties:Resources.LabelTare}"               Binding="{Binding tare}" />
                 </DataGrid.Columns>
             </DataGrid>
 
@@ -43,10 +43,10 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="xAdd" Click="AddClick" ToolTip="Add Product" Grid.ColumnSpan="2" Margin="0,0,173,0" Content="{x:Static Properties:Resources.BtnNew}" />
-                <Button Grid.Column="1" x:Name="xСhange" Click="AddClick" ToolTip="Change Product" Grid.ColumnSpan="2" Margin="169,0,0,0" Content="{x:Static Properties:Resources.BtnRedact}" />
+                <Button x:Name="XAdd" Click="AddClick" Tag="Add Product" Grid.ColumnSpan="2" Margin="0,0,173,0" Content="{x:Static properties:Resources.BtnNew}" />
+                <Button Grid.Column="1" x:Name="XСhange" Click="AddClick" Tag="Change Product" Grid.ColumnSpan="2" Margin="169,0,0,0" Content="{x:Static properties:Resources.BtnRedact}" />
                 <!--<Button Grid.Column="2" x:Name="xRemove" Click="Add_Click" ToolTip="Remove Product" >Supprimer</Button>-->
             </Grid>
         </Grid>
-    </WPFTool:BusyIndicator>
+    </wpfTool:BusyIndicator>
 </Window>

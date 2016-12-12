@@ -15,140 +15,135 @@ namespace TicketWindow.Winows.OtherWindows.Product.FindProduct
         public WFindProduct()
         {
             InitializeComponent();
-
         }
 
-        private string ValidTextBox(object sender)
+        private void ValidTextBox(object sender)
         {
             string listError = null;
 
-            TextBox tb = ((TextBox)sender);
+            var tb = ((TextBox)sender);
 
             if (tb.Visibility == Visibility.Visible)
             {
+                decimal d;
                 switch (tb.Name)
                 {
                     case "xCodeBar":
                         try
                         {
-
                             if (tb.Text.Length < 0)
-                                listError = ("the CodeBare is not correct");
+                                listError = "the CodeBare is not correct";
                         }
                         catch
                         {
-                            listError = ("the CodeBare is not correct");
+                            listError = "the CodeBare is not correct";
                         }
                         break;
                     case "xName":
-                        //   XElement x = (Class.ClassProducts.findName(tb.Text));
-                        //     if (((x != null) && (tb.Text.Length < 2)))
-
-                        //        if (x.Element("name").Value == tb.Text)
                         if (tb.Text.TrimEnd().Length == 0)
-                            listError = ("the Name is not correct");
+                            listError = "the Name is not correct";
                         break;
                     case "xPricea":
                         try
                         {
-                            decimal d = decimal.Parse(tb.Text);
+                            d = decimal.Parse(tb.Text);
                         }
                         catch
                         {
-                            listError = ("the Price is not correct");
+                            listError = "the Price is not correct";
                         }
                         break;
                     case "xPriceb":
                         try
                         {
-                            decimal d = decimal.Parse(tb.Text);
+                            d = decimal.Parse(tb.Text);
                         }
                         catch
                         {
-                            listError = ("the Price is not correct");
+                            listError = "the Price is not correct";
                         }
                         break;
                     case "xQTYa":
                         try
                         {
-                            decimal d = decimal.Parse(tb.Text);
+                            d = decimal.Parse(tb.Text);
                         }
                         catch
                         {
-                            listError = ("the QTY is not correct");
+                            listError = "the QTY is not correct";
                         }
                         break;
                       
                     case "xQTYb":
                         try
                         {
-                            decimal d = decimal.Parse(tb.Text);
+                            d = decimal.Parse(tb.Text);
                         }
                         catch
                         {
-                            listError = ("the QTY is not correct");
+                            listError = "the QTY is not correct";
                         }
                         break;
                     case "xUnit_contenancea":
                         try
                         {
-                            decimal d = decimal.Parse(tb.Text);
+                            d = decimal.Parse(tb.Text);
                         }
                         catch
                         {
-                            listError = ("the xUnit_contenance is not correct");
+                            listError = "the xUnit_contenance is not correct";
                         }
                         break;
                     case "xUnit_contenanceb":
                         try
                         {
-                            decimal d = decimal.Parse(tb.Text);
+                            d = decimal.Parse(tb.Text);
                         }
                         catch
                         {
-                            listError = ("the xUnit_contenance is not correct");
+                            listError = "the xUnit_contenance is not correct";
                         }
                         break;
 
                     case "xContenancea":
                         try
                         {
-                            decimal d = decimal.Parse(tb.Text);
+                            d = decimal.Parse(tb.Text);
                         }
                         catch
                         {
-                            listError = ("the xContenance is not correct");
+                            listError = "the xContenance is not correct";
                         }
                         break;
                     case "xContenanceb":
                         try
                         {
-                            decimal d = decimal.Parse(tb.Text);
+                            d = decimal.Parse(tb.Text);
                         }
                         catch
                         {
-                            listError = ("the xContenance is not correct");
+                            listError = "the xContenance is not correct";
                         }
                         break;
 
                     case "xTarea":
                         try
                         {
-                            decimal d = decimal.Parse(tb.Text);
+                            d = decimal.Parse(tb.Text);
                         }
                         catch
                         {
-                            listError = ("the xTare is not correct");
+                            listError = "the xTare is not correct";
                         }
                         break;
                     case "xTareb":
                         try
                         {
-                            decimal d = decimal.Parse(tb.Text);
+                            d = decimal.Parse(tb.Text);
                         }
                         catch
                         {
-                            listError = ("the xTare is not correct");
+                            listError = "the xTare is not correct";
                         }
                         break;
                 }
@@ -156,9 +151,10 @@ namespace TicketWindow.Winows.OtherWindows.Product.FindProduct
                     new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 0, 0)) :
                     new SolidColorBrush(System.Windows.Media.Color.FromRgb(0, 255, 0));
 
-                ((Label)this.FindName("l" + tb.Name)).Foreground = tb.Foreground;
+                var findName = (Label)FindName("l" + tb.Name);
+                if (findName != null)
+                    findName.Foreground = tb.Foreground;
             }
-            return listError;
         }
 
         private void _LostFocus(object sender, RoutedEventArgs e)
@@ -168,7 +164,7 @@ namespace TicketWindow.Winows.OtherWindows.Product.FindProduct
 
         private void XBalanceClick(object sender, RoutedEventArgs e)
         {
-            Visibility v = ((xBalance.IsChecked ?? false) ? Visibility.Collapsed : Visibility.Visible);
+            var v = (xBalance.IsChecked ?? false) ? Visibility.Collapsed : Visibility.Visible;
             spContenance.Visibility = v;
             spUnit_contenance.Visibility = v;
             spTare.Visibility = v;
@@ -180,9 +176,13 @@ namespace TicketWindow.Winows.OtherWindows.Product.FindProduct
         
         private void ModifElm()
         {
-            DataGrid dg = (Owner as WGridProduct).DataGrid;
-            dg.ItemsSource = CassieService.ProductsFilter(this);
-            CollectionViewSource.GetDefaultView(dg.ItemsSource).Refresh();
+            var wGridProduct = Owner as WGridProduct;
+            if (wGridProduct != null)
+            {
+                var dg = wGridProduct.DataGrid;
+                dg.ItemsSource = CassieService.ProductsFilter(this);
+                CollectionViewSource.GetDefaultView(dg.ItemsSource).Refresh();
+            }
             Close();
         }
 
@@ -193,7 +193,7 @@ namespace TicketWindow.Winows.OtherWindows.Product.FindProduct
 
         private void TgbClick(object sender, RoutedEventArgs e)
         {
-            var b = ((ToggleButton)sender);
+            var b = (ToggleButton)sender;
             switch (b.Name)
             {
                 case "tgbCodeBar": xCodeBar.Visibility = b.IsChecked != true ? Visibility.Hidden : Visibility.Visible; break;

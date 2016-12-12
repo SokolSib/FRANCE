@@ -19,11 +19,7 @@ namespace TicketWindow.Winows.OtherWindows.Product
 
         private void AddClick(object sender, RoutedEventArgs e)
         {
-            var selected = (ProductType) DataGrid.SelectedItem;
-            var toolTip = ((Button) sender).ToolTip.ToString();
-
-            if (toolTip == "Add Product" || toolTip == "Find Product")
-                FunctionsService.Click(sender, selected);
+            FunctionsService.Click(sender, (ProductType) DataGrid.SelectedItem);
         }
 
         private void CloseClick(object sender, RoutedEventArgs e)

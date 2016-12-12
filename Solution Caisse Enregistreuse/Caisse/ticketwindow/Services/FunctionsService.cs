@@ -516,8 +516,7 @@ namespace TicketWindow.Services
 
         private static void ShowGridProduct()
         {
-            var gp = new WGridProduct();
-            Effect(gp);
+            Effect(new WGridProduct());
         }
 
         private static void ShowReturn()
@@ -569,24 +568,18 @@ namespace TicketWindow.Services
 
         private static void ShowFindProduct(object sender)
         {
-            var w = new WFindProduct
-                    {
-                        Owner = (Window.GetWindow((Button) sender) as WGridProduct)
-                    };
-
-            Effect(w);
+            Effect(new WFindProduct {Owner = Window.GetWindow((Button) sender) as WGridProduct});
         }
 
         private static void SetProduct(object sender, object arg)
         {
-            var wp = ClassEtcFun.GetParents(((Button) sender), 0) as WGridProduct;
+            var windowProducts = ClassEtcFun.GetParents((Button) sender, 0) as WGridProduct;
 
-            if (wp != null)
+            if (windowProducts != null)
             {
-                var x = (XElement) arg;
-                if (x != null)
-                    CheckService.AddProductCheck(x, GetQty(MainAppWindow.qty_label));
-                wp.Close();
+                var product = (ProductType) arg;
+                CheckService.AddProductCheck(product, GetQty(MainAppWindow.qty_label));
+                windowProducts.Close();
             }
         }
 
