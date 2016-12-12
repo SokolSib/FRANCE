@@ -23,7 +23,7 @@ namespace TicketWindow.DAL.Repositories
 
         private static void SetFromDb()
         {
-            const string whereCondition = @" WHERE Establishment_CustomerId = @IdEstablishment OR Establishment_CustomerId = @IdEstablishmentGros";
+            const string whereCondition = " WHERE Establishment_CustomerId = @IdEstablishment OR Establishment_CustomerId = @IdEstablishmentGros";
 
             using (var connection = ConnectionFactory.CreateConnection())
                 StockReals = connection.Query<StockReal>(SelectQuery + whereCondition, new {Config.IdEstablishment, Config.IdEstablishmentGros}).ToList();
@@ -67,14 +67,46 @@ namespace TicketWindow.DAL.Repositories
             stockReal.Qty += qty;
 
             var document = XDocument.Load(Path);
-            var element = document.GetXElements("StockReals", "rec").First(el => el.GetXElementValue("CustomerId").ToGuid() == customerId);
+            var element =
+                document.GetXElements("StockReals", "rec")
+                    .First(el => el.GetXElementValue("CustomerId").ToGuid() == customerId);
             StockReal.SetXmlValues(element, stockReal);
             document.Save(Path);
 
-            const string query = "UPDATE StockReal SET QTY = @Qty WHERE CustomerId = @customerId";
+            if (SyncData.IsConnect)
+            {
+                const string query = "UPDATE StockReal SET QTY = @Qty WHERE CustomerId = @customerId";
 
-            using (var connection = ConnectionFactory.CreateConnection())
-                connection.Execute(query, new {stockReal.Qty, customerId});
+                using (var connection = ConnectionFactory.CreateConnection())
+                    connection.Execute(query, new {stockReal.Qty, customerId});
+            }
+        }
+
+        public static StockReal GetByProduct(ProductType product)
+        {
+            return StockReals.FirstOrDefault(s =>
+                        (s.ProductsCustomerId == product.CustomerId) &&
+                        ((s.IdEstablishment == Config.IdEstablishment) ||
+                         s.IdEstablishment == Config.IdEstablishmentGros));
+        }
+
+        public static void UpdatePrice(StockReal stockReal, decimal price)
+        {
+            stockReal.Price = price;
+
+            var document = XDocument.Load(Path);
+            var element = document.GetXElements("StockReals", "rec")
+                    .First(el => el.GetXElementValue("CustomerId").ToGuid() == stockReal.CustomerId);
+            StockReal.SetXmlValues(element, stockReal);
+            document.Save(Path);
+
+            if (SyncData.IsConnect)
+            {
+                const string query = "UPDATE StockReal SET Price = @Price WHERE CustomerId = @CustomerId";
+
+                using (var connection = ConnectionFactory.CreateConnection())
+                    connection.Execute(query, new { stockReal.Price, stockReal.CustomerId });
+            }
         }
 
         public static void UpdateProductCountByEstablishment(decimal qty, Guid establishmentCustomerId, Guid productsCustomerId)

@@ -12,22 +12,24 @@ namespace TicketWindow.Winows.OtherWindows.Divers
     /// </summary>
     public partial class WModifierPrix : Window
     {
-        public object Product;
+        public ProductType Product { get; }
 
-        public WModifierPrix(object product)
+        public decimal Price => !string.IsNullOrEmpty(XValue.Text) ? decimal.Parse(XValue.Text) : 0;
+
+        public WModifierPrix(ProductType product)
         {
             InitializeComponent();
-            Product = product ;
+            Product = product;
         }
-
 
         private void WindowLoaded(object sender, RoutedEventArgs e)
         {
-            xValue.Text = ((ProductType) Product).Price.ToString();
-            xNameProduct.Text = ((ProductType) Product).Name;
-            numPad.TextBox = xValue;
-            numPad.BEnter = xEnter;
+            XValue.Text = $"{Product.Price}";
+            XNameProduct.Text = Product.Name;
+            NumPad.TextBox = XValue;
+            NumPad.BEnter = XEnter;
         }
+
         private void XEnterClick(object sender, RoutedEventArgs e)
         {
             FunctionsService.Click(sender);
@@ -35,14 +37,16 @@ namespace TicketWindow.Winows.OtherWindows.Divers
 
         private void ButtonClick(object sender, RoutedEventArgs e)
         {
-            if (((ProductType) Product).Price == 0.0m)
+            if (Product.Price == 0.0m)
             {
                 var window = ClassEtcFun.FindWindow("MainWindow_") as MainWindow;
-                var dg = window.GridProducts;
-                var selected = (XElement)dg.SelectedItem;
-                if (selected != null)
-                    CheckService.DelProductCheck(selected.GetXElementValue("ii").ToInt());
-                
+                if (window != null)
+                {
+                    var dataGrid = window.GridProducts;
+                    var selected = (XElement)dataGrid.SelectedItem;
+                    if (selected != null)
+                        CheckService.DelProductCheck(selected.GetXElementValue("ii").ToInt());
+                }
             }
             Close();
         }

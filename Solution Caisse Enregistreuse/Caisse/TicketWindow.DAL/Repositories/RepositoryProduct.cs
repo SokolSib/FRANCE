@@ -102,8 +102,8 @@ namespace TicketWindow.DAL.Repositories
 
         private static void SetStockReals(IEnumerable<ProductType> products)
         {
-            //foreach (var product in products)
-            //    SetStockReal(product);
+            foreach (var product in products)
+                SetStockReal(product);
         }
 
         private static void SetStockReal(ProductType product)
@@ -193,6 +193,16 @@ namespace TicketWindow.DAL.Repositories
             RepositoryLastUpdate.Update(true);
         }
 
+        public static void UpdateProductPrice(ProductType product)
+        {
+            Update(product);
+
+            var stockReal = RepositoryStockReal.GetByProduct(product);
+
+            if (stockReal != null)
+                RepositoryStockReal.UpdatePrice(stockReal, product.Price);
+        }
+
         public static void Update(ProductType product)
         {
             UpdateInXml(product);
@@ -257,7 +267,7 @@ namespace TicketWindow.DAL.Repositories
 
         public static IEnumerable<XElement> FiltrXElementsByElementNameMinMax(IEnumerable<XElement> elements, string elementName, decimal min, decimal max)
         {
-            return elements.Where(el => (el.GetXElementValue(elementName).ToDecimal() >= min && el.GetXElementValue(elementName).ToDecimal() <= max));
+            return elements.Where(el => el.GetXElementValue(elementName).ToDecimal() >= min && el.GetXElementValue(elementName).ToDecimal() <= max);
         }
 
         private static void DeleteFromDb(ProductType product)
@@ -310,8 +320,8 @@ namespace TicketWindow.DAL.Repositories
                 else if (sr1 == null || sr2 == null)
                     LogService.Log(TraceLevel.Error, 322);
 
-                var sr1Id = sr1 != null ? sr1.CustomerId : Guid.Empty;
-                var sr2Id = sr2 != null ? sr2.CustomerId : Guid.Empty;
+                var sr1Id = sr1?.CustomerId ?? Guid.Empty;
+                var sr2Id = sr2?.CustomerId ?? Guid.Empty;
                 foreach (var sr in stockReals.Where(sr => sr.CustomerId != sr1Id && sr.CustomerId != sr2Id))
                     RepositoryStockReal.DeleteById(sr.CustomerId);
 
@@ -409,11 +419,9 @@ namespace TicketWindow.DAL.Repositories
             RepositoryProductBc.Sync();
 
             if (SyncData.IsConnect)
-            {
                 if (GetAbCountFromDb() > 1000 || Config.FromLoadSyncAll || !GlobalVar.IsOpen)
                     Config.FromLoadSyncAll = false;
                 else SyncSingleProduct();
-            }
             else
             {
                 Sync();

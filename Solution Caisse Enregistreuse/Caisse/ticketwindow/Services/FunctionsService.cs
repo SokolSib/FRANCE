@@ -1367,18 +1367,18 @@ namespace TicketWindow.Services
         {
             if (RepositoryCheck.C == null)
             {
-                var w = (Window.GetWindow((Button) sender) as MainWindow);
+                var mainWindow = Window.GetWindow((Button) sender) as MainWindow;
 
-                XElement x;
+                XElement xElement;
 
-                if (w != null)
-                    x = w.GridProducts.SelectedItem as XElement;
+                if (mainWindow != null)
+                    xElement = mainWindow.GridProducts.SelectedItem as XElement;
                 else
-                    x = ((MainWindow) ClassEtcFun.FindWindow("MainWindow_")).GridProducts.SelectedItem as XElement;
+                    xElement = ((MainWindow) ClassEtcFun.FindWindow("MainWindow_")).GridProducts.SelectedItem as XElement;
 
-                if (x != null)
+                if (xElement != null)
                 {
-                    var wp = new WModifierPrix(ProductType.FromXElement(x)) {Owner = w};
+                    var wp = new WModifierPrix(ProductType.FromXElement(xElement)) {Owner = mainWindow };
                     Effect(wp);
                 }
             }
@@ -1388,26 +1388,23 @@ namespace TicketWindow.Services
 
         private static void ClickModifierPrix(object sender, bool flag)
         {
-            var w = (Window.GetWindow((Button) sender) as WModifierPrix);
+            var window = Window.GetWindow((Button) sender) as WModifierPrix;
 
-            decimal d;
-
-            if (decimal.TryParse(w.xValue.Text.Replace(".", ","), out d))
+            if (window != null)
             {
-                var product = w.Product as ProductType;
-                product.Price = d;
-                product.Name = w.xNameProduct.Text;
+                window.Product.Price = window.Price;
+                window.Product.Name = window.XNameProduct.Text;
 
-                if (flag) RepositoryProduct.Update(product);
+                if (flag) RepositoryProduct.UpdateProductPrice(window.Product);
 
-                if (product.Price != 0)
-                    CheckService.ModifProductCheck(product.Ii, product.Price, product.Name, product.Qty);
-                else CheckService.DelProductCheck(product.Ii);
+                if (window.Product.Price != 0)
+                    CheckService.ModifProductCheck(window.Product.Ii, window.Product.Price, window.Product.Name, window.Product.Qty);
+                else CheckService.DelProductCheck(window.Product.Ii);
 
                 WriteTotal();
+            
+                window.Close();
             }
-
-            w.Close();
         }
 
         private static void SetBarCode(object sender)
