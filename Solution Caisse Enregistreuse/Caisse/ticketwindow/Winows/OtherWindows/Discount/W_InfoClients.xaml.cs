@@ -26,35 +26,40 @@ namespace TicketWindow.Winows.OtherWindows.Discount
         {
             if (e.Key == Key.Return)
             {
-                var d = RepositoryDiscountCard.GetOneByNumber(ebarcode.Text);
+                var discountCard = RepositoryDiscountCard.GetOneByNumber(ebarcode.Text);
 
-                var ic = RepositoryDiscount.GetInfClt(d.InfoClientsCustomerId);
-                if (ic != null)
+                if (discountCard != null)
                 {
-                    lTypeClient.Content = ic.TypeClient;
-                    lName.Content = ic.Name;
-                    lSurname.Content = ic.Surname;
-                    lNameCompany.Content = ic.NameCompany;
-                    lSIRET.Content = ic.Siret;
-                    lFRTVA.Content = ic.Frtva;
-                    lOfficeAddress.Content = ic.OfficeAddress;
-                    lOfficeZipCode.Content = ic.OfficeZipCode;
-                    lOfficeCity.Content = ic.OfficeCity;
-                    lHomeAddress.Content = ic.HomeAddress;
-                    lHomeZipCode.Content = ic.HomeZipCode;
-                    lHomeCity.Content = ic.HomeCity;
-                    lTelephone.Content = ic.Telephone;
-                    lMail.Content = ic.Mail;
-                    lnumberCard.Content = ic.DiscountCards.First().NumberCard;
-                    lpoints.Content = ic.DiscountCards.First().Points;
-                    lActive.Content = ic.DiscountCards.First().IsActive;
+                    var ic = RepositoryDiscount.GetInfClt(discountCard.InfoClientsCustomerId);
+                    if (ic != null)
+                    {
+                        lTypeClient.Content = ic.TypeClient;
+                        lName.Content = ic.Name;
+                        lSurname.Content = ic.Surname;
+                        lNameCompany.Content = ic.NameCompany;
+                        lSIRET.Content = ic.Siret;
+                        lFRTVA.Content = ic.Frtva;
+                        lOfficeAddress.Content = ic.OfficeAddress;
+                        lOfficeZipCode.Content = ic.OfficeZipCode;
+                        lOfficeCity.Content = ic.OfficeCity;
+                        lHomeAddress.Content = ic.HomeAddress;
+                        lHomeZipCode.Content = ic.HomeZipCode;
+                        lHomeCity.Content = ic.HomeCity;
+                        lTelephone.Content = ic.Telephone;
+                        lMail.Content = ic.Mail;
+                        lnumberCard.Content = ic.DiscountCards.First().NumberCard;
+                        lpoints.Content = ic.DiscountCards.First().Points;
+                        lActive.Content = ic.DiscountCards.First().IsActive;
+                    }
                 }
                 else
-                {
                     foreach (var la in ClassEtcFun.FindVisualChildren<Label>(this))
+                    {
                         la.Content = "Не найден";
-                }
+                        break;
+                    }
                 ebarcode.Text = "";
+                
             }
         }
 
