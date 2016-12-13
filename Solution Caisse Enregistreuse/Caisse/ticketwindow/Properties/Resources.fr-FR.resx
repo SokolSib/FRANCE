@@ -955,4 +955,12 @@
     <value>Synchronisation en cours, a quitté plus tard</value>
     <comment>надпись процесс синхронизации</comment>
   </data>
+  <data name="LabelWriteOff" xml:space="preserve">
+    <value>Radiation</value>
+    <comment>надпись списание</comment>
+  </data>
+  <data name="PermissionWriteOff" xml:space="preserve">
+    <value>Radiation</value>
+    <comment>разрешение на списание</comment>
+  </data>
 </root>

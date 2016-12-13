@@ -63,6 +63,7 @@
     <Compile Include="Models\Base\PayTicketBase.cs" />
     <Compile Include="Models\CheckTicket.cs" />
     <Compile Include="Models\CheckTicketTmp.cs" />
+    <Compile Include="Models\WriteOffType.cs" />
     <Compile Include="Models\Pro.cs" />
     <Compile Include="Models\ClientInfo.cs" />
     <Compile Include="Models\CloseTicketCheckDiscount.cs" />
@@ -145,6 +146,7 @@
     <Compile Include="Repositories\RepositorySyncPlus.cs" />
     <Compile Include="Repositories\RepositorySyncPlusProduct.cs" />
     <Compile Include="Repositories\RepositoryTes.cs" />
+    <Compile Include="Repositories\RepositoryWriteOff.cs" />
     <Compile Include="Repositories\RepositoryTva.cs" />
     <Compile Include="Repositories\RepositoryTypePay.cs" />
     <Compile Include="Repositories\RepositoryXmlFile.cs" />

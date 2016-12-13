@@ -1179,6 +1179,29 @@ namespace TicketWindow.Services
             }
         }
 
+        private static void WriteOff()
+        {
+            foreach (Window window in Application.Current.Windows)
+            {
+                if (window.GetType() == typeof(MainWindow))
+                {
+                    var dg = MainAppWindow.GridProducts;
+                    if (dg.Items.Count > 0)
+                    {
+                        var date = DateTime.Now;
+                        foreach (var item in dg.SelectedItems.Cast<XElement>())
+                        {
+                            var id = item.GetXElementValue("CustomerId").ToGuid();
+                            var count = item.GetXElementValue("qty").ToDecimal();
+                            var product = RepositoryProduct.Products.FirstOrDefault(p => p.CustomerId == id);
+                            if (product != null)
+                                RepositoryProduct.WriteOffProductCount(product, count, date);
+                        }
+                    }
+                }
+            }
+        }
+
         private static void ShowClosingCash()
         {
             var countBufCheck = RepositoryCheck.GetCountOfProductInCheckFromBuf() + RepositoryCheck.GetCountOfProductInCheckFromEnAttenete();
@@ -1534,6 +1557,9 @@ namespace TicketWindow.Services
                             break;
                         case "currencyClear":
                             ClickClearCurrency(sender);
+                            break;
+                        case "WriteOff":
+                            WriteOff();
                             break;
                         case "click_ok_Currency":
                             ClickOkCurrency(sender);

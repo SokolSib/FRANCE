@@ -109,6 +109,25 @@ namespace TicketWindow.DAL.Repositories
             }
         }
 
+        public static void RemoveProductCount(StockReal stockReal, decimal count)
+        {
+            stockReal.Qty -= count;
+
+            var document = XDocument.Load(Path);
+            var element = document.GetXElements("StockReals", "rec")
+                    .First(el => el.GetXElementValue("CustomerId").ToGuid() == stockReal.CustomerId);
+            StockReal.SetXmlValues(element, stockReal);
+            document.Save(Path);
+
+            if (SyncData.IsConnect)
+            {
+                const string query = "UPDATE StockReal SET Price = @Price WHERE Qty = @count";
+
+                using (var connection = ConnectionFactory.CreateConnection())
+                    connection.Execute(query, new { count, stockReal.CustomerId });
+            }
+        }
+
         public static void UpdateProductCountByEstablishment(decimal qty, Guid establishmentCustomerId, Guid productsCustomerId)
         {
             var stockReals = StockReals.FindAll(sr => sr.IdEstablishment == establishmentCustomerId && sr.ProductsCustomerId == productsCustomerId);

@@ -957,4 +957,12 @@
     <value>Synchronization in progress, left later</value>
     <comment>надпись процесс синхронизации</comment>
   </data>
+  <data name="LabelWriteOff" xml:space="preserve">
+    <value>Write-off</value>
+    <comment>надпись списание</comment>
+  </data>
+  <data name="PermissionWriteOff" xml:space="preserve">
+    <value>Permission Write-off</value>
+    <comment>разрешение на списание</comment>
+  </data>
 </root>

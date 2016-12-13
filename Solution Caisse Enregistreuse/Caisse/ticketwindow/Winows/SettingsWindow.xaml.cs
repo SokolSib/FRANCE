@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using TicketWindow.Class;
+using TicketWindow.DAL.Additional;
 using TicketWindow.DAL.Models;
 using TicketWindow.DAL.Repositories;
 using TicketWindow.Global;
@@ -33,6 +34,7 @@ namespace TicketWindow.Winows
             _buttons.AddRange(PanelB.Children.Cast<RadioButton>());
 
             HideOnlyServerButtons();
+            HideRolesButtons();
         }
 
         public string Sub { get; set; }
@@ -44,6 +46,17 @@ namespace TicketWindow.Winows
             if (!SyncData.IsConnect)
             {
                 var hideTags = new List<string> {"Show Pro", "toDevis", "UpdateDb"};
+
+                foreach (var btn in _buttons.Where(b => hideTags.Contains(b.Tag.ToString())))
+                    btn.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void HideRolesButtons()
+        {
+            if (!RepositoryAccountUser.LoginedUser.Role.IsPermiss(Privelege.WriteOff))
+            {
+                var hideTags = new List<string> { "WriteOff" };
 
                 foreach (var btn in _buttons.Where(b => hideTags.Contains(b.Tag.ToString())))
                     btn.Visibility = Visibility.Collapsed;

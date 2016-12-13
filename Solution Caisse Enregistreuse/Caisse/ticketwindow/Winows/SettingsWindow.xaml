@@ -80,6 +80,7 @@
                             <RadioButton Tag="Show Pro" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncShowPro}"/>
                             <RadioButton Tag="toDevis" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncToPro}"/>
                             <RadioButton Tag="Modification des Articles" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncEditProduct}"/>
+                            <RadioButton Tag="WriteOff" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.LabelWriteOff}"/>
                         </StackPanel>
 
                         <StackPanel Grid.Column="1" Name="PanelB">

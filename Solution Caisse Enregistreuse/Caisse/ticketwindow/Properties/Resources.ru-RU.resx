@@ -957,4 +957,12 @@
     <value>Процесс синхронизации</value>
     <comment>надпись процесс синхронизации</comment>
   </data>
+  <data name="LabelWriteOff" xml:space="preserve">
+    <value>Списание</value>
+    <comment>надпись списание</comment>
+  </data>
+  <data name="PermissionWriteOff" xml:space="preserve">
+    <value>Разрешение на списание</value>
+    <comment>разрешение на списание</comment>
+  </data>
 </root>

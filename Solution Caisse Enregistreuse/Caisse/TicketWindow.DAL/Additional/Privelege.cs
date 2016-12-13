@@ -40,6 +40,11 @@
         /// <summary>
         /// Разрешение удалять продукт из чека
         /// </summary>
-        DeleteProductFromCheck
+        DeleteProductFromCheck,
+
+        /// <summary>
+        /// Разрешение списывать товары
+        /// </summary>
+        WriteOff
     }
 }

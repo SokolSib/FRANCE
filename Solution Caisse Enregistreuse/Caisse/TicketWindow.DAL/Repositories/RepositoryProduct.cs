@@ -203,6 +203,19 @@ namespace TicketWindow.DAL.Repositories
                 RepositoryStockReal.UpdatePrice(stockReal, product.Price);
         }
 
+        public static void WriteOffProductCount(ProductType product, decimal count, DateTime date)
+        {
+            //var stockReal = RepositoryStockReal.GetByProduct(product);
+
+            //if (stockReal != null)
+            //    RepositoryStockReal.RemoveProductCount(stockReal, count);
+
+            var writeOff = new WriteOffType(product.CustomerId, product.Name, product.CodeBare, count, date,
+                               RepositoryAccountUser.LoginedUser.CustomerId);
+
+            RepositoryWriteOff.Add(writeOff);
+        }
+
         public static void Update(ProductType product)
         {
             UpdateInXml(product);

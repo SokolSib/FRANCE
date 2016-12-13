@@ -55,7 +55,7 @@ namespace TicketWindow.Winows.OtherWindows.Discount
                 else
                     foreach (var la in ClassEtcFun.FindVisualChildren<Label>(this))
                     {
-                        la.Content = "Не найден";
+                        la.Content = Properties.Resources.LabelNofFound;
                         break;
                     }
                 ebarcode.Text = "";

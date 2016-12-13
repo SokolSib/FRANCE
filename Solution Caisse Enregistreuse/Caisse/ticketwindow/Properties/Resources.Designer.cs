@@ -1717,6 +1717,15 @@ namespace TicketWindow.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Write-off.
+        /// </summary>
+        public static string LabelWriteOff {
+            get {
+                return ResourceManager.GetString("LabelWriteOff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Files.
         /// </summary>
         public static string LabelXmlFile {
@@ -1866,6 +1875,15 @@ namespace TicketWindow.Properties {
         public static string PermissionRedactVat {
             get {
                 return ResourceManager.GetString("PermissionRedactVat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Permission Write-off.
+        /// </summary>
+        public static string PermissionWriteOff {
+            get {
+                return ResourceManager.GetString("PermissionWriteOff", resourceCulture);
             }
         }
         

@@ -103,8 +103,10 @@ namespace TicketWindow.Winows.AdminWindows.RoleWindow
                     return Properties.Resources.PermissionRedactSync;
                 case Privelege.DeleteProductFromCheck:
                     return Properties.Resources.PermissionDeleteProductFromCheck;
+                case Privelege.WriteOff:
+                    return Properties.Resources.PermissionWriteOff;
                 default:
-                    throw new ArgumentOutOfRangeException("privelege", privelege, null);
+                    throw new ArgumentOutOfRangeException(nameof(privelege), privelege, null);
             }
         }
     }
