@@ -247,6 +247,9 @@ namespace TicketWindow.Services
 
         public static void Bay()
         {
+            //if (RepositoryCheck.Document==null)
+            //    RepositoryCheck.
+
             if (RepositoryCheck.Document.Element("checks") != null && RepositoryCheck.DocumentProductCheck.GetXElements("check","product").Any())
             {
                 RepositoryCheck.DocumentProductCheck = RepositoryActionHashBox.MergeProductsInCheck(RepositoryCheck.DocumentProductCheck);

@@ -27,7 +27,7 @@ namespace TicketWindow.DAL.Repositories
         {
             var discountCard = RepositoryDiscountCard.GetOneByNumber(codebar);
 
-            if (discountCard.IsActive)
+            if (discountCard!=null && discountCard.IsActive)
             {
                 Client.Barcode = codebar;
                 Client.Points = discountCard.Points;

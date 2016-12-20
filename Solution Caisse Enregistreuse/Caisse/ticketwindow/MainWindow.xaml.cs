@@ -372,7 +372,8 @@ namespace TicketWindow
                     {
                         var discountCard = RepositoryDiscount.GetDiscount(barcode);
                         if (discountCard == null)
-                            FunctionsService.ShowMessageSb("La carte n'existe pas ou il y a peut-être des problèmes avec l'Internet");
+                            FunctionsService.ShowMessageSb("La carte n'existe pas ");
+                        //ou il y a peut-être des problèmes avec l'Internet");
                         else if (discountCard.IsActive)
                             FunctionsService.WriteTotal();
                         else

@@ -72,9 +72,10 @@ namespace TicketWindow.DAL.Repositories
         {
             if (string.IsNullOrEmpty(numberCard)) return null;
 
-            var discountCards = SyncData.IsConnect
-                ? GetAllFromDb(numberCard)
-                : DiscountCards.FindAll(dc => dc.NumberCard == numberCard);
+            if (DiscountCards.Count == 0)
+                Sync();
+
+            var discountCards = DiscountCards.FindAll(dc => dc.NumberCard == numberCard);
 
             switch (discountCards.Count)
             {
