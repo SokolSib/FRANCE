@@ -68,7 +68,7 @@ namespace TicketWindow.Controls
             }
             return dic.Values.ToList();
         }
-
+        
         public ProductType Product
         {
             get

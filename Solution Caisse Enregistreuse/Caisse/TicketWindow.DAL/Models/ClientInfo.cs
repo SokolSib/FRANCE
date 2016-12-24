@@ -111,6 +111,31 @@ namespace TicketWindow.DAL.Models
                 new XElement("IdInfoClientsDiscount", obj.IdInfoClientsDiscount));
         }
 
+        public static void SetXmlValues(XContainer element, ClientInfo obj)
+        {
+            element.GetXElement("CustomerId").SetValue(obj.CustomerId);
+            element.GetXElement("TypeClient").SetValue(obj.TypeClient);
+            element.GetXElement("Sex").SetValue(obj.Sex);
+            element.GetXElement("Name").SetValue(obj.Name);
+            element.GetXElement("Surname").SetValue(obj.Surname);
+            element.GetXElement("NameCompany").SetValue(obj.NameCompany);
+            element.GetXElement("Siret").SetValue(obj.Siret);
+            element.GetXElement("Frtva").SetValue(obj.Frtva);
+            element.GetXElement("OfficeAddress").SetValue(obj.OfficeAddress);
+            element.GetXElement("OfficeZipCode").SetValue(obj.OfficeZipCode);
+            element.GetXElement("OfficeCity").SetValue(obj.OfficeCity);
+            element.GetXElement("HomeAddress").SetValue(obj.HomeAddress);
+            element.GetXElement("HomeZipCode").SetValue(obj.HomeZipCode);
+            element.GetXElement("HomeCity").SetValue(obj.HomeCity);
+            element.GetXElement("Telephone").SetValue(obj.Telephone);
+            element.GetXElement("Mail").SetValue(obj.Mail);
+            element.GetXElement("Password").SetValue(obj.Password);
+            element.GetXElement("CountrysCustomerId").SetValue(obj.CountrysCustomerId);
+            element.GetXElement("FavoritesProductAutoCustomerId").SetValue(obj.FavoritesProductAutoCustomerId);
+            element.GetXElement("Nclient").SetValue(obj.Nclient);
+            element.GetXElement("IdInfoClientsDiscount").SetValue(obj.IdInfoClientsDiscount ?? Guid.Empty);
+        }
+
         public override string ToString()
         {
             return string.Concat(Name, " ", Surname);

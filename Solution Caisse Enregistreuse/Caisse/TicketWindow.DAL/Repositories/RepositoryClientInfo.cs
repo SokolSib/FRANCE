@@ -18,7 +18,7 @@ namespace TicketWindow.DAL.Repositories
     {
         #region sqripts
 
-        private const string Query = @"SELECT
+        private const string SelectQuery = @"SELECT
     custumerId as customerId,
     TypeClient as typeClient,
     Sex as sex,
@@ -52,10 +52,10 @@ FROM InfoClients WHERE TypeClient = 1";
         {
             if (customerId.HasValue)
                 using (var connection = ConnectionFactory.CreateConnection())
-                    return connection.Query<ClientInfo>(Query + " WHERE custumerId = @customerId", new {customerId}).ToList();
+                    return connection.Query<ClientInfo>(SelectQuery + " WHERE custumerId = @customerId", new {customerId}).ToList();
 
             using (var connection = ConnectionFactory.CreateConnection())
-                return connection.Query<ClientInfo>(Query).ToList();
+                return connection.Query<ClientInfo>(SelectQuery).ToList();
         }
 
         private static void SetFromDb()
@@ -102,6 +102,35 @@ FROM InfoClients WHERE TypeClient = 1";
                 var cards = RepositoryDiscountCard.DiscountCards.FindAll(dc => dc.InfoClientsCustomerId == info.CustomerId);
                 info.DiscountCards.AddRange(cards);
             }
+        }
+
+        public static void Update(ClientInfo info)
+        {
+            var document = XDocument.Load(Path);
+            var element = document.GetXElements("ClientInfos", "rec").First(el => el.GetXElementValue("CustomerId").ToGuid() == info.CustomerId);
+            ClientInfo.SetXmlValues(element, info);
+            File.WriteAllText(Path, document.ToString());
+
+            if (SyncData.IsConnect)
+                throw new NotSupportedException();
+
+            var idx = ClientInfos.FindIndex(ds => ds.CustomerId == info.CustomerId);
+            ClientInfos[idx] = info;
+        }
+
+        public static void Add(ClientInfo info)
+        {
+            if (ClientInfos.Count == 0)
+                Sync();
+            
+            var document = XDocument.Load(Path);
+            document.GetXElement("ClientInfos").Add(ClientInfo.ToXElement(info));
+            File.WriteAllText(Path, document.ToString());
+
+            ClientInfos.Add(info);
+
+            if (SyncData.IsConnect)
+               throw new NotSupportedException();
         }
 
         public static ClientInfo GetOneByNumber(Guid customerId)

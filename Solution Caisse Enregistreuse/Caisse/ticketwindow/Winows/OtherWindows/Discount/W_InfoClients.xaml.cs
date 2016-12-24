@@ -1,9 +1,7 @@
-﻿using System.Linq;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows;
 using System.Windows.Input;
+using TicketWindow.DAL.Models;
 using TicketWindow.DAL.Repositories;
-using TicketWindow.Winows.AdditionalClasses;
 
 namespace TicketWindow.Winows.OtherWindows.Discount
 {
@@ -12,60 +10,81 @@ namespace TicketWindow.Winows.OtherWindows.Discount
     /// </summary>
     public partial class WInfoClients : Window
     {
+        private DiscountCard _card;
+        private ClientInfo _info;
+
         public WInfoClients()
         {
             InitializeComponent();
+            SetInfo();
+            BoxNotFound.Visibility = Visibility.Collapsed;
         }
-
-        private void WindowGotFocus(object sender, RoutedEventArgs e)
-        {
-            ebarcode.Focus();
-        }
-
+        
         private void EbarcodeKeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Return)
             {
-                var discountCard = RepositoryDiscountCard.GetOneByNumber(ebarcode.Text);
-
-                if (discountCard != null)
-                {
-                    var ic = RepositoryDiscount.GetClientInfoById(discountCard.InfoClientsCustomerId);
-                    if (ic != null)
-                    {
-                        lTypeClient.Content = ic.TypeClient;
-                        lName.Content = ic.Name;
-                        lSurname.Content = ic.Surname;
-                        lNameCompany.Content = ic.NameCompany;
-                        lSIRET.Content = ic.Siret;
-                        lFRTVA.Content = ic.Frtva;
-                        lOfficeAddress.Content = ic.OfficeAddress;
-                        lOfficeZipCode.Content = ic.OfficeZipCode;
-                        lOfficeCity.Content = ic.OfficeCity;
-                        lHomeAddress.Content = ic.HomeAddress;
-                        lHomeZipCode.Content = ic.HomeZipCode;
-                        lHomeCity.Content = ic.HomeCity;
-                        lTelephone.Content = ic.Telephone;
-                        lMail.Content = ic.Mail;
-                        lnumberCard.Content = ic.DiscountCards.First().NumberCard;
-                        lpoints.Content = ic.DiscountCards.First().Points;
-                        lActive.Content = ic.DiscountCards.First().IsActive;
-                    }
-                }
-                else
-                    foreach (var la in ClassEtcFun.FindVisualChildren<Label>(this))
-                    {
-                        la.Content = Properties.Resources.LabelNofFound;
-                        break;
-                    }
-                ebarcode.Text = "";
-                
+                _info = null;
+                _card = RepositoryDiscountCard.GetOneByNumber(BoxBarCode.Text);
+                SetInfo();
             }
         }
 
-        private void ButtonClick(object sender, RoutedEventArgs e)
+        private void SetInfo()
+        {
+            if (_card != null)
+                _info = RepositoryDiscount.GetClientInfoById(_card.InfoClientsCustomerId);
+
+            var isFounded = _info != null;
+
+            ClientInfoControl.Visibility = isFounded ? Visibility.Visible : Visibility.Collapsed;
+            BoxNotFound.Visibility = !isFounded ? Visibility.Visible : Visibility.Collapsed;
+
+            ClientInfoControl.SetClientInfo(_info);
+
+            if (_card != null)
+            {
+                BtnActive.Content = _card.IsActive
+                    ? Properties.Resources.BtnToDeactive
+                    : Properties.Resources.BtnToActive;
+
+                BtnActive.Visibility = Visibility.Visible;
+                BtnSave.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                BtnActive.Visibility = Visibility.Collapsed;
+                BtnSave.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void BtnCloseClick(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void BtnSaveClick(object sender, RoutedEventArgs e)
+        {
+            RepositoryClientInfo.Sync();
+            if (ClientInfoControl.Validate())
+            {
+                if (_info == null) RepositoryClientInfo.Add(_info);
+                else RepositoryClientInfo.Update(ClientInfoControl.GetClientInfo(_card));
+
+                RepositoryDiscountCard.Update(ClientInfoControl.GetDiscountCard(_card));
+            }
+        }
+
+        private void BtnActiveClick(object sender, RoutedEventArgs e)
+        {
+            _card.IsActive = !_card.IsActive;
+            RepositoryDiscountCard.Update(_card);
+            SetInfo();
+        }
+
+        private void FrameworkElement_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            BoxBarCode.Focus();
         }
     }
 }

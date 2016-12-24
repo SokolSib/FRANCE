@@ -340,6 +340,15 @@ namespace TicketWindow.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Save.
+        /// </summary>
+        public static string BtnSave {
+            get {
+                return ResourceManager.GetString("BtnSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Search.
         /// </summary>
         public static string BtnSearch {
@@ -354,6 +363,24 @@ namespace TicketWindow.Properties {
         public static string BtnSelect {
             get {
                 return ResourceManager.GetString("BtnSelect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Activate.
+        /// </summary>
+        public static string BtnToActive {
+            get {
+                return ResourceManager.GetString("BtnToActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Deactivate.
+        /// </summary>
+        public static string BtnToDeactive {
+            get {
+                return ResourceManager.GetString("BtnToDeactive", resourceCulture);
             }
         }
         
@@ -727,6 +754,15 @@ namespace TicketWindow.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Card number.
+        /// </summary>
+        public static string LabelCardNumber {
+            get {
+                return ResourceManager.GetString("LabelCardNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Cashbox.
         /// </summary>
         public static string LabelCashBox {
@@ -1096,6 +1132,33 @@ namespace TicketWindow.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Home address.
+        /// </summary>
+        public static string LabelHomeAddress {
+            get {
+                return ResourceManager.GetString("LabelHomeAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Home city.
+        /// </summary>
+        public static string LabelHomeCity {
+            get {
+                return ResourceManager.GetString("LabelHomeCity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Home ZIP code.
+        /// </summary>
+        public static string LabelHomeIndex {
+            get {
+                return ResourceManager.GetString("LabelHomeIndex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Id.
         /// </summary>
         public static string LabelId {
@@ -1141,6 +1204,15 @@ namespace TicketWindow.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Taxpayer identification number.
+        /// </summary>
+        public static string LabelINN {
+            get {
+                return ResourceManager.GetString("LabelINN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на In memory.
         /// </summary>
         public static string LabelInputInMemory {
@@ -1155,6 +1227,33 @@ namespace TicketWindow.Properties {
         public static string LabelInvalidNumberFormat {
             get {
                 return ResourceManager.GetString("LabelInvalidNumberFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Activity of cards.
+        /// </summary>
+        public static string LabelIsActive {
+            get {
+                return ResourceManager.GetString("LabelIsActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Not active.
+        /// </summary>
+        public static string LabelIsActiveFalse {
+            get {
+                return ResourceManager.GetString("LabelIsActiveFalse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Active.
+        /// </summary>
+        public static string LabelIsActiveTrue {
+            get {
+                return ResourceManager.GetString("LabelIsActiveTrue", resourceCulture);
             }
         }
         
@@ -1186,6 +1285,15 @@ namespace TicketWindow.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Email.
+        /// </summary>
+        public static string LabelMail {
+            get {
+                return ResourceManager.GetString("LabelMail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Name.
         /// </summary>
         public static string LabelName {
@@ -1209,6 +1317,15 @@ namespace TicketWindow.Properties {
         public static string LabelNameNation {
             get {
                 return ResourceManager.GetString("LabelNameNation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Name.
+        /// </summary>
+        public static string LabelNameOfFIO {
+            get {
+                return ResourceManager.GetString("LabelNameOfFIO", resourceCulture);
             }
         }
         
@@ -1465,6 +1582,15 @@ namespace TicketWindow.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Points.
+        /// </summary>
+        public static string LabelPoints {
+            get {
+                return ResourceManager.GetString("LabelPoints", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на .
         /// </summary>
         public static string LabelPost {
@@ -1636,6 +1762,15 @@ namespace TicketWindow.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Surname.
+        /// </summary>
+        public static string LabelSurnameOfFIO {
+            get {
+                return ResourceManager.GetString("LabelSurnameOfFIO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Synchronization in progress, left later.
         /// </summary>
         public static string LabelSyncProcess {
@@ -1708,6 +1843,15 @@ namespace TicketWindow.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Customer type.
+        /// </summary>
+        public static string LabelTypeClient {
+            get {
+                return ResourceManager.GetString("LabelTypeClient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Pays types.
         /// </summary>
         public static string LabelTypesPays {
@@ -1767,6 +1911,33 @@ namespace TicketWindow.Properties {
         public static string LabelWarning {
             get {
                 return ResourceManager.GetString("LabelWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Office address.
+        /// </summary>
+        public static string LabelWorkAddress {
+            get {
+                return ResourceManager.GetString("LabelWorkAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Office city.
+        /// </summary>
+        public static string LabelWorkCity {
+            get {
+                return ResourceManager.GetString("LabelWorkCity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Office ZIP code.
+        /// </summary>
+        public static string LabelWorkIndex {
+            get {
+                return ResourceManager.GetString("LabelWorkIndex", resourceCulture);
             }
         }
         

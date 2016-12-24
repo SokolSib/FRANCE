@@ -993,4 +993,80 @@
     <value>Название уже существует</value>
     <comment>надпись название уже существует</comment>
   </data>
+  <data name="BtnSave" xml:space="preserve">
+    <value>Сохранить</value>
+    <comment>кнопка сохранить</comment>
+  </data>
+  <data name="BtnToActive" xml:space="preserve">
+    <value>Активировать</value>
+    <comment>кнопка активировать</comment>
+  </data>
+  <data name="BtnToDeactive" xml:space="preserve">
+    <value>Деактивировать</value>
+    <comment>кнопка деактивировать</comment>
+  </data>
+  <data name="LabelCardNumber" xml:space="preserve">
+    <value>Номер карты</value>
+    <comment>надпись номер карты</comment>
+  </data>
+  <data name="LabelHomeAddress" xml:space="preserve">
+    <value>Домашний адрес</value>
+    <comment>надпись домашний адрес</comment>
+  </data>
+  <data name="LabelHomeCity" xml:space="preserve">
+    <value>Город проживания</value>
+    <comment>надпись город проживания</comment>
+  </data>
+  <data name="LabelHomeIndex" xml:space="preserve">
+    <value>Рабочий индекс</value>
+    <comment>надпись рабочий индекс</comment>
+  </data>
+  <data name="LabelINN" xml:space="preserve">
+    <value>ИНН</value>
+    <comment>надпись ИНН</comment>
+  </data>
+  <data name="LabelIsActive" xml:space="preserve">
+    <value>Активность карты</value>
+    <comment>надпись активность карты</comment>
+  </data>
+  <data name="LabelIsActiveFalse" xml:space="preserve">
+    <value>Не активна</value>
+    <comment>надпись неактивно</comment>
+  </data>
+  <data name="LabelIsActiveTrue" xml:space="preserve">
+    <value>Активна</value>
+    <comment>надпись активно</comment>
+  </data>
+  <data name="LabelMail" xml:space="preserve">
+    <value>Email</value>
+    <comment>надпись mail</comment>
+  </data>
+  <data name="LabelNameOfFIO" xml:space="preserve">
+    <value>Имя</value>
+    <comment>надпись имя</comment>
+  </data>
+  <data name="LabelPoints" xml:space="preserve">
+    <value>Баллы</value>
+    <comment>надпись баллы</comment>
+  </data>
+  <data name="LabelSurnameOfFIO" xml:space="preserve">
+    <value>Фамилия</value>
+    <comment>надпись фамилия</comment>
+  </data>
+  <data name="LabelTypeClient" xml:space="preserve">
+    <value>Тип клиента</value>
+    <comment>надпись тип клиента</comment>
+  </data>
+  <data name="LabelWorkAddress" xml:space="preserve">
+    <value>Рабочий адрес</value>
+    <comment>надпись рабочий адрес</comment>
+  </data>
+  <data name="LabelWorkCity" xml:space="preserve">
+    <value>Город офиса</value>
+    <comment>надпись город офиса</comment>
+  </data>
+  <data name="LabelWorkIndex" xml:space="preserve">
+    <value>Рабочий индекс</value>
+    <comment>надпись рабочий индекс</comment>
+  </data>
 </root>
