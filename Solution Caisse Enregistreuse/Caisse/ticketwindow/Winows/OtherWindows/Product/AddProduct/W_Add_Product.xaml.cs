@@ -58,7 +58,7 @@ namespace TicketWindow.Winows.OtherWindows.Product.AddProduct
                 lStockCount.Visibility = Visibility.Collapsed;
                 xStockCount.Visibility = Visibility.Collapsed;
             }
-            else
+            else if (product != null)
             {
                 var stockReal = RepositoryStockReal.GetByProduct(product);
                 xStockCount.Text = $"{stockReal.Qty}";
