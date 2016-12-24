@@ -52,7 +52,7 @@ namespace TicketWindow.DAL.Repositories
             }
         }
 
-        public static ClientInfo GetInfClt(Guid clientCustomerId)
+        public static ClientInfo GetClientInfoById(Guid clientCustomerId)
         {
             var info = RepositoryClientInfo.GetOneByNumber(clientCustomerId);
 

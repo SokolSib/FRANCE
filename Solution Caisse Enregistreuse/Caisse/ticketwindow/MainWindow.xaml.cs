@@ -379,7 +379,7 @@ namespace TicketWindow
                         else
                             FunctionsService.ShowMessageSb(" La carte est bloquée ");
 
-                        RepositoryDiscount.GetInfClt(RepositoryDiscount.Client.InfoClientsCustomerId);
+                        RepositoryDiscount.GetClientInfoById(RepositoryDiscount.Client.InfoClientsCustomerId);
                     }
 
                     xProduct.Foreground = new SolidColorBrush(Color.FromRgb(0, 255, 0));

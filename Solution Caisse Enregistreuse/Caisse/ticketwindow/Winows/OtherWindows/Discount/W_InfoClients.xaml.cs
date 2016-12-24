@@ -30,7 +30,7 @@ namespace TicketWindow.Winows.OtherWindows.Discount
 
                 if (discountCard != null)
                 {
-                    var ic = RepositoryDiscount.GetInfClt(discountCard.InfoClientsCustomerId);
+                    var ic = RepositoryDiscount.GetClientInfoById(discountCard.InfoClientsCustomerId);
                     if (ic != null)
                     {
                         lTypeClient.Content = ic.TypeClient;

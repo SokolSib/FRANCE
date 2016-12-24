@@ -107,10 +107,9 @@ FROM InfoClients WHERE TypeClient = 1";
         public static ClientInfo GetOneByNumber(Guid customerId)
         {
             if (customerId == Guid.Empty) return null;
-
-            var clientInfos = SyncData.IsConnect
-                ? GetAllFromDb(customerId)
-                : ClientInfos.FindAll(ci => ci.CustomerId == customerId);
+            
+            if (ClientInfos.Count == 0) Sync();
+            var clientInfos = ClientInfos.FindAll(ci => ci.CustomerId == customerId);
 
             switch (clientInfos.Count)
             {
