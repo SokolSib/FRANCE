@@ -1222,6 +1222,15 @@ namespace TicketWindow.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Not enough money.
+        /// </summary>
+        public static string LabelNotEnoughMoney {
+            get {
+                return ResourceManager.GetString("LabelNotEnoughMoney", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Not have permission.
         /// </summary>
         public static string LabelNotPermission {

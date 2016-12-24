@@ -965,4 +965,8 @@
     <value>Разрешение на списание</value>
     <comment>разрешение на списание</comment>
   </data>
+  <data name="LabelNotEnoughMoney" xml:space="preserve">
+    <value>Не хватает денег</value>
+    <comment>надпись не хватает денег</comment>
+  </data>
 </root>

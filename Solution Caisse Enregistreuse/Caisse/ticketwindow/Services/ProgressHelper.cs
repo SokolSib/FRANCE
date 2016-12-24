@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using System.Windows;
 using System.Windows.Threading;
 using TicketWindow.Winows;
 
@@ -104,7 +105,10 @@ namespace TicketWindow.Services
             _window = new ProgressWindow(count, name);
 
             if (IsIndeterminate)
+            {
+                _window.BoxText.Visibility = Visibility.Collapsed;
                 _window.BoxProgress.IsIndeterminate = IsIndeterminate;
+            }
 
             _window.Show();
         }

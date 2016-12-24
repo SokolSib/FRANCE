@@ -247,8 +247,7 @@ namespace TicketWindow.Services
 
         public static void Bay()
         {
-            //if (RepositoryCheck.Document==null)
-            //    RepositoryCheck.
+            RepositoryCheck.GetDucument();
 
             if (RepositoryCheck.Document.Element("checks") != null && RepositoryCheck.DocumentProductCheck.GetXElements("check","product").Any())
             {

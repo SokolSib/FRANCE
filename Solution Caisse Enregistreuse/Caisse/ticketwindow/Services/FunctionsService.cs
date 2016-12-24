@@ -868,7 +868,7 @@ namespace TicketWindow.Services
         private static void ClickOkPayType(object sender)
         {
             if (RepositoryCurrencyRelations.Calc() > 0)
-                ShowMessageTime("Pas assez d'argent pour reglement d'achat");
+                ShowMessageTime(Resources.LabelNotEnoughMoney);
             else
                 PrintCheck(sender);
         }
@@ -1217,12 +1217,23 @@ namespace TicketWindow.Services
             var windowCloseTicket = Window.GetWindow((Button) sender) as WCloseTicketWindow;
             if (windowCloseTicket != null)
             {
-                RepositoryGeneral.IsOpen = !CassieService.CloseWithMessage();
+                var worker = new BackgroundWorker();
+                ProgressHelper.Instance.IsIndeterminate = true;
+                ProgressHelper.Instance.Start(1, Resources.LabelClose);
 
-                if (!RepositoryGeneral.IsOpen)
-                    CloaseMainWindow();
+                worker.DoWork += (s, e) =>
+                                 {
+                                     RepositoryGeneral.IsOpen = !CassieService.CloseWithMessage();
+                                 };
+                worker.RunWorkerCompleted += (s, e) =>
+                                             {
+                                                 if (!RepositoryGeneral.IsOpen)
+                                                     CloaseMainWindow();
 
-                windowCloseTicket.errorlist.Text = RepositoryGeneral.Mess;
+                                                 windowCloseTicket.errorlist.Text = RepositoryGeneral.Mess;
+                                                 ProgressHelper.Instance.Stop();
+                                             };
+                worker.RunWorkerAsync();
             }
         }
 

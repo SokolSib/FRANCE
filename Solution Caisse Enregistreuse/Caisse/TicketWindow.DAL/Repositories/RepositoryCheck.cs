@@ -46,11 +46,16 @@ namespace TicketWindow.DAL.Repositories
             return false;
         }
 
+        public static void GetDucument()
+        {
+            if (Document == null) Document = XDocument.Load(Path);
+        }
+
         public static void CloseTicket()
         {
             if (File.Exists(Path))
             {
-                if (Document == null) Document = XDocument.Load(Path);
+                GetDucument();
 
                 Document.GetXAttribute("checks", "closeDate").Value = DateTime.Now.ToString(Config.DateFormat);
 

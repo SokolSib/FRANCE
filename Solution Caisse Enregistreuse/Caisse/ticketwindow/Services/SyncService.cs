@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Threading;
 using TicketWindow.Class;
 using TicketWindow.Classes;
@@ -189,6 +190,7 @@ namespace TicketWindow.Services
                 }
                 else GlobalVar.IsOpen = false;
 
+                // окно закрытия кассы
                 if (generalEstablishment.Date.Date != DateTime.Now.Date
                     && generalEstablishment.TicketWindowGeneral != Guid.Empty
                 )
@@ -202,7 +204,21 @@ namespace TicketWindow.Services
                     errorlist += Resources.LabelOpenLocal + " : ";
                     errorlist += openTicketWindow?.DateOpen.ToLongDateString() ?? string.Empty + Environment.NewLine;
 
-                    var window = new WCloseTicketWindow(errorlist);
+
+                    var tickedWindowId = GlobalVar.TicketWindow != Guid.Empty ? GlobalVar.TicketWindow.ToString() : string.Empty;
+
+                    errorlist += Environment.NewLine +
+                           Resources.LabelCashBox + " : " + Config.NameTicket + Environment.NewLine +
+                           Resources.LabelNumberCheck + " : " + Config.NumberTicket + Environment.NewLine +
+                           Resources.LabelUserName + " : " + Config.User + Environment.NewLine + Environment.NewLine +
+                           "--------------------------------" + Environment.NewLine +
+                           Resources.LabelOpenTotalTW + " : " + GlobalVar.TicketWindowG + Environment.NewLine +
+                           Resources.LabelOpenLocal + " : " + tickedWindowId + Environment.NewLine;
+
+                    var window = new WCloseTicketWindow(errorlist)
+                                 {
+                                     BtnCloseLocal = {IsEnabled = tickedWindowId != string.Empty}
+                                 };
                     window.ShowDialog();
                     RepositoryGeneral.Set();
                     RepositoryOpenTicketWindow.Sync();
@@ -210,6 +226,7 @@ namespace TicketWindow.Services
 
                 if (!GlobalVar.IsBreak)
                 {
+                    // окно открытия кассы
                     if (!RepositoryGeneral.IsOpen)
 
                         if (GlobalVar.TicketWindowG == Guid.Empty)

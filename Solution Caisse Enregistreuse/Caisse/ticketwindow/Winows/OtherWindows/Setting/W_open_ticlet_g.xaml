@@ -18,7 +18,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Button IsDefault="True" Click="ButtonClick" Background="Green" Content="{x:Static Properties:Resources.BtnOpenTotal}" />
-            <Button  Grid.Column="1" ToolTip="Close" Click="ButtonClick1" Background="Red" Content="{x:Static Properties:Resources.BtnCancel}" />
+            <Button  Grid.Column="1" Tag="Close" Click="ButtonClick1" Background="Red" Content="{x:Static Properties:Resources.BtnCancel}" />
         </Grid>
         <Label  Name="status" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             

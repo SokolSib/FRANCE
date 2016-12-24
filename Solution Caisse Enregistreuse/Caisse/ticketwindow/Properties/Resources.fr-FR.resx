@@ -963,4 +963,8 @@
     <value>Radiation</value>
     <comment>разрешение на списание</comment>
   </data>
+  <data name="LabelNotEnoughMoney" xml:space="preserve">
+    <value>Pas assez d'argent pour reglement d'achat</value>
+    <comment>надпись не хватает денег</comment>
+  </data>
 </root>

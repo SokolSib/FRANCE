@@ -965,4 +965,8 @@
     <value>Permission Write-off</value>
     <comment>разрешение на списание</comment>
   </data>
+  <data name="LabelNotEnoughMoney" xml:space="preserve">
+    <value>Not enough money</value>
+    <comment>надпись не хватает денег</comment>
+  </data>
 </root>
