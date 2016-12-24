@@ -44,31 +44,38 @@ namespace TicketWindow.Controls
                 dic[product.CustomerId] = product;
             }
 
-            foreach (
-                var word in
-                textOriginal.Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries).Where(w => w.Length > 1))
+            var originalWords = textOriginal.Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries);
+            var translatedWords = textTranslated.Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries);
+            var findResult = RepositoryProduct.Products.Where(p => IsExist(p, originalWords, translatedWords));
+
+            foreach (var product in findResult)
             {
-                foreach (var product in RepositoryProduct.Products.Where(
-                    p => p.Name.IndexOf(word, StringComparison.OrdinalIgnoreCase) != -1 ||
-                         p.CodeBare.IndexOf(textOriginal, StringComparison.OrdinalIgnoreCase) != -1))
-                {
-                    dic[product.CustomerId] = product;
-                }
-            }
-            foreach (
-                var word in
-                textTranslated.Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries).Where(w => w.Length > 1))
-            {
-                foreach (var product in RepositoryProduct.Products.Where(
-                    p => p.Name.IndexOf(word, StringComparison.OrdinalIgnoreCase) != -1 ||
-                         p.CodeBare.IndexOf(textOriginal, StringComparison.OrdinalIgnoreCase) != -1))
-                {
-                    dic[product.CustomerId] = product;
-                }
+                dic[product.CustomerId] = product;
             }
             return dic.Values.ToList();
         }
-        
+
+        private static bool IsExist(ProductType product, string[] originalWords, string[] translatedWords)
+        {
+            var result = true;
+
+            for (var i = 0; i < originalWords.Length; i++)
+            {
+                if (product.Name.IndexOf(originalWords[i], StringComparison.OrdinalIgnoreCase) == -1)
+                    result = false;
+            }
+
+            if (result) return true;
+
+            for (var i = 0; i < translatedWords.Length; i++)
+            {
+                if (product.Name.IndexOf(originalWords[i], StringComparison.OrdinalIgnoreCase) == -1)
+                    return false;
+            }
+
+            return true;
+        }
+
         public ProductType Product
         {
             get
