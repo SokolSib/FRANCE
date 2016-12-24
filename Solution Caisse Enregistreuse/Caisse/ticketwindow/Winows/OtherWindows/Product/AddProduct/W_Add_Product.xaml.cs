@@ -173,6 +173,7 @@ namespace TicketWindow.Winows.OtherWindows.Product.AddProduct
             s += ValidTextBox(TvaBox);
             s += ValidTextBox(GroupBox);
             s += ValidTextBox(SubgroupBox);
+            s += ValidTextBox(xStockCount);
             return s == "";
         }
 
