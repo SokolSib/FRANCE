@@ -265,7 +265,7 @@ namespace TicketWindow.Class
                 var qty = prod.Qty;
                 var cusumerIdRealStock = product.GetXElementValue("cusumerIdRealStock").ToGuid();
 
-                RepositoryStockReal.UpdateProductCount(-qty, cusumerIdRealStock);
+                RepositoryStockReal.AddProductCount(-qty, cusumerIdRealStock);
             }
 
             foreach (var type in RepositoryTypePay.TypePays)
@@ -426,7 +426,7 @@ namespace TicketWindow.Class
 
                 var cusumerIdRealStock = Guid.Parse(product.GetXElementValue("cusumerIdRealStock").Replace('.', ','));
 
-                RepositoryStockReal.UpdateProductCount(-dw.Qty, cusumerIdRealStock);
+                RepositoryStockReal.AddProductCount(-dw.Qty, cusumerIdRealStock);
 
                 RepositoryStockReal.UpdateProductCountByEstablishment(dw.Qty, Config.IdEstablishmentGros, dw.ProductsCustomerId);
                 di.DivisWebs.Add(dw);

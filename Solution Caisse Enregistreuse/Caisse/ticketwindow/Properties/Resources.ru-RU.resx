@@ -969,4 +969,28 @@
     <value>Не хватает денег</value>
     <comment>надпись не хватает денег</comment>
   </data>
+  <data name="LabelStockCount" xml:space="preserve">
+    <value>Количество на складе</value>
+    <comment>надпись количество на складе</comment>
+  </data>
+  <data name="PermissionRedactStockCount" xml:space="preserve">
+    <value>Разрешение изменять количество на складе</value>
+    <comment>разрешение изменять количество на складе</comment>
+  </data>
+  <data name="LabelEanAlreadyExists" xml:space="preserve">
+    <value>Штрих код уже существует</value>
+    <comment>надпись штрих код уже существует</comment>
+  </data>
+  <data name="LabelIncorrect" xml:space="preserve">
+    <value>неверно</value>
+    <comment>надпись не правильный</comment>
+  </data>
+  <data name="LabelIncorrectEAN" xml:space="preserve">
+    <value>Не корректный штрих код</value>
+    <comment>надпись не корректный штрих код</comment>
+  </data>
+  <data name="LabelNameAlreadyExists" xml:space="preserve">
+    <value>Название уже существует</value>
+    <comment>надпись название уже существует</comment>
+  </data>
 </root>

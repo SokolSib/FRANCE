@@ -979,6 +979,15 @@ namespace TicketWindow.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на EAN Barcode already exists.
+        /// </summary>
+        public static string LabelEanAlreadyExists {
+            get {
+                return ResourceManager.GetString("LabelEanAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Please first edit the list products.
         /// </summary>
         public static string LabelEditListProducts {
@@ -1114,6 +1123,24 @@ namespace TicketWindow.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на incorrect.
+        /// </summary>
+        public static string LabelIncorrect {
+            get {
+                return ResourceManager.GetString("LabelIncorrect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Invalid EAN Barcode.
+        /// </summary>
+        public static string LabelIncorrectEAN {
+            get {
+                return ResourceManager.GetString("LabelIncorrectEAN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на In memory.
         /// </summary>
         public static string LabelInputInMemory {
@@ -1164,6 +1191,15 @@ namespace TicketWindow.Properties {
         public static string LabelName {
             get {
                 return ResourceManager.GetString("LabelName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на This product name already exists.
+        /// </summary>
+        public static string LabelNameAlreadyExists {
+            get {
+                return ResourceManager.GetString("LabelNameAlreadyExists", resourceCulture);
             }
         }
         
@@ -1582,6 +1618,15 @@ namespace TicketWindow.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Quantity in stock.
+        /// </summary>
+        public static string LabelStockCount {
+            get {
+                return ResourceManager.GetString("LabelStockCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Subgroup.
         /// </summary>
         public static string LabelSubgroup {
@@ -1857,6 +1902,15 @@ namespace TicketWindow.Properties {
         public static string PermissionRedactRole {
             get {
                 return ResourceManager.GetString("PermissionRedactRole", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Permission to change the number of items in stock.
+        /// </summary>
+        public static string PermissionRedactStockCount {
+            get {
+                return ResourceManager.GetString("PermissionRedactStockCount", resourceCulture);
             }
         }
         

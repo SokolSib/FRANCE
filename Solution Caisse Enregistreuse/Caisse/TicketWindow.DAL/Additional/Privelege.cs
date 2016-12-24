@@ -45,6 +45,11 @@
         /// <summary>
         /// Разрешение списывать товары
         /// </summary>
-        WriteOff
+        WriteOff,
+
+        /// <summary>
+        /// Разрешение изменять количество на складе
+        /// </summary>
+        RedactStockCount
     }
 }

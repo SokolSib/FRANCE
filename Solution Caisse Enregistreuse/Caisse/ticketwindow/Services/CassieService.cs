@@ -63,7 +63,7 @@ namespace TicketWindow.Services
                     var productFromStock = RepositoryProduct.Products.FirstOrDefault(p => p.CustomerId == product.ProductId);
 
                     if (productFromStock != null)
-                        RepositoryStockReal.UpdateProductCount(-product.Qty, productFromStock.CusumerIdRealStock);
+                        RepositoryStockReal.AddProductCount(-product.Qty, productFromStock.CusumerIdRealStock);
                     else
                     {
                         var message = " нет записи об данном продукте в таблице СТОК, Детали: IDcustomer " + product.ProductId + " -  Название продукта " + product.Name +
@@ -172,7 +172,7 @@ namespace TicketWindow.Services
 
             if (wind.xName.Visibility == Visibility.Visible)
                 //return RepositoryProduct.FiltrXElementsByName(products, wind.xName.Text);
-                products = products.Where(p => p.Name.Contains(wind.xName.Text.Trim())).ToList();
+                products = products.Where(p => p.Name.IndexOf(wind.xName.Text.Trim(), StringComparison.InvariantCultureIgnoreCase)>=0).ToList();
 
             if (wind.xCodeBar.Visibility == Visibility.Visible)
                 //return RepositoryProduct.FiltrXElementsByBarCode(products, wind.xCodeBar.Text);

@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
+using TicketWindow.DAL.Additional;
 using TicketWindow.DAL.Models;
 using TicketWindow.DAL.Repositories;
 using TicketWindow.Extensions;
@@ -51,6 +52,19 @@ namespace TicketWindow.Winows.OtherWindows.Product.AddProduct
                     SubgroupBox.SelectedItem = group.SubGroups.FirstOrDefault(s => s.Id == product.SubGrpProduct.Id);
                 }
             }
+
+            if (!RepositoryAccountUser.LoginedUser.Role.IsPermiss(Privelege.RedactStockCount))
+            {
+                lStockCount.Visibility = Visibility.Collapsed;
+                xStockCount.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                var stockReal = RepositoryStockReal.GetByProduct(product);
+                xStockCount.Text = $"{stockReal.Qty}";
+            }
+
+            BoxErrorText.Text = string.Empty;
         }
 
         private string ValidTextBox(object sender)
@@ -70,39 +84,45 @@ namespace TicketWindow.Winows.OtherWindows.Product.AddProduct
                         {
                             var x = RepositoryProduct.GetXElementByBarcode(tb.Text);
                             if ((x != null) || (tb.Text.Length < 0))
-                                if (x != null && (x.Element("CodeBare").Value == tb.Text))
-                                    listError = "Code-barres EAN existe déjà";
+                                if (x != null && (x.GetXElementValue("CodeBare") == tb.Text))
+                                    listError = Properties.Resources.LabelEanAlreadyExists;
                         }
                         catch
                         {
-                            listError = "Code-barres EAN incorrect";
+                            listError = Properties.Resources.LabelIncorrectEAN;
                         }
                         break;
                     case "xName":
-                        var n = RepositoryProduct.GetXElementByElementName("Name", tb.Text.Trim().ToUpper());
-                        if (tb.Text.Length < 2)
-                            try
-                            {
-                                if (n.GetXElementValue("Name") == tb.Text)
-                                    listError = "Nom";
-                            }
-                            catch
-                            {
-                                listError = "Ce Nom de produit existe déjà";
-                            }
+                        if (string.IsNullOrEmpty(tb.Text))
+                            listError = $"{((FrameworkElement) sender).ToolTip} {Properties.Resources.LabelIncorrect}";
+                        else
+                        {
+                            var element = RepositoryProduct.GetXElementByElementName("Name", tb.Text.Trim().ToUpper());
+                            if (tb.Text.Length < 2)
+                                try
+                                {
+                                    if (element.GetXElementValue("Name") == tb.Text)
+                                        listError = "Nom";
+                                }
+                                catch
+                                {
+                                    listError = Properties.Resources.LabelNameAlreadyExists;
+                                }
+                        }
                         break;
                     case "xPrice":
                     case "xQTY":
                     case "xContenance":
+                    case "xStockCount":
                         decimal decimalValue;
                         if (!decimal.TryParse(tb.Text.Replace(".", ","), out decimalValue))
-                            listError = $"{name} incorrect";
+                            listError = $"{((FrameworkElement) sender).ToolTip} {Properties.Resources.LabelIncorrect}";
                         break;
                     case "xUnit_contenance":
                     case "xTare":
                         int intValue;
                         if (!int.TryParse(tb.Text, out intValue))
-                            listError = $"{name} incorrect";
+                            listError = $"{((FrameworkElement)sender).ToolTip} {Properties.Resources.LabelIncorrect}";
                         break;
                 }
 
@@ -120,7 +140,7 @@ namespace TicketWindow.Winows.OtherWindows.Product.AddProduct
             {
                 var cb = comboBox;
 
-                listError = cb.SelectedItem == null ? "the Cb not correct" : null;
+                listError = cb.SelectedItem == null ? $"{((FrameworkElement)sender).ToolTip} {Properties.Resources.LabelIncorrect}" : null;
 
                 cb.Foreground = listError != null
                     ? new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 0, 0))
@@ -135,7 +155,7 @@ namespace TicketWindow.Winows.OtherWindows.Product.AddProduct
 
         private void _LostFocus(object sender, RoutedEventArgs e)
         {
-            ValidTextBox(sender);
+            BoxErrorText.Text = ValidTextBox(sender);
         }
 
         private void BalanceClick(object sender, RoutedEventArgs e)
@@ -207,6 +227,17 @@ namespace TicketWindow.Winows.OtherWindows.Product.AddProduct
             var product = FormToVar();
             RepositoryProduct.Update(product);
             RepositoryProduct.UpdateProductPrice(product);
+
+            if (RepositoryAccountUser.LoginedUser.Role.IsPermiss(Privelege.RedactStockCount))
+            {
+                var stockReal = RepositoryStockReal.GetByProduct(product);
+
+                decimal stockRealCount;
+                decimal.TryParse(xStockCount.Text.Replace(".", ","), out stockRealCount);
+
+                RepositoryStockReal.UpdateProductCount(stockRealCount, stockReal.CustomerId);
+            }
+
             var dg = GetParents().DataGrid;
             Close();
             dg.ItemsSource = RepositoryProduct.Products;

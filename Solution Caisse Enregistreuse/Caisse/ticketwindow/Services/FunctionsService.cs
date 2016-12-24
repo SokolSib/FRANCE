@@ -575,10 +575,9 @@ namespace TicketWindow.Services
         {
             var windowProducts = ClassEtcFun.GetParents((Button) sender, 0) as WGridProduct;
 
-            if (windowProducts != null)
+            if (windowProducts != null && arg != null)
             {
-                var product = (ProductType) arg;
-                CheckService.AddProductCheck(product, GetQty(MainAppWindow.qty_label));
+                CheckService.AddProductCheck((ProductType)arg, GetQty(MainAppWindow.qty_label));
                 windowProducts.Close();
             }
         }
@@ -1512,7 +1511,8 @@ namespace TicketWindow.Services
                                 MessageBox.Show("Необходимо заполнить группы и подгруппы", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
                                 break;
                             }
-                            Effect(new WAddProduct());
+                            Effect(
+                                new WAddProduct());
                             break;
                         case "Change Product":
                             if (arg != null)

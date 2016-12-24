@@ -439,7 +439,7 @@ namespace TicketWindow.Services
                     var qty = e.GetXElementValue("qty").ToDecimal();
                     var customerId = e.GetXElementValue("cusumerIdRealStock").ToGuid();
 
-                    RepositoryStockReal.UpdateProductCount(qty, customerId);
+                    RepositoryStockReal.AddProductCount(qty, customerId);
                 }
 
                 elm.Remove();

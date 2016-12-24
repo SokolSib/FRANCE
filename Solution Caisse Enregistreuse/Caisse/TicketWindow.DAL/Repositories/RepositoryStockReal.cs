@@ -64,7 +64,7 @@ namespace TicketWindow.DAL.Repositories
         public static void UpdateProductCount(decimal qty, Guid customerId)
         {
             var stockReal = StockReals.First(sr => sr.CustomerId == customerId);
-            stockReal.Qty += qty;
+            stockReal.Qty = qty;
 
             var document = XDocument.Load(Path);
             var element =
@@ -79,6 +79,28 @@ namespace TicketWindow.DAL.Repositories
 
                 using (var connection = ConnectionFactory.CreateConnection())
                     connection.Execute(query, new {stockReal.Qty, customerId});
+            }
+        }
+
+
+        public static void AddProductCount(decimal qty, Guid customerId)
+        {
+            var stockReal = StockReals.First(sr => sr.CustomerId == customerId);
+            stockReal.Qty += qty;
+
+            var document = XDocument.Load(Path);
+            var element =
+                document.GetXElements("StockReals", "rec")
+                    .First(el => el.GetXElementValue("CustomerId").ToGuid() == customerId);
+            StockReal.SetXmlValues(element, stockReal);
+            document.Save(Path);
+
+            if (SyncData.IsConnect)
+            {
+                const string query = "UPDATE StockReal SET QTY = @Qty WHERE CustomerId = @customerId";
+
+                using (var connection = ConnectionFactory.CreateConnection())
+                    connection.Execute(query, new { stockReal.Qty, customerId });
             }
         }
 
@@ -108,32 +130,13 @@ namespace TicketWindow.DAL.Repositories
                     connection.Execute(query, new { stockReal.Price, stockReal.CustomerId });
             }
         }
-
-        public static void RemoveProductCount(StockReal stockReal, decimal count)
-        {
-            stockReal.Qty -= count;
-
-            var document = XDocument.Load(Path);
-            var element = document.GetXElements("StockReals", "rec")
-                    .First(el => el.GetXElementValue("CustomerId").ToGuid() == stockReal.CustomerId);
-            StockReal.SetXmlValues(element, stockReal);
-            document.Save(Path);
-
-            if (SyncData.IsConnect)
-            {
-                const string query = "UPDATE StockReal SET Price = @Price WHERE Qty = @count";
-
-                using (var connection = ConnectionFactory.CreateConnection())
-                    connection.Execute(query, new { count, stockReal.CustomerId });
-            }
-        }
-
+        
         public static void UpdateProductCountByEstablishment(decimal qty, Guid establishmentCustomerId, Guid productsCustomerId)
         {
             var stockReals = StockReals.FindAll(sr => sr.IdEstablishment == establishmentCustomerId && sr.ProductsCustomerId == productsCustomerId);
 
             foreach (var stockReal in stockReals)
-                UpdateProductCount(qty, stockReal.CustomerId);
+                AddProductCount(qty, stockReal.CustomerId);
         }
 
         public static void DeleteById(Guid customerId)
