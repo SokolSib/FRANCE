@@ -203,18 +203,9 @@ namespace TicketWindow.Services
                                  RepositoryGeneral.Generals.First().Date.ToLongDateString() + Environment.NewLine;
                     errorlist += Resources.LabelOpenLocal + " : ";
                     errorlist += openTicketWindow?.DateOpen.ToLongDateString() ?? string.Empty + Environment.NewLine;
-
-
+                    
                     var tickedWindowId = GlobalVar.TicketWindow != Guid.Empty ? GlobalVar.TicketWindow.ToString() : string.Empty;
-
-                    errorlist += Environment.NewLine +
-                           Resources.LabelCashBox + " : " + Config.NameTicket + Environment.NewLine +
-                           Resources.LabelNumberCheck + " : " + Config.NumberTicket + Environment.NewLine +
-                           Resources.LabelUserName + " : " + Config.User + Environment.NewLine + Environment.NewLine +
-                           "--------------------------------" + Environment.NewLine +
-                           Resources.LabelOpenTotalTW + " : " + GlobalVar.TicketWindowG + Environment.NewLine +
-                           Resources.LabelOpenLocal + " : " + tickedWindowId + Environment.NewLine;
-
+                    
                     var window = new WCloseTicketWindow(errorlist)
                                  {
                                      BtnCloseLocal = {IsEnabled = tickedWindowId != string.Empty}

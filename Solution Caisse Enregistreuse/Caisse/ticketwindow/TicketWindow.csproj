@@ -182,6 +182,7 @@
     <Compile Include="Services\DotLiquidService.cs" />
     <Compile Include="Services\FunctionsTranslateService.cs" />
     <Compile Include="Services\ProgressHelper.cs" />
+    <Compile Include="Services\TextService.cs" />
     <Compile Include="Winows\AdditionalClasses\ClassETC_fun.cs" />
     <Compile Include="Services\FunctionsService.cs" />
     <Compile Include="Class\ClassGridGroup.cs" />

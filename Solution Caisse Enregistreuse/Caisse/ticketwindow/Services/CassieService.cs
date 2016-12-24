@@ -81,7 +81,7 @@ namespace TicketWindow.Services
             if (GlobalVar.IsOpen)
             {
                 Mess += Properties.Resources.FuncCloseCashbox + Config.NameTicket + Environment.NewLine +
-                        Environment.NewLine + Properties.Resources.LabelPleaseWaitWhileLoading + Environment.NewLine;
+                        Environment.NewLine + Environment.NewLine;
 
                 var otw = RepositoryOpenTicketWindow.GetCurrent();
 
@@ -300,7 +300,7 @@ namespace TicketWindow.Services
             if (openTicketWindows.Count == 0)
             {
                 var closeTicketG = RepositoryCloseTicketG.Get(GlobalVar.TicketWindowG).FirstOrDefault();
-                Mess += Config.NameTicket + Properties.Resources.LabelPleaseWaitWhileLoading + Environment.NewLine;
+                Mess += Config.NameTicket + Environment.NewLine;
 
                 if (closeTicketG != null)
                 {

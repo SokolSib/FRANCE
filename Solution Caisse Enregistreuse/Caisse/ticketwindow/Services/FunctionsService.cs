@@ -1239,8 +1239,19 @@ namespace TicketWindow.Services
         public static void CloseTicketWindow(object sender)
         {
             var closeTicketWindow = Window.GetWindow((Button) sender) as WCloseTicketWindow;
-            CassieService.Close();
-            if (closeTicketWindow != null) closeTicketWindow.errorlist.Text = CassieService.Mess;
+
+            var worker = new BackgroundWorker();
+            ProgressHelper.Instance.IsIndeterminate = true;
+            ProgressHelper.Instance.Start(1, Resources.LabelClose);
+
+            worker.DoWork += (s, e) => { CassieService.Close(); };
+            worker.RunWorkerCompleted += (s, e) =>
+                                         {
+                                             if (closeTicketWindow != null)
+                                                 closeTicketWindow.errorlist.Text = CassieService.Mess;
+                                             ProgressHelper.Instance.Stop();
+                                         };
+            worker.RunWorkerAsync();
         }
 
         private static XDocument ShowMessageCustomerDisplay(XDocument oldXDocument)

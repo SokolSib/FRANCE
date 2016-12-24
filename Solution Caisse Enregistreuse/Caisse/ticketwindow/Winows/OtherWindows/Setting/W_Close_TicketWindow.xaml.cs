@@ -1,7 +1,5 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using TicketWindow.Global;
 using TicketWindow.Services;
 using TicketWindow.Winows.AdditionalClasses;
 
@@ -15,7 +13,7 @@ namespace TicketWindow.Winows.OtherWindows.Setting
         public WCloseTicketWindow(string str)
         {
             InitializeComponent();
-            errorlist.Text = str;
+            errorlist.Text = TextService.GetCloseWindowText() + str;
         }
 
         private void WindowLoaded(object sender, RoutedEventArgs e)
