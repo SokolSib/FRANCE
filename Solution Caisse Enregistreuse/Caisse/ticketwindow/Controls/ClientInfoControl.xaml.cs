@@ -13,6 +13,8 @@ namespace TicketWindow.Controls
     /// </summary>
     public partial class ClientInfoControl : UserControl
     {
+        private Guid _infoClientsCustomerId;
+
         public ClientInfoControl()
         {
             InitializeComponent();
@@ -51,27 +53,35 @@ namespace TicketWindow.Controls
             }
         }
 
-        public ClientInfo GetClientInfo(DiscountCard card)
+        public ClientInfo GetClientInfo(DiscountCard card, ClientInfo info)
         {
-            //Sex 
-            //Password
-            //CountrysCustomerId
-            //FavoritesProductAutoCustomerId
-            //Nclient
-            var info = new ClientInfo(card.InfoClientsCustomerId, 1, 1, BoxName.Text, BoxSurname.Text, BoxNameCompany.Text,
+            if (card.InfoClientsCustomerId == Guid.Empty)
+                card.InfoClientsCustomerId = Guid.NewGuid();
+
+            _infoClientsCustomerId = card.InfoClientsCustomerId;
+
+            var customerId = info?.CustomerId ?? Guid.NewGuid();
+            var sex = info?.Sex ?? 0;
+            var password = info?.Password ?? string.Empty;
+            var countrysCustomerId = info?.CountrysCustomerId ?? Guid.Empty;
+            var favoritesProductAutoCustomerId = info?.FavoritesProductAutoCustomerId ?? Guid.Empty;
+            var nclient = info?.Nclient ?? string.Empty;
+            
+            var newInfo = new ClientInfo(customerId, 1, sex, BoxName.Text, BoxSurname.Text, BoxNameCompany.Text,
                            BoxInn.Text, BoxFrtva.Text, BoxOfficeAddress.Text, BoxOfficeZipCode.Text,
                            BoxOfficeCity.Text, BoxHomeAddress.Text, BoxHomeZipCode.Text, BoxHomeCity.Text,
-                           BoxTelephone.Text, BoxMail.Text, "", Guid.Empty, Guid.Empty, "", card.InfoClientsCustomerId);
+                           BoxTelephone.Text, BoxMail.Text, password, countrysCustomerId, favoritesProductAutoCustomerId, nclient, card.InfoClientsCustomerId);
 
-            if (info.DiscountCards.Count == 0)
-                info.DiscountCards.Add(card);
+            if (newInfo.DiscountCards.Count == 0)
+                newInfo.DiscountCards.Add(card);
 
-            return info;
+            return newInfo;
         }
 
         public DiscountCard GetDiscountCard(DiscountCard card)
         {
             card.Points = BoxPoints.Text.ToInt();
+            card.InfoClientsCustomerId = _infoClientsCustomerId;
             return card;
         }
 
@@ -97,9 +107,9 @@ namespace TicketWindow.Controls
             {
                 int valueInt;
                 if (!int.TryParse(BoxPoints.Text.Trim(), out valueInt))
-                    result += Environment.NewLine + LabelInn.Text + " " + Properties.Resources.LabelPoints;
+                    result += Environment.NewLine + LabelPoints.Text + " " + Properties.Resources.LabelIncorrect;
             }
-            else result += Environment.NewLine + LabelInn.Text + " " + Properties.Resources.LabelPoints;
+            else result += Environment.NewLine + LabelPoints.Text + " " + Properties.Resources.LabelIncorrect;
 
             BoxError.Text = result;
             return result == string.Empty;

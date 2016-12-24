@@ -172,7 +172,7 @@ namespace TicketWindow.Services
 
             if (wind.xName.Visibility == Visibility.Visible)
                 //return RepositoryProduct.FiltrXElementsByName(products, wind.xName.Text);
-                products = products.Where(p => p.Name.IndexOf(wind.xName.Text.Trim(), StringComparison.InvariantCultureIgnoreCase)>=0).ToList();
+                products = TextService.FindProductsByText(wind.xName.Text, false);
 
             if (wind.xCodeBar.Visibility == Visibility.Visible)
                 //return RepositoryProduct.FiltrXElementsByBarCode(products, wind.xCodeBar.Text);

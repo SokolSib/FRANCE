@@ -35,11 +35,6 @@ namespace TicketWindow.Winows.OtherWindows.Discount
             if (_card != null)
                 _info = RepositoryDiscount.GetClientInfoById(_card.InfoClientsCustomerId);
 
-            var isFounded = _info != null;
-
-            ClientInfoControl.Visibility = isFounded ? Visibility.Visible : Visibility.Collapsed;
-            BoxNotFound.Visibility = !isFounded ? Visibility.Visible : Visibility.Collapsed;
-
             ClientInfoControl.SetClientInfo(_info);
 
             if (_card != null)
@@ -50,11 +45,15 @@ namespace TicketWindow.Winows.OtherWindows.Discount
 
                 BtnActive.Visibility = Visibility.Visible;
                 BtnSave.Visibility = Visibility.Visible;
+                ClientInfoControl.Visibility = Visibility.Visible;
+                BoxNotFound.Visibility = Visibility.Collapsed;
             }
             else
             {
                 BtnActive.Visibility = Visibility.Collapsed;
                 BtnSave.Visibility = Visibility.Collapsed;
+                ClientInfoControl.Visibility = Visibility.Collapsed;
+                BoxNotFound.Visibility = Visibility.Visible;
             }
         }
 
@@ -68,8 +67,8 @@ namespace TicketWindow.Winows.OtherWindows.Discount
             RepositoryClientInfo.Sync();
             if (ClientInfoControl.Validate())
             {
-                if (_info == null) RepositoryClientInfo.Add(_info);
-                else RepositoryClientInfo.Update(ClientInfoControl.GetClientInfo(_card));
+                if (_info == null) RepositoryClientInfo.Add(ClientInfoControl.GetClientInfo(_card, _info));
+                else RepositoryClientInfo.Update(ClientInfoControl.GetClientInfo(_card, _info));
 
                 RepositoryDiscountCard.Update(ClientInfoControl.GetDiscountCard(_card));
             }
