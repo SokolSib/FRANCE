@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -8,6 +9,7 @@ using TicketWindow.DAL.Additional;
 using TicketWindow.DAL.Models;
 using TicketWindow.DAL.Repositories;
 using TicketWindow.Extensions;
+using TicketWindow.Services;
 using TicketWindow.Winows.AdditionalClasses;
 
 namespace TicketWindow.Winows.OtherWindows.Product.AddProduct
@@ -217,32 +219,73 @@ namespace TicketWindow.Winows.OtherWindows.Product.AddProduct
 
         private void AddElm()
         {
-            RepositoryProduct.Add(FormToVar());
-            var dg = GetParents().DataGrid;
-            Close();
-            CollectionViewSource.GetDefaultView(dg.ItemsSource).Refresh();
+            var worker = new BackgroundWorker();
+            ProgressHelper.Instance.IsIndeterminate = true;
+            ProgressHelper.Instance.Start(1, Properties.Resources.LabelPleaseWaitWhileLoading);
+            var product = FormToVar();
+
+            worker.DoWork += (s, e) => { RepositoryProduct.Add(product); };
+            worker.RunWorkerCompleted += (s, e) =>
+            {
+                var dg = GetParents().DataGrid;
+                Close();
+                CollectionViewSource.GetDefaultView(dg.ItemsSource).Refresh();
+            };
+            worker.RunWorkerAsync();
+
+            //RepositoryProduct.Add(FormToVar());
+            //var dg = GetParents().DataGrid;
+            //Close();
+            //CollectionViewSource.GetDefaultView(dg.ItemsSource).Refresh();
         }
         
         private void EditElm()
         {
+            var worker = new BackgroundWorker();
+            ProgressHelper.Instance.IsIndeterminate = true;
+            ProgressHelper.Instance.Start(1, Properties.Resources.LabelPleaseWaitWhileLoading);
             var product = FormToVar();
-            RepositoryProduct.Update(product);
-            RepositoryProduct.UpdateProductPrice(product);
+            decimal stockRealCount;
+            decimal.TryParse(xStockCount.Text.Replace(".", ","), out stockRealCount);
 
-            if (RepositoryAccountUser.LoginedUser.Role.IsPermiss(Privelege.RedactStockCount))
+            worker.DoWork += (s, e) =>
+                             {
+                                 RepositoryProduct.Update(product);
+                                 RepositoryProduct.UpdateProductPrice(product);
+
+                                 if (RepositoryAccountUser.LoginedUser.Role.IsPermiss(Privelege.RedactStockCount))
+                                 {
+                                     var stockReal = RepositoryStockReal.GetByProduct(product);
+                                     RepositoryStockReal.UpdateProductCount(stockRealCount, stockReal.CustomerId);
+                                 }
+                             };
+            worker.RunWorkerCompleted += (s, e) =>
             {
-                var stockReal = RepositoryStockReal.GetByProduct(product);
+                var dg = GetParents().DataGrid;
+                Close();
+                dg.ItemsSource = RepositoryProduct.Products;
+                CollectionViewSource.GetDefaultView(dg.ItemsSource).Refresh();
+            };
+            worker.RunWorkerAsync();
 
-                decimal stockRealCount;
-                decimal.TryParse(xStockCount.Text.Replace(".", ","), out stockRealCount);
+            //var product = FormToVar();
+            //RepositoryProduct.Update(product);
+            //RepositoryProduct.UpdateProductPrice(product);
 
-                RepositoryStockReal.UpdateProductCount(stockRealCount, stockReal.CustomerId);
-            }
+            //if (RepositoryAccountUser.LoginedUser.Role.IsPermiss(Privelege.RedactStockCount))
+            //{
+            //    var stockReal = RepositoryStockReal.GetByProduct(product);
 
-            var dg = GetParents().DataGrid;
-            Close();
-            dg.ItemsSource = RepositoryProduct.Products;
-            CollectionViewSource.GetDefaultView(dg.ItemsSource).Refresh();
+            //    decimal stockRealCount;
+            //    decimal.TryParse(xStockCount.Text.Replace(".", ","), out stockRealCount);
+
+            //    RepositoryStockReal.UpdateProductCount(stockRealCount, stockReal.CustomerId);
+            //}
+
+            //var dg = GetParents().DataGrid;
+            //Close();
+            //dg.ItemsSource = RepositoryProduct.Products;
+            //CollectionViewSource.GetDefaultView(dg.ItemsSource).Refresh();
         }
 
         private void ButtonClick(object sender, RoutedEventArgs e)
