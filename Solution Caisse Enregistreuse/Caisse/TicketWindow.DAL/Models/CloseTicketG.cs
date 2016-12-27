@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 using System.Xml.Linq;
 using TicketWindow.DAL.Models.Base;
+using TicketWindow.DAL.Repositories;
 using TicketWindow.Extensions;
 
 namespace TicketWindow.DAL.Models
@@ -64,6 +66,16 @@ namespace TicketWindow.DAL.Models
             Pay18 = 0;
             Pay19 = 0;
             Pay20 = 0;
+        }
+
+        public string CassieName
+        {
+            get
+            {
+                return
+                    RepositoryEstablishment.Establishments.FirstOrDefault(e => e.CustomerId == EstablishmentCustomerId)?
+                        .Name;
+            }
         }
 
         public static CloseTicketG FromXElement(XContainer element)

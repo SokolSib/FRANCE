@@ -78,7 +78,9 @@ namespace TicketWindow.DAL.Repositories
                         return connection.Query<CloseTicketG>(SelectQuery).ToList();
                 else
                     using (var connection = ConnectionFactory.CreateConnection())
-                        return connection.Query<CloseTicketG>(SelectQuery + " WHERE CustumerId = @customerId", new {customerId}).ToList();
+                        return
+                            connection.Query<CloseTicketG>(SelectQuery + " WHERE CustumerId = @customerId",
+                                new {customerId}).ToList();
 
             return customerId == Guid.Empty
                 ? CloseTicketGs.ToList()
