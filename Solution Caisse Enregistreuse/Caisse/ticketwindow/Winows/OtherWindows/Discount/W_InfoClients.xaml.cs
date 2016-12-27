@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using TicketWindow.DAL.Models;
 using TicketWindow.DAL.Repositories;
+using TicketWindow.Winows.OtherWindows.Message;
 
 namespace TicketWindow.Winows.OtherWindows.Discount
 {
@@ -71,6 +72,12 @@ namespace TicketWindow.Winows.OtherWindows.Discount
                 else RepositoryClientInfo.Update(ClientInfoControl.GetClientInfo(_card, _info));
 
                 RepositoryDiscountCard.Update(ClientInfoControl.GetDiscountCard(_card));
+
+                Close();
+
+                var messageWindow = new WMessage(Properties.Resources.BtnOk, Properties.Resources.LabelOperationComplete,
+                                        Properties.Resources.BtnOk);
+                messageWindow.ShowDialog();
             }
         }
 

@@ -1217,6 +1217,7 @@ namespace TicketWindow.Services
             if (windowCloseTicket != null)
             {
                 var worker = new BackgroundWorker();
+                windowCloseTicket.BtnCloseGeneral.IsEnabled = false;
                 ProgressHelper.Instance.IsIndeterminate = true;
                 ProgressHelper.Instance.Start(1, Resources.LabelClose);
 
@@ -1231,6 +1232,7 @@ namespace TicketWindow.Services
 
                                                  windowCloseTicket.errorlist.Text = RepositoryGeneral.Mess;
                                                  ProgressHelper.Instance.Stop();
+                                                 windowCloseTicket.BtnCloseGeneral.IsEnabled = true;
                                              };
                 worker.RunWorkerAsync();
             }
@@ -1240,18 +1242,22 @@ namespace TicketWindow.Services
         {
             var closeTicketWindow = Window.GetWindow((Button) sender) as WCloseTicketWindow;
 
-            var worker = new BackgroundWorker();
-            ProgressHelper.Instance.IsIndeterminate = true;
-            ProgressHelper.Instance.Start(1, Resources.LabelClose);
+            if (closeTicketWindow != null)
+            {
+                var worker = new BackgroundWorker();
+                closeTicketWindow.BtnCloseLocal.IsEnabled = false;
+                ProgressHelper.Instance.IsIndeterminate = true;
+                ProgressHelper.Instance.Start(1, Resources.LabelClose);
 
-            worker.DoWork += (s, e) => { CassieService.Close(); };
-            worker.RunWorkerCompleted += (s, e) =>
-                                         {
-                                             if (closeTicketWindow != null)
+                worker.DoWork += (s, e) => { CassieService.Close(); };
+                worker.RunWorkerCompleted += (s, e) =>
+                                             {
                                                  closeTicketWindow.errorlist.Text = CassieService.Mess;
-                                             ProgressHelper.Instance.Stop();
-                                         };
-            worker.RunWorkerAsync();
+                                                 closeTicketWindow.BtnCloseLocal.IsEnabled = true;
+                                                 ProgressHelper.Instance.Stop();
+                                             };
+                worker.RunWorkerAsync();
+            }
         }
 
         private static XDocument ShowMessageCustomerDisplay(XDocument oldXDocument)

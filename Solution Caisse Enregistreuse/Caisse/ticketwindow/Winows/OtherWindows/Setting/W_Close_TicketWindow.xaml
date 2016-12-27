@@ -26,10 +26,10 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button Tag="closing_TW" Content="{x:Static Properties:Resources.BtnCloseLocal}" Name="BtnCloseLocal"/>
-            <Button Tag="closing_TWG" Grid.Column="1" Content="{x:Static Properties:Resources.BtnCloseTotal}"/>
-            <Button Grid.Column="2" Click="ButtonClick1" Content="{x:Static Properties:Resources.BtnContinue}"/>
-            <Button Grid.Column="3" Tag="Fermer" Content="{x:Static Properties:Resources.BtnClose}"/>
+            <Button Tag="closing_TW" Content="{x:Static Properties:Resources.BtnCloseLocal}" Name="BtnCloseLocal" />
+            <Button Tag="closing_TWG" Grid.Column="1" Content="{x:Static Properties:Resources.BtnCloseTotal}" Name="BtnCloseGeneral" />
+            <Button Grid.Column="2" Click="ButtonClick1" Content="{x:Static Properties:Resources.BtnContinue}" />
+            <Button Grid.Column="3" Tag="Fermer" Content="{x:Static Properties:Resources.BtnClose}" />
         </Grid>
     </Grid>
        
