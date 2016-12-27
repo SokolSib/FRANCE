@@ -313,14 +313,18 @@ namespace TicketWindow.Services
                     FunctionsService.ShowMessageSb(text);
                     LogService.Log(TraceLevel.Error, 4, text + RepositoryCheck.DocumentProductCheck + ".");
                 }
-                
-                    if (ClassProMode.ModePro || ClassProMode.Devis)
-                        ClassProMode.Move(ClassProMode.Devis);
-                    else
-                        RepositoryCheck.Document.GetXElement("checks").Add(RepositoryCheck.DocumentProductCheck.Element("check"));
-              
-                    if (!ClassProMode.ModePro && !ClassProMode.Devis)
-                        new ClassPrintCheck(RepositoryCheck.DocumentProductCheck, false);
+
+                if (ClassProMode.ModePro || ClassProMode.Devis)
+                    ClassProMode.Move(ClassProMode.Devis);
+                else
+                {
+                    var element = RepositoryCheck.DocumentProductCheck.Element("check");
+                    element.GetXAttribute("barcodeCheck").SetValue(RepositoryCheck.GetBarCodeCheck());
+                    RepositoryCheck.Document.GetXElement("checks").Add(element);
+                }
+
+                if (!ClassProMode.ModePro && !ClassProMode.Devis)
+                    new ClassPrintCheck(RepositoryCheck.DocumentProductCheck, false);
                 
                 try
                 {

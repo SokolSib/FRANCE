@@ -175,9 +175,8 @@ namespace TicketWindow.DAL.Repositories
 
             try
             {
-                var countInDoc = Document.GetXElements("checks", "check").Count();
-                if (countInDoc != 1) countInDoc++;
-                return Config.NumberTicket + date.ToString("HHmmss") + string.Format("{0:00000}", countInDoc);
+                var count = Document.GetXElements("checks", "check").Count() + 1;
+                return Config.NumberTicket + date.ToString("HHmmss") + string.Format("{0:00000}", count);
             }
             catch
             {
