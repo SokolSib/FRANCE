@@ -10,13 +10,13 @@
     <UserControl.Resources>
         <Style TargetType="TextBox">
             <Setter Property="FontSize" Value="25" />
-            <Setter Property="Margin" Value="10,20,20,20" />
+            <Setter Property="Margin" Value="10,5,20,5" />
         </Style>
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="White" />
             <Setter Property="HorizontalAlignment" Value="Right" />
             <Setter Property="FontSize" Value="15" />
-            <Setter Property="Margin" Value="20,20,0,20" />
+            <Setter Property="Margin" Value="20,5,0,5" />
         </Style>
     </UserControl.Resources>
 

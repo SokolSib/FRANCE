@@ -171,10 +171,13 @@ namespace TicketWindow.DAL.Repositories
         public static string GetBarCodeCheck()
         {
             var date = DateTime.Now;
+            GetDucument();
 
             try
             {
-                return Config.NumberTicket + date.ToString("HHmmss") + string.Format("{0:00000}", Document.GetXElements("checks", "check").Count() + 1);
+                var countInDoc = Document.GetXElements("checks", "check").Count();
+                if (countInDoc != 1) countInDoc++;
+                return Config.NumberTicket + date.ToString("HHmmss") + string.Format("{0:00000}", countInDoc);
             }
             catch
             {

@@ -1232,7 +1232,6 @@ namespace TicketWindow.Services
 
                                                  windowCloseTicket.errorlist.Text = RepositoryGeneral.Mess;
                                                  ProgressHelper.Instance.Stop();
-                                                 windowCloseTicket.BtnCloseGeneral.IsEnabled = true;
                                              };
                 worker.RunWorkerAsync();
             }
@@ -1253,7 +1252,6 @@ namespace TicketWindow.Services
                 worker.RunWorkerCompleted += (s, e) =>
                                              {
                                                  closeTicketWindow.errorlist.Text = CassieService.Mess;
-                                                 closeTicketWindow.BtnCloseLocal.IsEnabled = true;
                                                  ProgressHelper.Instance.Stop();
                                              };
                 worker.RunWorkerAsync();
