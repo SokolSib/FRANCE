@@ -133,12 +133,12 @@ FROM InfoClients WHERE TypeClient = 1";
                throw new NotSupportedException();
         }
 
-        public static ClientInfo GetOneByNumber(Guid customerId)
+        public static ClientInfo GetOneByNumber(Guid IdInfoClientsDiscount)
         {
-            if (customerId == Guid.Empty) return null;
+            if (IdInfoClientsDiscount == Guid.Empty) return null;
             
             if (ClientInfos.Count == 0) Sync();
-            var clientInfos = ClientInfos.FindAll(ci => ci.CustomerId == customerId);
+            var clientInfos = ClientInfos.FindAll(ci => ci.IdInfoClientsDiscount == IdInfoClientsDiscount);
 
             switch (clientInfos.Count)
             {
