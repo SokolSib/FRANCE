@@ -7,6 +7,7 @@ using TicketWindow.DAL.Models;
 using TicketWindow.DAL.Repositories;
 using TicketWindow.Extensions;
 using TicketWindow.Services;
+using TicketWindow.Winows.OtherWindows.Message;
 
 namespace TicketWindow.Winows.OtherWindows.Return
 {
@@ -27,7 +28,7 @@ namespace TicketWindow.Winows.OtherWindows.Return
 
             if ((e.Key == Key.Return) && (bc != ""))
             {
-                var check = getCheck(bc);
+                var check = GetCheck(bc);
 
                 if (check != null)
                     FunctionsService.Click(button, check);
@@ -38,16 +39,22 @@ namespace TicketWindow.Winows.OtherWindows.Return
             }
         }
 
-        private CheckTicket getCheck(string barcode)
+        private static CheckTicket GetCheck(string barcode)
         {
-            var foundedCheckElement = RepositoryCheck.Document.GetXElements("checks", "check").FirstOrDefault(c => c.GetXAttributeValue("barcodeCheck") == barcode);
-            return CheckTicket.FromCheckXElement(foundedCheckElement, Guid.NewGuid(), Guid.NewGuid());
+            RepositoryCheck.GetDucument();
+
+            var foundedCheckElement = RepositoryCheck.Document.GetXElements("checks", "check")
+                    .FirstOrDefault(c => c.GetXAttributeValue("barcodeCheck") == barcode);
+
+            return foundedCheckElement != null
+                ? CheckTicket.FromCheckXElement(foundedCheckElement, Guid.NewGuid(), Guid.NewGuid())
+                : null;
         }
 
         private void ButtonClick(object sender, RoutedEventArgs e)
         {
             var bc = codebare.Text.Trim();
-            var check = getCheck(bc);
+            var check = GetCheck(bc);
 
             if (check != null)
                 FunctionsService.Click(button, check);
