@@ -9,6 +9,7 @@ using TicketWindow.DAL.Additional;
 using TicketWindow.DAL.Models;
 using TicketWindow.DAL.Repositories;
 using TicketWindow.Extensions;
+using TicketWindow.Global;
 using TicketWindow.Services;
 using TicketWindow.Winows.AdditionalClasses;
 
@@ -213,6 +214,10 @@ namespace TicketWindow.Winows.OtherWindows.Product.AddProduct
                         Price = xPrice.Text.ToDecimal(),
                         CusumerIdRealStock = idStock
                     };
+            if (RepositoryAccountUser.LoginedUser.Role.IsPermiss(Privelege.RedactStockCount))
+                p.Qty = xStockCount.Text.ToDecimal();
+            else if (Product != null)
+                p.Qty = Product.Qty;
 
             return p;
         }
@@ -267,8 +272,18 @@ namespace TicketWindow.Winows.OtherWindows.Product.AddProduct
             if (RepositoryAccountUser.LoginedUser.Role.IsPermiss(Privelege.RedactStockCount))
             {
                 var stockReal = RepositoryStockReal.GetByProduct(product);
+                RepositoryStockReal.AddAsNull(product.CustomerId, Config.IdEstablishment);
                 RepositoryStockReal.UpdateProductCount(_stockRealCount, stockReal.CustomerId);
             }
+        }
+        
+        private void WorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            var dg = GetParents().DataGrid;
+            Close();
+            dg.ItemsSource = RepositoryProduct.Products;
+            CollectionViewSource.GetDefaultView(dg.ItemsSource).Refresh();
+            ProgressHelper.Instance.Stop();
         }
 
         private void ButtonClick(object sender, RoutedEventArgs e)
@@ -281,15 +296,6 @@ namespace TicketWindow.Winows.OtherWindows.Product.AddProduct
         private void CancelClick(object sender, RoutedEventArgs e)
         {
             Close();
-        }
-
-        private void WorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            var dg = GetParents().DataGrid;
-            Close();
-            dg.ItemsSource = RepositoryProduct.Products;
-            CollectionViewSource.GetDefaultView(dg.ItemsSource).Refresh();
-            ProgressHelper.Instance.Stop();
         }
     }
 }

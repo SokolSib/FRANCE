@@ -106,10 +106,9 @@ namespace TicketWindow.DAL.Repositories
 
         public static StockReal GetByProduct(ProductType product)
         {
-            return StockReals.FirstOrDefault(s =>
-                        (s.ProductsCustomerId == product.CustomerId) &&
-                        ((s.IdEstablishment == Config.IdEstablishment) ||
-                         s.IdEstablishment == Config.IdEstablishmentGros));
+            return
+                StockReals.FirstOrDefault(
+                    s => (s.ProductsCustomerId == product.CustomerId) && (s.IdEstablishment == Config.IdEstablishment));
         }
 
         public static void UpdatePrice(StockReal stockReal, decimal price)
@@ -167,17 +166,22 @@ namespace TicketWindow.DAL.Repositories
                 var document = XDocument.Load(Path);
                 var stockRealsElement = document.GetXElement("StockReals");
                 stockRealsElement.Add(StockReal.ToXElement(stockReal));
+                document.Save(Path);
 
-                int result;
-                using (var connection = ConnectionFactory.CreateConnection())
-                    result = connection.Execute(InsertQuery, stockReal);
-
-                if (result == -1)
+                if (SyncData.IsConnect)
                 {
-                    LogService.Log(TraceLevel.Error, 400);
-                    LogService.SqlLog(TraceLevel.Error, stockReal.CustomerId.ToString());
+                    int result;
+                    using (var connection = ConnectionFactory.CreateConnection())
+                        result = connection.Execute(InsertQuery, stockReal);
+
+                    if (result == -1)
+                    {
+                        LogService.Log(TraceLevel.Error, 400);
+                        LogService.SqlLog(TraceLevel.Error, stockReal.CustomerId.ToString());
+                    }
+                    else return stockReal;
                 }
-                else return stockReal;
+                return stockReal;
             }
 
             return null;
