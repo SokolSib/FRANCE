@@ -38,6 +38,16 @@ namespace TicketWindow.DAL.Models
 
         public Guid EstablishmentCustomerId { get; set; }
 
+        public decimal TotalSum
+        {
+            get
+            {
+                return PayBankChecks + PayBankCards + PayCash + PayResto + Pay1 + Pay2 + Pay3 + Pay4 + Pay5 + Pay6 +
+                       Pay7 + Pay8 + Pay9 + Pay10 + Pay11 + Pay12 + Pay13 + Pay14 + Pay15 + Pay16 + Pay17 + Pay18 +
+                       Pay19 + Pay20;
+            }
+        }
+
         public void SetPaysToNull()
         {
             // Прям эта дата ?
@@ -80,14 +90,40 @@ namespace TicketWindow.DAL.Models
 
         public static CloseTicketG FromXElement(XContainer element)
         {
-            var closeTicketG = new CloseTicketG(FromXElementBase(element))
-            {
-                EstablishmentCustomerId = element.GetXElementValue("EstablishmentCustomerId").ToGuid(),
-                DateOpen = element.GetXElementValue("DateOpen").ToDateTime(),
-                DateClose = element.GetXElementValue("DateClose").ToDateTime()
-            };
+            var payValues = new decimal[PayXmlNames.Length];
+            var idx = 0;
+            foreach (var attribute in PayXmlNames.Select(name => element.GetXElementOrNull("Pay" + name)))
+                payValues[idx++] = attribute?.Value.ToDecimal() ?? 0;
 
-            return closeTicketG;
+            return new CloseTicketG(
+                       element.GetXElementValue("CustomerId").ToGuid(),
+                       element.GetXElementValue("DateOpen").ToDateTime(),
+                       element.GetXElementValue("DateClose").ToDateTime(),
+                       payValues[0],
+                       payValues[1],
+                       payValues[2],
+                       payValues[3],
+                       payValues[4],
+                       payValues[5],
+                       payValues[6],
+                       payValues[7],
+                       payValues[8],
+                       payValues[9],
+                       payValues[10],
+                       payValues[11],
+                       payValues[12],
+                       payValues[13],
+                       payValues[14],
+                       payValues[15],
+                       payValues[16],
+                       payValues[17],
+                       payValues[18],
+                       payValues[19],
+                       payValues[20],
+                       payValues[21],
+                       payValues[22],
+                       payValues[23],
+                       element.GetXElementValue("EstablishmentCustomerId").ToGuid());
         }
 
         public static XElement ToXElement(CloseTicketG obj)

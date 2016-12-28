@@ -19,14 +19,13 @@
                       SelectedCellsChanged="ListSelectedCellsChanged"
            AutoGenerateColumns="False"  >
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="{x:Static Properties:Resources.LabelOpen}" Binding="{Binding Path=DateOpen }"/>
-                    <DataGridTextColumn Header="{x:Static Properties:Resources.LabelClose}" Binding="{Binding Path=DateClose }"/>
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.LabelOpen}" Binding="{Binding Path=DateOpen }" Width="*"/>
+                    <DataGridTextColumn Header="{x:Static Properties:Resources.LabelClose}" Binding="{Binding Path=DateClose }" Width="*"/>
                     <DataGridTextColumn Header="{x:Static Properties:Resources.LabelCheck}" Binding="{Binding Path=PayBankChecks }"/>
                     <DataGridTextColumn Header="{x:Static Properties:Resources.LabelCB}" Binding="{Binding Path=PayBankCards }"/>
                     <DataGridTextColumn Header="{x:Static Properties:Resources.LabelType}" Binding="{Binding Path=PayCash }"/>
                     <DataGridTextColumn Header="{x:Static Properties:Resources.LabelTicketR}" Binding="{Binding Path=PayResto }"/>
                     <DataGridTextColumn Header="{x:Static Properties:Resources.LabelTicketRetour}" Binding="{Binding Path=Pay1 }"/>
-                    <DataGridTextColumn Header="{x:Static Properties:Resources.LabelEst}" Binding="{Binding Path=EstablishmentCustomerId }"/>
                 </DataGrid.Columns>
             </DataGrid>
            
