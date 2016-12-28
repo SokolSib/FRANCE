@@ -17,9 +17,9 @@ namespace TicketWindow.Winows.OtherWindows.Return
             InitializeComponent();
 
             codebare_.Focus();
-
             codebare_.IsEnabled = false;
 
+            RepositoryCheck.GetDucument();
             var check = RepositoryCheck.Document.GetXElements("checks", "check").LastOrDefault();
 
             if (check != null) codebare_.Text = check.Attributes("barcodeCheck").FirstOrDefault().Value;

@@ -423,7 +423,8 @@ namespace TicketWindow.Services
 
         public static bool GetCheckFromChecksAndDelete(string bc)
         {
-            var atr = RepositoryCheck.Document.GetXAttributes("checks", "check", "barcodeCheck").FirstOrDefault(l => l.Value.Trim() == bc.Trim());
+            var atr = RepositoryCheck.Document.GetXElements("checks", "check")
+                    .FirstOrDefault(c => c.GetXAttributeValue("barcodeCheck").Trim() == bc.Trim());
 
             if (atr != null)
             {

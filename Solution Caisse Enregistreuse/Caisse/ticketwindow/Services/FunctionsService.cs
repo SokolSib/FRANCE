@@ -524,7 +524,7 @@ namespace TicketWindow.Services
             if (!RepositoryCheck.DocumentProductCheck.GetXElements("check", "product").Any())
                 Effect(new WAnnulationDeTicket());
 
-            else ShowMessageSb("Veuillez d'abord éditer la note!");
+            else ShowMessageSb(Resources.LabelEditListProducts);
         }
 
         private static void ClickAnnulationDeTicket(object sender)
@@ -915,6 +915,7 @@ namespace TicketWindow.Services
                     CheckService.DiscountCalc();
 
                 MainAppWindow.qty_label.Text = "__";
+                MainAppWindow.CheckOriginalDocument = null;
             }
         }
 
@@ -1112,6 +1113,7 @@ namespace TicketWindow.Services
                         RepositoryCurrencyRelations.Document = null;
                         MainAppWindow.qty_label.Text = "__";
                         RepositoryDiscount.Client.ProcentDefault = 0;
+                        MainAppWindow.CheckOriginalDocument = null;
                     }
                 }
             }
