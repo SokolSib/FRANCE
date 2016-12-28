@@ -122,7 +122,6 @@ namespace TicketWindow.Services
             var odd = RepositoryCurrencyRelations.Residue() - sumMoney;
 
             if (odd < 0)
-            {
                 if (!ws.TypesPay.RenduAvoir ?? false)
                 {
                     var money = RepositoryCurrencyRelations.GetSumMoney();
@@ -133,7 +132,6 @@ namespace TicketWindow.Services
                     if (money - sumMoney - etc < 0)
                         odd = -d;
                 }
-            }
 
             var m = new EuroConverter(RepositoryCurrencyRelations.Residue());
             ws.lblSet.Content = m.Euro + " euro(s) et " + m.Cent + " centime(s)";
@@ -197,44 +195,34 @@ namespace TicketWindow.Services
                     }
 
                     if (MainAppWindow.GridProducts.Items.Count > 0)
-                    {
                         try
                         {
                             var border = VisualTreeHelper.GetChild(MainAppWindow.GridProducts, 0) as Decorator;
 
-                            if (border != null)
-                            {
-                                var scroll = border.Child as ScrollViewer;
-                                if (scroll != null) scroll.ScrollToEnd();
-                            }
+                            var scroll = border?.Child as ScrollViewer;
+                            scroll?.ScrollToEnd();
                         }
                         catch
                         {
                             LogService.Log(TraceLevel.Error, 990);
                         }
-                    }
 
-                    if (x != null)
+                    if (x?.GetXElementValue("price").ToDecimal() == 0)
                     {
-                        if (x.GetXElementValue("price").ToDecimal() == 0)
-                        {
-                            var productType = ProductType.FromXElement(x);
-                            var wp = new WModifierPrix(productType);
-                            Effect(wp);
-                        }
+                        var productType = ProductType.FromXElement(x);
+                        var wp = new WModifierPrix(productType);
+                        Effect(wp);
                     }
                 }
                 if ((RepositoryDiscount.Client.Barcode != null) || RepositoryDiscount.Client.ProcentDefault > 0)
                 {
-                    if (RepositoryDiscount.Client.Points > (RepositoryDiscount.Client.MaxPoints - 1))
-                    {
-                        if ((!RepositoryDiscount.Client.DiscountSet) && RepositoryDiscount.Client.ShowMessaget)
+                    if (RepositoryDiscount.Client.Points > RepositoryDiscount.Client.MaxPoints - 1)
+                        if (!RepositoryDiscount.Client.DiscountSet && RepositoryDiscount.Client.ShowMessaget)
                         {
                             ShowMessage("DiscountSet",
                                 "Vous avez " + RepositoryDiscount.Client.Points + " points." + Environment.NewLine + "Vous voulez vous servir de reduction de 20%?");
                             RepositoryDiscount.Client.ShowMessaget = false;
                         }
-                    }
 
                     MainAppWindow.lProcentDiscount.Content = RepositoryDiscount.Client.Procent + RepositoryDiscount.Client.ProcentDefault + "%";
                     MainAppWindow.lNameClient.Content = RepositoryDiscount.Client.NameFirst ?? "Inconnue " + " " + RepositoryDiscount.Client.NameLast;
@@ -379,7 +367,7 @@ namespace TicketWindow.Services
                 var we = new SettingsWindow(x,y)
                          {
                              Owner = MainAppWindow,
-                             xCaption = {Text = button.Content == null ? "" : button.Content.ToString()},
+                             xCaption = {Text = button.Content?.ToString() ?? ""},
                              xColor = {Background = button.Background},
                              xColorFont = {Background = button.Foreground}
                          };
@@ -410,7 +398,7 @@ namespace TicketWindow.Services
         {
             var w = new WGrid
                     {
-                        Owner = (Window.GetWindow((Button) sender) as WStat)
+                        Owner = Window.GetWindow((Button) sender) as WStat
                     };
 
             Effect(w);
@@ -420,7 +408,7 @@ namespace TicketWindow.Services
         {
             var w = new Winows.OtherWindows.Statistique.ModifStatPlaceArrond.WGrid
                     {
-                        Owner = (Window.GetWindow((Button) sender) as WStat)
+                        Owner = Window.GetWindow((Button) sender) as WStat
                     };
 
             Effect(w);
@@ -431,7 +419,7 @@ namespace TicketWindow.Services
             var w = new WAdd
                     {
                         Snp = (List<StatNationPopup>) arg,
-                        Owner = (Window.GetWindow((Button) sender) as WGrid)
+                        Owner = Window.GetWindow((Button) sender) as WGrid
                     };
 
             Effect(w);
@@ -475,7 +463,7 @@ namespace TicketWindow.Services
             var w = new Winows.OtherWindows.Statistique.ModifStatPlaceArrond.WAdd
                     {
                         Snp = (List<StatPlaceArrond>) arg,
-                        Owner = (Window.GetWindow((Button) sender) as Winows.OtherWindows.Statistique.ModifStatPlaceArrond.WGrid)
+                        Owner = Window.GetWindow((Button) sender) as Winows.OtherWindows.Statistique.ModifStatPlaceArrond.WGrid
                     };
 
             Effect(w);
@@ -528,7 +516,7 @@ namespace TicketWindow.Services
         {
             Effect(new WReturnProduct(arg));
             var wReturn = (WReturn) Window.GetWindow((Button) sender);
-            if (wReturn != null) wReturn.Close();
+            wReturn?.Close();
         }
 
         private static void AnnulationDeTicket()
@@ -616,31 +604,28 @@ namespace TicketWindow.Services
         {
             var w = Window.GetWindow((Button) sender);
 
-            if (w is MainWindow)
+            var mw = w as MainWindow;
+            if (mw?.gidLeft.Visibility == Visibility.Hidden)
             {
-                var mw = w as MainWindow;
-                if (mw.gidLeft.Visibility == Visibility.Hidden)
+                mw.gidLeft.Visibility = Visibility.Visible;
+                mw.xGrid.Visibility = Visibility.Hidden;
+                mw.I = -1;
+                mw.J = -1;
+                for (var i = 0; i < ClassGridProduct.Grid.GetLength(2); i++)
                 {
-                    mw.gidLeft.Visibility = Visibility.Visible;
-                    mw.xGrid.Visibility = Visibility.Hidden;
-                    mw.I = -1;
-                    mw.J = -1;
-                    for (var i = 0; i < ClassGridProduct.Grid.GetLength(2); i++)
+                    for (var j = 0; j < ClassGridProduct.Grid.GetLength(3); j++)
                     {
-                        for (var j = 0; j < ClassGridProduct.Grid.GetLength(3); j++)
+                        var b = (Button) mw.FindName("_b_" + i + "x" + j);
+
+                        if (b != null)
                         {
-                            var b = (Button) mw.FindName("_b_" + i + "x" + j);
+                            b.ClearValue(Control.ForegroundProperty);
+                            b.ClearValue(Control.BackgroundProperty);
 
-                            if (b != null)
-                            {
-                                b.ClearValue(Control.ForegroundProperty);
-                                b.ClearValue(Control.BackgroundProperty);
-
-                                b.ToolTip = null;
-                                ((TextBlock) b.Content).Text = "";
-                                //        b.Background = Class.ClassGridProduct.grid[I, J, i, j].background;
-                                //      b.Foreground = Class.ClassGridProduct.grid[I, J, i, j].font;
-                            }
+                            b.ToolTip = null;
+                            ((TextBlock) b.Content).Text = "";
+                            //        b.Background = Class.ClassGridProduct.grid[I, J, i, j].background;
+                            //      b.Foreground = Class.ClassGridProduct.grid[I, J, i, j].font;
                         }
                     }
                 }
@@ -652,7 +637,7 @@ namespace TicketWindow.Services
 
         private static void MoveToCheck(object sender)
         {
-            var wp = ClassEtcFun.GetParents(((Button) sender), 0) as WProduct;
+            var wp = ClassEtcFun.GetParents((Button) sender, 0) as WProduct;
 
             if (wp != null)
             {
@@ -663,9 +648,7 @@ namespace TicketWindow.Services
                     var x = RepositoryProduct.GetXElementByElementName("Name", productName.Trim().ToUpper());
 
                     if (x != null)
-                    {
                         CheckService.AddProductCheck(x, GetQty(MainAppWindow.qty_label));
-                    }
                 }
                 wp.Close();
             }
@@ -696,12 +679,12 @@ namespace TicketWindow.Services
         private static void NumpadClick(object sender)
         {
             var b = (Button) sender;
-            var number = (b).Content.ToString();
+            var number = b.Content.ToString();
             var w = Window.GetWindow(b);
 
             if (w is MainWindow)
             {
-                var tb = (MainAppWindow).qty_label;
+                var tb = MainAppWindow.qty_label;
                 // changePayButton(mw, number);
                 if (_setBc)
                 {
@@ -721,20 +704,18 @@ namespace TicketWindow.Services
                     }
                 }
                 else
-                {
                     switch (number.TrimEnd())
                     {
                         case "cl":
                             tb.Text = "__";
                             break;
                         case ",enter":
-                            tb.Text = (tb.Text.Replace(" X ", "").Replace("_", "")) + "," + " X ";
+                            tb.Text = tb.Text.Replace(" X ", "").Replace("_", "") + "," + " X ";
                             break;
                         default:
-                            tb.Text = (tb.Text.Replace(" X ", "").Replace("_", "")) + int.Parse(number) + " X ";
+                            tb.Text = tb.Text.Replace(" X ", "").Replace("_", "") + int.Parse(number) + " X ";
                             break;
                     }
-                }
             }
 
             if (w is WGridPay)
@@ -742,8 +723,8 @@ namespace TicketWindow.Services
                 var mw = w as WGridPay;
                 var c = b.Content.ToString();
                 var cc = mw.CountCurrency;
-                var s = (cc + c);
-                if ((b.Content.ToString() == "cl")) s = "";
+                var s = cc + c;
+                if (b.Content.ToString() == "cl") s = "";
 
                 foreach (var ls in ClassEtcFun.FindVisualChildren<Label>(mw))
                 {
@@ -845,8 +826,8 @@ namespace TicketWindow.Services
                 }
                 if (calc > 0)
                 {
-                    if (ws != null) ws.Close();
-                    if (w != null) w.Close();
+                    ws?.Close();
+                    w?.Close();
 
                     if (wind == null)
                     {
@@ -881,10 +862,8 @@ namespace TicketWindow.Services
                 var isNext = false;
                 var window = new TextWindow(false, Resources.LabelPin) {BtnText = Resources.BtnOk};
                 if (window.ShowDialog() == true)
-                {
                     if (!string.IsNullOrEmpty(window.NameText) && RepositoryAccountUser.AccountUsers.FirstOrDefault(user => user.PinCode == window.NameText) != null)
                         isNext = true;
-                }
                 if (!isNext) return;
             }
 
@@ -902,8 +881,7 @@ namespace TicketWindow.Services
                     MainAppWindow.CheckOriginalDocument = null;
                     MainAppWindow.GridProducts.DataContext = RepositoryCheck.DocumentProductCheck.Root;
 
-                    if (detailsWindow != null)
-                        detailsWindow.SetDataSet();
+                    detailsWindow?.SetDataSet();
                 }
                 else
                 {
@@ -955,7 +933,7 @@ namespace TicketWindow.Services
                     {
                         var d = CheckService.GetTotalPrice();
 
-                        if ((Window.GetWindow((Button) sender)) is MainWindow)
+                        if (Window.GetWindow((Button) sender) is MainWindow)
                         {
                             RepositoryCurrencyRelations.SetMoneySum(d);
                             int idTp;
@@ -1021,7 +999,6 @@ namespace TicketWindow.Services
         private static void OpenCashBox()
         {
             if (RepositoryCurrencyRelations.IsExistDrawerTypeInDocument())
-            {
                 try
                 {
                     ClassUsbTicket.ReadWrite.Open();
@@ -1030,7 +1007,6 @@ namespace TicketWindow.Services
                 {
                     ShowMessageSb("Ошибка с CashBox");
                 }
-            }
         }
 
         private static bool PayOneMoment(object window, TypePay typePay)
@@ -1040,19 +1016,16 @@ namespace TicketWindow.Services
 
             if (mainWindow != null)
             {
-                var money = GetMoney((mainWindow).qty_label);
+                var money = GetMoney(mainWindow.qty_label);
 
                 if ((money == 0) || (RepositoryCurrencyRelations.GetSumMoney() <= money))
-                {
                     if (typePay.CurMod ?? false)
                     {
                         RepositoryCurrencyRelations.Pay(typePay, money == 0 ? RepositoryCurrencyRelations.GetSumMoney() : money);
                         var calc = ClassEtcFun.RenduCalc();
 
-                        if ((calc == 0))
-                        {
+                        if (calc == 0)
                             PrintCheck(null);
-                        }
                         else
                         {
                             var m = new EuroConverter(RepositoryCurrencyRelations.Residue());
@@ -1070,14 +1043,13 @@ namespace TicketWindow.Services
                         {
                             RepositoryCurrencyRelations.Pay(typePay, money == 0 ? RepositoryCurrencyRelations.GetSumMoney() : money);
                             var calc = ClassEtcFun.RenduCalc();
-                            if ((calc == 0))
+                            if (calc == 0)
                             {
                                 PrintCheck(null);
                                 r = true;
                             }
                         }
                     }
-                }
             }
 
             return r;
@@ -1091,26 +1063,23 @@ namespace TicketWindow.Services
             else
             {
                 if (((Button) sender).ToolTip != null)
-                {
                     if (RepositoryCheck.DocumentProductCheck != null)
-                    {
                         if (RepositoryCheck.DocumentProductCheck.GetXElements("check", "product").ToList().Count > 0)
                         {
                             var d = CheckService.GetTotalPrice();
 
-                            if ((Window.GetWindow((Button) sender)) is MainWindow)
+                            if (Window.GetWindow((Button) sender) is MainWindow)
                                 RepositoryCurrencyRelations.SetMoneySum(d);
 
                             var t = RepositoryTypePay.GetById(int.Parse(((Button) sender).ToolTip.ToString().Replace("TypesPayDynamic", "")));
-                            if (!PayOneMoment((Window.GetWindow((Button) sender)), t))
-                            {
+                            if (!PayOneMoment(Window.GetWindow((Button) sender), t))
                                 if (t.CurMod ?? false)
                                 {
                                     var ms = new EuroConverter(RepositoryCurrencyRelations.Residue());
 
                                     var w = new WGridPay
                                             {
-                                                Owner = (Window.GetWindow((Button) sender)),
+                                                Owner = Window.GetWindow((Button) sender),
                                                 TypesPay = t,
                                                 lblSum = {Content = ms.Euro + "," + ms.Cent + "€"}
                                             };
@@ -1119,10 +1088,7 @@ namespace TicketWindow.Services
                                     RepositoryCurrencyRelations.ClearCurrency(t);
                                 }
                                 else ShowPaymentEtc(sender);
-                            }
                         }
-                    }
-                }
             }
         }
 
@@ -1135,9 +1101,7 @@ namespace TicketWindow.Services
             foreach (Window window in Application.Current.Windows)
             {
                 if (window.GetType() == typeof (WTypePay))
-                {
                     ((WTypePay) window).Close();
-                }
                 if (window.GetType() == typeof (MainWindow))
                 {
                     var dg = MainAppWindow.GridProducts;
@@ -1180,24 +1144,22 @@ namespace TicketWindow.Services
 
         private static void WriteOff()
         {
-            foreach (Window window in Application.Current.Windows)
+            var grid = MainAppWindow.GridProducts;
+            if (grid.Items.Count > 0)
             {
-                if (window.GetType() == typeof(MainWindow))
+                var date = DateTime.Now;
+                var elements = grid.SelectedItems.Cast<XElement>().ToList();
+                foreach (var item in elements)
                 {
-                    var dg = MainAppWindow.GridProducts;
-                    if (dg.Items.Count > 0)
-                    {
-                        var date = DateTime.Now;
-                        foreach (var item in dg.SelectedItems.Cast<XElement>())
-                        {
-                            var id = item.GetXElementValue("CustomerId").ToGuid();
-                            var count = item.GetXElementValue("qty").ToDecimal();
-                            var product = RepositoryProduct.Products.FirstOrDefault(p => p.CustomerId == id);
-                            if (product != null)
-                                RepositoryProduct.WriteOffProductCount(product, count, date);
-                        }
-                    }
+                    var id = item.GetXElementValue("CustomerId").ToGuid();
+                    var count = item.GetXElementValue("qty").ToDecimal();
+                    var product = RepositoryProduct.Products.FirstOrDefault(p => p.CustomerId == id);
+                    if (product != null)
+                        RepositoryProduct.WriteOffProductCount(product, count, date);
                 }
+                RepositoryCheck.WriteOff(elements);
+                var window = new WMessageTime(Resources.LabelOperationComplete);
+                window.ShowDialog();
             }
         }
 
@@ -1319,16 +1281,14 @@ namespace TicketWindow.Services
                 WriteTotal();
             }
 
-            (dm).Close();
+            dm.Close();
         }
 
         private static void DiscountCardSet(object sender)
         {
             var b = sender as Button;
             if (RepositoryCheck.DocumentProductCheck != null)
-            {
-                if ((!RepositoryDiscount.Client.DiscountSet) && (RepositoryDiscount.Client.Barcode != null))
-                {
+                if (!RepositoryDiscount.Client.DiscountSet && (RepositoryDiscount.Client.Barcode != null))
                     if (RepositoryDiscount.Client.Points >= RepositoryDiscount.Client.MaxPoints)
                     {
                         RepositoryDiscount.Client.DiscountSet = true;
@@ -1339,10 +1299,7 @@ namespace TicketWindow.Services
                         WriteTotal();
                     }
                     else
-                    {
                         b.Content = "Не хватае " + (RepositoryDiscount.Client.MaxPoints - RepositoryDiscount.Client.Points);
-                    }
-                }
                 else
                 {
                     RepositoryDiscount.Client.Procent = 0;
@@ -1353,7 +1310,6 @@ namespace TicketWindow.Services
 
                     WriteTotal();
                 }
-            }
         }
 
         private static void ResetSettings()
@@ -1459,7 +1415,7 @@ namespace TicketWindow.Services
         private static void CloseWindow(object sender)
         {
             var f = ClassEtcFun.GetParentWindow((Button) sender);
-            if (f != null) f.Close();
+            f?.Close();
         }
 
         private static void RunFun(object sender, object arg, object arg1)
@@ -1492,7 +1448,6 @@ namespace TicketWindow.Services
                 if (prodGuid != Guid.Empty)
                     MoveToCheck(sender, prodGuid);
                 else
-                {
                     switch (typeFun)
                     {
                         case "Countrys":
@@ -1860,7 +1815,6 @@ namespace TicketWindow.Services
                             CloseAnyWindows(sender);
                             break;
                     }
-                }
             }
         }
 
@@ -1868,7 +1822,7 @@ namespace TicketWindow.Services
 
         private static void ShowProList(object sender)
         {
-            var w = (Window.GetWindow((Button) sender) as MainWindow) ?? (ClassEtcFun.FindWindow("MainWindow_") as MainWindow);
+            var w = Window.GetWindow((Button) sender) as MainWindow ?? ClassEtcFun.FindWindow("MainWindow_") as MainWindow;
 
             if (w != null)
             {
@@ -1879,29 +1833,25 @@ namespace TicketWindow.Services
 
         private static void ClickSetPro(object sender)
         {
-            var w = (Window.GetWindow((Button) sender) as WProList);
+            var w = Window.GetWindow((Button) sender) as WProList;
 
-            if (w != null)
+            var select = w?.dataPro.SelectedItem as Pro;
+
+            if (select != null)
             {
-                var select = w.dataPro.SelectedItem as Pro;
-
-                if (select != null)
-                {
-                    ClassProMode.ModePro = true;
-                    ClassProMode.Pro = select;
-                    RepositoryCheck.DocumentProductCheck = ClassProMode.ReplaceCheck(RepositoryCheck.DocumentProductCheck, true);
-                    w.Close();
-                    WriteTotal();
-                }
+                ClassProMode.ModePro = true;
+                ClassProMode.Pro = select;
+                RepositoryCheck.DocumentProductCheck = ClassProMode.ReplaceCheck(RepositoryCheck.DocumentProductCheck, true);
+                w.Close();
+                WriteTotal();
             }
         }
 
         private static void ClickSetoffPro(object sender)
         {
-            var w = (Window.GetWindow((Button) sender) as WProList);
+            var w = Window.GetWindow((Button) sender) as WProList;
 
             if (w != null)
-            {
                 if (ClassProMode.ModePro)
                 {
                     ClassProMode.ModePro = false;
@@ -1909,12 +1859,11 @@ namespace TicketWindow.Services
                     CancelTicket(null);
                     w.Close();
                 }
-            }
         }
 
         private static void ShowAddPro(object sender)
         {
-            var w = (ClassEtcFun.GetParentWindow((Button) sender) as WProList) ?? (ClassEtcFun.FindWindow("w_pro_add") as WProList);
+            var w = ClassEtcFun.GetParentWindow((Button) sender) as WProList ?? ClassEtcFun.FindWindow("w_pro_add") as WProList;
 
             if (w != null)
             {
@@ -1925,7 +1874,7 @@ namespace TicketWindow.Services
 
         private static void ClickAddPro(object sender)
         {
-            var w = (Window.GetWindow((Button) sender) as WProAdd);
+            var w = Window.GetWindow((Button) sender) as WProAdd;
 
             if (w != null)
             {
@@ -1995,8 +1944,7 @@ namespace TicketWindow.Services
         private static void WorkerUpdCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             var de = ClassEtcFun.FindWindow("_W_Message");
-            if (de != null)
-                de.Close();
+            de?.Close();
 
             var w = ClassEtcFun.FindWindow("w_upd") as WUpdateDb;
 
@@ -2015,8 +1963,7 @@ namespace TicketWindow.Services
             if (!SyncData.IsSync)
             {
                 var de = ClassEtcFun.FindWindow("_W_Message");
-                if (de != null)
-                    de.Close();
+                de?.Close();
 
                 ShowMessage(null, " please  waite....");
 

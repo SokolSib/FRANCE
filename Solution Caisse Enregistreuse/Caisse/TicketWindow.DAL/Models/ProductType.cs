@@ -147,9 +147,10 @@ namespace TicketWindow.DAL.Models
                 new XElement("toatl", obj.Total));
         }
 
-        public static XElement ToCheckXElement(ProductType obj, IEnumerable<XElement> productElements)
+        public static XElement ToCheckXElement(ProductType obj, List<XElement> productElements)
         {
-            obj.Ii = productElements.Count();
+            if (productElements != null)
+                obj.Ii = productElements.Count();
 
             return new XElement("product",
                 new XElement("ii", obj.Ii),
@@ -174,6 +175,43 @@ namespace TicketWindow.DAL.Models
                 new XElement("Discount", obj.Discount),
                 new XElement("sumDiscount", obj.SumDiscount),
                 new XElement("total", obj.Total));
+        }
+
+        public static ProductType FromCheckXElement(XContainer element)
+        {
+            var tva = RepositoryTva.Tvases.FirstOrDefault(t => t.Id == element.GetXElementValue("tva").ToInt());
+            var subGrpProduct =
+                RepositorySubGroupProduct.SubGroupProducts.FirstOrDefault(
+                    sg => sg.Id == element.GetXElementValue("cusumerIdSubGroup").ToInt());
+
+            var product = new ProductType(
+                              element.GetXElementValue("CustomerId").ToGuid(),
+                              element.GetXElementValue("Name").Trim().ToUpper(),
+                              element.GetXElementValue("CodeBare"),
+                              element.GetXElementValue("Desc").ToUpper(),
+                              0,
+                              element.GetXElementValue("balance").ToBool(),
+                              element.GetXElementValue("contenance").ToDecimal(),
+                              element.GetXElementValue("uniteContenance").ToInt(),
+                              element.GetXElementValue("tare").ToInt(),
+                              element.GetXElementValue("date").ToDateTime(),
+                              tva?.CustomerId ?? Guid.Empty,
+                              element.GetXElementValue("ProductsWeb_CustomerId").ToGuid(),
+                              subGrpProduct?.Id ?? 0)
+                          {
+                              Ii = element.GetXElementValue("ii").ToInt(),
+                              Price = element.GetXElementValue("price").ToDecimal(),
+                              PriceGros = element.GetXElementValue("priceGros").ToDecimal(),
+                              Qty = element.GetXElementValue("qty").ToDecimal(),
+                              Balance = element.GetXElementValue("balance").ToBool(),
+                              CusumerIdRealStock = element.GetXElementValue("cusumerIdRealStock").ToGuid(),
+                              ProductsWebCustomerId = element.GetXElementValue("ProductsWeb_CustomerId").ToGuid(),
+                              Discount = element.GetXElementValue("Discount").ToDecimal(),
+                              SumDiscount = element.GetXElementValue("sumDiscount").ToDecimal(),
+                              Total = element.GetXElementValue("total").ToDecimal(),
+                          };
+
+            return product;
         }
 
         public static void SetXmlValues(XElement element, ProductType obj)

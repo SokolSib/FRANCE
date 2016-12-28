@@ -83,7 +83,7 @@ namespace TicketWindow.Class
                         //  groupProduct.product pn = new groupProduct.product(Guid.Empty, discountcategories, "", name, 1, sumDiscount, 0, tva_, Discount, sumDiscount);
                         var pn = new PrintProduct(Guid.Empty, discountcategories, Barcode, name, qty, total, price, tva, discount, sumDiscount);
 
-                        var repeat = listProduct[discountIndx].Products.FindIndex((l => ((l.Name == name))));
+                        var repeat = listProduct[discountIndx].Products.FindIndex(l => l.Name == name);
 
                         if (repeat != -1)
                         {
@@ -106,7 +106,7 @@ namespace TicketWindow.Class
 
                 if (indx != -1)
                 {
-                    var f = listProduct[indx].Products.FindIndex(l => ((l.CustomerId == p.CustomerId) && l.Price == p.Price));
+                    var f = listProduct[indx].Products.FindIndex(l => (l.CustomerId == p.CustomerId) && l.Price == p.Price);
 
                     if (f == -1)
                         listProduct[indx].Products.Add(p);
@@ -158,10 +158,9 @@ namespace TicketWindow.Class
             var a4 = rootElement.GetXAttribute("check","DCBC_OstalosPoints");
             var a5 = rootElement.GetXAttribute("check","DCBC_name");
 
-            var bcdc = (a0 != null ? a0.Value : null);
+            var bcdc = a0?.Value;
 
             if (!string.IsNullOrEmpty(bcdc))
-            {
                 C = new PrintClientInfo
                     {
                         Dcbc = a0.Value,
@@ -171,21 +170,20 @@ namespace TicketWindow.Class
                         DcbcOstalosPoints = a4.Value,
                         DcbcName = a5.Value
                     };
-            }
 
             #endregion
 
             DotLiquidService.Print(Barcode, Head, listProduct, Totals, SumDiscount, _attr, Rendu, Footer, C, duplicate);
         }
 
-        private string Head { get; set; }
-        private string Barcode { get; set; }
-        private string Totals { get; set; }
-        private string SumDiscount { get; set; }
-        private string Footer { get; set; }
-        private decimal Rendu { get; set; }
-        private bool Duplicate { get; set; }
-        private PrintClientInfo C { get; set; }
+        private string Head { get; }
+        private string Barcode { get; }
+        private string Totals { get; }
+        private string SumDiscount { get; }
+        private string Footer { get; }
+        private decimal Rendu { get; }
+        private bool Duplicate { get; }
+        private PrintClientInfo C { get; }
 
         public Graphics PrintCheck(string barcode, string head, List<PrintGroupProduct> lProduct, string total, string sumDiscount, List<PrintTypePay> lPay, decimal rendu,
             string footer,
@@ -440,7 +438,7 @@ namespace TicketWindow.Class
                     rect.Add(e.Rectangle);
                 }
 
-                g.DrawImage((Image.FromFile(AppDomain.CurrentDomain.BaseDirectory + "\\images\\anahit_9.jpg")), fillRectangleImg);
+                g.DrawImage(Image.FromFile(AppDomain.CurrentDomain.BaseDirectory + "\\images\\anahit_9.jpg"), fillRectangleImg);
                 g.DrawString(head, fontRendu, textBrush, fillRectangleHead, textFormatC);
 
                 if (duplicate != null)
@@ -494,7 +492,7 @@ namespace TicketWindow.Class
         public static BitmapSource CreateBitmapSourceFromBitmap(Bitmap bitmap)
         {
             if (bitmap == null)
-                throw new ArgumentNullException("bitmap");
+                throw new ArgumentNullException(nameof(bitmap));
 
             return Imaging.CreateBitmapSourceFromHBitmap(
                 bitmap.GetHbitmap(),

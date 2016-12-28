@@ -197,8 +197,26 @@ namespace TicketWindow.DAL.Repositories
         {
             if (!File.Exists(Path)) return Guid.Empty;
 
-            if (Document == null) Document = XDocument.Load(Path);
+            GetDucument();
             return new Guid(Document.GetXAttribute("checks", "idTicketWindow").Value);
+        }
+
+        public static void WriteOff(List<XElement> elements)
+        {
+            var checkOff = new CheckType(GetBarCodeCheck(), 0, 0, 0, 0, 0, 0, 0, DateTime.Now);
+            var number = 0;
+            foreach (var element in elements)
+            {
+                var product = ProductType.FromCheckXElement(element);
+                product.Ii = number++;
+                checkOff.Products.Add(product);
+            }
+
+            GetDucument();
+
+            var checksElement = Document.GetXElement("checks");
+            checksElement.Add(CheckType.ToXElement(checkOff));
+            Document.Save(Path);
         }
     }
 }

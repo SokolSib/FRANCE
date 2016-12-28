@@ -63,6 +63,7 @@
     <Compile Include="Models\Base\PayTicketBase.cs" />
     <Compile Include="Models\CheckTicket.cs" />
     <Compile Include="Models\CheckTicketTmp.cs" />
+    <Compile Include="Models\CheckType.cs" />
     <Compile Include="Models\WriteOffType.cs" />
     <Compile Include="Models\Pro.cs" />
     <Compile Include="Models\ClientInfo.cs" />

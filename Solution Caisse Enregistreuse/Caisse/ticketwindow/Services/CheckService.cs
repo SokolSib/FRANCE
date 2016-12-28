@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -40,7 +41,8 @@ namespace TicketWindow.Services
             CassieService.OpenProductsCheck();
 
             var productElements = RepositoryCheck.DocumentProductCheck.GetXElements("check", "product");
-            var newProductXElement = ProductType.ToCheckXElement(product, productElements);
+            var newProductXElement = ProductType.ToCheckXElement(product,
+                productElements?.ToList() ?? new List<XElement>());
 
             RepositoryCheck.DocumentProductCheck.GetXElement("check").Add(newProductXElement);
 
@@ -73,7 +75,7 @@ namespace TicketWindow.Services
                 product = null;
             }
 
-            if ((ClassBallance.Busy_0X15) || (ClassBallance.Error_0X15)) product = null;
+            if (ClassBallance.Busy_0X15 || ClassBallance.Error_0X15) product = null;
             return product;
         }
 
@@ -149,7 +151,7 @@ namespace TicketWindow.Services
             else
             {
                 var curElement = productElements.FirstOrDefault(l => l.GetXElementValue("ii").ToInt() == id);
-                if (curElement != null) curElement.Remove();
+                curElement?.Remove();
             }
             FunctionsService.WriteToatl(selectedIndex);
             RepositoryCheck.DocumentProductCheck.Save(RepositoryCheck.PathProductCheck);
@@ -164,7 +166,7 @@ namespace TicketWindow.Services
             {
                 var firstQty = productElements.First().GetXElementValue("qty").ToDecimal();
 
-                if ((RepositoryProduct.Products.Find(l => l.CustomerId == productElements.First().GetXElementValue("id").ToGuid()).Balance) || (firstQty == 0))
+                if (RepositoryProduct.Products.Find(l => l.CustomerId == productElements.First().GetXElementValue("id").ToGuid()).Balance || (firstQty == 0))
                     productElements.First().Remove();
                 else
                     productElements.First().GetXElement("qty").Value = (firstQty - 1).ToString();
@@ -198,9 +200,7 @@ namespace TicketWindow.Services
             RepositoryCheck.C = null;
 
             if (RepositoryDiscount.Client.Barcode != null && getTotalPrice >= RepositoryDiscount.Client.MoneyMax)
-            {
-                if ((getTotalPrice >= RepositoryDiscount.Client.MoneyMax) && (!RepositoryDiscount.Client.AddPoints))
-                {
+                if ((getTotalPrice >= RepositoryDiscount.Client.MoneyMax) && !RepositoryDiscount.Client.AddPoints)
                     if ((DateTime.Now.Day == RepositoryDiscount.Client.LastDateUpd.Day)
                         && (DateTime.Now.Month == RepositoryDiscount.Client.LastDateUpd.Month)
                         && (DateTime.Now.Year == RepositoryDiscount.Client.LastDateUpd.Year))
@@ -218,16 +218,14 @@ namespace TicketWindow.Services
                             RepositoryDiscount.Client.Points += 1;
                         }
                     }
-                }
                 else
                 {
-                    if ((getTotalPrice < RepositoryDiscount.Client.MoneyMax) && (RepositoryDiscount.Client.AddPoints))
+                    if ((getTotalPrice < RepositoryDiscount.Client.MoneyMax) && RepositoryDiscount.Client.AddPoints)
                     {
                         RepositoryDiscount.Client.AddPoints = false;
                         RepositoryDiscount.Client.Points -= 1;
                     }
                 }
-            }
 
             return getTotalPrice;
         }
@@ -297,7 +295,6 @@ namespace TicketWindow.Services
                 try
                 {
                     if (RepositoryDiscount.Client.Barcode != null && !ClassProMode.ModePro)
-                    {
                         AddSetDiscountCardBareCode(
                             RepositoryDiscount.Client.Barcode,
                             RepositoryDiscount.Client.Points - (RepositoryDiscount.Client.AddPoints ? 1 : 0) +
@@ -305,7 +302,6 @@ namespace TicketWindow.Services
                             RepositoryDiscount.Client.AddPoints ? 1 : 0,
                             RepositoryDiscount.Client.DiscountSet ? 8 : 0,
                             RepositoryDiscount.Client.NameFirst + " " + RepositoryDiscount.Client.NameLast);
-                    }
                 }
                 catch (System.Exception ex)
                 {
@@ -387,7 +383,6 @@ namespace TicketWindow.Services
             var a5 = RepositoryCheck.DocumentProductCheck.GetXAttribute("check","DCBC_name");
 
             if (a == null)
-            {
                 RepositoryCheck.DocumentProductCheck.GetXElement("check").Add(
                     new XAttribute("DCBC", barcode),
                     new XAttribute("DCBC_BiloPoints", biloP),
@@ -395,7 +390,6 @@ namespace TicketWindow.Services
                     new XAttribute("DCBC_OtnayliPoints", otnayliP),
                     new XAttribute("DCBC_OstalosPoints", biloP + dobavileP - otnayliP),
                     new XAttribute("DCBC_name", name));
-            }
             else
             {
                 a.SetValue(barcode);
