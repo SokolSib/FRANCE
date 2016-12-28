@@ -1148,7 +1148,7 @@ namespace TicketWindow.Services
             if (grid.Items.Count > 0)
             {
                 var date = DateTime.Now;
-                var elements = grid.SelectedItems.Cast<XElement>().ToList();
+                var elements = grid.Items.Cast<XElement>().ToList();
                 foreach (var item in elements)
                 {
                     var id = item.GetXElementValue("CustomerId").ToGuid();

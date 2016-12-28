@@ -68,6 +68,8 @@ namespace TicketWindow.Services
                     return Resources.FuncCloseCashbox;
                 case "UpdateDb":
                     return Resources.FuncUpdateDB;
+                case "WriteOff":
+                    return Resources.LabelWriteOff;
             }
             var context = "Products id=[";
             var idx = name.IndexOf(context, StringComparison.Ordinal);
