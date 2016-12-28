@@ -1221,15 +1221,22 @@ namespace TicketWindow.Services
             }
         }
 
+        private static int _selectedBefore = -1;
+        private static int _selectedAfter = -1;
         private static XDocument ShowMessageCustomerDisplay(XDocument oldXDocument)
         {
             XDocument result = null;
 
             if (RepositoryCheck.C == null && MainAppWindow != null && RepositoryCheck.DocumentProductCheck != null)
             {
-                if (oldXDocument != null) RepositoryCheck.C = oldXDocument;
+                if (oldXDocument != null)
+                {
+                    _selectedAfter = MainAppWindow.GridProducts.SelectedIndex;
+                    RepositoryCheck.C = oldXDocument;
+                }
                 else
                 {
+                    _selectedBefore = MainAppWindow.GridProducts.SelectedIndex;
                     RepositoryCheck.C = new XDocument(RepositoryCheck.DocumentProductCheck);
                     result = new XDocument(RepositoryCheck.DocumentProductCheck);
                     RepositoryCheck.C = RepositoryActionHashBox.MergeProductsInCheck(RepositoryCheck.C);
@@ -1237,6 +1244,17 @@ namespace TicketWindow.Services
                 MainAppWindow.GridProducts.DataContext = RepositoryCheck.C.Element("check");
                 MainAppWindow.GridProducts.Items.Refresh();
                 ClassCustomerDisplay.TotalSum(CheckService.GetTotalPrice());
+
+                if (oldXDocument != null)
+                {
+                    if (_selectedBefore >= 0)
+                        MainAppWindow.GridProducts.SelectedIndex = _selectedBefore;
+                }
+                else
+                {
+                    if (_selectedAfter >= 0)
+                        MainAppWindow.GridProducts.SelectedIndex = _selectedAfter;
+                }
             }
             else
             {

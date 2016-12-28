@@ -30,6 +30,7 @@ namespace TicketWindow.Winows.OtherWindows.History
                 TableCloseTicket.DataContext = RepositoryCloseTicket.GetByCloseTicketGId(closeTicketG.CustomerId);
                 CollectionViewSource.GetDefaultView(TableCloseTicket.ItemsSource).Refresh();
             }
+            else TableCloseTicket.DataContext = null;
         }
 
         private void ListSelectedCellsChanged1(object sender, SelectedCellsChangedEventArgs e)
@@ -41,6 +42,7 @@ namespace TicketWindow.Winows.OtherWindows.History
                 TableCheckTickets.DataContext = RepositoryCheckTicket.GetByCloseTicketId(closeTicket.CustomerId);
                 CollectionViewSource.GetDefaultView(TableCheckTickets.ItemsSource).Refresh();
             }
+            else TableCheckTickets.DataContext = null;
         }
 
         private void ListSelectedCellsChanged2(object sender, SelectedCellsChangedEventArgs e)
@@ -52,6 +54,7 @@ namespace TicketWindow.Winows.OtherWindows.History
                 TablePayProducts.DataContext = RepositoryPayProduct.GetByCheckTicketId(checkTicket.CustomerId);
                 CollectionViewSource.GetDefaultView(TablePayProducts.ItemsSource).Refresh();
             }
+            else TablePayProducts.DataContext = null;
         }
 
         private void ButtonClick(object sender, RoutedEventArgs e)
