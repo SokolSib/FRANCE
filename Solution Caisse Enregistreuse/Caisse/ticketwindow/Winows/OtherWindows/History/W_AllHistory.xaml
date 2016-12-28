@@ -17,13 +17,13 @@
                 <RowDefinition/>
                 <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
-            <DataGrid x:Name="list" Grid.Column="0"  IsReadOnly="True"  ItemsSource="{Binding}" SelectedCellsChanged="ListSelectedCellsChanged" AutoGenerateColumns="false"  >
+            <DataGrid x:Name="TableCloseTicketGs" Grid.Column="0"  IsReadOnly="True"  ItemsSource="{Binding}" SelectedCellsChanged="ListSelectedCellsChanged" AutoGenerateColumns="false"  >
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="{x:Static properties:Resources.LabelDate}"  Binding="{Binding DateOpen,StringFormat={}\{0:dd/MM/yyyy \}}"/>
                     <DataGridTextColumn Header="{x:Static properties:Resources.LabelNumberCashBox}" Width="*" Binding="{Binding Path=CassieName }"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <DataGrid x:Name="listDetails" Grid.Column="1"  IsReadOnly="True"  ItemsSource="{Binding}"  
+            <DataGrid x:Name="TableCloseTicket" Grid.Row="0" Grid.Column="1"  IsReadOnly="True"  ItemsSource="{Binding}"  
                       SelectedCellsChanged="ListSelectedCellsChanged1"
            AutoGenerateColumns="false"  >
                 <DataGrid.Columns>
@@ -31,24 +31,21 @@
                     <DataGridTextColumn Header="{x:Static properties:Resources.LabelNumberCashBox}" Width="*" Binding="{Binding Path=NameTicket }"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <DataGrid Grid.Column="2" x:Name="listDetails_" IsReadOnly="True"  
-                      SelectedCellsChanged="ListSelectedCellsChanged2"
-                      ItemsSource="{Binding}"
-           AutoGenerateColumns="False"  >
+            <DataGrid Grid.Row="0" Grid.Column="2" x:Name="TableCheckTickets" IsReadOnly="True" SelectedCellsChanged="ListSelectedCellsChanged2" ItemsSource="{Binding}" AutoGenerateColumns="False"  >
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="{x:Static properties:Resources.LabelNumberCheck}" Binding="{Binding Path=BarCode }"/>
-                    <DataGridTextColumn Header="{x:Static properties:Resources.LabelTotal}" Width="*" Binding="{Binding Path=TotalTTC }"/>
+                    <DataGridTextColumn Header="{x:Static properties:Resources.LabelTotal}" Width="*" Binding="{Binding Path=TotalTtc }"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <DataGrid Grid.Column="3" x:Name="listDetailsProducts" IsReadOnly="True"  ItemsSource="{Binding}"
+            <DataGrid Grid.Row="0" Grid.Column="3" x:Name="TablePayProducts" IsReadOnly="True"  ItemsSource="{Binding}"
            AutoGenerateColumns="False"  >
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="{x:Static properties:Resources.LabelProduct}" Width="*" Binding="{Binding Path=Name }"/>
-                    <DataGridTextColumn Header="{x:Static properties:Resources.LabelQty}" Binding="{Binding Path=QTY }"/>
+                    <DataGridTextColumn Header="{x:Static properties:Resources.LabelQty}" Binding="{Binding Path=Qty }"/>
                     <DataGridTextColumn Header="{x:Static properties:Resources.LabelTotal}" Binding="{Binding Path=Total }"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <Grid Grid.Row ="1" Grid.ColumnSpan="2">
+            <Grid Grid.Row ="1" Grid.ColumnSpan="2" Grid.Column="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>

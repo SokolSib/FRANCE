@@ -104,9 +104,9 @@ sumDiscount)
 
         public static List<PayProduct> GetByCheckTicketId(Guid checkTicketId)
         {
-            if (SyncData.IsConnect)
-                return GetFromDbByCheckTicketIdBase(checkTicketId, Query + " WHERE ChecksTicketCustumerId = @checkTicketId");
-            
+            if (PayProducts.Count == 0)
+                Sync();
+
             return PayProducts.FindAll(p => p.ChecksTicketCustomerId == checkTicketId);
         }
 

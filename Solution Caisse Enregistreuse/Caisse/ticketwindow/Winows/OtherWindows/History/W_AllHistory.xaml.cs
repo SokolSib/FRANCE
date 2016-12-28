@@ -18,38 +18,45 @@ namespace TicketWindow.Winows.OtherWindows.History
         public WAllHistory()
         {
             InitializeComponent();
-            list.DataContext = RepositoryCloseTicketG.Get(Guid.Empty).Where(l => l.EstablishmentCustomerId == Global.Config.IdEstablishment);
+            TableCloseTicketGs.DataContext = RepositoryCloseTicketG.Get(Guid.Empty).Where(l => l.EstablishmentCustomerId == Global.Config.IdEstablishment);
         }
 
         private void ListSelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
         {
-            var s = list.SelectedItem as CloseTicketG;
-            listDetails.DataContext = RepositoryCloseTicket.GetByCloseTicketGId(s.CustomerId);
-            CollectionViewSource.GetDefaultView(listDetails.ItemsSource).Refresh();
+            var closeTicketG = TableCloseTicketGs.SelectedItem as CloseTicketG;
+
+            if (closeTicketG != null)
+            {
+                TableCloseTicket.DataContext = RepositoryCloseTicket.GetByCloseTicketGId(closeTicketG.CustomerId);
+                CollectionViewSource.GetDefaultView(TableCloseTicket.ItemsSource).Refresh();
+            }
         }
 
         private void ListSelectedCellsChanged1(object sender, SelectedCellsChangedEventArgs e)
         {
-            var s = listDetails.SelectedItem as CloseTicket;
-            listDetails_.DataContext = RepositoryCheckTicket.GetByCloseTicketId(s.CustomerId);
-            CollectionViewSource.GetDefaultView(listDetails_.ItemsSource).Refresh();
+            var closeTicket = TableCloseTicket.SelectedItem as CloseTicket;
+
+            if (closeTicket != null)
+            {
+                TableCheckTickets.DataContext = RepositoryCheckTicket.GetByCloseTicketId(closeTicket.CustomerId);
+                CollectionViewSource.GetDefaultView(TableCheckTickets.ItemsSource).Refresh();
+            }
         }
 
         private void ListSelectedCellsChanged2(object sender, SelectedCellsChangedEventArgs e)
         {
-            var s = listDetails_.SelectedItem as CheckTicket;
+            var checkTicket = TableCheckTickets.SelectedItem as CheckTicket;
 
-            if (s != null)
+            if (checkTicket != null)
             {
-                var el = RepositoryPayProduct.GetByCheckTicketId(s.CustomerId);
-                listDetailsProducts.DataContext = el;
-                CollectionViewSource.GetDefaultView(listDetailsProducts.ItemsSource).Refresh();
+                TablePayProducts.DataContext = RepositoryPayProduct.GetByCheckTicketId(checkTicket.CustomerId);
+                CollectionViewSource.GetDefaultView(TablePayProducts.ItemsSource).Refresh();
             }
         }
 
         private void ButtonClick(object sender, RoutedEventArgs e)
         {
-            var check = listDetails_.SelectedItem as CheckTicket;
+            var check = TableCheckTickets.SelectedItem as CheckTicket;
 
             if (check != null)
                 new ClassPrintCheck(new XDocument(CheckTicket.ToCheckXElement(check)), true);

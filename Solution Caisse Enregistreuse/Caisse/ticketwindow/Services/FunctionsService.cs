@@ -1208,7 +1208,8 @@ namespace TicketWindow.Services
             if (countBufCheck == 0)
                 Effect(new WCloseTicketWindow(""));
             else
-                ShowMessageSb("Veuillez d'abord éditer la note!" + Environment.NewLine + countBufCheck + " article(s).");
+                ShowMessageSb(Resources.LabelEditListProducts + Environment.NewLine + Resources.LabelQty.ToLower() + " " +
+                              countBufCheck);
         }
 
         private static void CloseGeneral(object sender)

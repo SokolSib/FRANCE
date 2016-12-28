@@ -45,8 +45,8 @@ namespace TicketWindow.Winows.OtherWindows.History
             InitializeComponent();
             try
             {
-                list.DataContext =
-                    RepositoryCheck.Document.GetXElements("checks", "check").Reverse();
+                RepositoryCheck.GetDucument();
+                list.DataContext = RepositoryCheck.Document.GetXElements("checks", "check").Reverse();
             }
             catch
             {

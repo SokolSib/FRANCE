@@ -290,8 +290,6 @@ namespace TicketWindow.Services
 
         private static bool CloseOpenTicketWindows()
         {
-            Mess = string.Empty;
-
             if (RepositoryOpenTicketWindow.OpenTicketWindows.Count == 0) RepositoryOpenTicketWindow.Sync();
 
             var openTicketWindows = RepositoryOpenTicketWindow.OpenTicketWindows.FindAll(otw => otw.IsOpen && (otw.IdTicketWindowG == GlobalVar.TicketWindowG));
@@ -300,7 +298,7 @@ namespace TicketWindow.Services
             if (openTicketWindows.Count == 0)
             {
                 var closeTicketG = RepositoryCloseTicketG.Get(GlobalVar.TicketWindowG).FirstOrDefault();
-                Mess += Config.NameTicket + Environment.NewLine;
+                RepositoryGeneral.Mess += Config.NameTicket + Environment.NewLine;
 
                 if (closeTicketG != null)
                 {
@@ -336,11 +334,11 @@ namespace TicketWindow.Services
                     RepositoryCloseTicketG.Update(closeTicketG);
                     flag = true;
                 }
-                else Mess += Properties.Resources.LabelErrorClosing + Environment.NewLine;
+                else RepositoryGeneral.Mess += Properties.Resources.LabelErrorClosing + Environment.NewLine;
             }
             else
                 foreach (var window in openTicketWindows)
-                    Mess += window.NameTicket + " " + Properties.Resources.LabelOpened.ToLower() + Environment.NewLine;
+                    RepositoryGeneral.Mess += window.NameTicket + " " + Properties.Resources.LabelOpened.ToLower() + Environment.NewLine;
 
             return flag;
         }
