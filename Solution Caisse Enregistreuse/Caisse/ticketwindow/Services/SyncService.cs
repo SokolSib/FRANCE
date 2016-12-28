@@ -261,7 +261,6 @@ namespace TicketWindow.Services
 
             RepositoryActionHashBox.Sync();
             CassieService.LoadProductCheckFromFile();
-            RepositoryCheck.OpenTicket();
         }
 
         public static int InsDevis(DevisIdType di)

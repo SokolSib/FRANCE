@@ -423,15 +423,14 @@ namespace TicketWindow.Services
 
         public static bool GetCheckFromChecksAndDelete(string bc)
         {
-            var atr = RepositoryCheck.Document.GetXElements("checks", "check")
+            var element = RepositoryCheck.Document.GetXElements("checks", "check")
                     .FirstOrDefault(c => c.GetXAttributeValue("barcodeCheck").Trim() == bc.Trim());
 
-            if (atr != null)
+            if (element != null)
             {
-                var elm = atr.Parent;
                 CassieService.OpenProductsCheck();
                 
-                foreach (var e in elm.Elements("product"))
+                foreach (var e in element.Elements("product"))
                 {
                     RepositoryCheck.DocumentProductCheck.GetXElement("check").Add(e);
 
@@ -441,7 +440,7 @@ namespace TicketWindow.Services
                     RepositoryStockReal.AddProductCount(qty, customerId);
                 }
 
-                elm.Remove();
+                element.Remove();
                 RepositoryCheck.Document.Save(RepositoryCheck.Path);
                 return true;
             }
