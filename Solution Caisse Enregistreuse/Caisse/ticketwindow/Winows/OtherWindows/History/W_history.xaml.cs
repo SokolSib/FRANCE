@@ -38,15 +38,13 @@ namespace TicketWindow.Winows.OtherWindows.History
     /// </summary>
     public partial class WHistory : Window
     {
-        private XElement _elements;
-
         public WHistory()
         {
             InitializeComponent();
             try
             {
                 RepositoryCheck.GetDucument();
-                list.DataContext = RepositoryCheck.Document.GetXElements("checks", "check").Reverse();
+                TableChecks.DataContext = RepositoryCheck.Document.GetXElements("checks", "check").Reverse();
             }
             catch
             {
@@ -56,24 +54,21 @@ namespace TicketWindow.Winows.OtherWindows.History
 
         private void ListSelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
         {
-            var s = (XElement) list.SelectedItem;
+            var checkElement = (XElement)TableChecks.SelectedItem;
 
-            _elements = RepositoryCheck.Document.GetXElements("checks", "check").FirstOrDefault(l => l.GetXAttributeValue("barcodeCheck") == s.GetXAttributeValue("barcodeCheck"));
+            var elements = RepositoryCheck.Document.GetXElements("checks", "check").FirstOrDefault(
+                        l => l.GetXAttributeValue("barcodeCheck") == checkElement.GetXAttributeValue("barcodeCheck"));
 
-            listDetails.DataContext = _elements.GetXElements("product");
-
-            CollectionViewSource.GetDefaultView(listDetails.ItemsSource).Refresh();
+            TableProducts.DataContext = elements.GetXElements("product");
+            CollectionViewSource.GetDefaultView(TableProducts.ItemsSource).Refresh();
         }
 
         private void ButtonClick(object sender, RoutedEventArgs e)
         {
-            var s = list.SelectedItem as XElement;
+            var checkElement = TableChecks.SelectedItem as XElement;
 
-            if (s != null)
-            {
-                var x = new XDocument(s);
-                new ClassPrintCheck(x, true);
-            }
+            if (checkElement != null)
+                new ClassPrintCheck(new XDocument(checkElement), true);
         }
 
         private void ButtonClick1(object sender, RoutedEventArgs e)

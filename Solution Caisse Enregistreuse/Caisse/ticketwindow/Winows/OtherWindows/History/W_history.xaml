@@ -20,16 +20,16 @@
                 <RowDefinition/>
                 <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
-            <DataGrid x:Name="list" IsReadOnly="True"  ItemsSource="{Binding}" SelectedCellsChanged="ListSelectedCellsChanged" AutoGenerateColumns="false"  >
+            
+            <DataGrid x:Name="TableChecks" IsReadOnly="True"  ItemsSource="{Binding}" SelectedCellsChanged="ListSelectedCellsChanged" AutoGenerateColumns="false"  >
                 <DataGrid.Columns>
                     <DataGridTextColumn  Header="{x:Static properties:Resources.LabelDate}" Binding="{Binding Path=Attribute[date].Value,Converter={StaticResource MyConverterReference},ConverterParameter='Date'}"   />
                     <DataGridTextColumn Header="{x:Static properties:Resources.LabelTotal}" Binding="{Binding Path=Attribute[sum].Value, Converter={StaticResource MyConverterReference}, ConverterParameter='Money'}"/>
                     <DataGridTextColumn Header="{x:Static properties:Resources.LabelNumberCheck}" Width="*" Binding="{Binding Path=Attribute[barcodeCheck].Value }"/>
-              <!--      <DataGridTextColumn Header="N° de ticket" Binding="{Binding Path=BarCode }"/>       -->            
                 </DataGrid.Columns>
             </DataGrid>
 
-            <DataGrid Grid.Column="2" x:Name="listDetails" IsReadOnly="True"  ItemsSource="{Binding}" AutoGenerateColumns="False"  >
+            <DataGrid Grid.Row="0" Grid.Column="1" x:Name="TableProducts" IsReadOnly="True"  ItemsSource="{Binding}" AutoGenerateColumns="False"  >
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="{x:Static properties:Resources.LabelProduct}" Binding="{Binding Path=Element[Name].Value}"/>
                     <DataGridTextColumn Header="{x:Static properties:Resources.LabelQty}" Binding="{Binding Path=Element[qty].Value}"/>
@@ -38,14 +38,8 @@
                 </DataGrid.Columns>
             </DataGrid>
             
-            <Grid Grid.Row ="1" Grid.ColumnSpan="2" Grid.Column="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" ToolTip="Close" Click="ButtonClick1" Content="{x:Static properties:Resources.BtnClose}" />
-                <Button Grid.Column="1" ToolTip="PrintDublicate" Click="ButtonClick" Content="{x:Static properties:Resources.BtnPrintDuplicate}"/>
-            </Grid>
+            <Button Grid.Row="1" Grid.Column="0" ToolTip="Close" Click="ButtonClick1" Content="{x:Static properties:Resources.BtnClose}" />
+            <Button Grid.Row="1" Grid.Column="1" ToolTip="PrintDublicate" Click="ButtonClick" Content="{x:Static properties:Resources.BtnPrintDuplicate}"/>
 
         </Grid>
     </Grid>
