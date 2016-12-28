@@ -19,7 +19,9 @@ namespace TicketWindow.Winows.OtherWindows.Product.AddProduct
     /// </summary>
     public partial class WAddProduct : Window
     {
-        public ProductType Product { get; }
+        private readonly BackgroundWorker _workerAdd = new BackgroundWorker();
+        private readonly BackgroundWorker _workerEdit = new BackgroundWorker();
+        private decimal _stockRealCount;
 
         public WAddProduct(ProductType product = null)
         {
@@ -67,7 +69,14 @@ namespace TicketWindow.Winows.OtherWindows.Product.AddProduct
             }
 
             BoxErrorText.Text = string.Empty;
+
+            _workerAdd.RunWorkerCompleted += WorkerCompleted;
+            _workerEdit.RunWorkerCompleted += WorkerCompleted;
+            _workerAdd.DoWork += WorkerAddDoWork;
+            _workerEdit.DoWork += WorkerEditDoWork;
         }
+
+        public ProductType Product { get; }
 
         private string ValidTextBox(object sender)
         {
@@ -86,7 +95,7 @@ namespace TicketWindow.Winows.OtherWindows.Product.AddProduct
                         {
                             var x = RepositoryProduct.GetXElementByBarcode(tb.Text);
                             if ((x != null) || (tb.Text.Length < 0))
-                                if (x != null && (x.GetXElementValue("CodeBare") == tb.Text))
+                                if ((x != null) && (x.GetXElementValue("CodeBare") == tb.Text))
                                     listError = Properties.Resources.LabelEanAlreadyExists;
                         }
                         catch
@@ -124,7 +133,7 @@ namespace TicketWindow.Winows.OtherWindows.Product.AddProduct
                     case "xTare":
                         int intValue;
                         if (!int.TryParse(tb.Text, out intValue))
-                            listError = $"{((FrameworkElement)sender).ToolTip} {Properties.Resources.LabelIncorrect}";
+                            listError = $"{((FrameworkElement) sender).ToolTip} {Properties.Resources.LabelIncorrect}";
                         break;
                 }
 
@@ -142,7 +151,9 @@ namespace TicketWindow.Winows.OtherWindows.Product.AddProduct
             {
                 var cb = comboBox;
 
-                listError = cb.SelectedItem == null ? $"{((FrameworkElement)sender).ToolTip} {Properties.Resources.LabelIncorrect}" : null;
+                listError = cb.SelectedItem == null
+                    ? $"{((FrameworkElement) sender).ToolTip} {Properties.Resources.LabelIncorrect}"
+                    : null;
 
                 cb.Foreground = listError != null
                     ? new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 0, 0))
@@ -210,82 +221,54 @@ namespace TicketWindow.Winows.OtherWindows.Product.AddProduct
         {
             WGridProduct returnValue = null;
             foreach (Window window in Application.Current.Windows)
-            {
-                if (window.GetType() == typeof (WGridProduct))
+                if (window.GetType() == typeof(WGridProduct))
                     returnValue = window as WGridProduct;
-            }
             return returnValue;
         }
 
         private void AddElm()
         {
-            var worker = new BackgroundWorker();
             ProgressHelper.Instance.IsIndeterminate = true;
             ProgressHelper.Instance.Start(1, Properties.Resources.LabelPleaseWaitWhileLoading);
             var product = FormToVar();
+            decimal.TryParse(xStockCount.Text.Replace(".", ","), out _stockRealCount);
 
-            worker.DoWork += (s, e) => { RepositoryProduct.Add(product); };
-            worker.RunWorkerCompleted += (s, e) =>
-            {
-                var dg = GetParents().DataGrid;
-                Close();
-                CollectionViewSource.GetDefaultView(dg.ItemsSource).Refresh();
-            };
-            worker.RunWorkerAsync();
-
-            //RepositoryProduct.Add(FormToVar());
-            //var dg = GetParents().DataGrid;
-            //Close();
-            //CollectionViewSource.GetDefaultView(dg.ItemsSource).Refresh();
+            _workerAdd.RunWorkerAsync(product);
         }
         
         private void EditElm()
         {
-            var worker = new BackgroundWorker();
             ProgressHelper.Instance.IsIndeterminate = true;
             ProgressHelper.Instance.Start(1, Properties.Resources.LabelPleaseWaitWhileLoading);
             var product = FormToVar();
-            decimal stockRealCount;
-            decimal.TryParse(xStockCount.Text.Replace(".", ","), out stockRealCount);
+            decimal.TryParse(xStockCount.Text.Replace(".", ","), out _stockRealCount);
 
-            worker.DoWork += (s, e) =>
-                             {
-                                 RepositoryProduct.Update(product);
-                                 RepositoryProduct.UpdateProductPrice(product);
+            _workerEdit.RunWorkerAsync(product);
+        }
 
-                                 if (RepositoryAccountUser.LoginedUser.Role.IsPermiss(Privelege.RedactStockCount))
-                                 {
-                                     var stockReal = RepositoryStockReal.GetByProduct(product);
-                                     RepositoryStockReal.UpdateProductCount(stockRealCount, stockReal.CustomerId);
-                                 }
-                             };
-            worker.RunWorkerCompleted += (s, e) =>
+        private void WorkerEditDoWork(object sender, DoWorkEventArgs e)
+        {
+            var product = (ProductType) e.Argument;
+            RepositoryProduct.Update(product);
+            RepositoryProduct.UpdateProductPrice(product);
+
+            if (RepositoryAccountUser.LoginedUser.Role.IsPermiss(Privelege.RedactStockCount))
             {
-                var dg = GetParents().DataGrid;
-                Close();
-                dg.ItemsSource = RepositoryProduct.Products;
-                CollectionViewSource.GetDefaultView(dg.ItemsSource).Refresh();
-            };
-            worker.RunWorkerAsync();
+                var stockReal = RepositoryStockReal.GetByProduct(product);
+                RepositoryStockReal.UpdateProductCount(_stockRealCount, stockReal.CustomerId);
+            }
+        }
 
-            //var product = FormToVar();
-            //RepositoryProduct.Update(product);
-            //RepositoryProduct.UpdateProductPrice(product);
+        private void WorkerAddDoWork(object sender, DoWorkEventArgs e)
+        {
+            var product = (ProductType) e.Argument;
+            RepositoryProduct.Add(product);
 
-            //if (RepositoryAccountUser.LoginedUser.Role.IsPermiss(Privelege.RedactStockCount))
-            //{
-            //    var stockReal = RepositoryStockReal.GetByProduct(product);
-
-            //    decimal stockRealCount;
-            //    decimal.TryParse(xStockCount.Text.Replace(".", ","), out stockRealCount);
-
-            //    RepositoryStockReal.UpdateProductCount(stockRealCount, stockReal.CustomerId);
-            //}
-
-            //var dg = GetParents().DataGrid;
-            //Close();
-            //dg.ItemsSource = RepositoryProduct.Products;
-            //CollectionViewSource.GetDefaultView(dg.ItemsSource).Refresh();
+            if (RepositoryAccountUser.LoginedUser.Role.IsPermiss(Privelege.RedactStockCount))
+            {
+                var stockReal = RepositoryStockReal.GetByProduct(product);
+                RepositoryStockReal.UpdateProductCount(_stockRealCount, stockReal.CustomerId);
+            }
         }
 
         private void ButtonClick(object sender, RoutedEventArgs e)
@@ -298,6 +281,15 @@ namespace TicketWindow.Winows.OtherWindows.Product.AddProduct
         private void CancelClick(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void WorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            var dg = GetParents().DataGrid;
+            Close();
+            dg.ItemsSource = RepositoryProduct.Products;
+            CollectionViewSource.GetDefaultView(dg.ItemsSource).Refresh();
+            ProgressHelper.Instance.Stop();
         }
     }
 }
