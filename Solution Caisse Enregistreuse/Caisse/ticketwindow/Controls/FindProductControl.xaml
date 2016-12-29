@@ -22,21 +22,20 @@
         <Button Grid.Row="0" Grid.Column="1" Name="BtnFind" Padding="10,5" Margin="5"
                 Content="{x:Static properties:Resources.BtnApplyFilter}" Click="BtnFind_OnClick" />
 
-        <ScrollViewer Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" VerticalScrollBarVisibility="Auto"
-                      HorizontalScrollBarVisibility="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <ScrollViewer Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" VerticalScrollBarVisibility="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <DataGrid FontSize="19" x:Name="DataGrid"
                       IsReadOnly="True" ItemsSource="{Binding}" AutoGenerateColumns="False" CanUserAddRows="False"
                       CanUserDeleteRows="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Name" Binding="{Binding Path=Name }" Width="*" MinWidth="250" />
-                    <DataGridTextColumn Header="CodeBare" Binding="{Binding Path=CodeBare }" MinWidth="100" />
-                    <DataGridTextColumn Header="tva" Binding="{Binding Path=tva }" />
+                    <DataGridTextColumn Header="Name" Binding="{Binding Path=Name }" Width="2.3*" />
+                    <DataGridTextColumn Header="CodeBare" Binding="{Binding Path=CodeBare }" Width="*" />
+                    <!--<DataGridTextColumn Header="tva" Binding="{Binding Path=tva }" />
                     <DataGridTextColumn Header="price" Binding="{Binding Path=price }" />
                     <DataGridTextColumn Header="qty" Binding="{Binding Path=qty }" />
                     <DataGridTextColumn Header="balance" Binding="{Binding Path=balance }" />
                     <DataGridTextColumn Header="grp" Binding="{Binding Path=grp }" />
                     <DataGridTextColumn Header="sgrp" Binding="{Binding Path=grp }" />
-                    <DataGridTextColumn Header="date" Binding="{Binding Path=date }" />
+                    <DataGridTextColumn Header="date" Binding="{Binding Path=date }" />-->
                 </DataGrid.Columns>
             </DataGrid>
         </ScrollViewer>
