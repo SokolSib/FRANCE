@@ -74,7 +74,7 @@ namespace TicketWindow.Winows
             }
 
             if (cb.SelectedItem != null)
-                res = "_TypesPayDynamic" + ((TypePay) cb.SelectedItem).Id;
+                res = "_TypesPayDynamic" + ((TypePay)cb.SelectedItem).Id;
 
             if (FindProduct.Product != null)
                 res = "Products id=[" + FindProduct.Product.CustomerId + "]";
