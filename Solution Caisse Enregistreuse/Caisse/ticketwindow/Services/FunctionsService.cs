@@ -48,6 +48,7 @@ namespace TicketWindow.Services
     {
         private static bool _setBc;
         private static MainWindow _mainAppWindow;
+        private static bool _isSetStock;
 
         public static MainWindow MainAppWindow
         {
@@ -1476,6 +1477,17 @@ namespace TicketWindow.Services
                 else
                     switch (typeFun)
                     {
+                        case "SetStock":
+                            _isSetStock = !_isSetStock;
+                            var brush = _isSetStock ? Brushes.LemonChiffon : Brushes.White;
+
+                            foreach (var item in MainAppWindow.GridProducts.ItemsSource)
+                            {
+                                var row = MainAppWindow.GridProducts.ItemContainerGenerator.ContainerFromItem(item) as
+                                    DataGridRow;
+                                if (row != null) row.Background = brush;
+                            }
+                            break;
                         case "Countrys":
                             OpenWCountrys();
                             break;

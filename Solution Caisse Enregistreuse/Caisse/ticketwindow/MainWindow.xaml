@@ -497,7 +497,7 @@
 
                     </Grid>
 
-                    <DataGrid FontSize="12" ItemsSource="{Binding Path=Elements[product]}" AutoGenerateColumns="False" Height="Auto" Name="GridProducts" IsReadOnly="True" VerticalAlignment="Top" HorizontalAlignment="Stretch" ToolTip="CaseProducts" ScrollViewer.VerticalScrollBarVisibility="Hidden" MouseDoubleClick="GridProductsMouseDoubleClick">
+                    <DataGrid Grid.Row="0" FontSize="12" ItemsSource="{Binding Path=Elements[product]}" AutoGenerateColumns="False" Height="Auto" Name="GridProducts" IsReadOnly="True" VerticalAlignment="Top" HorizontalAlignment="Stretch" ToolTip="CaseProducts" ScrollViewer.VerticalScrollBarVisibility="Hidden" MouseDoubleClick="GridProductsMouseDoubleClick">
                         <DataGrid.Columns>
                             <DataGridTextColumn x:Name="ColumnCount" Width="80" CanUserResize="False" CanUserReorder="False" Header="{x:Static Properties:Resources.LabelQty}" Binding="{Binding Path=Element[qty].Value}" />
                             <DataGridTextColumn x:Name="ColumnDescription" Width="*" CanUserResize="False" CanUserReorder="False" Header="{x:Static Properties:Resources.LabelDescription}"  Binding="{Binding Path=Element[Name].Value}" ElementStyle="{StaticResource LeftAlignStyle}"   />
