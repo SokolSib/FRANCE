@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -48,7 +49,7 @@ namespace TicketWindow.Services
     {
         private static bool _setBc;
         private static MainWindow _mainAppWindow;
-        private static bool _isSetStock;
+        private static IEnumerable _mainItems;
 
         public static MainWindow MainAppWindow
         {
@@ -1478,14 +1479,17 @@ namespace TicketWindow.Services
                     switch (typeFun)
                     {
                         case "SetStock":
-                            _isSetStock = !_isSetStock;
-                            var brush = _isSetStock ? Brushes.LemonChiffon : Brushes.White;
-
-                            foreach (var item in MainAppWindow.GridProducts.ItemsSource)
+                            if (_mainItems == null)
                             {
-                                var row = MainAppWindow.GridProducts.ItemContainerGenerator.ContainerFromItem(item) as
-                                    DataGridRow;
-                                if (row != null) row.Background = brush;
+                                MainAppWindow.GridProducts.BorderBrush = Brushes.White;
+                                _mainItems = MainAppWindow.GridProducts.ItemsSource;
+                                MainAppWindow.GridProducts.ItemsSource = null;
+                            }
+                            else
+                            {
+                                MainAppWindow.GridProducts.BorderBrush = Brushes.Black;
+                                MainAppWindow.GridProducts.ItemsSource = _mainItems;
+                                _mainItems = null;
                             }
                             break;
                         case "Countrys":
