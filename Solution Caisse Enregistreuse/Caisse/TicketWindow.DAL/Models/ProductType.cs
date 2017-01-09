@@ -122,7 +122,8 @@ namespace TicketWindow.DAL.Models
 
         public static XElement ToXElement(ProductType obj, XElement productsElement)
         {
-            obj.Ii = productsElement.Elements("rec").Count();
+            if (productsElement != null)
+                obj.Ii = productsElement.Elements("rec").Count();
 
             return new XElement("rec",
                 new XElement("ii", obj.Ii),

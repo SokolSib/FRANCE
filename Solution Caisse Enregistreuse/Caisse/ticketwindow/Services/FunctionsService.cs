@@ -661,18 +661,24 @@ namespace TicketWindow.Services
 
             if (mw != null)
             {
-                var x = RepositoryProduct.Products.FirstOrDefault(p => p.CustomerId == guidProduct);
+                var product = RepositoryProduct.Products.FirstOrDefault(p => p.CustomerId == guidProduct);
 
-                if (x != null)
-                    CheckService.AddProductCheck(x, GetQty(mw.qty_label));
+                if (product != null)
+                {
+                    var productElement = ProductType.ToXElement(product, null);
+                    CheckService.AddProductCheck(productElement, GetQty(mw.qty_label));
+                }
             }
 
             if (wp != null)
             {
-                var x = RepositoryProduct.Products.FirstOrDefault(p => p.CustomerId == guidProduct);
+                var product = RepositoryProduct.Products.FirstOrDefault(p => p.CustomerId == guidProduct);
 
-                if (x != null)
-                    CheckService.AddProductCheck(x, GetQty(MainAppWindow.qty_label));
+                if (product != null)
+                {
+                    var productElement = ProductType.ToXElement(product, null);
+                    CheckService.AddProductCheck(productElement, GetQty(MainAppWindow.qty_label));
+                }
             }
         }
 
