@@ -181,7 +181,7 @@ namespace TicketWindow
                 _dispatcherTimer.Start();
             }
 
-            ClassBallance.Opn();
+            ClassBallanceMAGELLAN_8400.Opn();
             //Windows 8 API to enable touch keyboard to monitor for focus tracking in this WPF application
             try
             {
@@ -412,7 +412,7 @@ namespace TicketWindow
 
         private void WindowClosing(object sender, CancelEventArgs e)
         {
-            ClassBallance.Close();
+            ClassBallanceMAGELLAN_8400.Close();
             Application.Current.Shutdown();
         }
 
