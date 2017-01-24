@@ -55,12 +55,12 @@ namespace TicketWindow.Services
 
         private static ProductType GetBallance(ProductType product)
         {
-            ClassBallance.Send(product.Price, product.Tare);
+            ClassBallanceMAGELLAN_8400.Send(product.Price, product.Tare);
 
             try
             {
-                var prix = ClassBallance.Prix.ToDecimal()/100;
-                var qty = ClassBallance.Poinds.ToDecimal()/1000;
+                var prix = ClassBallanceMAGELLAN_8400.Prix.ToDecimal()/100;
+                var qty = ClassBallanceMAGELLAN_8400.Poinds.ToDecimal()/1000;
 
                 if (qty > 0)
                 {
@@ -71,11 +71,11 @@ namespace TicketWindow.Services
             }
             catch (System.Exception e)
             {
-                LogService.Log(TraceLevel.Error, 21, "Error ballance =" + ClassBallance.Error + e.Message + ".");
+                LogService.Log(TraceLevel.Error, 21, "Error ballance =" + ClassBallanceMAGELLAN_8400.Error + e.Message + ".");
                 product = null;
             }
 
-            if (ClassBallance.Busy_0X15 || ClassBallance.Error_0X15) product = null;
+            if (ClassBallanceMAGELLAN_8400.Busy_0X15 || ClassBallanceMAGELLAN_8400.Error_0X15) product = null;
             return product;
         }
 
@@ -91,12 +91,12 @@ namespace TicketWindow.Services
 
             if (product.Balance)
             {
-                if (GetBallance(product) == null)
-                {
+               // if (GetBallance(product) == null)
+              //  {
                     var button = new Button {ToolTip = "ShowBallance"};
                     FunctionsService.Click(button, product);
-                }
-                else AddProductCheck(product, product.Qty);
+             //   }
+             //   else AddProductCheck(product, product.Qty);
             }
             else AddProductCheck(product, qty);
         }

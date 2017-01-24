@@ -52,18 +52,18 @@ namespace TicketWindow.Winows.OtherWindows.Ballance
                 _product.Price = 1;
                 f = true;
             }
-            ClassBallance.Send(_product.Price, _product.Tare);
+            ClassBallanceMAGELLAN_8400.Send(_product.Price, _product.Tare);
 
-            if (ClassBallance.Busy_0X15)
+            if (ClassBallanceMAGELLAN_8400.Busy_0X15)
                 FunctionsService.ShowMessageTime("Pour résoudre ce problème, il vous suffit de re-peser l'article");
-            if (ClassBallance.Error_0X15)
+            if (ClassBallanceMAGELLAN_8400.Error_0X15)
                 FunctionsService.ShowMessageTime("Pour résoudre ce problème, il vous suffit de redémarrer la balance!");
 
             var prix = 0.0m;
             try
             {
-                prix = decimal.Parse(ClassBallance.Prix)/100;
-                _qty = decimal.Parse(ClassBallance.Poinds)/1000;
+                prix = decimal.Parse(ClassBallanceMAGELLAN_8400.Prix)/100;
+                _qty = decimal.Parse(ClassBallanceMAGELLAN_8400.Poinds)/1000;
                 xBallance_kg.Text = _qty.ToString();
                 xPrix_kg.Content = prix.ToString();
             }
@@ -75,11 +75,11 @@ namespace TicketWindow.Winows.OtherWindows.Ballance
                 LogService.Log(TraceLevel.Error, 22, "Error ballance.");
                 xLog.Content = e.Message + Environment.NewLine;
             }
-            xLog.Content += ClassBallance.Error;
+            xLog.Content += ClassBallanceMAGELLAN_8400.Error;
             try
             {
                 if (!f)
-                    xTotal_kg.Content = (Math.Round(decimal.Parse(ClassBallance.Montant)/100, 2));
+                    xTotal_kg.Content = (Math.Round(decimal.Parse(ClassBallanceMAGELLAN_8400.Montant)/100, 2));
                 else xTotal_kg.Content = "0.0";
             }
             catch
