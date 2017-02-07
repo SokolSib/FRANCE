@@ -74,7 +74,7 @@ namespace TicketWindow.PortClasses
 
             for (var i = 0; i < bb.Length; i++)
                 bb[i] = Convert.ToByte(int.Parse(b.ToString("D2")[i].ToString()) + 48);
-            
+
             if (Port.IsOpen)
             {
                 byte[] data1 =
@@ -169,13 +169,27 @@ namespace TicketWindow.PortClasses
 
                 try
                 {
+                    Port.Write("W");
+
+                    Thread.Sleep(200);
+
+                    Poinds = Port.ReadExisting();
+                }
+                catch (System.Exception e)
+                {
+                    Error += e.Message;
+                }
+
+
+                try
+                {
 
                     Poinds = Poinds.Remove(0, 1).Replace(".", ",");
 
                     Montant = (decimal.Parse(Poinds) * prix *1000).ToString();
 
                     Prix = prix.ToString();
-            }
+                }
         }
-    }
+     }
 }
