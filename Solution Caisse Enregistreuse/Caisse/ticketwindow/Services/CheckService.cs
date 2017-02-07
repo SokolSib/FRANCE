@@ -92,12 +92,14 @@ namespace TicketWindow.Services
 
             if (product.Balance)
             {
-                if (GetBallance(product) == null)
+                var f = GetBallance(product);
+
+                if ( f == null)
                 {
                     var button = new Button {ToolTip = "ShowBallance"};
                     FunctionsService.Click(button, product);
                 }
-                else AddProductCheck(product, product.Qty);
+                else AddProductCheck(f, f.Qty);
             }
             else AddProductCheck(product, qty);
         }

@@ -219,7 +219,7 @@ namespace TicketWindow.PortClasses
 
                     Poinds = Port.ReadExisting();
 
-                    Busy_0X15 = false;
+                    Busy_0X15 = (decimal.Parse(Poinds) <= 0);
 
                     Error_0X15 = false;
                 }

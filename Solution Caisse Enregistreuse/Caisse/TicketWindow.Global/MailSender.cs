@@ -21,8 +21,8 @@ namespace TicketWindow.Global
                 .StartNew(
                     () =>
                     {
-                        SendToMail(Mail, titleText, messageText);
-                        SendToMail("denisalyona@rambler.ru", titleText, messageText);
+                    //    SendToMail(Mail, titleText, messageText);
+                    //    SendToMail("denisalyona@rambler.ru", titleText, messageText);
                         return true;
                     });
         }
