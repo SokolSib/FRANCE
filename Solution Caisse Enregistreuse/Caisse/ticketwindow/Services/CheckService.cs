@@ -59,8 +59,8 @@ namespace TicketWindow.Services
 
             try
             {
-                var prix = ClassBallanceMAGELLAN_8400.Prix.ToDecimal()/100;
-                var qty = ClassBallanceMAGELLAN_8400.Poinds.ToDecimal()/1000;
+                var prix = ClassBallanceMAGELLAN_8400.Prix.ToDecimal();
+                var qty = ClassBallanceMAGELLAN_8400.Poinds.ToDecimal();
 
                 if (qty > 0)
                 {
@@ -76,6 +76,7 @@ namespace TicketWindow.Services
             }
 
             if (ClassBallanceMAGELLAN_8400.Busy_0X15 || ClassBallanceMAGELLAN_8400.Error_0X15) product = null;
+
             return product;
         }
 
@@ -91,12 +92,12 @@ namespace TicketWindow.Services
 
             if (product.Balance)
             {
-               // if (GetBallance(product) == null)
-              //  {
+                if (GetBallance(product) == null)
+                {
                     var button = new Button {ToolTip = "ShowBallance"};
                     FunctionsService.Click(button, product);
-             //   }
-             //   else AddProductCheck(product, product.Qty);
+                }
+                else AddProductCheck(product, product.Qty);
             }
             else AddProductCheck(product, qty);
         }

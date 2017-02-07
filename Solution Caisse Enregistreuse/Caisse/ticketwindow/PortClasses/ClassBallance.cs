@@ -215,13 +215,19 @@ namespace TicketWindow.PortClasses
                 {
                     Port.Write("W");
 
-                    Thread.Sleep(200);
+                    Thread.Sleep(250);
 
                     Poinds = Port.ReadExisting();
+
+                    Busy_0X15 = false;
+
+                    Error_0X15 = false;
                 }
                 catch (System.Exception e)
                 {
                     Error += e.Message;
+
+                    Error_0X15 = true; 
                 }
 
 
@@ -230,7 +236,7 @@ namespace TicketWindow.PortClasses
 
                     Poinds = Poinds.Remove(0, 1).Replace(".", ",");
 
-                    Montant = (decimal.Parse(Poinds) * prix).ToString();
+                    Montant = (decimal.Parse(Poinds) * prix *1000).ToString();
 
                     Prix = prix.ToString();
                 }

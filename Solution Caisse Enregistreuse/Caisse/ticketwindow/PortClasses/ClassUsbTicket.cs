@@ -6,13 +6,17 @@ namespace TicketWindow.PortClasses
 {
     internal class ClassUsbTicket
     {
+
+      
+
+
         internal class ReadWrite
         {
             public static UsbDevice MyUsbDevice;
 
             #region SET YOUR USB Vendor and Product ID!
 
-            public static UsbDeviceFinder MyUsbFinder = new UsbDeviceFinder(0x1504, 0x001f);
+            public static UsbDeviceFinder MyUsbFinder = new UsbDeviceFinder(0x04b8, 0x0e15);
 
             #endregion
 
@@ -63,6 +67,8 @@ namespace TicketWindow.PortClasses
                     }
                 }
             }
+
+
         }
     }
 }
