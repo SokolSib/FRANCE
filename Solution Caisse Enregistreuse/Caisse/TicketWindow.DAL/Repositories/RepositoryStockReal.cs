@@ -187,7 +187,7 @@ namespace TicketWindow.DAL.Repositories
             return null;
         }
 
-        public static List<StockReal> Add(Guid productCustomerId, Guid idEstablishment, decimal qty, decimal minQty, decimal price)
+        public static List<StockReal> AddOrUpdateCounts(Guid productCustomerId, Guid idEstablishment, decimal qty, decimal minQty, decimal price)
         {
             var stockReals = StockReals.FindAll(sr => sr.IdEstablishment == idEstablishment && sr.ProductsCustomerId == productCustomerId);
             if (stockReals.Count == 0)

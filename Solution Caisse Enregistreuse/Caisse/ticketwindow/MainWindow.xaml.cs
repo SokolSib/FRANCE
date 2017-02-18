@@ -540,8 +540,8 @@ namespace TicketWindow
                     {
                         var minQtyOfProduct = productBc.Qty > minQty ? productBc.Qty : minQty;
 
-                        RepositoryStockReal.Add(productBc.Product.CustomerId, Config.IdEstablishment, productBc.Qty,
-                            minQtyOfProduct, productBc.Product.Price);
+                        RepositoryStockReal.AddOrUpdateCounts(productBc.Product.CustomerId, Config.IdEstablishment,
+                            productBc.Qty, minQtyOfProduct, productBc.Product.Price);
                     }
                 }
 
