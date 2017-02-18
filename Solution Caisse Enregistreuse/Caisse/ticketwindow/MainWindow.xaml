@@ -414,7 +414,6 @@
                     </Button>
 
                 </Grid>
-
                 <Grid Grid.Column="2" >
                     <Grid.RowDefinitions>
                         <RowDefinition Name="row1" Height="{Binding Row1HeightSetting, Mode=TwoWay}"/>
@@ -425,7 +424,32 @@
                         <RowDefinition Height="5"/>
                         <RowDefinition Name="row4" />
                     </Grid.RowDefinitions>
-                    
+
+                    <DataGrid Grid.Row="0" FontSize="12" ItemsSource="{Binding Path=Elements[product]}" AutoGenerateColumns="False" Height="Auto" Name="GridProducts" IsReadOnly="True" VerticalAlignment="Top" HorizontalAlignment="Stretch" ToolTip="CaseProducts" ScrollViewer.VerticalScrollBarVisibility="Hidden" MouseDoubleClick="GridProductsMouseDoubleClick">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn x:Name="ColumnCount" Width="80" CanUserResize="False" CanUserReorder="False" Header="{x:Static Properties:Resources.LabelQty}" Binding="{Binding Path=Element[qty].Value}" />
+                            <DataGridTextColumn x:Name="ColumnDescription" Width="*" CanUserResize="False" CanUserReorder="False" Header="{x:Static Properties:Resources.LabelDescription}"  Binding="{Binding Path=Element[Name].Value}" ElementStyle="{StaticResource LeftAlignStyle}"   />
+                            <DataGridTextColumn Width="30" CanUserResize="False" CanUserReorder="False" Header="%"  Binding="{Binding Path=Element[Discount].Value, StringFormat=\{0:p\}}" ElementStyle="{StaticResource CenterAlignStyle}"  />
+                            <DataGridTextColumn x:Name="ColumnDiscount" Width="50" CanUserResize="False" CanUserReorder="False" Header="{x:Static Properties:Resources.LabelDiscount}"   Binding="{Binding Path=Element[sumDiscount].Value, StringFormat=\{0:c\}}" ElementStyle="{StaticResource RightAlignStyle}"   />
+                            <DataGridTextColumn x:Name="ColumnTotal" Width="50" CanUserResize="False" CanUserReorder="False" Header="{x:Static Properties:Resources.LabelTotal}"  Binding="{Binding Path=Element[total].Value, StringFormat=C0, ConverterCulture=fr-FR}" ElementStyle="{StaticResource RightAlignStyle}"  />
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <Grid Grid.Row="0" Name="BlockStock" Visibility="Collapsed" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <DataGrid FontSize="12" ItemsSource="{Binding Path=Elements[product]}" AutoGenerateColumns="False" Height="Auto" Name="GridStock" IsReadOnly="True" VerticalAlignment="Top" HorizontalAlignment="Stretch" ToolTip="CaseProducts" ScrollViewer.VerticalScrollBarVisibility="Hidden" MouseDoubleClick="GridProductsMouseDoubleClick">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Width="80" CanUserResize="False" CanUserReorder="False" Header="{x:Static Properties:Resources.LabelQty}" Binding="{Binding Path=Element[qty].Value}" />
+                                <DataGridTextColumn Width="*" CanUserResize="False" CanUserReorder="False" Header="{x:Static Properties:Resources.LabelDescription}"  Binding="{Binding Path=Element[Name].Value}" ElementStyle="{StaticResource LeftAlignStyle}"   />
+                                <DataGridTextColumn Width="50" CanUserResize="False" CanUserReorder="False" Header="{x:Static Properties:Resources.LabelTotal}"  Binding="{Binding Path=Element[total].Value, StringFormat=C0, ConverterCulture=fr-FR}" ElementStyle="{StaticResource RightAlignStyle}"  />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Button Grid.Row="1" Content="{x:Static Properties:Resources.BtnClear}" Background="Yellow" HorizontalAlignment="Right" Padding="10" />
+                    </Grid>
+
                     <GridSplitter Name="GS1" Grid.Row="1" HorizontalAlignment="Stretch" DragDelta="GridSplitterDragDelta"/>
                     <GridSplitter Name="GS2" Grid.Row="3" HorizontalAlignment="Stretch"  DragDelta="GridSplitterDragDelta"/>
                     <GridSplitter Name="GS3" Grid.Row="5" HorizontalAlignment="Stretch" DragDelta="GridSplitterDragDelta"/>
@@ -497,15 +521,6 @@
 
                     </Grid>
 
-                    <DataGrid Grid.Row="0" FontSize="12" ItemsSource="{Binding Path=Elements[product]}" AutoGenerateColumns="False" Height="Auto" Name="GridProducts" IsReadOnly="True" VerticalAlignment="Top" HorizontalAlignment="Stretch" ToolTip="CaseProducts" ScrollViewer.VerticalScrollBarVisibility="Hidden" MouseDoubleClick="GridProductsMouseDoubleClick">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn x:Name="ColumnCount" Width="80" CanUserResize="False" CanUserReorder="False" Header="{x:Static Properties:Resources.LabelQty}" Binding="{Binding Path=Element[qty].Value}" />
-                            <DataGridTextColumn x:Name="ColumnDescription" Width="*" CanUserResize="False" CanUserReorder="False" Header="{x:Static Properties:Resources.LabelDescription}"  Binding="{Binding Path=Element[Name].Value}" ElementStyle="{StaticResource LeftAlignStyle}"   />
-                            <DataGridTextColumn Width="30" CanUserResize="False" CanUserReorder="False" Header="%"  Binding="{Binding Path=Element[Discount].Value, StringFormat=\{0:p\}}" ElementStyle="{StaticResource CenterAlignStyle}"  />
-                            <DataGridTextColumn x:Name="ColumnDiscount" Width="50" CanUserResize="False" CanUserReorder="False" Header="{x:Static Properties:Resources.LabelDiscount}"   Binding="{Binding Path=Element[sumDiscount].Value, StringFormat=\{0:c\}}" ElementStyle="{StaticResource RightAlignStyle}"   />
-                            <DataGridTextColumn x:Name="ColumnTotal" Width="50" CanUserResize="False" CanUserReorder="False" Header="{x:Static Properties:Resources.LabelTotal}"  Binding="{Binding Path=Element[total].Value, StringFormat=C0, ConverterCulture=fr-FR}" ElementStyle="{StaticResource RightAlignStyle}"  />
-                        </DataGrid.Columns>
-                    </DataGrid>
                     <Grid Grid.Row="2" >
                         <Grid.Resources>
                             <DataTemplate x:Key="AutoCompleteBoxItemTemplate">

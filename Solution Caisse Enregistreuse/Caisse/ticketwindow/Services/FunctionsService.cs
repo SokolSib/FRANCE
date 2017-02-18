@@ -357,8 +357,12 @@ namespace TicketWindow.Services
                     var background = (SolidColorBrush) gridElm[i, j, x, y].Background;
                     var font = (SolidColorBrush)gridElm[i, j, x, y].Font;
 
-                    w.xColor.SelectedColor = background.Color;
-                    w.xFontColor.SelectedColor = font.Color;
+                    if (background != null)
+                        w.xColor.SelectedColor = background.Color;
+
+                    if (font != null)
+                        w.xFontColor.SelectedColor = font.Color;
+
                     w.FindProduct.Product =
                         RepositoryProduct.Products.FirstOrDefault(p => p.Name == gridElm[i, j, x, y].Description);
                 }
@@ -1479,17 +1483,15 @@ namespace TicketWindow.Services
                     switch (typeFun)
                     {
                         case "SetStock":
-                            if (_mainItems == null)
+                            if (MainAppWindow.GridProducts.Visibility==Visibility.Visible)
                             {
-                                MainAppWindow.GridProducts.BorderBrush = Brushes.White;
-                                _mainItems = MainAppWindow.GridProducts.ItemsSource;
-                                MainAppWindow.GridProducts.ItemsSource = null;
+                                MainAppWindow.GridProducts.Visibility = Visibility.Collapsed;
+                                MainAppWindow.BlockStock.Visibility = Visibility.Visible;
                             }
                             else
                             {
-                                MainAppWindow.GridProducts.BorderBrush = Brushes.Black;
-                                MainAppWindow.GridProducts.ItemsSource = _mainItems;
-                                _mainItems = null;
+                                MainAppWindow.GridProducts.Visibility = Visibility.Visible;
+                                MainAppWindow.BlockStock.Visibility = Visibility.Collapsed;
                             }
                             break;
                         case "Countrys":
