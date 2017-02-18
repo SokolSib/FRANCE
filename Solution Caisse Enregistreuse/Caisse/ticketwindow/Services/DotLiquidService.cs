@@ -80,8 +80,8 @@ namespace TicketWindow.Services
                 var doc = (FlowDocument) XamlReader.Parse(docString);
                 var paginator = ((IDocumentPaginatorSource) doc).DocumentPaginator;
 
-                doc.PageWidth = 280;
-                doc.PagePadding = new Thickness(0);
+                doc.PageWidth = 285;
+                doc.PagePadding = new Thickness(11,0,0,0);
                 doc.ColumnGap = 0;
                 doc.ColumnWidth = 0;
 

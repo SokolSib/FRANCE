@@ -5,10 +5,10 @@
   </BlockUIContainer>
 
   <Paragraph TextAlignment="Center">
-    9-11-13 Boulevard de la Liberté - 13001 MARSEILLE
+    228 Avenue du 24 Avril 1915, 13012 Marseille
   </Paragraph>
   <Paragraph TextAlignment="Center">
-    Tél : 04 91 50 87 61
+    Tél : 04 91 44 37 73
   </Paragraph>
   {% if Facture == null %}
   

@@ -75,7 +75,7 @@ namespace TicketWindow.PortClasses
                 Port.Write(new byte[] {0x1f, 0x3a}, 0, 2);
                 Port.Write(new byte[] {0x0c}, 0, 1);
                 Port.Write(new byte[] {0x1f, 0x45, 0x00}, 0, 3);
-                Port.Write("Caisse est fermer !!!");
+                Port.Write("Caisse est ferme!!!");
                 Port.Write(new byte[] {0x1f, 0x45, 0x0a}, 0, 3);
                 Port.Write(new byte[] {0x1f, 0x3a}, 0, 2);
                 Port.Write(new byte[] {0x1f, 0x5e, 0x0a, 0x64}, 0, 4);
