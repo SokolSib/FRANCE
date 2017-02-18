@@ -93,6 +93,7 @@
                             <RadioButton Tag="Histoire de ticket" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncHistoryChecks}"/>
                             <RadioButton Tag="Clôture" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncCloseCashbox}"/>
                             <RadioButton Tag="UpdateDb" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncUpdateDB}"/>
+                            <RadioButton Tag="SetStock" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.LabelStock}"/>
 
                             <!--<RadioButton>DiscountSet</RadioButton>-->
                             <!--<RadioButton>ClavierNumPad</RadioButton>-->

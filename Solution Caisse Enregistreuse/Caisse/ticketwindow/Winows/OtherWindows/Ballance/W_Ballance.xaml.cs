@@ -62,8 +62,8 @@ namespace TicketWindow.Winows.OtherWindows.Ballance
             var prix = 0.0m;
             try
             {
-                prix = decimal.Parse(ClassBallanceMAGELLAN_8400.Prix);
-                _qty = decimal.Parse(ClassBallanceMAGELLAN_8400.Poinds);
+                prix = decimal.Parse(ClassBallanceMAGELLAN_8400.Prix)/100;
+                _qty = decimal.Parse(ClassBallanceMAGELLAN_8400.Poinds)/1000;
                 xBallance_kg.Text = _qty.ToString();
                 xPrix_kg.Content = prix.ToString();
             }

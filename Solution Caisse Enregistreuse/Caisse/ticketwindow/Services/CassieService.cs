@@ -46,12 +46,12 @@ namespace TicketWindow.Services
         {
             var closeTicketGs = RepositoryCloseTicketG.Get(ticketWindowG);
 
-            if (closeTicketGs.Count == 1)
-            {
-                var closeTicket = RepositoryCloseTicket.GetByCloseTicketGId(closeTicketGs[0].CustomerId);
-                PrintService.PrintCloseTicketG(closeTicketGs[0], closeTicket);
-            }
-            else RepositoryCloseTicketG.Mess += "Ошибка печати, " + closeTicketGs.Count + " записей в БД";
+            //if (closeTicketGs.Count == 1)
+            //{
+            var closeTicket = RepositoryCloseTicket.GetByCloseTicketGId(closeTicketGs.Last().CustomerId);
+            PrintService.PrintCloseTicketG(closeTicketGs.Last(), closeTicket);
+            //}
+            //else RepositoryCloseTicketG.Mess += "Ошибка печати, " + closeTicketGs.Count + " записей в БД";
         }
 
         public static void RemoveProductCountFromStockReal(CloseTicketTmp closeTicket)
@@ -290,7 +290,7 @@ namespace TicketWindow.Services
 
         private static bool CloseOpenTicketWindows()
         {
-            if (RepositoryOpenTicketWindow.OpenTicketWindows.Count == 0) RepositoryOpenTicketWindow.Sync();
+            RepositoryOpenTicketWindow.Sync();
 
             var openTicketWindows = RepositoryOpenTicketWindow.OpenTicketWindows.FindAll(otw => otw.IsOpen && (otw.IdTicketWindowG == GlobalVar.TicketWindowG));
             var flag = false;

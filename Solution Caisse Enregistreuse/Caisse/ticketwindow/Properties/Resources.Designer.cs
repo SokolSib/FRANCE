@@ -781,6 +781,15 @@ namespace TicketWindow.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на The cashbox is closed.
+        /// </summary>
+        public static string LabelCashBoxIsClosed {
+            get {
+                return ResourceManager.GetString("LabelCashBoxIsClosed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Cashbox time.
         /// </summary>
         public static string LabelCashboxTime {
@@ -1758,6 +1767,15 @@ namespace TicketWindow.Properties {
         public static string LabelSubgroup {
             get {
                 return ResourceManager.GetString("LabelSubgroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Amount is exceeded.
+        /// </summary>
+        public static string LabelSummIsExceed {
+            get {
+                return ResourceManager.GetString("LabelSummIsExceed", resourceCulture);
             }
         }
         

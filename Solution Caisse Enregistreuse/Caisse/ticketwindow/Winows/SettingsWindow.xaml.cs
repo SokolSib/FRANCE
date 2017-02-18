@@ -9,6 +9,7 @@ using TicketWindow.DAL.Additional;
 using TicketWindow.DAL.Models;
 using TicketWindow.DAL.Repositories;
 using TicketWindow.Global;
+using TicketWindow.Services;
 
 namespace TicketWindow.Winows
 {
@@ -154,6 +155,12 @@ namespace TicketWindow.Winows
                 elm.Background = button.Background;
                 elm.Foreground = button.Foreground;
                 elm.Caption = button.Content.ToString();
+                if (elm.Caption == string.Empty)
+                {
+                    ProductType product;
+                    elm.Caption = FunctionsTranslateService.GetTranslatedFunctionWithProd(elm.Func, out product);
+                    button.Content = elm.Caption;
+                }
 
                 button.Tag = elm;
 

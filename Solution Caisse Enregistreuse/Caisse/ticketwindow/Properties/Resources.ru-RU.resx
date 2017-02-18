@@ -1069,4 +1069,12 @@
     <value>Рабочий индекс</value>
     <comment>надпись рабочий индекс</comment>
   </data>
+  <data name="LabelCashBoxIsClosed" xml:space="preserve">
+    <value>Касса закрыта</value>
+    <comment>надпись касса закрыта</comment>
+  </data>
+  <data name="LabelSummIsExceed" xml:space="preserve">
+    <value>Сумма превышена</value>
+    <comment>надпись сумма превышена</comment>
+  </data>
 </root>
