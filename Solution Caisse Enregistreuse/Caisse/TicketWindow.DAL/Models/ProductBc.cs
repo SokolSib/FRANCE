@@ -1,18 +1,27 @@
 ﻿using System;
+using System.Linq;
 using System.Xml.Linq;
+using TicketWindow.DAL.Repositories;
 using TicketWindow.Extensions;
 
 namespace TicketWindow.DAL.Models
 {
     public class ProductBc
     {
-        public ProductBc(Guid customerId, Guid? customerIdProduct, string codeBar, decimal qty, string description)
+        public ProductBc(Guid customerId, Guid? customerIdProduct, string codeBar, decimal qty, string description, bool generatedFromProduct = false)
         {
             CustomerId = customerId;
             CustomerIdProduct = customerIdProduct;
             CodeBar = codeBar;
             Qty = qty;
             Description = description;
+            GeneratedFromProduct = generatedFromProduct;
+
+            if (RepositoryProduct.Products.Count == 0)
+                RepositoryProduct.Sync();
+
+            if (CustomerIdProduct.HasValue)
+                Product = RepositoryProduct.Products.FirstOrDefault(p => p.CustomerId == CustomerIdProduct);
         }
 
         public Guid CustomerId { get; set; }
@@ -20,6 +29,8 @@ namespace TicketWindow.DAL.Models
         public string CodeBar { get; set; }
         public decimal Qty { get; set; }
         public string Description { get; set; }
+        public ProductType Product { get; set; }
+        public bool GeneratedFromProduct { get; set; }
 
         public static ProductBc FromXElement(XContainer element)
         {

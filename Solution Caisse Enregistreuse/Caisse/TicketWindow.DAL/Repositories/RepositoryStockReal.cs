@@ -187,6 +187,45 @@ namespace TicketWindow.DAL.Repositories
             return null;
         }
 
+        public static List<StockReal> Add(Guid productCustomerId, Guid idEstablishment, decimal qty, decimal minQty, decimal price)
+        {
+            var stockReals = StockReals.FindAll(sr => sr.IdEstablishment == idEstablishment && sr.ProductsCustomerId == productCustomerId);
+            if (stockReals.Count == 0)
+            {
+                var stockReal = new StockReal(Guid.NewGuid(), 0, 10, 0, productCustomerId, idEstablishment);
+
+                StockReals.Add(stockReal);
+
+                var document = XDocument.Load(Path);
+                var stockRealsElement = document.GetXElement("StockReals");
+                stockRealsElement.Add(StockReal.ToXElement(stockReal));
+                document.Save(Path);
+            }
+
+            for (int i = 0; i < stockReals.Count; i++)
+            {
+                stockReals[i].Qty += qty;
+                stockReals[i].MinQty = minQty;
+                stockReals[i].Price = price;
+            }
+
+            SaveFile();
+            if (SyncData.IsConnect)
+            {
+                int result;
+                using (var connection = ConnectionFactory.CreateConnection())
+                    result = connection.Execute(InsertQuery, stockReals);
+
+                if (result == -1)
+                {
+                    LogService.Log(TraceLevel.Error, 400);
+                    LogService.SqlLog(TraceLevel.Error, string.Join(", ", stockReals));
+                }
+            }
+
+            return stockReals;
+        }
+
         public static List<StockReal> GetFromDbByProductIds(Guid[] customerIdProducts)
         {
             if (SyncData.IsConnect)

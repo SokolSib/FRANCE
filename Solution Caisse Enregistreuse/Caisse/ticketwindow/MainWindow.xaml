@@ -440,14 +440,18 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <DataGrid FontSize="12" ItemsSource="{Binding Path=Elements[product]}" AutoGenerateColumns="False" Height="Auto" Name="GridStock" IsReadOnly="True" VerticalAlignment="Top" HorizontalAlignment="Stretch" ToolTip="CaseProducts" ScrollViewer.VerticalScrollBarVisibility="Hidden" MouseDoubleClick="GridProductsMouseDoubleClick">
+                        <DataGrid FontSize="12" AutoGenerateColumns="False" Height="Auto" Name="GridStock" IsReadOnly="True" VerticalAlignment="Top" HorizontalAlignment="Stretch" ToolTip="CaseProducts" ScrollViewer.VerticalScrollBarVisibility="Hidden" MouseDoubleClick="GridProductsMouseDoubleClick">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Width="80" CanUserResize="False" CanUserReorder="False" Header="{x:Static Properties:Resources.LabelQty}" Binding="{Binding Path=Element[qty].Value}" />
-                                <DataGridTextColumn Width="*" CanUserResize="False" CanUserReorder="False" Header="{x:Static Properties:Resources.LabelDescription}"  Binding="{Binding Path=Element[Name].Value}" ElementStyle="{StaticResource LeftAlignStyle}"   />
-                                <DataGridTextColumn Width="50" CanUserResize="False" CanUserReorder="False" Header="{x:Static Properties:Resources.LabelTotal}"  Binding="{Binding Path=Element[total].Value, StringFormat=C0, ConverterCulture=fr-FR}" ElementStyle="{StaticResource RightAlignStyle}"  />
+                                <DataGridTextColumn Width="Auto" CanUserResize="False" CanUserReorder="False" Header="{x:Static Properties:Resources.LabelQty}" Binding="{Binding Path=Qty}" />
+                                <DataGridTextColumn Width="*" CanUserResize="False" CanUserReorder="False" Header="{x:Static Properties:Resources.LabelDescription}"  Binding="{Binding Path=Description}" ElementStyle="{StaticResource LeftAlignStyle}"   />
+                                <DataGridTextColumn Width="*" CanUserResize="False" CanUserReorder="False" Header="{x:Static Properties:Resources.LabelProduct}"  Binding="{Binding Path=Product.Name}" ElementStyle="{StaticResource LeftAlignStyle}"  />
                             </DataGrid.Columns>
                         </DataGrid>
-                        <Button Grid.Row="1" Content="{x:Static Properties:Resources.BtnClear}" Background="Yellow" HorizontalAlignment="Right" Padding="10" />
+                        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Button Content="{x:Static Properties:Resources.BtnAdd}" Background="Green" HorizontalAlignment="Right" Padding="10" Name="BtnAddStock" Click="BtnAddStock_OnClick" />
+                            <Button Content="{x:Static Properties:Resources.BtnDel}" Background="Red" HorizontalAlignment="Right" Padding="10" Name="BtnDelStock" Click="BtnDelStock_OnClick" />
+                            <Button Content="{x:Static Properties:Resources.BtnClear}" Background="Yellow" HorizontalAlignment="Right" Padding="10" Name="BtnClearStock" Click="BtnClearStock_OnClick" />
+                        </StackPanel>
                     </Grid>
 
                     <GridSplitter Name="GS1" Grid.Row="1" HorizontalAlignment="Stretch" DragDelta="GridSplitterDragDelta"/>
