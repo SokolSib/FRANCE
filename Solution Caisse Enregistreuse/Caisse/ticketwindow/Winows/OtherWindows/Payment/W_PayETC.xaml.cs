@@ -1,8 +1,10 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Controls.Primitives;
 using TicketWindow.DAL.Models;
 using TicketWindow.DAL.Repositories;
 using TicketWindow.Services;
+using TicketWindow.Winows.OtherWindows.Message;
 
 namespace TicketWindow.Winows.OtherWindows.Payment
 {
@@ -11,7 +13,14 @@ namespace TicketWindow.Winows.OtherWindows.Payment
     /// </summary>
     public partial class WPayEtc : Window
     {
+        /// <summary>
+        /// Для этих типов карт - надо проверятьна максимальную сумму.
+        /// </summary>
+        private readonly List<string> _validForMaxSumm = new List<string> {"Resto", "BankCards", "BankChecks"};
+
         public TypePay TypesPay { get; set; }
+
+        public decimal? MaxMoney { get; set; }
 
         public WPayEtc()
         {
@@ -20,7 +29,15 @@ namespace TicketWindow.Winows.OtherWindows.Payment
 
         private void ButtonClick(object sender, RoutedEventArgs e)
         {
-            FunctionsService.Click(sender);
+            decimal money;
+            if (!string.IsNullOrEmpty(tbS.Text) && decimal.TryParse(tbS.Text.Trim(), out money))
+                if (_validForMaxSumm.Contains(TypesPay.NameCourt) && money <= MaxMoney)
+                    FunctionsService.Click(sender);
+                else
+                {
+                    var messageWindow = new WMessageTime(Properties.Resources.LabelSummIsExceed);
+                    messageWindow.Show();
+                }
         }
 
         private void WindowLoaded(object sender, RoutedEventArgs e)
@@ -41,7 +58,7 @@ namespace TicketWindow.Winows.OtherWindows.Payment
 
         private void InvisibleClick(object sender, RoutedEventArgs e)
         {
-            var b = ((ToggleButton)sender);
+            var b = (ToggleButton)sender;
             if (b.Name == "NumPadVisible")
                 xNumPad.Visibility = b.IsChecked != true ? Visibility.Hidden : Visibility.Visible;
         }

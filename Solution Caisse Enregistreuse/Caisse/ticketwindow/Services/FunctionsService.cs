@@ -984,28 +984,29 @@ namespace TicketWindow.Services
             }
         }
 
-        private static void ShowPaymentEtc(object sender)
+        private static void ShowPaymentEtc(object sender, decimal money)
         {
             ShowMessageCustomerDisplay(null);
+
             if (!GlobalVar.IsOpen)
-                ShowMessageTime("La caisse est fermée");
+                ShowMessageTime(Resources.LabelCashBoxIsClosed);
             else
             {
-                var t = RepositoryTypePay.GetById(int.Parse(((Button) sender).ToolTip.ToString().Replace("TypesPayDynamic", "")));
+                var payId = int.Parse(((Button) sender).ToolTip.ToString().Replace("TypesPayDynamic", ""));
+                var payType = RepositoryTypePay.GetById(payId);
 
                 if (RepositoryCheck.DocumentProductCheck != null)
-                {
-                    if (RepositoryCheck.DocumentProductCheck.Element("check").Elements("product").ToList().Count > 0)
+                    if (RepositoryCheck.DocumentProductCheck.GetXElements("check","product").Any())
                     {
                         var w = new WPayEtc
                                 {
-                                    Owner = (Window.GetWindow((Button) sender)),
-                                    TypesPay = t
+                                    Owner = Window.GetWindow((Button) sender),
+                                    TypesPay = payType,
+                                    MaxMoney = money
                                 };
 
                         Effect(w);
                     }
-                }
             }
         }
 
@@ -1079,10 +1080,10 @@ namespace TicketWindow.Services
                     if (RepositoryCheck.DocumentProductCheck != null)
                         if (RepositoryCheck.DocumentProductCheck.GetXElements("check", "product").ToList().Count > 0)
                         {
-                            var d = CheckService.GetTotalPrice();
+                            var money = CheckService.GetTotalPrice();
 
                             if (Window.GetWindow((Button) sender) is MainWindow)
-                                RepositoryCurrencyRelations.SetMoneySum(d);
+                                RepositoryCurrencyRelations.SetMoneySum(money);
 
                             var t = RepositoryTypePay.GetById(int.Parse(((Button) sender).ToolTip.ToString().Replace("TypesPayDynamic", "")));
                             if (!PayOneMoment(Window.GetWindow((Button) sender), t))
@@ -1100,7 +1101,7 @@ namespace TicketWindow.Services
                                     Effect(w);
                                     RepositoryCurrencyRelations.ClearCurrency(t);
                                 }
-                                else ShowPaymentEtc(sender);
+                                else ShowPaymentEtc(sender, money);
                         }
             }
         }

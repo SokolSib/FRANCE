@@ -1069,4 +1069,12 @@
     <value>Office ZIP code</value>
     <comment>надпись рабочий индекс</comment>
   </data>
+  <data name="LabelCashBoxIsClosed" xml:space="preserve">
+    <value>The cashbox is closed</value>
+    <comment>надпись касса закрыта</comment>
+  </data>
+  <data name="LabelSummIsExceed" xml:space="preserve">
+    <value>Amount is exceeded</value>
+    <comment>надпись сумма превышена</comment>
+  </data>
 </root>
