@@ -1008,7 +1008,7 @@ namespace TicketWindow.Services
             if (RepositoryCurrencyRelations.IsExistDrawerTypeInDocument())
                 try
                 {
-                    ClassUsbTicket.ReadWrite.Open();
+                  //  ClassUsbTicket.ReadWrite.Open();
                 }
                 catch
                 {
@@ -1345,7 +1345,7 @@ namespace TicketWindow.Services
 
         private static void OpenCashBox2()
         {
-            ClassUsbTicket.ReadWrite.Open();
+       //     ClassUsbTicket.ReadWrite.Open();
         }
 
         private static void ValidateBallance(object sender)
