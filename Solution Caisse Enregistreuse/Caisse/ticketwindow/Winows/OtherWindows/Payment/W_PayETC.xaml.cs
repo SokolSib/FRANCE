@@ -33,6 +33,8 @@ namespace TicketWindow.Winows.OtherWindows.Payment
             if (!string.IsNullOrEmpty(tbS.Text) && decimal.TryParse(tbS.Text.Trim(), out money))
                 if (_validForMaxSumm.Contains(TypesPay.NameCourt) && money <= MaxMoney)
                     FunctionsService.Click(sender);
+                else if (!_validForMaxSumm.Contains(TypesPay.NameCourt))
+                    FunctionsService.Click(sender);
                 else
                 {
                     var messageWindow = new WMessageTime(Properties.Resources.LabelSummIsExceed);
