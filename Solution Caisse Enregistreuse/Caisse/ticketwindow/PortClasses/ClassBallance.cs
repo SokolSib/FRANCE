@@ -165,7 +165,51 @@ namespace TicketWindow.PortClasses
                 {
                     Error_0X15 = true;
                 }
+            }
+        }
 
+
+    }
+    class ClassBallanceMAGELLAN_8400
+    {
+        public static SerialPort Port = new SerialPort("COM2", 9600, Parity.Even, 7, StopBits.Two);
+
+        public static string Poinds { get; set; }
+        public static string Error { get; set; }
+
+        public static bool Busy_0X15 { get; set; }
+        public static bool Error_0X15 { get; set; }
+        public static string Prix { get; set; }
+        public static string Montant { get; set; }
+
+
+        public static void Opn()
+        {
+            try
+            {
+                Port.ReadTimeout = 1000;
+                Port.WriteTimeout = 1000;
+                Port.Handshake = Handshake.None;
+                Port.Open();
+            }
+            catch (System.Exception e)
+            {
+                Error += e.Message;
+
+                Busy_0X15 = true;
+            }
+        }
+
+        public static void Close()
+        {
+            Port.Close();
+        }
+
+
+        public static void Send(decimal prix, decimal tare)
+        {
+            if (Port.IsOpen)
+            {
 
                 try
                 {
@@ -186,10 +230,20 @@ namespace TicketWindow.PortClasses
 
                     Poinds = Poinds.Remove(0, 1).Replace(".", ",");
 
-                    Montant = (decimal.Parse(Poinds) * prix *1000).ToString();
+                    Montant = (decimal.Parse(Poinds) * prix).ToString();
 
                     Prix = prix.ToString();
                 }
+
+                catch
+                {
+                    Error += "format incorrect";
+
+                    Error_0X15 = true;
+                }
+            }
+            else
+                Error += "close port";
         }
-     }
+    }
 }
