@@ -230,7 +230,7 @@ namespace TicketWindow.PortClasses
 
                     Poinds = Poinds.Remove(0, 1).Replace(".", ",");
 
-                    Montant = (decimal.Parse(Poinds) * prix).ToString();
+                    Montant = (decimal.Parse(Poinds) * prix*1000).ToString();
 
                     Prix = prix.ToString();
                 }
