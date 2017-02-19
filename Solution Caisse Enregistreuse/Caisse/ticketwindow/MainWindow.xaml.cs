@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
@@ -48,6 +49,7 @@ namespace TicketWindow
         private int _countTick;
         private DispatcherTimer _dispatcherTimer;
         public int I, J;
+        private readonly ObservableCollection<ProductBc> _stocks = new ObservableCollection<ProductBc>();
 
         public MainWindow()
         {
@@ -55,46 +57,44 @@ namespace TicketWindow
             var loginWindow = new LoginWindow();
             if (loginWindow.ShowDialog() == true)
             {
-                //if (!IsRun.GetIsRun())
-                {
-                    InitializeComponent();
+                InitializeComponent();
+                GridStock.ItemsSource = _stocks;
                     
-                    BtnRoles.Visibility =
-                       !RepositoryAccountUser.LoginedUser.Role.IsPermiss(Privelege.RedactRole) ?
-                       Visibility.Collapsed :
-                       Visibility.Visible;
+                BtnRoles.Visibility =
+                    !RepositoryAccountUser.LoginedUser.Role.IsPermiss(Privelege.RedactRole) ?
+                        Visibility.Collapsed :
+                        Visibility.Visible;
 
-                    BtnUsers.Visibility =
-                       !RepositoryAccountUser.LoginedUser.Role.IsPermiss(Privelege.RedactUser) ?
-                       Visibility.Collapsed :
-                       Visibility.Visible;
+                BtnUsers.Visibility =
+                    !RepositoryAccountUser.LoginedUser.Role.IsPermiss(Privelege.RedactUser) ?
+                        Visibility.Collapsed :
+                        Visibility.Visible;
 
-                    BtnTva.Visibility =
-                       !RepositoryAccountUser.LoginedUser.Role.IsPermiss(Privelege.RedactTva) ?
-                       Visibility.Collapsed :
-                       Visibility.Visible;
+                BtnTva.Visibility =
+                    !RepositoryAccountUser.LoginedUser.Role.IsPermiss(Privelege.RedactTva) ?
+                        Visibility.Collapsed :
+                        Visibility.Visible;
 
-                    BtnGroupsProduct.Visibility =
-                       !RepositoryAccountUser.LoginedUser.Role.IsPermiss(Privelege.RedactGroupsProduct) ?
-                       Visibility.Collapsed :
-                       Visibility.Visible;
+                BtnGroupsProduct.Visibility =
+                    !RepositoryAccountUser.LoginedUser.Role.IsPermiss(Privelege.RedactGroupsProduct) ?
+                        Visibility.Collapsed :
+                        Visibility.Visible;
 
-                    BtnSyncSettings.Visibility =
-                       !RepositoryAccountUser.LoginedUser.Role.IsPermiss(Privelege.RedactSyncSettings) ?
-                       Visibility.Collapsed :
-                       Visibility.Visible;
+                BtnSyncSettings.Visibility =
+                    !RepositoryAccountUser.LoginedUser.Role.IsPermiss(Privelege.RedactSyncSettings) ?
+                        Visibility.Collapsed :
+                        Visibility.Visible;
 
-                    SyncService.SyncAll(Dispatcher.CurrentDispatcher);
-                    GridLoad("b", ClassGridGroup.Grid);
-                    GridLoad("a", ClassGridGroup.GridLeft);
-                    GridLoad("e", ClassGridGroup.GridRigthBottom);
-                    Loaded += MainWindowLoaded;
-                    InkInputHelper.DisableWpfTabletSupport();
+                SyncService.SyncAll(Dispatcher.CurrentDispatcher);
+                GridLoad("b", ClassGridGroup.Grid);
+                GridLoad("a", ClassGridGroup.GridLeft);
+                GridLoad("e", ClassGridGroup.GridRigthBottom);
+                Loaded += MainWindowLoaded;
+                InkInputHelper.DisableWpfTabletSupport();
 
-                    var langMenu = MenuLanguage.ContextMenu.Items.Cast<MenuItem>().FirstOrDefault(m => m.Tag.ToString() == Config.Language);
-                    if (langMenu != null) langMenu.IsChecked = true;
-                    else DefoultLangMenu.IsChecked = true;
-                }
+                var langMenu = MenuLanguage.ContextMenu.Items.Cast<MenuItem>().FirstOrDefault(m => m.Tag.ToString() == Config.Language);
+                if (langMenu != null) langMenu.IsChecked = true;
+                else DefoultLangMenu.IsChecked = true;
             }
             else Close();
         }
@@ -145,7 +145,7 @@ namespace TicketWindow
             var dt = DateTime.Now;
             _countTick++;
 
-            ldt.Content = string.Format("{0} ({1}) ", dt, Sec - _countTick);
+            ldt.Content = $"{dt} ({Sec - _countTick}) ";
 
             if (!Config.FromLoadSyncAll)
             {
@@ -156,7 +156,7 @@ namespace TicketWindow
                     foreach (var bs in ClassEtcFun.FindVisualChildren<Button>(this).Where(bs => (string) bs.ToolTip == "UpdateDB"))
                     {
                         if (_bUpdText == string.Empty) _bUpdText = bs.Content.ToString();
-                        bs.Content = string.Format("{0} ({1})", _bUpdText, RepositoryProduct.GetAbCountFromDb());
+                        bs.Content = $"{_bUpdText} ({RepositoryProduct.GetAbCountFromDb()})";
                     }
 
                     ldtc.Content = "BD a été MàJ " + dt.ToLongTimeString();
@@ -260,102 +260,114 @@ namespace TicketWindow
                     XElement xP = null;
                     decimal qty = 1;
 
-                    try
+                    // Сток
+                    if (GridStock.Visibility == Visibility.Visible)
                     {
-                        xP = RepositoryProduct.GetXElementByBarcode(barcode);
-
-                        if (xP != null)
-                        {
-                            var cbm = xP.GetXElementValue("CodeBare").Split('[');
-
-                            foreach (var s in cbm)
-                            {
-                                var indx = s.IndexOf(barcode + "]", StringComparison.Ordinal);
-
-                                if (indx != -1)
-                                {
-                                    var sqty = s.Replace(barcode + "]", "").Replace("^", "");
-
-                                    if (sqty.Length > 0)
-                                        qty = decimal.Parse(sqty);
-                                }
-                            }
-                        }
-                    }
-                    catch (System.Exception ex)
-                    {
-                        LogService.Log(TraceLevel.Error, 2, "Barcode :" + barcode + " " + ex.Message + ".");
-                    }
-
-                    if (xP != null)
-                    {
-                        try
-                        {
-                            CheckService.AddProductCheck(xP, qty != 1 ? qty : FunctionsService.GetQty(qty_label));
-                            xProduct.Foreground = new SolidColorBrush(Color.FromRgb(0, 255, 0));
-                            xProduct.Text = "";
-                        }
-                        catch (System.Exception ex)
-                        {
-                            LogService.Log(TraceLevel.Error, 3, "Barcode :" + barcode + " " + ex.Message + ".");
-                        }
+                        if (RepositoryProductBc.ProductsBc.Count == 0) RepositoryProductBc.Sync();
+                        var productBc = RepositoryProductBc.ProductsBc.FirstOrDefault(p => p.CodeBar == barcode);
+                        if (productBc != null)
+                            _stocks.Add(productBc);
+                        else
+                            FunctionsService.ShowMessageTime(Properties.Resources.LabelProductNotFind);
                     }
                     else
                     {
-                        if (count == 10)
+
+                        try
                         {
-                            var cent = int.Parse(barcode.Substring(barcode.Length - 2, 2));
-                            var sd = barcode.Substring(barcode.Length - 11, 8).Replace("-", "");
-                            var euro = int.Parse(sd);
-                            var m = ((decimal) (euro*100 + cent))/100;
-                            qty_label.Text = m.ToString();
-                        }
-                        else
-                        {
-                            if (barcode.Length == 13)
+                            xP = RepositoryProduct.GetXElementByBarcode(barcode);
+
+                            if (xP != null)
                             {
-                                xP = RepositoryProduct.GetXElementByBarcode(barcode.Substring(0, 7));
+                                var cbm = xP.GetXElementValue("CodeBare").Split('[');
 
-                                if (xP != null)
+                                foreach (var s in cbm)
                                 {
-                                    var qtyCurrent = decimal.Parse(barcode.Substring(7, 5))/1000;
-                                    CheckService.AddProductCheck(xP, qtyCurrent);
-                                    xProduct.Foreground = new SolidColorBrush(Color.FromRgb(0, 255, 0));
-                                    xProduct.Text = "";
-                                }
-                            }
+                                    var indx = s.IndexOf(barcode + "]", StringComparison.Ordinal);
 
-                            if (xP == null && barcode.Length == 13)
-                            {
-                                xP = RepositoryProduct.GetXElementByBarcode(barcode.Substring(0, 8));
-
-                                if (xP != null)
-                                {
-                                    var qtyCurrent = decimal.Parse(barcode.Substring(8, 4))/1000;
-                                    CheckService.AddProductCheck(xP, qtyCurrent);
-                                    xProduct.Foreground = new SolidColorBrush(Color.FromRgb(0, 255, 0));
-                                    xProduct.Text = "";
-                                }
-                            }
-
-                            if (xP == null)
-                            {
-                                try
-                                {
-                                    xProduct.Foreground = new SolidColorBrush(Color.FromRgb(255, 0, 0));
-                                    xProduct.Text = "";
-                                    ClassEtcFun.WmSound(@"Data\Computer_Error.wav");
-                                    var result = FunctionsService.ShowMessage(Properties.Resources.BtnAdd, "Cet article n'existe pas! Ajouter un article?", Properties.Resources.BtnAdd);
-                                    if (result)
+                                    if (indx != -1)
                                     {
-                                        var windowAddProduct = new WAddProduct {xCodeBar = {Text = barcode}};
-                                        windowAddProduct.ShowDialog();
+                                        var sqty = s.Replace(barcode + "]", "").Replace("^", "");
+
+                                        if (sqty.Length > 0)
+                                            qty = decimal.Parse(sqty);
                                     }
                                 }
-                                catch (System.Exception ex)
+                            }
+                        }
+                        catch (System.Exception ex)
+                        {
+                            LogService.Log(TraceLevel.Error, 2, "Barcode :" + barcode + " " + ex.Message + ".");
+                        }
+
+                        if (xP != null)
+                            try
+                            {
+                                CheckService.AddProductCheck(xP, qty != 1 ? qty : FunctionsService.GetQty(qty_label));
+                                xProduct.Foreground = new SolidColorBrush(Color.FromRgb(0, 255, 0));
+                                xProduct.Text = "";
+                            }
+                            catch (System.Exception ex)
+                            {
+                                LogService.Log(TraceLevel.Error, 3, "Barcode :" + barcode + " " + ex.Message + ".");
+                            }
+                        else
+                        {
+                            if (count == 10)
+                            {
+                                var cent = int.Parse(barcode.Substring(barcode.Length - 2, 2));
+                                var sd = barcode.Substring(barcode.Length - 11, 8).Replace("-", "");
+                                var euro = int.Parse(sd);
+                                var m = ((decimal) (euro*100 + cent))/100;
+                                qty_label.Text = m.ToString();
+                            }
+                            else
+                            {
+                                if (barcode.Length == 13)
                                 {
-                                    LogService.Log(TraceLevel.Error, 4, "Barcode :" + barcode + " " + ex.Message + ".");
+                                    xP = RepositoryProduct.GetXElementByBarcode(barcode.Substring(0, 7));
+
+                                    if (xP != null)
+                                    {
+                                        var qtyCurrent = decimal.Parse(barcode.Substring(7, 5))/1000;
+                                        CheckService.AddProductCheck(xP, qtyCurrent);
+                                        xProduct.Foreground = new SolidColorBrush(Color.FromRgb(0, 255, 0));
+                                        xProduct.Text = "";
+                                    }
                                 }
+
+                                if (xP == null && barcode.Length == 13)
+                                {
+                                    xP = RepositoryProduct.GetXElementByBarcode(barcode.Substring(0, 8));
+
+                                    if (xP != null)
+                                    {
+                                        var qtyCurrent = decimal.Parse(barcode.Substring(8, 4))/1000;
+                                        CheckService.AddProductCheck(xP, qtyCurrent);
+                                        xProduct.Foreground = new SolidColorBrush(Color.FromRgb(0, 255, 0));
+                                        xProduct.Text = "";
+                                    }
+                                }
+
+                                if (xP == null)
+                                    try
+                                    {
+                                        xProduct.Foreground = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                                        xProduct.Text = "";
+                                        ClassEtcFun.WmSound(@"Data\Computer_Error.wav");
+                                        var result = FunctionsService.ShowMessage(Properties.Resources.BtnAdd,
+                                            "Cet article n'existe pas! Ajouter un article?", Properties.Resources.BtnAdd);
+                                        if (result)
+                                        {
+                                            var windowAddProduct = new WAddProduct {xCodeBar = {Text = barcode}};
+                                            windowAddProduct.ShowDialog();
+                                        }
+                                    }
+                                    catch (System.Exception ex)
+                                    {
+                                        LogService.Log(TraceLevel.Error, 4,
+                                            "Barcode :" + barcode + " " + ex.Message + ".");
+                                    }
                             }
                         }
                     }
@@ -392,10 +404,8 @@ namespace TicketWindow
         {
             _countTick = 0;
             if (e.Key == Key.F11)
-            {
                 foreach (var gs in ClassEtcFun.FindVisualChildren<GridSplitter>(this))
                     gs.IsEnabled = !gs.IsEnabled;
-            }
 
             if (e.Key == Key.F12)
                 Settings.Default.Reset();
@@ -431,7 +441,7 @@ namespace TicketWindow
             {
                 base.OnApplyTemplate();
                 var textbox = Template.FindName("Text", this) as TextBox;
-                if (textbox != null) textbox.Focus();
+                textbox?.Focus();
             }
         }
 
@@ -472,7 +482,7 @@ namespace TicketWindow
             var button = sender as FrameworkElement;
             if (button != null)
             {
-                button.ContextMenu.PlacementTarget = (sender as Button);
+                button.ContextMenu.PlacementTarget = sender as Button;
                 button.ContextMenu.Placement = PlacementMode.Bottom;
                 button.ContextMenu.IsOpen = true;
             }
@@ -511,6 +521,56 @@ namespace TicketWindow
             ltotal.Content = Properties.Resources.LabelTotal + " : " + mTotal.Euro + "," + mTotal.Cent.ToString("00") + " €";
 
             SyncService.SetDefoultTypesPays();
+        }
+
+        private void BtnClearStock_OnClick(object sender, RoutedEventArgs e)
+        {
+            _stocks.Clear();
+        }
+
+        private void BtnAddStock_OnClick(object sender, RoutedEventArgs e)
+        {
+            const int minQty = 10;
+
+            if (_stocks.Count > 0)
+            {
+                foreach (var productBc in _stocks)
+                {
+                    if (productBc.Product != null)
+                    {
+                        var minQtyOfProduct = productBc.Qty > minQty ? productBc.Qty : minQty;
+
+                        RepositoryStockReal.AddOrUpdateCounts(productBc.Product.CustomerId, Config.IdEstablishment,
+                            productBc.Qty, minQtyOfProduct, productBc.Product.Price);
+                    }
+                }
+
+                _stocks.Clear();
+                FunctionsService.ShowMessageTime(Properties.Resources.LabelOperationComplete);
+            }
+        }
+
+        public void AddStock(Guid productId)
+        {
+            var product = RepositoryProduct.Products.FirstOrDefault(p => p.CustomerId == productId);
+
+            if (product != null)
+            {
+                var productBc = new ProductBc(Guid.NewGuid(), productId, product.CodeBare, 1, product.Name, true);
+                _stocks.Add(productBc);
+            }
+            else
+                FunctionsService.ShowMessageTime(Properties.Resources.LabelProductNotFind);
+        }
+
+        private void BtnDelStock_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (GridStock.SelectedItems != null)
+                for (var i = 0; i < GridStock.SelectedItems.Count; i++)
+                {
+                    _stocks.Remove((ProductBc)GridStock.SelectedItems[i]);
+                    i--;
+                }
         }
     }
 }

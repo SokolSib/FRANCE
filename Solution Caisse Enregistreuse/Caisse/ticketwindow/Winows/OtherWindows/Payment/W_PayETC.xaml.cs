@@ -36,10 +36,7 @@ namespace TicketWindow.Winows.OtherWindows.Payment
                 else if (!_validForMaxSumm.Contains(TypesPay.NameCourt))
                     FunctionsService.Click(sender);
                 else
-                {
-                    var messageWindow = new WMessageTime(Properties.Resources.LabelSummIsExceed);
-                    messageWindow.Show();
-                }
+                    FunctionsService.ShowMessageTime(Properties.Resources.LabelSummIsExceed);
         }
 
         private void WindowLoaded(object sender, RoutedEventArgs e)

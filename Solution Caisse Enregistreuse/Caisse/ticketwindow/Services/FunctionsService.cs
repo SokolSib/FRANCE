@@ -1479,12 +1479,15 @@ namespace TicketWindow.Services
                 var prodGuid = ProductGuid(typeFun);
 
                 if (prodGuid != Guid.Empty)
-                    MoveToCheck(sender, prodGuid);
+                    if (MainAppWindow.GridProducts.Visibility == Visibility.Visible)
+                        MoveToCheck(sender, prodGuid);
+                    else
+                        MainAppWindow.AddStock(prodGuid);
                 else
                     switch (typeFun)
                     {
                         case "SetStock":
-                            if (MainAppWindow.GridProducts.Visibility==Visibility.Visible)
+                            if (MainAppWindow.GridProducts.Visibility == Visibility.Visible)
                             {
                                 MainAppWindow.GridProducts.Visibility = Visibility.Collapsed;
                                 MainAppWindow.BlockStock.Visibility = Visibility.Visible;
