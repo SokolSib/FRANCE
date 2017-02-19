@@ -187,6 +187,7 @@ namespace TicketWindow.PortClasses
         {
             try
             {
+               
                 Port.ReadTimeout = 1000;
                 Port.WriteTimeout = 1000;
                 Port.Handshake = Handshake.None;
@@ -208,8 +209,12 @@ namespace TicketWindow.PortClasses
 
         public static void Send(decimal prix, decimal tare)
         {
+            
             if (Port.IsOpen)
             {
+                Error_0X15 = false;
+                Busy_0X15 = false;
+
 
                 try
                 {
@@ -230,7 +235,11 @@ namespace TicketWindow.PortClasses
 
                     Poinds = Poinds.Remove(0, 1).Replace(".", ",");
 
-                    Montant = (decimal.Parse(Poinds) * prix*100).ToString();
+                    var poinds = (decimal.Parse(Poinds)*1000);
+
+                    Montant = (poinds * prix).ToString();
+
+                    Poinds = poinds.ToString().Replace(".",",");
 
                     Prix = prix.ToString();
                 }
