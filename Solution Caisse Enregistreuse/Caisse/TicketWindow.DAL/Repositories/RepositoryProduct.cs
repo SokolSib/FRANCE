@@ -83,6 +83,11 @@ namespace TicketWindow.DAL.Repositories
             if (product.CustomerId == Guid.Empty) product.CustomerId = Guid.NewGuid();
             if (product.ProductsWebCustomerId == Guid.Empty) product.ProductsWebCustomerId = Guid.NewGuid();
             if (product.CusumerIdRealStock == Guid.Empty) product.CusumerIdRealStock = Guid.NewGuid();
+            
+            RepositoryStockReal.AddOrUpdateCounts(product.CustomerId, Config.IdEstablishment, product.Qty, product.Qty,
+                product.Price);
+            RepositoryStockReal.AddOrUpdateCounts(product.CustomerId, Config.IdEstablishmentGros, product.Qty,
+                product.Qty, product.PriceGros);
 
             SetStockReal(product);
 
