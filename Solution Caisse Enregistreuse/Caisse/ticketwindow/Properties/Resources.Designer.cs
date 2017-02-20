@@ -1348,6 +1348,24 @@ namespace TicketWindow.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Must fill groups and subgroups.
+        /// </summary>
+        public static string LabelNeedInputGroupsAndSubgroups {
+            get {
+                return ResourceManager.GetString("LabelNeedInputGroupsAndSubgroups", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Must fill out VAT.
+        /// </summary>
+        public static string LabelNeedInputNds {
+            get {
+                return ResourceManager.GetString("LabelNeedInputNds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на New.
         /// </summary>
         public static string LabelNew {

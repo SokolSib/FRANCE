@@ -269,6 +269,11 @@ namespace TicketWindow.DAL.Repositories
         {
             return Document.GetXElements("Product", "rec").FirstOrDefault(p => p.GetXElementValue("CodeBare").IndexOf("[" + barcode + "]", StringComparison.Ordinal) != -1);
         }
+        
+        public static ProductType GetByBarcode(string barcode)
+        {
+            return Products.FirstOrDefault(p => p.CodeBare.IndexOf("[" + barcode + "]", StringComparison.Ordinal) != -1);
+        }
 
         public static IEnumerable<XElement> FiltrXElementsByElementName(IEnumerable<XElement> elements, string elementName, string ballance)
         {

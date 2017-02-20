@@ -444,7 +444,6 @@
                             <DataGrid.Columns>
                                 <DataGridTextColumn Width="Auto" CanUserResize="False" CanUserReorder="False" Header="{x:Static Properties:Resources.LabelQty}" Binding="{Binding Path=Qty}" />
                                 <DataGridTextColumn Width="*" CanUserResize="False" CanUserReorder="False" Header="{x:Static Properties:Resources.LabelDescription}"  Binding="{Binding Path=Description}" ElementStyle="{StaticResource LeftAlignStyle}"   />
-                                <DataGridTextColumn Width="*" CanUserResize="False" CanUserReorder="False" Header="{x:Static Properties:Resources.LabelProduct}"  Binding="{Binding Path=Product.Name}" ElementStyle="{StaticResource LeftAlignStyle}"  />
                             </DataGrid.Columns>
                         </DataGrid>
                         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">

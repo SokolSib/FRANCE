@@ -1077,4 +1077,12 @@
     <value>Amount is exceeded</value>
     <comment>надпись сумма превышена</comment>
   </data>
+  <data name="LabelNeedInputGroupsAndSubgroups" xml:space="preserve">
+    <value>Must fill groups and subgroups</value>
+    <comment>надпись необходимо заполнить группы и подгруппы</comment>
+  </data>
+  <data name="LabelNeedInputNds" xml:space="preserve">
+    <value>Must fill out VAT</value>
+    <comment>надпись необходимо заполнить НДС</comment>
+  </data>
 </root>

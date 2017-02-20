@@ -257,48 +257,31 @@ namespace TicketWindow
 
                 if (count != 4)
                 {
-                    XElement xP = null;
                     decimal qty = 1;
 
                     // Сток
                     if (BlockStock.Visibility == Visibility.Visible)
                     {
-                        if (RepositoryProductBc.ProductsBc.Count == 0) RepositoryProductBc.Sync();
-                        var productBc = RepositoryProductBc.ProductsBc.FirstOrDefault(p => p.CodeBar == barcode);
-                        if (productBc != null)
+                        var product = RepositoryProduct.GetByBarcode(barcode);
+                        if (product != null)
+                        {
+                            qty = GetQtyFromBarcode(product.CodeBare, barcode);
+                            var resultQty = qty != 1 ? qty : FunctionsService.GetQty(qty_label);
+                            var productBc = new ProductBc(product, resultQty);
                             _stocks.Add(productBc);
+
+                            xProduct.Foreground = new SolidColorBrush(Color.FromRgb(0, 255, 0));
+                            xProduct.Text = "";
+                        }
                         else
                             FunctionsService.ShowMessageTime(Properties.Resources.LabelProductNotFind);
                     }
                     else
                     {
+                        var xP = RepositoryProduct.GetXElementByBarcode(barcode);
 
-                        try
-                        {
-                            xP = RepositoryProduct.GetXElementByBarcode(barcode);
-
-                            if (xP != null)
-                            {
-                                var cbm = xP.GetXElementValue("CodeBare").Split('[');
-
-                                foreach (var s in cbm)
-                                {
-                                    var indx = s.IndexOf(barcode + "]", StringComparison.Ordinal);
-
-                                    if (indx != -1)
-                                    {
-                                        var sqty = s.Replace(barcode + "]", "").Replace("^", "");
-
-                                        if (sqty.Length > 0)
-                                            qty = decimal.Parse(sqty);
-                                    }
-                                }
-                            }
-                        }
-                        catch (System.Exception ex)
-                        {
-                            LogService.Log(TraceLevel.Error, 2, "Barcode :" + barcode + " " + ex.Message + ".");
-                        }
+                        if (xP != null)
+                                qty = GetQtyFromBarcode(xP.GetXElementValue("CodeBare"), barcode);
 
                         if (xP != null)
                             try
@@ -385,7 +368,6 @@ namespace TicketWindow
                         var discountCard = RepositoryDiscount.GetDiscount(barcode);
                         if (discountCard == null)
                             FunctionsService.ShowMessageSb("La carte n'existe pas ");
-                        //ou il y a peut-être des problèmes avec l'Internet");
                         else if (discountCard.IsActive)
                             FunctionsService.WriteTotal();
                         else
@@ -398,6 +380,25 @@ namespace TicketWindow
                     xProduct.Text = "";
                 }
             }
+        }
+
+        private static decimal GetQtyFromBarcode(string barcodeText, string barcode)
+        {
+            var cbm = barcodeText.Split('[');
+
+            foreach (var s in cbm)
+            {
+                var indx = s.IndexOf(barcode + "]", StringComparison.Ordinal);
+
+                if (indx != -1)
+                {
+                    var sqty = s.Replace(barcode + "]", "").Replace("^", "");
+
+                    if (sqty.Length > 0)
+                        return decimal.Parse(sqty);
+                }
+            }
+            return 1;
         }
 
         private void XProductKeyUp(object sender, KeyEventArgs e)
@@ -555,10 +556,7 @@ namespace TicketWindow
             var product = RepositoryProduct.Products.FirstOrDefault(p => p.CustomerId == productId);
 
             if (product != null)
-            {
-                var productBc = new ProductBc(Guid.NewGuid(), productId, product.CodeBare, 1, product.Name, true);
-                _stocks.Add(productBc);
-            }
+                _stocks.Add(new ProductBc(product, FunctionsService.GetQty(qty_label)));
             else
                 FunctionsService.ShowMessageTime(Properties.Resources.LabelProductNotFind);
         }

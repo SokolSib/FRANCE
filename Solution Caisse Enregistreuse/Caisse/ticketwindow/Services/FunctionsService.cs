@@ -1522,12 +1522,12 @@ namespace TicketWindow.Services
                         case "Add Product":
                             if (RepositoryTva.Tvases.Count == 0)
                             {
-                                MessageBox.Show("необходимо заполнить НДС.", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                MessageBox.Show(Resources.LabelNeedInputNds, Resources.LabelWarning, MessageBoxButton.OK, MessageBoxImage.Warning);
                                 break;
                             }
                             if (RepositoryGroupProduct.GroupProducts.Count == 0)
                             {
-                                MessageBox.Show("Необходимо заполнить группы и подгруппы", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                MessageBox.Show(Resources.LabelNeedInputGroupsAndSubgroups, Resources.LabelWarning, MessageBoxButton.OK, MessageBoxImage.Warning);
                                 break;
                             }
                             Effect(
@@ -1538,13 +1538,13 @@ namespace TicketWindow.Services
                             {
                                 if (RepositoryTva.Tvases.Count == 0)
                                 {
-                                    MessageBox.Show("необходимо заполнить НДС.", "Предупреждение", MessageBoxButton.OK,
+                                    MessageBox.Show(Resources.LabelNeedInputNds, Resources.LabelWarning, MessageBoxButton.OK,
                                         MessageBoxImage.Warning);
                                     break;
                                 }
                                 if (RepositoryGroupProduct.GroupProducts.Count == 0)
                                 {
-                                    MessageBox.Show("Необходимо заполнить группы и подгруппы", "Предупреждение",
+                                    MessageBox.Show(Resources.LabelNeedInputGroupsAndSubgroups, Resources.LabelWarning,
                                         MessageBoxButton.OK, MessageBoxImage.Warning);
                                     break;
                                 }

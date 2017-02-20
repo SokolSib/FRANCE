@@ -8,20 +8,26 @@ namespace TicketWindow.DAL.Models
 {
     public class ProductBc
     {
-        public ProductBc(Guid customerId, Guid? customerIdProduct, string codeBar, decimal qty, string description, bool generatedFromProduct = false)
+        public ProductBc(Guid customerId, Guid? customerIdProduct, string codeBar, decimal qty, string description)
         {
             CustomerId = customerId;
             CustomerIdProduct = customerIdProduct;
             CodeBar = codeBar;
             Qty = qty;
             Description = description;
-            GeneratedFromProduct = generatedFromProduct;
+            GeneratedFromProduct = false;
 
             if (RepositoryProduct.Products.Count == 0)
                 RepositoryProduct.Sync();
 
             if (CustomerIdProduct.HasValue)
                 Product = RepositoryProduct.Products.FirstOrDefault(p => p.CustomerId == CustomerIdProduct);
+        }
+
+        public ProductBc(ProductType product, decimal count)
+            : this(Guid.NewGuid(), product.CustomerId, product.CodeBare, count, product.Name)
+        {
+            GeneratedFromProduct = true;
         }
 
         public Guid CustomerId { get; set; }
