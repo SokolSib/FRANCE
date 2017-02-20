@@ -49,7 +49,7 @@ namespace TicketWindow.Print.Templates
 
                 foreach (var typePay in typePays)
                 {
-                    TextElements.Add(new PrintTextElement(typePay.Type.Name,
+                    TextElements.Add(new PrintTextElement(typePay.Type.CheckName,
                         x, y, 120, h, new StringFormat {Alignment = StringAlignment.Near}));
 
                     TextElements.Add(new PrintTextElement(typePay.Money.ToString("C"),
@@ -120,8 +120,9 @@ namespace TicketWindow.Print.Templates
 
                 var printTotal = new PrintTotal
                                  {
-                                     Count = decimal.ToInt32(closeTicket.ChecksTicket.Sum(l => l.PayProducts.Sum(la => la.Qty))),
-                                     SrTotal = printTotals.Count != 0 ? ttc/printTotals.Count : 0,
+                                     Count = decimal.ToInt32(
+                                             closeTicket.ChecksTicket.Sum(l => l.PayProducts.Sum(la => la.Qty))),
+                                     SrTotal = ttc/(printTotals.Count + 1),
                                      Name = closeTicket.NameTicket,
                                      Total = sumMoney
                                  };

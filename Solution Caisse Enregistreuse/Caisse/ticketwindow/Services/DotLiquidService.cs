@@ -184,7 +184,7 @@ namespace TicketWindow.Services
 
             foreach (var pay in printPays.Where(pay => pay.Money != 0))
             {
-                listPay.Add(new {name = pay.Type.Name, money = pay.Money.ToString("0.00")});
+                listPay.Add(new {name = pay.Type.CheckName, money = pay.Money.ToString("0.00")});
             }
 
             var listTva = new List<dynamic>();

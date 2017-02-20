@@ -49,7 +49,7 @@ namespace TicketWindow.DAL.Repositories
             }
         }
 
-        public static void Sync()
+        public static void Sync(bool resetTicketWindows = true)
         {
             if (SyncData.IsConnect)
             {
@@ -58,14 +58,18 @@ namespace TicketWindow.DAL.Repositories
             }
             else LoadFile();
 
-            var openTicketWindow = OpenTicketWindows.FirstOrDefault(otw => otw.EstablishmentCustomerId == Config.IdEstablishment);
+            var openTicketWindow =
+                OpenTicketWindows.FirstOrDefault(otw => otw.EstablishmentCustomerId == Config.IdEstablishment);
             IsOpen = openTicketWindow != null && openTicketWindow.IsOpen;
             CreateIfNotExist();
 
-            openTicketWindow = GetCurrent();
-            GlobalVar.TicketWindow = openTicketWindow.IdTicketWindow;
-            GlobalVar.TicketWindowG = openTicketWindow.IdTicketWindowG ?? Guid.Empty;
-            GlobalVar.IsOpen = openTicketWindow.IsOpen;
+            if (resetTicketWindows)
+            {
+                openTicketWindow = GetCurrent();
+                GlobalVar.TicketWindow = openTicketWindow.IdTicketWindow;
+                GlobalVar.TicketWindowG = openTicketWindow.IdTicketWindowG ?? Guid.Empty;
+                GlobalVar.IsOpen = openTicketWindow.IsOpen;
+            }
         }
 
         private static void CreateIfNotExist()

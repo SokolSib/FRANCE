@@ -20,6 +20,7 @@ namespace TicketWindow.DAL.Models
         public int Id { get; set; }
         public bool? Etat { get; set; }
         public string Name { get; set; }
+        public string CheckName { get; set; }
         public string NameCourt { get; set; }
         public int? CodeCompta { get; set; }
         public bool? RenduAvoir { get; set; }

@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
@@ -20,15 +21,19 @@ namespace TicketWindow.Services
     {
         public static void SetDefoultTypesPays()
         {
+            var culture = Thread.CurrentThread.CurrentCulture;
+
             var payCash = new TypePay(1, true, Resources.TypePayCash, "Cash", 450600, true, true, true);
             var payBankCards = new TypePay(2, true, Resources.TypePayBankCards, "BankCards", 450601, false, true, false);
-            var payBankChecks = new TypePay(3, true, Resources.TypePayBankChecks, "BankChecks", 450602, false, true, false);
+            var payBankChecks = new TypePay(3, true, Resources.TypePayBankChecks, "BankChecks", 450602, false, true,
+                                    false);
             var payResto = new TypePay(4, true, Resources.TypePayResto, "Resto", 450603, false, true, false);
             var payBondAchat = new TypePay(5, true, Resources.TypePayBondAchat, "BondAchat", 450604, false, true, false);
 
             var payCashRep = RepositoryTypePay.TypePays.FirstOrDefault(tp => tp.NameCourt == payCash.NameCourt);
             var payBankCardsRep = RepositoryTypePay.TypePays.FirstOrDefault(tp => tp.NameCourt == payBankCards.NameCourt);
-            var payBankChecksRep = RepositoryTypePay.TypePays.FirstOrDefault(tp => tp.NameCourt == payBankChecks.NameCourt);
+            var payBankChecksRep =
+                RepositoryTypePay.TypePays.FirstOrDefault(tp => tp.NameCourt == payBankChecks.NameCourt);
             var payRestoRep = RepositoryTypePay.TypePays.FirstOrDefault(tp => tp.NameCourt == payResto.NameCourt);
             var payBondAchatRep = RepositoryTypePay.TypePays.FirstOrDefault(tp => tp.NameCourt == payBondAchat.NameCourt);
 
@@ -46,6 +51,27 @@ namespace TicketWindow.Services
 
             if (payBondAchatRep == null) RepositoryTypePay.TypePays.Add(payBondAchat);
             else payBondAchatRep.Name = payBondAchat.Name;
+
+            var checkCulture = new CultureInfo("fr-FR");
+            Thread.CurrentThread.CurrentCulture = checkCulture;
+            Thread.CurrentThread.CurrentUICulture = checkCulture;
+            Resources.Culture = checkCulture;
+
+            payCashRep = RepositoryTypePay.TypePays.First(tp => tp.NameCourt == payCash.NameCourt);
+            payBankCardsRep = RepositoryTypePay.TypePays.First(tp => tp.NameCourt == payBankCards.NameCourt);
+            payBankChecksRep = RepositoryTypePay.TypePays.First(tp => tp.NameCourt == payBankChecks.NameCourt);
+            payRestoRep = RepositoryTypePay.TypePays.First(tp => tp.NameCourt == payResto.NameCourt);
+            payBondAchatRep = RepositoryTypePay.TypePays.First(tp => tp.NameCourt == payBondAchat.NameCourt);
+
+            payCashRep.CheckName = Resources.TypePayCash;
+            payBankCardsRep.CheckName = Resources.TypePayBankCards;
+            payBankChecksRep.CheckName = Resources.TypePayBankChecks;
+            payRestoRep.CheckName = Resources.TypePayResto;
+            payBondAchatRep.CheckName = Resources.TypePayBondAchat;
+
+            Thread.CurrentThread.CurrentCulture = culture;
+            Thread.CurrentThread.CurrentUICulture = culture;
+            Resources.Culture = culture;
         }
 
         public static void SyncAll(Dispatcher dispatcher)
