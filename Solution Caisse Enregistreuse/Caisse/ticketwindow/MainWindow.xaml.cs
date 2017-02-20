@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -261,7 +261,7 @@ namespace TicketWindow
                     decimal qty = 1;
 
                     // Сток
-                    if (GridStock.Visibility == Visibility.Visible)
+                    if (BlockStock.Visibility == Visibility.Visible)
                     {
                         if (RepositoryProductBc.ProductsBc.Count == 0) RepositoryProductBc.Sync();
                         var productBc = RepositoryProductBc.ProductsBc.FirstOrDefault(p => p.CodeBar == barcode);

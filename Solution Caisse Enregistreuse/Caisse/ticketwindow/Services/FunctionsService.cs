@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -1358,7 +1358,7 @@ namespace TicketWindow.Services
         private static void ValidateBallance(object sender)
         {
             var window = Window.GetWindow((Button) sender) as WBallance;
-            var p = window.Product;
+            var p = ProductType.FromXElement(ProductType.ToXElement(window.Product, null));
 
             decimal outp;
             if (decimal.TryParse(window.xBallance_kg.Text.Replace(".", ","), out outp))

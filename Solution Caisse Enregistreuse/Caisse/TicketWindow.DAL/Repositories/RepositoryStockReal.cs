@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -192,7 +192,7 @@ namespace TicketWindow.DAL.Repositories
             var stockReals = StockReals.FindAll(sr => sr.IdEstablishment == idEstablishment && sr.ProductsCustomerId == productCustomerId);
             if (stockReals.Count == 0)
             {
-                var stockReal = new StockReal(Guid.NewGuid(), 0, 10, 0, productCustomerId, idEstablishment);
+                var stockReal = new StockReal(Guid.NewGuid(), qty, minQty, price, productCustomerId, idEstablishment);
 
                 StockReals.Add(stockReal);
 
