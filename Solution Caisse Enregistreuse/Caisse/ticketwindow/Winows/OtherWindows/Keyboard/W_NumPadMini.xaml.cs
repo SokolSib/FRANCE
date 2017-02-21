@@ -38,7 +38,13 @@ namespace TicketWindow.Winows.OtherWindows.Keyboard
                     case "Entree":
                         var window = Tag as WPayEtc;
                         if (window != null)
-                            window.DoWithValidation();
+                        {
+                            decimal money;
+                            if (!string.IsNullOrEmpty(window.tbS.Text) &&
+                                decimal.TryParse(window.tbS.Text.Trim(), out money) &&
+                                FunctionsService.PayWithValidation(sender, money, window.MaxMoney, window.PayType))
+                                FunctionsService.Click(BEnter);
+                        }
                         else
                             FunctionsService.Click(BEnter);
                         break;

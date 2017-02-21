@@ -1083,4 +1083,8 @@
     <value>Vous devez remplir la TVA</value>
     <comment>надпись необходимо заполнить НДС</comment>
   </data>
+  <data name="LabelMax" xml:space="preserve">
+    <value>Max.</value>
+    <comment>надпись максимум</comment>
+  </data>
 </root>

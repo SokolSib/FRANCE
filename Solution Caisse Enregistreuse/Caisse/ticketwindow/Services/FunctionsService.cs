@@ -800,7 +800,7 @@ namespace TicketWindow.Services
                 }
                 else
                 {
-                    typePay = w.TypesPay;
+                    typePay = w.PayType;
                     wind = w.Owner as WTypePay;
                     RepositoryCurrencyRelations.Pay(typePay, decimal.Parse(w.tbS.Text));
                 }
@@ -931,40 +931,57 @@ namespace TicketWindow.Services
             }
         }
 
+        public static bool PayWithValidation(object sender, decimal money, decimal? maxMoney, TypePay typePay)
+        {
+            // Для этих типов карт - надо проверятьна максимальную сумму.
+            var validForMaxSumm = new List<string> {"Resto", "BankCards", "BankChecks"};
+
+            if (validForMaxSumm.Contains(typePay.NameCourt) && money <= maxMoney)
+                return true;
+            if (!validForMaxSumm.Contains(typePay.NameCourt))
+                return true;
+            
+            ShowMessageTime($"{Resources.LabelSummIsExceed} ({money}) {Resources.LabelMax} {maxMoney}");
+            return false;
+        }
+
         private static void ShowPayment(object sender)
         {
             var tpom = false;
             ShowMessageCustomerDisplay(null);
 
             if (!GlobalVar.IsOpen)
-                ShowMessageTime("La caisse est fermée");
+                ShowMessageTime(Resources.LabelCashBoxIsClosed);
             else
             {
                 if (RepositoryCheck.DocumentProductCheck != null)
-                {
-                    if (RepositoryCheck.DocumentProductCheck.Element("check").Elements("product").ToList().Count > 0)
+                    if (RepositoryCheck.DocumentProductCheck.GetXElements("check","product").ToList().Count > 0)
                     {
-                        var d = CheckService.GetTotalPrice();
+                        var needMoney = CheckService.GetTotalPrice();
 
                         if (Window.GetWindow((Button) sender) is MainWindow)
                         {
-                            RepositoryCurrencyRelations.SetMoneySum(d);
+                            RepositoryCurrencyRelations.SetMoneySum(needMoney);
                             int idTp;
                             var b = int.TryParse(((Button) sender).ToolTip.ToString().Replace("_TypesPayDynamic", ""), out idTp);
 
                             if (b)
                             {
                                 var money = GetMoney(MainAppWindow.qty_label);
-                                var tp = RepositoryTypePay.GetById(idTp);
-                                tpom = PayOneMoment(MainAppWindow, tp);
+                                var payType = RepositoryTypePay.GetById(idTp);
 
-                                if (!tpom)
-                                    RepositoryCurrencyRelations.Pay(tp, money);
+                                if (PayWithValidation(sender, money, needMoney, payType))
+                                {
+                                    tpom = PayOneMoment(MainAppWindow, payType);
+
+                                    if (!tpom)
+                                        RepositoryCurrencyRelations.Pay(payType, money);
+                                }
                             }
                         }
+
                         if (!tpom)
-                        {
-                            if ((Window.GetWindow((Button) sender)).Owner == null)
+                            if (Window.GetWindow((Button) sender)?.Owner == null)
                             {
                                 var w = new WTypePay();
                                 var mReste = new EuroConverter(RepositoryCurrencyRelations.Calc());
@@ -978,9 +995,7 @@ namespace TicketWindow.Services
                                 (Window.GetWindow((Button) sender)).Close();
                                 var w = (Window.GetWindow((Button) sender)).Owner as WTypePay;
                             }
-                        }
                     }
-                }
             }
         }
 
@@ -999,21 +1014,16 @@ namespace TicketWindow.Services
                     if (RepositoryCheck.DocumentProductCheck.GetXElements("check","product").Any())
                     {
                         var payWindow = new WPayEtc
-                                {
-                                    Owner = Window.GetWindow((Button) sender),
-                                    TypesPay = payType,
-                                    MaxMoney = money
-                                };
+                                        {
+                                            Owner = Window.GetWindow((Button) sender),
+                                            PayType = payType,
+                                            MaxMoney = money
+                                        };
                         payWindow.numPad.Tag = payWindow;
 
                         Effect(payWindow);
                     }
             }
-        }
-
-        private static void BEnter_Click(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
         }
 
         private static void OpenCashBox()
@@ -1619,125 +1629,47 @@ namespace TicketWindow.Services
                             ShowPaymentEtcDynamyc(sender);
                             break;
                         case "TypesPayDynamic1":
-                            ShowPaymentEtcDynamyc(sender);
-                            break;
                         case "TypesPayDynamic2":
-                            ShowPaymentEtcDynamyc(sender);
-                            break;
                         case "TypesPayDynamic3":
-                            ShowPaymentEtcDynamyc(sender);
-                            break;
                         case "TypesPayDynamic4":
-                            ShowPaymentEtcDynamyc(sender);
-                            break;
                         case "TypesPayDynamic5":
-                            ShowPaymentEtcDynamyc(sender);
-                            break;
                         case "TypesPayDynamic6":
-                            ShowPaymentEtcDynamyc(sender);
-                            break;
                         case "TypesPayDynamic7":
-                            ShowPaymentEtcDynamyc(sender);
-                            break;
                         case "TypesPayDynamic8":
-                            ShowPaymentEtcDynamyc(sender);
-                            break;
                         case "TypesPayDynamic9":
-                            ShowPaymentEtcDynamyc(sender);
-                            break;
                         case "TypesPayDynamic10":
-                            ShowPaymentEtcDynamyc(sender);
-                            break;
                         case "TypesPayDynamic11":
-                            ShowPaymentEtcDynamyc(sender);
-                            break;
                         case "TypesPayDynamic12":
-                            ShowPaymentEtcDynamyc(sender);
-                            break;
                         case "TypesPayDynamic13":
-                            ShowPaymentEtcDynamyc(sender);
-                            break;
                         case "TypesPayDynamic14":
-                            ShowPaymentEtcDynamyc(sender);
-                            break;
                         case "TypesPayDynamic15":
-                            ShowPaymentEtcDynamyc(sender);
-                            break;
                         case "TypesPayDynamic16":
-                            ShowPaymentEtcDynamyc(sender);
-                            break;
                         case "TypesPayDynamic17":
-                            ShowPaymentEtcDynamyc(sender);
-                            break;
                         case "TypesPayDynamic18":
-                            ShowPaymentEtcDynamyc(sender);
-                            break;
                         case "TypesPayDynamic19":
-                            ShowPaymentEtcDynamyc(sender);
-                            break;
                         case "TypesPayDynamic20":
                             ShowPaymentEtcDynamyc(sender);
                             break;
                         case "_TypesPayDynamic0":
-                            ShowPayment(sender);
-                            break;
                         case "_TypesPayDynamic1":
-                            ShowPayment(sender);
-                            break;
                         case "_TypesPayDynamic2":
-                            ShowPayment(sender);
-                            break;
                         case "_TypesPayDynamic3":
-                            ShowPayment(sender);
-                            break;
                         case "_TypesPayDynamic4":
-                            ShowPayment(sender);
-                            break;
                         case "_TypesPayDynamic5":
-                            ShowPayment(sender);
-                            break;
                         case "_TypesPayDynamic6":
-                            ShowPayment(sender);
-                            break;
                         case "_TypesPayDynamic7":
-                            ShowPayment(sender);
-                            break;
                         case "_TypesPayDynamic8":
-                            ShowPayment(sender);
-                            break;
                         case "_TypesPayDynamic9":
-                            ShowPayment(sender);
-                            break;
                         case "_TypesPayDynamic10":
-                            ShowPayment(sender);
-                            break;
                         case "_TypesPayDynamic11":
-                            ShowPayment(sender);
-                            break;
                         case "_TypesPayDynamic12":
-                            ShowPayment(sender);
-                            break;
                         case "_TypesPayDynamic13":
-                            ShowPayment(sender);
-                            break;
                         case "_TypesPayDynamic14":
-                            ShowPayment(sender);
-                            break;
                         case "_TypesPayDynamic15":
-                            ShowPayment(sender);
-                            break;
                         case "_TypesPayDynamic16":
-                            ShowPayment(sender);
-                            break;
                         case "_TypesPayDynamic17":
-                            ShowPayment(sender);
-                            break;
                         case "_TypesPayDynamic18":
-                            ShowPayment(sender);
-                            break;
                         case "_TypesPayDynamic19":
-                            ShowPayment(sender);
-                            break;
                         case "_TypesPayDynamic20":
                             ShowPayment(sender);
                             break;

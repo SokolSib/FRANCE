@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls.Primitives;
 using TicketWindow.DAL.Models;
 using TicketWindow.DAL.Repositories;
 using TicketWindow.Services;
-using TicketWindow.Winows.OtherWindows.Message;
 
 namespace TicketWindow.Winows.OtherWindows.Payment
 {
@@ -13,12 +11,7 @@ namespace TicketWindow.Winows.OtherWindows.Payment
     /// </summary>
     public partial class WPayEtc : Window
     {
-        /// <summary>
-        /// Для этих типов карт - надо проверятьна максимальную сумму.
-        /// </summary>
-        private readonly List<string> _validForMaxSumm = new List<string> {"Resto", "BankCards", "BankChecks"};
-
-        public TypePay TypesPay { get; set; }
+        public TypePay PayType { get; set; }
 
         public decimal? MaxMoney { get; set; }
 
@@ -29,24 +22,15 @@ namespace TicketWindow.Winows.OtherWindows.Payment
 
         private void ButtonClick(object sender, RoutedEventArgs e)
         {
-            DoWithValidation();
-        }
-
-        public void DoWithValidation()
-        {
             decimal money;
-            if (!string.IsNullOrEmpty(tbS.Text) && decimal.TryParse(tbS.Text.Trim(), out money))
-                if (_validForMaxSumm.Contains(TypesPay.NameCourt) && money <= MaxMoney)
-                    FunctionsService.Click(xEnter);
-                else if (!_validForMaxSumm.Contains(TypesPay.NameCourt))
-                    FunctionsService.Click(xEnter);
-                else
-                    FunctionsService.ShowMessageTime(Properties.Resources.LabelSummIsExceed);
+            if (!string.IsNullOrEmpty(tbS.Text) && decimal.TryParse(tbS.Text.Trim(), out money) &&
+                FunctionsService.PayWithValidation(sender, money, MaxMoney, PayType))
+                FunctionsService.Click(sender);
         }
 
         private void WindowLoaded(object sender, RoutedEventArgs e)
         {
-            _typesPay.Content = TypesPay.Name;
+            _typesPay.Content = PayType.Name;
             tbS.Text = RepositoryCurrencyRelations.Residue().ToString();
             numPad.TextBox = tbS;
             numPad.BEnter = xEnter;

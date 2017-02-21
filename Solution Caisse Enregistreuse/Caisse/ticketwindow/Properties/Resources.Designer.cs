@@ -1303,6 +1303,15 @@ namespace TicketWindow.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Max.
+        /// </summary>
+        public static string LabelMax {
+            get {
+                return ResourceManager.GetString("LabelMax", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Name.
         /// </summary>
         public static string LabelName {
