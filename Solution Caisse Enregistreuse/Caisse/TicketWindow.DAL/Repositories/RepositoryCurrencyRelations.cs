@@ -30,7 +30,7 @@ namespace TicketWindow.DAL.Repositories
         public static void Pay(TypePay typesPay, decimal money)
         {
             Document.GetXElement("MoneySum").Add(new XElement("pay",
-                new XAttribute("typesPayName", typesPay.Name),
+                new XAttribute("typesPayName", typesPay.CheckName),
                 new XAttribute("typesPayCodeCompta", typesPay.CodeCompta.HasValue ? typesPay.CodeCompta.Value.ToString() : string.Empty),
                 new XAttribute("typesPayEtat", typesPay.Etat.HasValue ? typesPay.Etat.Value.ToString() : string.Empty),
                 new XAttribute("typesPayNameCourt", typesPay.NameCourt),
