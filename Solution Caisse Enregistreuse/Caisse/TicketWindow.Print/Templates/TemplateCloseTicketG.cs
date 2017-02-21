@@ -118,11 +118,11 @@ namespace TicketWindow.Print.Templates
                     x + 200, y, 80, sizeLine, new StringFormat {Alignment = StringAlignment.Far, LineAlignment = StringAlignment.Near}, new Font("Arial", 9, FontStyle.Bold)));
                 y += h;
 
+                var countOfPays = decimal.ToInt32(closeTicket.ChecksTicket.Sum(c => c.PayProducts.Sum(p => p.Qty)));
                 var printTotal = new PrintTotal
                                  {
-                                     Count = decimal.ToInt32(
-                                             closeTicket.ChecksTicket.Sum(l => l.PayProducts.Sum(la => la.Qty))),
-                                     SrTotal = ttc/(printTotals.Count + 1),
+                                     Count = countOfPays,
+                                     SrTotal = sumMoney / countOfPays,
                                      Name = closeTicket.NameTicket,
                                      Total = sumMoney
                                  };
