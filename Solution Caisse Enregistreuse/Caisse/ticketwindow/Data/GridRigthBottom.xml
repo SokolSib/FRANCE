@@ -13,57 +13,79 @@
   </rec>
   <rec>
     <id>0</id>
-    <Date_upd>15/08/2014 20:59:17</Date_upd>
+    <Date_upd>24/11/2014 12:22:13</Date_upd>
     <X>1</X>
     <Y>0</Y>
     <Caption>Especes</Caption>
     <Color>255,0,128,0</Color>
     <foreground>255,0,0,0</foreground>
     <Img></Img>
-    <Fun>TypesPayDynamic1</Fun>
+    <Fun>_TypesPayDynamic1</Fun>
   </rec>
   <rec>
     <id>1</id>
-    <Date_upd>15/08/2014 20:59:34</Date_upd>
+    <Date_upd>24/11/2014 12:22:20</Date_upd>
     <X>1</X>
     <Y>1</Y>
     <Caption>CB</Caption>
     <Color>255,0,0,255</Color>
     <foreground>255,0,0,0</foreground>
     <Img></Img>
-    <Fun>TypesPayDynamic4</Fun>
+    <Fun>_TypesPayDynamic4</Fun>
   </rec>
   <rec>
     <id>2</id>
-    <Date_upd>15/08/2014 21:01:09</Date_upd>
+    <Date_upd>24/11/2014 12:22:27</Date_upd>
     <X>1</X>
     <Y>2</Y>
     <Caption>Cheques</Caption>
     <Color>255,0,255,255</Color>
     <foreground>255,0,0,0</foreground>
     <Img></Img>
-    <Fun>TypesPayDynamic5</Fun>
+    <Fun>_TypesPayDynamic5</Fun>
   </rec>
   <rec>
     <id>3</id>
-    <Date_upd>15/08/2014 21:00:48</Date_upd>
+    <Date_upd>18.02.2017 12:29:14</Date_upd>
     <X>1</X>
     <Y>3</Y>
-    <Caption>Ticket RESTO</Caption>
-    <Color>255,178,34,34</Color>
+    <Caption></Caption>
+    <Color>255,221,221,221</Color>
     <foreground>255,0,0,0</foreground>
     <Img></Img>
-    <Fun>TypesPayDynamic6</Fun>
+    <Fun>None - Vide</Fun>
   </rec>
   <rec>
     <id>0</id>
-    <Date_upd>15/08/2014 21:07:54</Date_upd>
+    <Date_upd>25/03/2015 18:12:56</Date_upd>
     <X>0</X>
     <Y>1</Y>
-    <Caption>Aff_TOTAL</Caption>
+    <Caption>TOTAL !!!</Caption>
     <Color>255,143,188,143</Color>
     <foreground>255,0,0,0</foreground>
     <Img></Img>
     <Fun>Afficher un Total</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>17/11/2014 11:59:21</Date_upd>
+    <X>0</X>
+    <Y>2</Y>
+    <Caption>Code Bar</Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,255,0,0</foreground>
+    <Img></Img>
+    <Fun>SetBarCode</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>18.02.2017 12:30:15</Date_upd>
+    <X>0</X>
+    <Y>3</Y>
+    <Caption></Caption>
+    <Color>255,221,221,221</Color>
+    <foreground>255,0,0,0</foreground>
+    <Img></Img>
+    <Fun>None - Vide</Fun>
   </rec>
 </Grid>

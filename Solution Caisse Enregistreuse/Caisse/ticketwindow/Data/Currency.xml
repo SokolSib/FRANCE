@@ -7,12 +7,6 @@
     <TypesPayId>1</TypesPayId>
   </rec>
   <rec>
-    <CustomerId>10accd57-1c85-4b08-84bc-0a152e856e80</CustomerId>
-    <Currency_money>9.95</Currency_money>
-    <Desc>9,95 euro</Desc>
-    <TypesPayId>6</TypesPayId>
-  </rec>
-  <rec>
     <CustomerId>55ce3206-74e0-4891-9ef1-2636bf1a7ac2</CustomerId>
     <Currency_money>200.00</Currency_money>
     <Desc>200 euros</Desc>
@@ -89,6 +83,12 @@
     <Currency_money>10.00</Currency_money>
     <Desc>10 euros</Desc>
     <TypesPayId>1</TypesPayId>
+  </rec>
+  <rec>
+    <CustomerId>4d830a2e-4487-4c94-b1d2-f5ec30489bea</CustomerId>
+    <Currency_money>0.01</Currency_money>
+    <Desc>1 cent</Desc>
+    <TypesPayId>6</TypesPayId>
   </rec>
   <rec>
     <CustomerId>4d830a2e-4487-4c94-b1d2-f5ec30489beb</CustomerId>

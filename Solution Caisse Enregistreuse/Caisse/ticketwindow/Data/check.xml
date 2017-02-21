@@ -1,25 +1,101 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<checks ticket="Caisse 2" openDate="25/08/2014 23:03:07" closeDate="" idTicketWindowG="c0362c47-a8f3-4e19-98d4-cffbe1060482" idTicketWindow="2f22d8f6-de90-401c-ad4d-e55b223a50e3">
-  <check barcodeCheck="108272014152153778" Cash="10.00" BankCards="0.0" BankChecks="0.0" Resto="0.0" Rendu="-0,20" sum="9.8" date="2014-08-27T15:22:46.1591654+02:00">
+<checks ticket="Caisse 1" openDate="20/02/2017 20:09:13" closeDate="" idTicketWindowG="40184d3c-c964-4a07-82a7-876b1858772d" idTicketWindow="56b579c5-673b-41dd-9a81-7615c7124c56">
+  <check barcodeCheck="120093400001" Cash="1020.50" BankCards="1" BankChecks="2" Resto="0" BondAchat="0" Rendu="-1014,32" sum="9.18" date="2017-02-20T20:09:34.4807999+01:00">
     <product>
-      <id>ce9ed679-022a-4a25-a80c-f341a399e1ff</id>
-      <categories>1</categories>
-      <qty>1</qty>
-      <name>PAIN ROND</name>
-      <barcode>22710000002</barcode>
-      <price_ht>0.80</price_ht>
+      <ii>3</ii>
+      <CustomerId>299be66b-5dde-436b-851c-af85162041cb</CustomerId>
+      <Name>FÈVES CASSÉES DECO   800G</Name>
+      <Desc>FEVE CASSE KG  </Desc>
+      <price>1.990</price>
+      <priceGros>1.400</priceGros>
       <tva>1</tva>
-      <total>0.80</total>
+      <qty>1</qty>
+      <CodeBare>[3700066101242]</CodeBare>
+      <balance>false</balance>
+      <contenance>10.000</contenance>
+      <uniteContenance>0</uniteContenance>
+      <tare>0</tare>
+      <date>2017-01-27T16:49:52.317</date>
+      <cusumerIdRealStock>fdcb82fb-b43b-44a2-9dbf-5d61fe347365</cusumerIdRealStock>
+      <cusumerIdSubGroup>80</cusumerIdSubGroup>
+      <ProductsWeb_CustomerId>01a291d3-7816-43b9-bd9a-96692c4e76ec</ProductsWeb_CustomerId>
+      <grp>8</grp>
+      <sgrp>80</sgrp>
+      <Discount>0.0</Discount>
+      <sumDiscount>0</sumDiscount>
+      <total>1.99</total>
     </product>
     <product>
-      <id>83bf7f3f-ce27-4938-ac82-7b7c1512f3b0</id>
-      <categories>1</categories>
-      <qty>1</qty>
-      <name>DIMES PECHE 24</name>
-      <barcode></barcode>
-      <price_ht>9.00</price_ht>
+      <ii>2</ii>
+      <CustomerId>fe8fd35b-18df-4a89-a14c-4ec97e8a2910</CustomerId>
+      <Name>SARRASIN (GRECHKA)   1KG</Name>
+      <Desc>SARAZIN 1KG  </Desc>
+      <price>2.200</price>
+      <priceGros>1.390</priceGros>
       <tva>1</tva>
-      <total>9.00</total>
+      <qty>1</qty>
+      <CodeBare>[217]</CodeBare>
+      <balance>false</balance>
+      <contenance>50.000</contenance>
+      <uniteContenance>0</uniteContenance>
+      <tare>0</tare>
+      <date>2017-01-20T15:15:12.883</date>
+      <cusumerIdRealStock>d18f0331-08ea-48a8-b153-167ac67184eb</cusumerIdRealStock>
+      <cusumerIdSubGroup>80</cusumerIdSubGroup>
+      <ProductsWeb_CustomerId>468dad0c-48e5-4f8f-9c5c-1edf4f13ffc5</ProductsWeb_CustomerId>
+      <grp>8</grp>
+      <sgrp>80</sgrp>
+      <Discount>0.0</Discount>
+      <sumDiscount>0</sumDiscount>
+      <total>2.2</total>
+    </product>
+    <product>
+      <ii>1</ii>
+      <CustomerId>4199fc73-6fd5-4211-9720-fcdbfd457e5f</CustomerId>
+      <Name>BLÉ ENTIER 1KG -</Name>
+      <Desc>BLE ENTIER 1KG  </Desc>
+      <price>1.790</price>
+      <priceGros>1.320</priceGros>
+      <tva>1</tva>
+      <qty>1</qty>
+      <CodeBare>[200]</CodeBare>
+      <balance>false</balance>
+      <contenance>1.000</contenance>
+      <uniteContenance>0</uniteContenance>
+      <tare>0</tare>
+      <date>2015-08-12T18:50:06.95</date>
+      <cusumerIdRealStock>83cf9d85-2b4c-4858-8026-9db96c0610b0</cusumerIdRealStock>
+      <cusumerIdSubGroup>80</cusumerIdSubGroup>
+      <ProductsWeb_CustomerId>12e29e50-6cc2-4820-88b3-9d5f1b837fbd</ProductsWeb_CustomerId>
+      <grp>8</grp>
+      <sgrp>80</sgrp>
+      <Discount>0.0</Discount>
+      <sumDiscount>0</sumDiscount>
+      <total>1.79</total>
+    </product>
+    <product>
+      <ii>0</ii>
+      <CustomerId>bbef6ef4-e1cd-400f-a7db-33c01246e4ae</CustomerId>
+      <Name>HARICOT GEANT 800G</Name>
+      <Desc></Desc>
+      <price>3.200</price>
+      <priceGros>2.220</priceGros>
+      <tva>1</tva>
+      <qty>1</qty>
+      <CodeBare>[327049210005]</CodeBare>
+      <balance>false</balance>
+      <contenance>12.000</contenance>
+      <uniteContenance>0</uniteContenance>
+      <tare>0</tare>
+      <date>2016-11-07T12:45:40.9</date>
+      <cusumerIdRealStock>1fa06ef9-55b6-4243-b7b2-aa36f4c71367</cusumerIdRealStock>
+      <cusumerIdSubGroup>80</cusumerIdSubGroup>
+      <ProductsWeb_CustomerId>e69b9fc8-8fb8-4f45-885b-b9745b7eacfa</ProductsWeb_CustomerId>
+      <grp>8</grp>
+      <sgrp>80</sgrp>
+      <Discount>0.0</Discount>
+      <sumDiscount>0</sumDiscount>
+      <total>3.2</total>
     </product>
   </check>
 </checks>
