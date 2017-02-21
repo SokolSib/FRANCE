@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using TicketWindow.Services;
 using TicketWindow.Winows.AdditionalClasses;
+using TicketWindow.Winows.OtherWindows.Payment;
 
 namespace TicketWindow.Winows.OtherWindows.Keyboard
 {
@@ -13,41 +14,47 @@ namespace TicketWindow.Winows.OtherWindows.Keyboard
         public WNumPadMini()
         {
             InitializeComponent();
+            Clr = true;
         }
         
         public TextBox TextBox { get; set; }
         public Button BEnter { get; set; }
-        public bool Clr = true;
+
+        public bool Clr { get; set; }
 
         private void ButtonClick(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
-            if (button != null)
+
+            if (button?.ToolTip != null && button.ToolTip.ToString() == "WNumPadMini")
             {
-                var b = button;
+                string getValue = button.Name.Remove(0, 1);
 
-                if (b.ToolTip != null)
+                switch (getValue)
                 {
-                    if (b.ToolTip.ToString() == "WNumPadMini")
-                    {
-                        string getValue = b.Name.Remove(0, 1);
-                      
-                        switch (getValue)
-                        {
-                            case "Sup": TextBox.Text = ""; break;
-                            case "Entree": FunctionsService.Click(BEnter); break;
-                            case "Point": TextBox.Text += ","; break;
-                            default:
-                                if (Clr)
-                                    TextBox.Text = "";
-                                int f;
-                                if (int.TryParse(getValue, out f))
-                                    TextBox.Text += getValue; break;
-                        }
-
-                        Clr = false;
-                    }
+                    case "Sup":
+                        TextBox.Text = "";
+                        break;
+                    case "Entree":
+                        var window = Tag as WPayEtc;
+                        if (window != null)
+                            window.DoWithValidation();
+                        else
+                            FunctionsService.Click(BEnter);
+                        break;
+                    case "Point":
+                        TextBox.Text += ",";
+                        break;
+                    default:
+                        if (Clr)
+                            TextBox.Text = "";
+                        int f;
+                        if (int.TryParse(getValue, out f))
+                            TextBox.Text += getValue;
+                        break;
                 }
+
+                Clr = false;
             }
         }
 

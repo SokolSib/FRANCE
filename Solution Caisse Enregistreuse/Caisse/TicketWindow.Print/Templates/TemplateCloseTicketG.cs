@@ -122,7 +122,7 @@ namespace TicketWindow.Print.Templates
                 var printTotal = new PrintTotal
                                  {
                                      Count = countOfPays,
-                                     SrTotal = sumMoney / countOfPays,
+                                     SrTotal = ttc / countOfPays,
                                      Name = closeTicket.NameTicket,
                                      Total = sumMoney
                                  };

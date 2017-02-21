@@ -998,16 +998,22 @@ namespace TicketWindow.Services
                 if (RepositoryCheck.DocumentProductCheck != null)
                     if (RepositoryCheck.DocumentProductCheck.GetXElements("check","product").Any())
                     {
-                        var w = new WPayEtc
+                        var payWindow = new WPayEtc
                                 {
                                     Owner = Window.GetWindow((Button) sender),
                                     TypesPay = payType,
                                     MaxMoney = money
                                 };
+                        payWindow.numPad.Tag = payWindow;
 
-                        Effect(w);
+                        Effect(payWindow);
                     }
             }
+        }
+
+        private static void BEnter_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private static void OpenCashBox()

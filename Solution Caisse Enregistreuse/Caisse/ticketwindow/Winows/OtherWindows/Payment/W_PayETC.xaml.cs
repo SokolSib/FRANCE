@@ -29,12 +29,17 @@ namespace TicketWindow.Winows.OtherWindows.Payment
 
         private void ButtonClick(object sender, RoutedEventArgs e)
         {
+            DoWithValidation();
+        }
+
+        public void DoWithValidation()
+        {
             decimal money;
             if (!string.IsNullOrEmpty(tbS.Text) && decimal.TryParse(tbS.Text.Trim(), out money))
                 if (_validForMaxSumm.Contains(TypesPay.NameCourt) && money <= MaxMoney)
-                    FunctionsService.Click(sender);
+                    FunctionsService.Click(xEnter);
                 else if (!_validForMaxSumm.Contains(TypesPay.NameCourt))
-                    FunctionsService.Click(sender);
+                    FunctionsService.Click(xEnter);
                 else
                     FunctionsService.ShowMessageTime(Properties.Resources.LabelSummIsExceed);
         }
