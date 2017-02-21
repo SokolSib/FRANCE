@@ -49,6 +49,11 @@ namespace TicketWindow.DAL.Models
                                   CloseTicketGCustomerId = GlobalVar.TicketWindowG
                               };
 
+            closeTicket.PayCash = 0;
+            closeTicket.PayResto = 0;
+            closeTicket.PayBankCards = 0;
+            closeTicket.PayBankChecks = 0;
+
             foreach (var checkTicket in element.GetXElements("check").Select(check => CheckTicket.FromCheckXElement(check, Guid.NewGuid(), closeTicket.CustomerId)))
             {
                 closeTicket.PayCash += checkTicket.PayCash - checkTicket.Rendu;
