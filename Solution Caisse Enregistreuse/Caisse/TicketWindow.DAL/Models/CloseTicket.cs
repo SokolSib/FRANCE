@@ -56,7 +56,7 @@ namespace TicketWindow.DAL.Models
 
             foreach (var checkTicket in element.GetXElements("check").Select(check => CheckTicket.FromCheckXElement(check, Guid.NewGuid(), closeTicket.CustomerId)))
             {
-                closeTicket.PayCash += checkTicket.PayCash - checkTicket.Rendu;
+                closeTicket.PayCash += checkTicket.PayCash + checkTicket.Rendu;
                 closeTicket.PayResto += checkTicket.PayResto;
                 closeTicket.PayBankCards += checkTicket.PayBankCards;
                 closeTicket.PayBankChecks += checkTicket.PayBankChecks;
