@@ -999,7 +999,7 @@ namespace TicketWindow.Services
             }
         }
 
-        private static void ShowPaymentEtc(object sender, decimal money)
+        private static void ShowPaymentEtc(object sender)
         {
             ShowMessageCustomerDisplay(null);
 
@@ -1017,8 +1017,8 @@ namespace TicketWindow.Services
                                         {
                                             Owner = Window.GetWindow((Button) sender),
                                             PayType = payType,
-                                            MaxMoney = money
-                                        };
+                                            MaxMoney = RepositoryCurrencyRelations.Residue()
+                        };
                         payWindow.numPad.Tag = payWindow;
 
                         Effect(payWindow);
@@ -1117,7 +1117,7 @@ namespace TicketWindow.Services
                                     Effect(w);
                                     RepositoryCurrencyRelations.ClearCurrency(t);
                                 }
-                                else ShowPaymentEtc(sender, money);
+                                else ShowPaymentEtc(sender);
                         }
             }
         }
