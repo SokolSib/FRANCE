@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<tva>
+  <rec>
+    <CustumerId>7e73aa7e-a6a6-4ed5-8dad-3d47aa5cdbc0</CustumerId>
+    <id>1</id>
+    <value>5.5</value>
+  </rec>
+  <rec>
+    <CustumerId>0eb6dd27-e9f8-4f50-8e7e-e7c81874ff56</CustumerId>
+    <id>2</id>
+    <value>20</value>
+  </rec>
+</tva>

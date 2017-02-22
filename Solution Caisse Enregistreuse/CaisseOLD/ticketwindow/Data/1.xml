@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Grid>
+  <rec>
+    <id>0</id>
+    <Date_upd>09.11.2014 20:10:40</Date_upd>
+    <X>0</X>
+    <Y>0</Y>
+    <Caption>1 euro</Caption>
+    <Color>255,0,0,205</Color>
+    <foreground>255,238,239,255</foreground>
+    <Img></Img>
+    <Fun>296e5a8f-1299-4961-96c7-e4d3cba9871d</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>18/11/2014 10:02:51</Date_upd>
+    <X>0</X>
+    <Y>1</Y>
+    <Caption>2 euros</Caption>
+    <Color>255,255,228,181</Color>
+    <foreground>255,238,239,255</foreground>
+    <Img></Img>
+    <Fun>b820ec90-6b69-47f2-bb95-564f1056df9c</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>18/11/2014 10:03:20</Date_upd>
+    <X>0</X>
+    <Y>2</Y>
+    <Caption>5 euros</Caption>
+    <Color>255,154,205,50</Color>
+    <foreground>255,238,239,255</foreground>
+    <Img></Img>
+    <Fun>32db0ed5-fad4-4bc7-bbd6-73e7efd788d1</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>18/11/2014 10:03:49</Date_upd>
+    <X>0</X>
+    <Y>4</Y>
+    <Caption>10 euros</Caption>
+    <Color>255,34,139,34</Color>
+    <foreground>255,238,239,255</foreground>
+    <Img></Img>
+    <Fun>7efcab27-9676-48ef-8fad-f01eb9d9803c</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>18/11/2014 10:04:06</Date_upd>
+    <X>0</X>
+    <Y>5</Y>
+    <Caption>20 euros</Caption>
+    <Color>255,152,251,152</Color>
+    <foreground>255,238,239,255</foreground>
+    <Img></Img>
+    <Fun>e020ecea-f315-4949-99cc-d5fbd917ca0c</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>18/11/2014 10:04:33</Date_upd>
+    <X>0</X>
+    <Y>6</Y>
+    <Caption>50 euros</Caption>
+    <Color>255,95,158,160</Color>
+    <foreground>255,238,239,255</foreground>
+    <Img></Img>
+    <Fun>c4a80648-31f2-4a0e-b154-d9bb0d9457b2</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>18/11/2014 10:05:14</Date_upd>
+    <X>0</X>
+    <Y>7</Y>
+    <Caption>100 euros</Caption>
+    <Color>255,255,228,225</Color>
+    <foreground>255,238,239,255</foreground>
+    <Img></Img>
+    <Fun>4ef2fc12-aa34-4ec7-8c51-04b701e0a1eb</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>18/11/2014 10:05:36</Date_upd>
+    <X>0</X>
+    <Y>8</Y>
+    <Caption>200 euros</Caption>
+    <Color>255,47,79,79</Color>
+    <foreground>255,238,239,255</foreground>
+    <Img></Img>
+    <Fun>55ce3206-74e0-4891-9ef1-2636bf1a7ac2</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>18/11/2014 10:07:27</Date_upd>
+    <X>0</X>
+    <Y>9</Y>
+    <Caption>500 euros</Caption>
+    <Color>255,138,43,226</Color>
+    <foreground>255,238,239,255</foreground>
+    <Img></Img>
+    <Fun>27bd7ca8-2baf-4b55-8a1b-e89c36b317d0</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>18/11/2014 10:07:57</Date_upd>
+    <X>2</X>
+    <Y>0</Y>
+    <Caption>1 centime</Caption>
+    <Color>255,255,255,255</Color>
+    <foreground>255,238,239,255</foreground>
+    <Img></Img>
+    <Fun>a91ef797-7bdc-4b26-ba89-c8f13d96f6ec</Fun>
+  </rec>
+  <rec>
+    <id>2</id>
+    <Date_upd>18/11/2014 10:08:25</Date_upd>
+    <X>2</X>
+    <Y>1</Y>
+    <Caption>2 centimes</Caption>
+    <Color>255,245,222,179</Color>
+    <foreground>255,238,239,255</foreground>
+    <Img></Img>
+    <Fun>4d830a2e-4487-4c94-b1d2-f5ec30489beb</Fun>
+  </rec>
+  <rec>
+    <id>4</id>
+    <Date_upd>18/11/2014 10:08:50</Date_upd>
+    <X>2</X>
+    <Y>2</Y>
+    <Caption>5 centimes</Caption>
+    <Color>255,255,239,213</Color>
+    <foreground>255,238,239,255</foreground>
+    <Img></Img>
+    <Fun>2e5629b9-cba1-43eb-a7fc-abbcd66c5f16</Fun>
+  </rec>
+  <rec>
+    <id>6</id>
+    <Date_upd>18/11/2014 10:09:11</Date_upd>
+    <X>2</X>
+    <Y>3</Y>
+    <Caption>10 centimes</Caption>
+    <Color>255,255,228,181</Color>
+    <foreground>255,238,239,255</foreground>
+    <Img></Img>
+    <Fun>12c46353-4e69-478d-8a82-961a7d8a37ea</Fun>
+  </rec>
+  <rec>
+    <id>8</id>
+    <Date_upd>18/11/2014 10:09:53</Date_upd>
+    <X>2</X>
+    <Y>4</Y>
+    <Caption>20 centimes</Caption>
+    <Color>255,240,248,255</Color>
+    <foreground>255,238,239,255</foreground>
+    <Img></Img>
+    <Fun>2230cc95-a079-47d5-a6b7-eeb6745e97e3</Fun>
+  </rec>
+  <rec>
+    <id>10</id>
+    <Date_upd>24/11/2014 13:55:30</Date_upd>
+    <X>2</X>
+    <Y>5</Y>
+    <Caption>50 centimes</Caption>
+    <Color>255,218,165,32</Color>
+    <foreground>255,238,239,255</foreground>
+    <Img></Img>
+    <Fun>b9206cd9-33b0-4a82-8ed1-5550c8d32682</Fun>
+  </rec>
+</Grid>

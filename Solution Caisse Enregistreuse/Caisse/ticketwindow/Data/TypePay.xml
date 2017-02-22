@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<typesPay>
+  <rec>
+    <id>1</id>
+    <Name>En Espèces</Name>
+    <Etat>true</Etat>
+    <CodeCompta>450600</CodeCompta>
+    <NameCourt>Cash</NameCourt>
+    <Rendu_Avoir>true</Rendu_Avoir>
+    <Tiroir>true</Tiroir>
+    <CurMod>true</CurMod>
+  </rec>
+  <rec>
+    <id>4</id>
+    <Name>Carte Bancaire</Name>
+    <Etat>true</Etat>
+    <CodeCompta>450601</CodeCompta>
+    <NameCourt>BankCards</NameCourt>
+    <Rendu_Avoir>false</Rendu_Avoir>
+    <Tiroir>true</Tiroir>
+    <CurMod>false</CurMod>
+  </rec>
+  <rec>
+    <id>5</id>
+    <Name>Chèque de Banque</Name>
+    <Etat>true</Etat>
+    <CodeCompta>450602</CodeCompta>
+    <NameCourt>BankChecks</NameCourt>
+    <Rendu_Avoir>false</Rendu_Avoir>
+    <Tiroir>true</Tiroir>
+    <CurMod>false</CurMod>
+  </rec>
+  <rec>
+    <id>6</id>
+    <Name>Ticket Restaurant</Name>
+    <Etat>true</Etat>
+    <CodeCompta>450603</CodeCompta>
+    <NameCourt>Resto</NameCourt>
+    <Rendu_Avoir>false</Rendu_Avoir>
+    <Tiroir>true</Tiroir>
+    <CurMod>false</CurMod>
+  </rec>
+  <rec>
+    <id>8</id>
+    <Name>BondAchat</Name>
+    <Etat>true</Etat>
+    <CodeCompta>450604</CodeCompta>
+    <NameCourt>BondAchat</NameCourt>
+    <Rendu_Avoir>false</Rendu_Avoir>
+    <Tiroir>true</Tiroir>
+    <CurMod>false</CurMod>
+  </rec>
+</typesPay>

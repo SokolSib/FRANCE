@@ -1,0 +1,28 @@
+﻿<Window x:Class="ticketwindow.Winows.Setting.W_dateTimeSrv"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="W_dateTimeSrv" Height="300" Width="600" WindowStyle="None" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Button IsDefault="True" Click="Button_Click" Background="Green">Mise à jour</Button>
+            <Button  Click="Button_Click_1" ToolTip="Close" Grid.Column="1" Background="Red">Annuler</Button>
+        </Grid>
+        <Label  Name="status" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+
+    </Grid>
+</Window>

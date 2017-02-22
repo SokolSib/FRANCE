@@ -1,0 +1,30 @@
+﻿<Window x:Class="ticketwindow.Winows.Divers.W_Divers"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+           WindowStyle="SingleBorderWindow" xmlns:UserControl="clr-namespace:ticketwindow.Winows.Keyboard" Loaded="Window_Loaded"  Title="W_Divers" Height="325" Width="550" Background="#333" FontSize="20" >
+    <Window.Resources>
+        <XmlDataProvider x:Key="TVA" Source="../../../Data/tva.xml" />
+    </Window.Resources>
+    <Grid>
+        <Label FontWeight="Bold" Height="35" Margin="59,4,317,226">Prix TTC :</Label>
+        <TextBox Name="xValue" Height="50" Width="170" Margin="58,44,312,170" ></TextBox>
+        <Label FontWeight="Bold" Content="TVA :" Height="35" Margin="59,111,317,118"/>
+        <ComboBox Name="xTVA" Height="50" Width="170"  DisplayMemberPath="value" SelectedValuePath="id" ItemsSource="{Binding Mode=OneWay, Source={StaticResource TVA}, XPath=/tva/rec}" SelectedIndex="0"  Margin="58,149,312,65" />
+
+        <Button Name="xEnter" ToolTip="clickProductDivers" Click="xEnter_Click" Height="50" Margin="153,256,247,8"  IsDefault="True" Background="Green">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Width="93" FontSize="25">Valider</TextBlock>
+            </StackPanel>
+        </Button>
+        <Button Height="50"  Margin="1,256,389,8" Background="Red" Click="Button_Click">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Width="93" FontSize="25">Annuler</TextBlock>
+            </StackPanel>
+        </Button>
+        <StackPanel>
+            <UserControl:W_NumPadMini x:Name="numPad" Margin="295,5,5,5"  />
+        </StackPanel>
+
+
+    </Grid>
+</Window>

@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Grid>
+  <rec>
+    <id>0</id>
+    <Date_upd>15/08/2014 20:50:24</Date_upd>
+    <X>0</X>
+    <Y>0</Y>
+    <Caption>Modif</Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,240,248,255</foreground>
+    <Img></Img>
+    <Fun>Modification des Articles</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>21/09/2016 18:42:03</Date_upd>
+    <X>1</X>
+    <Y>0</Y>
+    <Caption>SUP Ligne</Caption>
+    <Color>255,255,255,0</Color>
+    <foreground>255,0,0,0</foreground>
+    <Img></Img>
+    <Fun>Supprimer une Ligne</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>08/06/2015 09:25:30</Date_upd>
+    <X>4</X>
+    <Y>0</Y>
+    <Caption>Controle</Caption>
+    <Color>255,138,43,226</Color>
+    <foreground>255,0,0,0</foreground>
+    <Img></Img>
+    <Fun>Histoire de ticket</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>20/02/2017 20:05:58</Date_upd>
+    <X>0</X>
+    <Y>1</Y>
+    <Caption></Caption>
+    <Color>255,221,221,221</Color>
+    <foreground>255,0,0,0</foreground>
+    <Img></Img>
+    <Fun>None - Vide</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>26/08/2014 17:43:58</Date_upd>
+    <X>3</X>
+    <Y>0</Y>
+    <Caption>Clôture</Caption>
+    <Color>255,0,0,255</Color>
+    <foreground>255,255,0,0</foreground>
+    <Img></Img>
+    <Fun>Clôture</Fun>
+  </rec>
+  <rec>
+    <id>1</id>
+    <Date_upd>12/11/2014 12:44:08</Date_upd>
+    <X>1</X>
+    <Y>1</Y>
+    <Caption>Mod Prix</Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,255,0,0</foreground>
+    <Img></Img>
+    <Fun>Modifier le prix</Fun>
+  </rec>
+  <rec>
+    <id>3</id>
+    <Date_upd>12/11/2014 12:43:46</Date_upd>
+    <X>3</X>
+    <Y>1</Y>
+    <Caption>Open TIR</Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,255,255,0</foreground>
+    <Img></Img>
+    <Fun>Open CashBox</Fun>
+  </rec>
+  <rec>
+    <id>5</id>
+    <Date_upd>07/12/2014 11:51:47</Date_upd>
+    <X>5</X>
+    <Y>1</Y>
+    <Caption>Calcullete</Caption>
+    <Color>255,255,255,0</Color>
+    <foreground>255,0,0,0</foreground>
+    <Img></Img>
+    <Fun>Calculatrice</Fun>
+  </rec>
+  <rec>
+    <id>2</id>
+    <Date_upd>18.02.2017 12:30:47</Date_upd>
+    <X>2</X>
+    <Y>1</Y>
+    <Caption>RETURN</Caption>
+    <Color>255,212,208,200</Color>
+    <foreground>255,0,0,0</foreground>
+    <Img></Img>
+    <Fun>Annulation de ticket</Fun>
+  </rec>
+  <rec>
+    <id>4</id>
+    <Date_upd>20/02/2017 20:06:03</Date_upd>
+    <X>4</X>
+    <Y>1</Y>
+    <Caption></Caption>
+    <Color>255,221,221,221</Color>
+    <foreground>255,0,0,0</foreground>
+    <Img></Img>
+    <Fun>None - Vide</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>18.02.2017 12:30:53</Date_upd>
+    <X>5</X>
+    <Y>0</Y>
+    <Caption></Caption>
+    <Color>255,221,221,221</Color>
+    <foreground>255,0,0,0</foreground>
+    <Img></Img>
+    <Fun>None - Vide</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>18.02.2017 12:31:29</Date_upd>
+    <X>2</X>
+    <Y>0</Y>
+    <Caption></Caption>
+    <Color>255,221,221,221</Color>
+    <foreground>255,0,0,0</foreground>
+    <Img></Img>
+    <Fun>None - Vide</Fun>
+  </rec>
+</Grid>

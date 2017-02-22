@@ -1,0 +1,39 @@
+﻿<Window x:Class="TicketWindow.Winows.AdminWindows.UsersWindow.UsersWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Properties="clr-namespace:TicketWindow.Properties"
+        Title="Users" Height="600" Width="800" 
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen">
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
+        <DataGrid Name="DataGrid" AutoGenerateColumns="False" CanUserDeleteRows="False" IsReadOnly="True" CanUserAddRows="False" GridLinesVisibility="Horizontal" SelectionMode="Single">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="{x:Static Properties:Resources.LabelFIO}" Binding="{Binding Fio}" Width="*" FontSize="20" />
+                <DataGridTextColumn Header="{x:Static Properties:Resources.LabelLogin}" Binding="{Binding Login}" FontSize="20" />
+                <DataGridTextColumn Header="{x:Static Properties:Resources.LabelRole}" Binding="{Binding Role}" FontSize="20" />
+            </DataGrid.Columns>
+        </DataGrid>
+        
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Button Padding="20" FontSize="25" Content="{x:Static Properties:Resources.BtnAdd}" Name="BtnAdd" Grid.Column="0" Click="BtnAddClick" />
+            <Button Padding="20" FontSize="25" Content="{x:Static Properties:Resources.BtnRedact}" Name="BtnRedact" Grid.Column="1" Click="BtnRedactClick" />
+            <Button Padding="20" FontSize="25" Content="{x:Static Properties:Resources.BtnDelete}" Name="BtnDel" Grid.Column="2" Click="BtnDelClick" />
+            <Button Padding="20" FontSize="25" Content="{x:Static Properties:Resources.BtnClose}" Name="BtnClose" Grid.Column="4" Background="Red" Click="BtnCloseClick" />
+        </Grid>
+    </Grid>
+    
+</Window>

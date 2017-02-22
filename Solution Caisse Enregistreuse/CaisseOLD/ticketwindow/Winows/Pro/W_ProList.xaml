@@ -1,0 +1,41 @@
+﻿<Window x:Class="ticketwindow.Winows.Pro.W_ProList"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ticketwindow.Winows.Pro"
+        mc:Ignorable="d"
+        xmlns:WPFTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
+        Loaded="Window_Loaded"
+        Title="W_ProList"  Background="#333" FontSize="18" Height="768" Width="1024" WindowStyle="None"  WindowState="Maximized">
+    <WPFTool:BusyIndicator x:Name="BusyIndicator" BusyContent="Veuillez patientez pendant la Clôture!">
+        <Grid Height="768" Width="1024">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                
+                <Button Grid.Column="1" ToolTip="click Set Pro" Background="Green" >Sélectionner</Button>
+                <Button Grid.Column="2" ToolTip="add pro" Background="Blue" >Nouveau PRO</Button>
+                <Button Grid.Column="0" x:Name="unset" ToolTip="click SetOff Pro" >Annuler mode PRO</Button>
+                <Button Grid.Column="3" ToolTip="closeWindow" IsCancel="True">Fermer</Button>
+            </Grid>
+            <DataGrid Grid.Column="0" Grid.Row="1" x:Name="dataPro" Loaded="dataPro_Loaded" AutoGenerateColumns="True" IsReadOnly="True" >
+                
+            </DataGrid>
+            
+        </Grid>
+       
+    </WPFTool:BusyIndicator>
+</Window>

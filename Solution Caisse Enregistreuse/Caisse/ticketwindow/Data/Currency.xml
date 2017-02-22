@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Currency>
+  <rec>
+    <CustomerId>4ef2fc12-aa34-4ec7-8c51-04b701e0a1eb</CustomerId>
+    <Currency_money>100.00</Currency_money>
+    <Desc>100 euros</Desc>
+    <TypesPayId>1</TypesPayId>
+  </rec>
+  <rec>
+    <CustomerId>55ce3206-74e0-4891-9ef1-2636bf1a7ac2</CustomerId>
+    <Currency_money>200.00</Currency_money>
+    <Desc>200 euros</Desc>
+    <TypesPayId>1</TypesPayId>
+  </rec>
+  <rec>
+    <CustomerId>b9206cd9-33b0-4a82-8ed1-5550c8d32682</CustomerId>
+    <Currency_money>0.50</Currency_money>
+    <Desc>50 centimes</Desc>
+    <TypesPayId>1</TypesPayId>
+  </rec>
+  <rec>
+    <CustomerId>b820ec90-6b69-47f2-bb95-564f1056df9c</CustomerId>
+    <Currency_money>2.00</Currency_money>
+    <Desc>2 euros</Desc>
+    <TypesPayId>1</TypesPayId>
+  </rec>
+  <rec>
+    <CustomerId>32db0ed5-fad4-4bc7-bbd6-73e7efd788d1</CustomerId>
+    <Currency_money>5.00</Currency_money>
+    <Desc>5 euros</Desc>
+    <TypesPayId>1</TypesPayId>
+  </rec>
+  <rec>
+    <CustomerId>12c46353-4e69-478d-8a82-961a7d8a37ea</CustomerId>
+    <Currency_money>0.10</Currency_money>
+    <Desc>10 centimes</Desc>
+    <TypesPayId>1</TypesPayId>
+  </rec>
+  <rec>
+    <CustomerId>2e5629b9-cba1-43eb-a7fc-abbcd66c5f16</CustomerId>
+    <Currency_money>0.05</Currency_money>
+    <Desc>5 centimes</Desc>
+    <TypesPayId>1</TypesPayId>
+  </rec>
+  <rec>
+    <CustomerId>a91ef797-7bdc-4b26-ba89-c8f13d96f6ec</CustomerId>
+    <Currency_money>0.01</Currency_money>
+    <Desc>1 centime</Desc>
+    <TypesPayId>1</TypesPayId>
+  </rec>
+  <rec>
+    <CustomerId>e020ecea-f315-4949-99cc-d5fbd917ca0c</CustomerId>
+    <Currency_money>20.00</Currency_money>
+    <Desc>20 euros</Desc>
+    <TypesPayId>1</TypesPayId>
+  </rec>
+  <rec>
+    <CustomerId>c4a80648-31f2-4a0e-b154-d9bb0d9457b2</CustomerId>
+    <Currency_money>50.00</Currency_money>
+    <Desc>50 euros</Desc>
+    <TypesPayId>1</TypesPayId>
+  </rec>
+  <rec>
+    <CustomerId>296e5a8f-1299-4961-96c7-e4d3cba9871d</CustomerId>
+    <Currency_money>1.00</Currency_money>
+    <Desc>1 euro</Desc>
+    <TypesPayId>1</TypesPayId>
+  </rec>
+  <rec>
+    <CustomerId>27bd7ca8-2baf-4b55-8a1b-e89c36b317d0</CustomerId>
+    <Currency_money>500.00</Currency_money>
+    <Desc>500 euros</Desc>
+    <TypesPayId>1</TypesPayId>
+  </rec>
+  <rec>
+    <CustomerId>2230cc95-a079-47d5-a6b7-eeb6745e97e3</CustomerId>
+    <Currency_money>0.20</Currency_money>
+    <Desc>20 centimes</Desc>
+    <TypesPayId>1</TypesPayId>
+  </rec>
+  <rec>
+    <CustomerId>7efcab27-9676-48ef-8fad-f01eb9d9803c</CustomerId>
+    <Currency_money>10.00</Currency_money>
+    <Desc>10 euros</Desc>
+    <TypesPayId>1</TypesPayId>
+  </rec>
+  <rec>
+    <CustomerId>4d830a2e-4487-4c94-b1d2-f5ec30489bea</CustomerId>
+    <Currency_money>0.01</Currency_money>
+    <Desc>1 cent</Desc>
+    <TypesPayId>6</TypesPayId>
+  </rec>
+  <rec>
+    <CustomerId>4d830a2e-4487-4c94-b1d2-f5ec30489beb</CustomerId>
+    <Currency_money>0.02</Currency_money>
+    <Desc>2 centimes</Desc>
+    <TypesPayId>1</TypesPayId>
+  </rec>
+</Currency>

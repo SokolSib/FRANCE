@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="ChartStat.Controls.Filters.ProductsControl.ProductsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+
+    <Grid HorizontalAlignment="Stretch" Background="Black">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.ColumnSpan="2" Text="Продукт" Margin="5" VerticalAlignment="Center" FontWeight="Bold" Foreground="White" />
+
+        <TextBox Grid.Row="1" Grid.Column="0" VerticalContentAlignment="Center" Margin="5" Text="{Binding SearchText}" HorizontalAlignment="Stretch">
+            <TextBox.InputBindings>
+                <KeyBinding Key="Enter" Command="{Binding SearchCommand}" 
+                        CommandParameter="{Binding Path=Text, RelativeSource={RelativeSource AncestorType={x:Type TextBox}}}" />
+            </TextBox.InputBindings>
+        </TextBox>
+        
+        <Button Grid.Row="1" Grid.Column="1" Content="найти" Command="{Binding SearchCommand}"/>
+
+        <ListView Name="ProductsList" Grid.ColumnSpan="2" Grid.Column="0" Margin="10" Grid.Row="2" ItemsSource="{Binding SearchedProductTypes}" SelectedItem="{Binding SelectedProductType}" SelectionMode="Single" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}" Foreground="White" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </Grid>
+    
+</UserControl>

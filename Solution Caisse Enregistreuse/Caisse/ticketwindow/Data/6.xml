@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Grid>
+  <rec>
+    <id>0</id>
+    <Date_upd>18/11/2014 10:13:44</Date_upd>
+    <X>0</X>
+    <Y>0</Y>
+    <Caption>1 centime</Caption>
+    <Color>255,255,255,0</Color>
+    <foreground>255,238,239,255</foreground>
+    <Img></Img>
+    <Fun>4d830a2e-4487-4c94-b1d2-f5ec30489bea</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>18/11/2014 10:18:39</Date_upd>
+    <X>0</X>
+    <Y>1</Y>
+    <Caption>0.01</Caption>
+    <Color>0,255,255,255</Color>
+    <foreground>255,238,239,255</foreground>
+    <Img></Img>
+    <Fun>4d830a2e-4487-4c94-b1d2-f5ec30489bea</Fun>
+  </rec>
+</Grid>

@@ -1,0 +1,24 @@
+﻿<Window x:Class="ticketwindow.Winows.Setting.W_open_ticket"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="W_open_ticket" Height="300" Width="600" WindowStyle="None" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+       
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button IsDefault="True" Click="Button_Click" Background="Green">Ouverture Local</Button>
+            <Button  Grid.Column="1" ToolTip="Close"  Click="Button_Click_1" Background="Red">Annuler</Button>
+        </Grid>
+
+        <Label  Name="status" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+    </Grid>
+</Window>

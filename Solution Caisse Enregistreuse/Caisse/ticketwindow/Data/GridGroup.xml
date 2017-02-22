@@ -1,0 +1,531 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Grid>
+  <rec>
+    <id>0</id>
+    <Date_upd>26/08/2014 15:57:35</Date_upd>
+    <X>5</X>
+    <Y>0</Y>
+    <Caption>Fermer</Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,240,248,255</foreground>
+    <Img></Img>
+    <Fun>Fermer</Fun>
+  </rec>
+  <rec>
+    <id>5</id>
+    <Date_upd>26/11/2014 17:26:20</Date_upd>
+    <X>5</X>
+    <Y>1</Y>
+    <Caption>Reduire</Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,0,128,0</foreground>
+    <Img></Img>
+    <Fun>svernut</Fun>
+  </rec>
+  <rec>
+    <id>55</id>
+    <Date_upd>30/10/2014 14:33:00</Date_upd>
+    <X>5</X>
+    <Y>11</Y>
+    <Caption>REMISE</Caption>
+    <Color>255,0,255,255</Color>
+    <foreground>255,0,0,0</foreground>
+    <Img></Img>
+    <Fun>DiscountMini</Fun>
+  </rec>
+  <rec>
+    <id>30</id>
+    <Date_upd>30/10/2014 14:33:50</Date_upd>
+    <X>5</X>
+    <Y>6</Y>
+    <Caption>CodeBar</Caption>
+    <Color>255,0,0,255</Color>
+    <foreground>255,255,245,238</foreground>
+    <Img></Img>
+    <Fun>SetBarCode</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>28/11/2014 09:24:21</Date_upd>
+    <X>0</X>
+    <Y>11</Y>
+    <Caption>Sup Ticket</Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,64,224,208</foreground>
+    <Img></Img>
+    <Fun>Supprimer le Ticket</Fun>
+  </rec>
+  <rec>
+    <id>11</id>
+    <Date_upd>18/02/2017 11:14:45</Date_upd>
+    <X>1</X>
+    <Y>11</Y>
+    <Caption></Caption>
+    <Color>255,221,221,221</Color>
+    <foreground>255,64,224,208</foreground>
+    <Img></Img>
+    <Fun>None - Vide</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>26/11/2014 13:35:29</Date_upd>
+    <X>0</X>
+    <Y>8</Y>
+    <Caption>PAIN FRAIS</Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,255,255,0</foreground>
+    <Img></Img>
+    <Fun>Products id=[e3fe5539-2e29-425e-8e56-5cbccb85b2b8]</Fun>
+  </rec>
+  <rec>
+    <id>8</id>
+    <Date_upd>26/11/2014 13:36:14</Date_upd>
+    <X>1</X>
+    <Y>8</Y>
+    <Caption>PAIN LIBANAIS</Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,255,255,0</foreground>
+    <Img></Img>
+    <Fun>Products id=[aff100bd-7dd0-434d-bb4d-2180ea8fbe8a]</Fun>
+  </rec>
+  <rec>
+    <id>16</id>
+    <Date_upd>26/11/2014 13:37:20</Date_upd>
+    <X>2</X>
+    <Y>8</Y>
+    <Caption>LAVASH 1.9</Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,255,255,0</foreground>
+    <Img></Img>
+    <Fun>Products id=[97bc4e8f-6fa4-4f43-8055-91ef012b7ba9]</Fun>
+  </rec>
+  <rec>
+    <id>40</id>
+    <Date_upd>26/11/2014 14:20:23</Date_upd>
+    <X>5</X>
+    <Y>8</Y>
+    <Caption>LAVASH 3.6</Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,255,255,0</foreground>
+    <Img></Img>
+    <Fun>Products id=[f7cd23fe-5190-45b4-9c59-b527421a9189]</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>26/11/2014 14:30:10</Date_upd>
+    <X>0</X>
+    <Y>9</Y>
+    <Caption>PATISSERIE</Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,255,255,0</foreground>
+    <Img></Img>
+    <Fun>Products id=[6ff927f2-a250-4f1f-a248-1e409f5bd271]</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>26/11/2014 14:40:11</Date_upd>
+    <X>0</X>
+    <Y>0</Y>
+    <Caption>LENTILLE ROUGE </Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,255,99,71</foreground>
+    <Img></Img>
+    <Fun>Products id=[2b1819c1-9622-4064-b258-da7a740be05a]</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>26/11/2014 14:41:09</Date_upd>
+    <X>1</X>
+    <Y>0</Y>
+    <Caption>LENTILLE BLOND</Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,255,215,0</foreground>
+    <Img></Img>
+    <Fun>Products id=[32fac3b2-4465-472f-8a65-7ae3efd2e777]</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>26/11/2014 14:41:46</Date_upd>
+    <X>2</X>
+    <Y>0</Y>
+    <Caption>LENTILLE VERT</Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,154,205,50</foreground>
+    <Img></Img>
+    <Fun>Products id=[19e5bc9a-352e-4af6-918c-bc84779d1e6f]</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>26/11/2014 16:02:17</Date_upd>
+    <X>0</X>
+    <Y>1</Y>
+    <Caption>SEMOULE</Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,255,255,255</foreground>
+    <Img></Img>
+    <Fun>Products id=[26312204-c1b9-47d7-95f6-740f46fd687f]</Fun>
+  </rec>
+  <rec>
+    <id>1</id>
+    <Date_upd>26/11/2014 16:02:28</Date_upd>
+    <X>1</X>
+    <Y>1</Y>
+    <Caption>COUSCOUS</Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,255,255,255</foreground>
+    <Img></Img>
+    <Fun>Products id=[78703d87-3833-4647-b4f1-6ab23cf57268]</Fun>
+  </rec>
+  <rec>
+    <id>2</id>
+    <Date_upd>26/11/2014 16:02:42</Date_upd>
+    <X>2</X>
+    <Y>1</Y>
+    <Caption>MAIS ECLATER</Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,255,255,255</foreground>
+    <Img></Img>
+    <Fun>Products id=[7d8e7f71-1b97-4cfd-953e-74cd4a1fd35e]</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>26/11/2014 15:28:14</Date_upd>
+    <X>0</X>
+    <Y>2</Y>
+    <Caption>RIZ JAUNE</Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,255,255,255</foreground>
+    <Img></Img>
+    <Fun>Products id=[d8af056f-8f5f-4a2f-a10e-bd04e6cf11c3]</Fun>
+  </rec>
+  <rec>
+    <id>2</id>
+    <Date_upd>19/02/2017 19:49:09</Date_upd>
+    <X>1</X>
+    <Y>2</Y>
+    <Caption>RIZ Surinam 1kg</Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,245,255,250</foreground>
+    <Img></Img>
+    <Fun>Products id=[9538f090-53a6-4914-9aa5-fac0b4797ee3]</Fun>
+  </rec>
+  <rec>
+    <id>4</id>
+    <Date_upd>06/02/2017 21:01:49</Date_upd>
+    <X>2</X>
+    <Y>2</Y>
+    <Caption>RIZ PARF</Caption>
+    <Color>255,165,42,42</Color>
+    <foreground>255,255,255,255</foreground>
+    <Img></Img>
+    <Fun>Products id=[9538f090-53a6-4914-9aa5-fac0b4797ee3]</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>17/02/2017 19:39:12</Date_upd>
+    <X>0</X>
+    <Y>3</Y>
+    <Caption>BULGUR FIN</Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,255,255,255</foreground>
+    <Img></Img>
+    <Fun>Products id=[c7672caf-4ad9-40a2-9c47-634b9b51c89d]</Fun>
+  </rec>
+  <rec>
+    <id>3</id>
+    <Date_upd>26/11/2014 16:01:33</Date_upd>
+    <X>1</X>
+    <Y>3</Y>
+    <Caption>BULGUR GROS</Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,255,255,255</foreground>
+    <Img></Img>
+    <Fun>Products id=[bbac29b3-4342-4e63-a594-fe22c77c53a9]</Fun>
+  </rec>
+  <rec>
+    <id>6</id>
+    <Date_upd>26/11/2014 16:01:49</Date_upd>
+    <X>2</X>
+    <Y>3</Y>
+    <Caption>BULGUR BRUN F/G</Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,255,255,255</foreground>
+    <Img></Img>
+    <Fun>Products id=[ff04a64d-e47f-41d7-bb5a-ba0c07cd5860]</Fun>
+  </rec>
+  <rec>
+    <id>15</id>
+    <Date_upd>21/01/2017 18:25:46</Date_upd>
+    <X>5</X>
+    <Y>3</Y>
+    <Caption>DIVERS 5.5%</Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,255,0,0</foreground>
+    <Img></Img>
+    <Fun>Products id=[8d6ea0b5-003b-4ae6-b340-e73aa0342bb6]</Fun>
+  </rec>
+  <rec>
+    <id>20</id>
+    <Date_upd>26/11/2014 15:50:18</Date_upd>
+    <X>5</X>
+    <Y>4</Y>
+    <Caption>DIVERS 20%</Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,255,0,0</foreground>
+    <Img></Img>
+    <Fun>Products id=[aa553a84-ed26-4b6e-a591-5e488cc942fe]</Fun>
+  </rec>
+  <rec>
+    <id>25</id>
+    <Date_upd>30/11/2014 16:06:34</Date_upd>
+    <X>5</X>
+    <Y>5</Y>
+    <Caption>DIVERS KG </Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,255,0,0</foreground>
+    <Img></Img>
+    <Fun>Products id=[e2183702-28f2-43af-8f89-ddf40706723d]</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>30/11/2014 17:00:32</Date_upd>
+    <X>0</X>
+    <Y>4</Y>
+    <Caption>KORKOT </Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,255,255,255</foreground>
+    <Img></Img>
+    <Fun>Products id=[db013fe5-5fb6-4250-957b-a02fed826f51]</Fun>
+  </rec>
+  <rec>
+    <id>4</id>
+    <Date_upd>26/11/2014 16:20:16</Date_upd>
+    <X>1</X>
+    <Y>4</Y>
+    <Caption>BLE ENTIER</Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,255,255,255</foreground>
+    <Img></Img>
+    <Fun>Products id=[4199fc73-6fd5-4211-9720-fcdbfd457e5f]</Fun>
+  </rec>
+  <rec>
+    <id>8</id>
+    <Date_upd>26/11/2014 16:21:09</Date_upd>
+    <X>2</X>
+    <Y>4</Y>
+    <Caption>SARAZIN</Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,255,255,255</foreground>
+    <Img></Img>
+    <Fun>Products id=[fe8fd35b-18df-4a89-a14c-4ec97e8a2910]</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>26/11/2014 16:22:18</Date_upd>
+    <X>0</X>
+    <Y>5</Y>
+    <Caption>POIS CHICHE</Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,255,255,255</foreground>
+    <Img></Img>
+    <Fun>Products id=[44b3c748-4406-43f4-87ec-7b8dc2194124]</Fun>
+  </rec>
+  <rec>
+    <id>5</id>
+    <Date_upd>26/11/2014 16:24:10</Date_upd>
+    <X>1</X>
+    <Y>5</Y>
+    <Caption>PETIT POIS</Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,255,255,255</foreground>
+    <Img></Img>
+    <Fun>Products id=[6b6a03c5-c5c4-44ac-b61d-837a314b7cc9]</Fun>
+  </rec>
+  <rec>
+    <id>10</id>
+    <Date_upd>26/11/2014 16:26:35</Date_upd>
+    <X>2</X>
+    <Y>5</Y>
+    <Caption>FOUL ENTIER</Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,255,255,255</foreground>
+    <Img></Img>
+    <Fun>Products id=[c9421428-7950-43ec-86d4-7848c92470ef]</Fun>
+  </rec>
+  <rec>
+    <id>12</id>
+    <Date_upd>26/11/2014 16:27:01</Date_upd>
+    <X>2</X>
+    <Y>6</Y>
+    <Caption>FEVE CASSE</Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,255,255,255</foreground>
+    <Img></Img>
+    <Fun>Products id=[299be66b-5dde-436b-851c-af85162041cb]</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>26/11/2014 16:28:35</Date_upd>
+    <X>0</X>
+    <Y>6</Y>
+    <Caption>HARICOT BLANC</Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,255,255,255</foreground>
+    <Img></Img>
+    <Fun>Products id=[0c446f14-4c58-4ba1-b4b8-074ee3d308c0]</Fun>
+  </rec>
+  <rec>
+    <id>6</id>
+    <Date_upd>26/11/2014 16:30:14</Date_upd>
+    <X>1</X>
+    <Y>6</Y>
+    <Caption>HARICOT GEANT</Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,255,255,255</foreground>
+    <Img></Img>
+    <Fun>Products id=[bbef6ef4-e1cd-400f-a7db-33c01246e4ae]</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>26/11/2014 16:31:01</Date_upd>
+    <X>0</X>
+    <Y>7</Y>
+    <Caption>HARCOT ROUGE</Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,255,255,255</foreground>
+    <Img></Img>
+    <Fun>Products id=[1659da6a-a0f5-4748-a717-54ff268a89de]</Fun>
+  </rec>
+  <rec>
+    <id>7</id>
+    <Date_upd>26/11/2014 16:31:43</Date_upd>
+    <X>1</X>
+    <Y>7</Y>
+    <Caption>HARICOT ROSE</Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,255,255,255</foreground>
+    <Img></Img>
+    <Fun>Products id=[dae77fff-0254-475f-83bb-e53ad9c07e8f]</Fun>
+  </rec>
+  <rec>
+    <id>14</id>
+    <Date_upd>26/11/2014 16:33:52</Date_upd>
+    <X>2</X>
+    <Y>7</Y>
+    <Caption>EPAUTRE </Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,255,255,255</foreground>
+    <Img></Img>
+    <Fun>Products id=[6ec528c1-d65c-42ed-8c79-ce3ba391ac93]</Fun>
+  </rec>
+  <rec>
+    <id>9</id>
+    <Date_upd>26/11/2014 16:35:39</Date_upd>
+    <X>1</X>
+    <Y>9</Y>
+    <Caption>SIMIT</Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,255,255,0</foreground>
+    <Img></Img>
+    <Fun>Products id=[903752d1-0da8-4dfd-8eae-0b2e4c5b3e14]</Fun>
+  </rec>
+  <rec>
+    <id>45</id>
+    <Date_upd>18/02/2017 11:13:22</Date_upd>
+    <X>5</X>
+    <Y>9</Y>
+    <Caption>paque</Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,255,255,0</foreground>
+    <Img></Img>
+    <Fun>Products id=[ffb10a96-57ec-466f-91ff-9c1b31f7d4ae]</Fun>
+  </rec>
+  <rec>
+    <id>50</id>
+    <Date_upd>03/12/2014 10:37:58</Date_upd>
+    <X>5</X>
+    <Y>10</Y>
+    <Caption>OEUF 30</Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,255,255,0</foreground>
+    <Img></Img>
+    <Fun>Products id=[38a6659f-ec32-4d11-bd2f-3a5f45058668]</Fun>
+  </rec>
+  <rec>
+    <id>20</id>
+    <Date_upd>03/12/2014 10:37:41</Date_upd>
+    <X>2</X>
+    <Y>10</Y>
+    <Caption>OEUF 6</Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,255,255,0</foreground>
+    <Img></Img>
+    <Fun>Products id=[13722fc8-5931-43bd-95ae-13d4b929307b]</Fun>
+  </rec>
+  <rec>
+    <id>35</id>
+    <Date_upd>26/11/2014 17:25:10</Date_upd>
+    <X>5</X>
+    <Y>7</Y>
+    <Caption>HARICOT OEIL</Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,255,255,255</foreground>
+    <Img></Img>
+    <Fun>Products id=[ed277546-21c2-477b-8135-67d20699a400]</Fun>
+  </rec>
+  <rec>
+    <id>18</id>
+    <Date_upd>28/11/2014 09:20:44</Date_upd>
+    <X>2</X>
+    <Y>9</Y>
+    <Caption>SEVAN GAT</Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,255,255,0</foreground>
+    <Img></Img>
+    <Fun>Products id=[ca066447-dd02-44a2-b72e-5233461f053d]</Fun>
+  </rec>
+  <rec>
+    <id>10</id>
+    <Date_upd>28/11/2014 09:22:29</Date_upd>
+    <X>1</X>
+    <Y>10</Y>
+    <Caption>TCHOREG</Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,255,255,0</foreground>
+    <Img></Img>
+    <Fun>Products id=[3c9ca1a7-e010-449a-9b2e-c58fcae30de0]</Fun>
+  </rec>
+  <rec>
+    <id>22</id>
+    <Date_upd>28/11/2014 09:24:00</Date_upd>
+    <X>2</X>
+    <Y>11</Y>
+    <Caption>ARACHIDE G.S</Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,255,255,0</foreground>
+    <Img></Img>
+    <Fun>Products id=[ac3ef73c-93e5-4397-ba5a-30fdf4abf8d3]</Fun>
+  </rec>
+  <rec>
+    <id>10</id>
+    <Date_upd>01/12/2014 12:22:37</Date_upd>
+    <X>5</X>
+    <Y>2</Y>
+    <Caption>SANS CODE</Caption>
+    <Color>255,0,0,255</Color>
+    <foreground>255,255,245,238</foreground>
+    <Img></Img>
+    <Fun>Section des Articles</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>08/12/2014 18:04:03</Date_upd>
+    <X>0</X>
+    <Y>10</Y>
+    <Caption>JUS/CAFE/BON</Caption>
+    <Color>255,0,0,255</Color>
+    <foreground>255,255,245,238</foreground>
+    <Img></Img>
+    <Fun>Section des Articles</Fun>
+  </rec>
+</Grid>

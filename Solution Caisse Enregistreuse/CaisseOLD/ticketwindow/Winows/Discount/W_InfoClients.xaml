@@ -1,0 +1,42 @@
+﻿<Window x:Class="ticketwindow.Winows.Discount.W_InfoClients"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="W_InfoClients" GotFocus="Window_GotFocus" >
+    <Grid MaxHeight="768" MaxWidth="1024">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label>Enter barecode</Label> <TextBox x:Name="ebarcode" Grid.Column="1" KeyUp="ebarcode_KeyUp"></TextBox>
+        <Label Grid.Row="1" x:Name="lTypeClient"></Label>
+        <Label Grid.Row="2" x:Name="lName"></Label>
+        <Label Grid.Row="3" x:Name="lSurname"></Label>
+        <Label Grid.Row="4" x:Name="lNameCompany"></Label>
+        <Label Grid.Row="5" x:Name="lSIRET"></Label>
+        <Label Grid.Row="6" x:Name="lFRTVA"></Label>
+        <Label Grid.Row="7" x:Name="lOfficeAddress"></Label>
+        <Label Grid.Row="8" x:Name="lOfficeZipCode"></Label>
+        <Label Grid.Row="1" Grid.Column="1" x:Name="lOfficeCity"></Label>
+        <Label Grid.Row="2" Grid.Column="1" x:Name="lHomeAddress"></Label>
+        <Label Grid.Row="3" Grid.Column="1"  x:Name="lHomeZipCode"></Label>
+        <Label Grid.Row="4" Grid.Column="1" x:Name="lHomeCity"></Label>
+        <Label Grid.Row="5" Grid.Column="1" x:Name="lTelephone"></Label>
+        <Label Grid.Row="6" Grid.Column="1" x:Name="lMail"></Label>
+        <Label Grid.Row="7" Grid.Column="1" x:Name="lnumberCard"></Label>
+        <Label Grid.Row="8" Grid.Column="1" x:Name="lpoints"></Label>
+        <Label Grid.Row="9" Grid.Column="1" x:Name="lActive"></Label>
+        <Button Grid.Row="10" Grid.Column="1" Click="Button_Click" > close </Button>
+    </Grid>
+</Window>

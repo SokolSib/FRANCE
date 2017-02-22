@@ -1,0 +1,20 @@
+﻿<Window x:Class="Devis.B.w_bay"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="w_bay" Height="400" Width="500" WindowStartupLocation="CenterScreen"  Background="Black" WindowStyle="None">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Button Grid.Column="0" Grid.Row="4" IsDefault="True" Background="Green" ></Button>
+        <Button Grid.Column="1" Grid.Row="4" IsCancel="True" Background="Red"></Button>
+    </Grid>
+</Window>

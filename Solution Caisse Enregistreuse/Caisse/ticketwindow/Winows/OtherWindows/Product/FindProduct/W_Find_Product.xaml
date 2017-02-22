@@ -1,0 +1,119 @@
+﻿<Window x:Class="TicketWindow.Winows.OtherWindows.Product.FindProduct.WFindProduct"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Properties="clr-namespace:TicketWindow.Properties"
+        Title="W_Find_Product"  Height="600" Width="800" WindowState="Normal" FontSize="20"  Background="#333">
+
+    <Window.Resources>
+        <XmlDataProvider x:Key="Palettes" Source="../../../Data/GroupProduct.xml"  />
+        <XmlDataProvider x:Key="TVA" Source="../../../Data/tva.xml" />
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <ToggleButton x:Name="tgbCodeBar" Grid.Column="0" Grid.Row="0" Click="TgbClick" IsChecked="False" Content="{x:Static Properties:Resources.LabelBarcode}"/>
+        <ToggleButton x:Name="tgbName" Grid.Column="0" Grid.Row="1" IsChecked="False"  Click="TgbClick" Content="{x:Static Properties:Resources.LabelProduct}"/>
+        <ToggleButton x:Name="tgbGroup" Grid.Column="0" Grid.Row="2" IsChecked="False" Click="TgbClick" Content="{x:Static Properties:Resources.LabelGroup}"/>
+        <ToggleButton x:Name="tgbSubGruop" Grid.Column="0" Grid.Row="3" IsChecked="False" Click="TgbClick" Content="{x:Static Properties:Resources.LabelSubgroup}"/>
+
+        <TextBox Grid.Row="0" Grid.Column="1"  FontSize="20"  Name="xCodeBar" LostFocus="_LostFocus" Height="Auto" Margin="0,25" Visibility="Hidden" ></TextBox>
+        <TextBox Grid.Row="1" Grid.Column="1"  FontSize="20"  Name="xName" LostFocus="_LostFocus" Height="Auto" Margin="0,25" Visibility="Hidden" ></TextBox>
+        <ComboBox Grid.Row="2" Grid.Column="1" SelectedIndex="0" FontSize="20"  Name="xGroup" Margin="0,25" Visibility="Hidden"
+                     DisplayMemberPath="Group/@Name"
+                     SelectedValuePath="Group/@ID"
+                     ItemsSource="{Binding Mode=OneWay, 
+                     Source={StaticResource Palettes}, XPath=/Palettes/Palette}" Height="Auto" 
+                     />
+        <ComboBox  Grid.Row="3" Grid.Column="1" Margin="0,25" Visibility="Hidden"
+                               SelectedIndex="0"
+                               FontSize="20"  Name="xSub_group"
+                     SelectedValuePath="@ID"
+                     DisplayMemberPath="@Name"
+                     DataContext="{Binding ElementName=xGroup, Path=SelectedItem}"
+                     ItemsSource="{Binding XPath=./SubGroup}" Height="Auto"></ComboBox>
+
+
+        <Button Grid.Row="4" Grid.Column="0" Name="setFiltr" IsDefault="True"  Click="ButtonClick" Grid.ColumnSpan="2" Margin="0,0,394,0" Content="{x:Static Properties:Resources.BtnApplyFilter}"/>
+        <Button Grid.Row="4" Grid.Column="1"  Name="Cancel" Margin="196,0,0,0" Click="CancelClick" Content="{x:Static Properties:Resources.BtnCancel}"/>
+
+
+
+
+        <ToggleButton x:Name="tgbPrice" Grid.Column="1" Grid.Row="2" IsChecked="False"  Click="TgbClick" Visibility="Hidden"></ToggleButton>
+        <ToggleButton x:Name="tgbTVA" Grid.Column="1" Grid.Row="3" IsChecked="False" Click="TgbClick" Visibility="Hidden"></ToggleButton>
+        <ToggleButton x:Name="tgbQTY" Grid.Column="1" Grid.Row="4" IsChecked="False" Click="TgbClick" Visibility="Hidden"></ToggleButton>
+        <ToggleButton x:Name="tgbDetails" Grid.Column="1" Grid.Row="5" IsChecked="False" Click="TgbClick" Visibility="Hidden"></ToggleButton>
+
+        <ToggleButton x:Name="tgbBallance" Grid.Column="4" Grid.Row="2" IsChecked="False" Click="TgbClick" Visibility="Hidden"></ToggleButton>
+        <ToggleButton x:Name="tgbContenance" Grid.Column="4" Grid.Row="3" IsChecked="False" Click="TgbClick" Visibility="Hidden"></ToggleButton>
+        <ToggleButton x:Name="tgbUnitContenance" Grid.Column="4" Grid.Row="4" IsChecked="False" Click="TgbClick" Visibility="Hidden"></ToggleButton>
+        <ToggleButton x:Name="tgbTare" Grid.Column="4" Grid.Row="5" IsChecked="False" Click="TgbClick" Visibility="Hidden"></ToggleButton>
+
+        <Label  Name="lxCodeBar" Grid.Row="0" Grid.Column="1" Style="{StaticResource FontClairL}" Visibility="Hidden" >Code-Barres EAN</Label>
+        <Label  Name="lxName" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden">name</Label>
+        <Label  Name="lxPrice" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden">price</Label>
+        <Label  Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden">tva</Label>
+        <Label  Name="lxQTY" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden">qty</Label>
+        <Label  Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden">details</Label>
+
+        <Label Grid.Row="0" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden">group</Label>
+        <Label Grid.Row="1" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden">sub_group</Label>
+        <Label Grid.Row="2" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden">ballance</Label>
+        <Label Name="lxContenance" Grid.Row="3" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden">contenance</Label>
+        <Label Name="lxUnit_contenance" Grid.Row="4" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden">unit_contenance</Label>
+        <Label Name="lxTare" Grid.Row="5" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden">tare</Label>
+
+        <StackPanel Visibility="Hidden" x:Name="spPrice" Margin="20" Orientation="Horizontal"  Grid.Row="2" Grid.Column="2" >
+            <Label  Name="lxPricea">a</Label>
+            <TextBox  FontSize="20" Width="150"  Name="xPricea" LostFocus="_LostFocus"  />
+            <Label Name="lxPriceb">b</Label>
+            <TextBox  FontSize="20" Width="150" Name="xPriceb" LostFocus="_LostFocus"  />
+        </StackPanel>
+
+        <ComboBox Visibility="Hidden" Grid.Row="3" Grid.Column="2"  FontSize="20"  Name="xTVA"
+                              SelectedIndex="0"
+                              DisplayMemberPath="value"
+                     SelectedValuePath="id"
+                     ItemsSource="{Binding Mode=OneWay, Source={StaticResource TVA}, XPath=/tva/rec}" ></ComboBox>
+        <StackPanel Visibility="Hidden" x:Name="spQTY" Orientation="Horizontal" Grid.Row="4" Grid.Column="2" Margin="15">
+            <Label Name="lxQTYa" >a</Label>
+            <TextBox MinWidth="150" FontSize="20"  Name="xQTYa" LostFocus="_LostFocus"/>
+            <Label Name="lxQTYb" >b</Label>
+            <TextBox MinWidth="150" FontSize="20"  Name="xQTYb" LostFocus="_LostFocus"/>
+        </StackPanel>
+        <TextBox Visibility="Hidden"   Grid.Row="5" Grid.Column="2" FontSize="20" TextWrapping="Wrap" AcceptsReturn="True" Name="xDetails" Height="Auto" />
+
+
+        <ToggleButton Visibility="Hidden"  Grid.Row="2" Grid.Column="5"   Name="xBalance" Click="XBalanceClick" IsChecked="True" Height="76" Width="76"/>
+        <StackPanel Visibility="Hidden" x:Name="spContenance" Margin="20" Orientation="Horizontal"  Grid.Row="3" Grid.Column="5" >
+            <Label Name="lxContenancea" >a</Label>
+            <TextBox  FontSize="20"  MinWidth="100" Name="xContenancea" LostFocus="_LostFocus" ></TextBox>
+            <Label Name="lxContenanceb">b</Label>
+            <TextBox  FontSize="20"  Name="xContenanceb" MinWidth="100" LostFocus="_LostFocus" ></TextBox>
+        </StackPanel>
+        <StackPanel Visibility="Hidden" x:Name="spUnit_contenance" Margin="20" Orientation="Horizontal"  Grid.Row="4" Grid.Column="5" >
+            <Label Name="lxUnit_contenancea" >a</Label>
+            <TextBox  FontSize="20"  MinWidth="100" Name="xUnit_contenancea" LostFocus="_LostFocus" ></TextBox>
+            <Label  Name="lxUnit_contenanceb">b</Label>
+            <TextBox  FontSize="20"  Name="xUnit_contenanceb" MinWidth="100" LostFocus="_LostFocus" ></TextBox>
+        </StackPanel>
+        <StackPanel Visibility="Hidden" x:Name="spTare" Margin="20" Orientation="Horizontal"  Grid.Row="5" Grid.Column="5" >
+            <Label  Name="lxTarea">a</Label>
+            <TextBox  FontSize="20"  MinWidth="100" Name="xTarea" LostFocus="_LostFocus" ></TextBox>
+            <Label  Name="lxTareb">b</Label>
+            <TextBox  FontSize="20"  Name="xTareb" MinWidth="100" LostFocus="_LostFocus" ></TextBox>
+        </StackPanel>
+
+    </Grid>
+
+</Window>

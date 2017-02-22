@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="prt_BDCAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "BDCAtest.dbo.CloseTicketCheckDiscount" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="CloseTicketCheckDiscount">
+          <Key>
+            <PropertyRef Name="CustumerId" />
+            <PropertyRef Name="CloseTicketCheckcCustomer" />
+            <PropertyRef Name="DiscountCardsCustumerId" />
+          </Key>
+          <Property Name="CustumerId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CloseTicketCheckcCustomer" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DiscountCardsCustumerId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DCBC" Type="varchar(max)" />
+          <Property Name="DCBC_BiloPoints" Type="int" />
+          <Property Name="DCBC_DobavilePoints" Type="int" />
+          <Property Name="DCBC_OtnayliPoints" Type="int" />
+          <Property Name="DCBC_OstalosPoints" Type="int" />
+          <Property Name="DCBC_name" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="DiscountCards">
+          <Key>
+            <PropertyRef Name="custumerId" />
+          </Key>
+          <Property Name="custumerId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="numberCard" Type="char" MaxLength="15" />
+          <Property Name="points" Type="int" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="InfoClients_custumerId" Type="uniqueidentifier" />
+          <Property Name="DateTimeLastAddProduct" Type="datetime" />
+        </EntityType>
+        <EntityContainer Name="prt_BDCAModelStoreContainer">
+          <EntitySet Name="DiscountCards" EntityType="Self.DiscountCards" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CloseTicketCheckDiscount" EntityType="Self.CloseTicketCheckDiscount" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [CloseTicketCheckDiscount].[CustumerId] AS [CustumerId], 
+    [CloseTicketCheckDiscount].[CloseTicketCheckcCustomer] AS [CloseTicketCheckcCustomer], 
+    [CloseTicketCheckDiscount].[DiscountCardsCustumerId] AS [DiscountCardsCustumerId], 
+    [CloseTicketCheckDiscount].[DCBC] AS [DCBC], 
+    [CloseTicketCheckDiscount].[DCBC_BiloPoints] AS [DCBC_BiloPoints], 
+    [CloseTicketCheckDiscount].[DCBC_DobavilePoints] AS [DCBC_DobavilePoints], 
+    [CloseTicketCheckDiscount].[DCBC_OtnayliPoints] AS [DCBC_OtnayliPoints], 
+    [CloseTicketCheckDiscount].[DCBC_OstalosPoints] AS [DCBC_OstalosPoints], 
+    [CloseTicketCheckDiscount].[DCBC_name] AS [DCBC_name]
+    FROM [dbo].[CloseTicketCheckDiscount] AS [CloseTicketCheckDiscount]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="prt_BDCAModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+        <EntityContainer Name="prt_BDCAEntities" annotation:LazyLoadingEnabled="true" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+          <EntitySet Name="DiscountCards" EntityType="prt_BDCAModel.DiscountCards" />
+          <EntitySet Name="CloseTicketCheckDiscount" EntityType="prt_BDCAModel.CloseTicketCheckDiscount" />
+        </EntityContainer>
+        <EntityType Name="DiscountCards">
+          <Key>
+            <PropertyRef Name="custumerId" />
+          </Key>
+          <Property Name="custumerId" Type="Guid" Nullable="false" />
+          <Property Name="numberCard" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="points" Type="Int32" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="InfoClients_custumerId" Type="Guid" />
+          <Property Name="DateTimeLastAddProduct" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="CloseTicketCheckDiscount">
+          <Key>
+            <PropertyRef Name="CustumerId" />
+            <PropertyRef Name="CloseTicketCheckcCustomer" />
+            <PropertyRef Name="DiscountCardsCustumerId" />
+          </Key>
+          <Property Name="CustumerId" Type="Guid" Nullable="false" />
+          <Property Name="CloseTicketCheckcCustomer" Type="Guid" Nullable="false" />
+          <Property Name="DiscountCardsCustumerId" Type="Guid" Nullable="false" />
+          <Property Name="DCBC" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DCBC_BiloPoints" Type="Int32" />
+          <Property Name="DCBC_DobavilePoints" Type="Int32" />
+          <Property Name="DCBC_OtnayliPoints" Type="Int32" />
+          <Property Name="DCBC_OstalosPoints" Type="Int32" />
+          <Property Name="DCBC_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="prt_BDCAModelStoreContainer" CdmEntityContainer="prt_BDCAEntities">
+          <EntitySetMapping Name="DiscountCards">
+            <EntityTypeMapping TypeName="prt_BDCAModel.DiscountCards">
+              <MappingFragment StoreEntitySet="DiscountCards">
+                <ScalarProperty Name="DateTimeLastAddProduct" ColumnName="DateTimeLastAddProduct" />
+                <ScalarProperty Name="InfoClients_custumerId" ColumnName="InfoClients_custumerId" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="points" ColumnName="points" />
+                <ScalarProperty Name="numberCard" ColumnName="numberCard" />
+                <ScalarProperty Name="custumerId" ColumnName="custumerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CloseTicketCheckDiscount">
+            <EntityTypeMapping TypeName="prt_BDCAModel.CloseTicketCheckDiscount">
+              <MappingFragment StoreEntitySet="CloseTicketCheckDiscount">
+                <ScalarProperty Name="DCBC_name" ColumnName="DCBC_name" />
+                <ScalarProperty Name="DCBC_OstalosPoints" ColumnName="DCBC_OstalosPoints" />
+                <ScalarProperty Name="DCBC_OtnayliPoints" ColumnName="DCBC_OtnayliPoints" />
+                <ScalarProperty Name="DCBC_DobavilePoints" ColumnName="DCBC_DobavilePoints" />
+                <ScalarProperty Name="DCBC_BiloPoints" ColumnName="DCBC_BiloPoints" />
+                <ScalarProperty Name="DCBC" ColumnName="DCBC" />
+                <ScalarProperty Name="DiscountCardsCustumerId" ColumnName="DiscountCardsCustumerId" />
+                <ScalarProperty Name="CloseTicketCheckcCustomer" ColumnName="CloseTicketCheckcCustomer" />
+                <ScalarProperty Name="CustumerId" ColumnName="CustumerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer>
+    <edmx:Connection>
+      <edmx:DesignerInfoPropertySet>
+        <edmx:DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </edmx:DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <edmx:DesignerInfoPropertySet>
+        <edmx:DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <edmx:DesignerProperty Name="EnablePluralization" Value="false" />
+        <edmx:DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <edmx:DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <edmx:DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </edmx:DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams />
+  </edmx:Designer>
+</edmx:Edmx>

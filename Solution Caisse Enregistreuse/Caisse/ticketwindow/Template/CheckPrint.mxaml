@@ -1,0 +1,184 @@
+﻿<FlowDocument xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" ColumnWidth="280" FontSize="8pt" FontFamily="Arial" LineHeight="1">
+
+  <BlockUIContainer>
+    <Image Source="images/anahit_9.jpg"/>
+  </BlockUIContainer>
+
+  <Paragraph TextAlignment="Center">
+    228 Avenue du 24 Avril 1915, 13012 Marseille
+  </Paragraph>
+  <Paragraph TextAlignment="Center">
+    Tél : 04 91 44 37 73
+  </Paragraph>
+  {% if Facture == null %}
+  
+  <Paragraph TextAlignment="Center" FontWeight="Bold" Margin="0,10,0,0">***VENTE***</Paragraph>
+  {% endif %}
+
+  {% if Facture != null %}
+
+  <Paragraph TextAlignment="Center" FontWeight="Bold" Margin="0,10,0,0">***FACTURE***</Paragraph>
+  {% endif %}
+
+  {% if Duplicate != null %}
+  <Paragraph TextAlignment="Center" Margin="0,20,0,0">
+    <Bold> D     U     B     L     I     C     A     T     A </Bold>
+  </Paragraph>
+  {% endif %}
+
+  {% for GroupProduct in GroupProducts -%}
+
+  <!-- Products -->
+  <Paragraph FontSize="8pt" FontWeight="Bold">{{ GroupProduct.categories }}</Paragraph>
+
+
+  <Table>
+    <Table.Columns>
+      <TableColumn Width="215"></TableColumn>
+      <TableColumn Width="55"></TableColumn>
+    </Table.Columns>
+    <TableRowGroup>
+
+      {% for Product in GroupProduct.Products -%}
+      <TableRow>
+        <TableCell>
+          <Paragraph>{{Product.name}}</Paragraph>
+        </TableCell>
+        <TableCell TextAlignment="Right">
+          <Paragraph>{{Product.total}}</Paragraph>
+        </TableCell>
+      </TableRow>
+      {% if Product.qty != 1 %}
+      <TableRow>
+        <TableCell ColumnSpan="2">
+          <Paragraph FontSize="6pt" FontStyle="Italic">{{Product.qty}} x {{ Product.price }}</Paragraph>
+        </TableCell>
+      </TableRow>
+      {% endif %}
+
+
+      {% endfor -%}
+    </TableRowGroup>
+  </Table>
+
+
+  {% endfor -%}
+
+
+  <!-- Total TTC -->
+  <Table>
+    <Table.Columns>
+      <TableColumn Width="215"></TableColumn>
+      <TableColumn Width="55"></TableColumn>
+    </Table.Columns>
+    <TableRowGroup>
+      <TableRow>
+        <TableCell>
+          <Paragraph TextAlignment="Right" FontWeight="Bold" >TOTAL :</Paragraph>
+        </TableCell>
+        <TableCell>
+          <Paragraph TextAlignment="Right" FontWeight="Bold">{{ TotalTTC }}</Paragraph>
+        </TableCell>
+      </TableRow>
+    </TableRowGroup>
+  </Table>
+
+
+  <!-- PaYs -->
+  {% for Pay in Pays -%}
+  {% if Pay.money != 0.00 %}
+  <Paragraph>{{ Pay.name }} : {{ Pay.money }} €</Paragraph>
+  {% endif %}
+  {% endfor -%}
+
+  <!-- Rendu -->
+  {% if Rendu != null %}
+  <Paragraph>Rendu : {{Rendu}} €</Paragraph>
+  {% endif %}
+
+  <!-- TVA -->
+  <Paragraph TextAlignment="Center" FontWeight="Bold" Margin="0,10,0,0">***TVA***</Paragraph>
+  <Table FontSize="8pt">
+    <Table.Columns>
+      <TableColumn Width="70"></TableColumn>
+      <TableColumn Width="60"></TableColumn>
+      <TableColumn Width="70"></TableColumn>
+      <TableColumn Width="60"></TableColumn>
+    </Table.Columns>
+
+    {% for tva in TVA -%}
+    <TableRowGroup>
+      <TableRow>
+        <TableCell>
+          <Paragraph TextAlignment="Center">TVA {{tva.name}} : </Paragraph>
+        </TableCell>
+        <TableCell>
+          <Paragraph TextAlignment="Right">{{tva.money}} €</Paragraph>
+        </TableCell>
+        <TableCell>
+          <Paragraph TextAlignment="Center">HT : </Paragraph>
+        </TableCell>
+        <TableCell>
+          <Paragraph TextAlignment="Right">{{tva.ht}} € </Paragraph>
+        </TableCell>
+      </TableRow>
+    </TableRowGroup>
+    {% endfor -%}
+  </Table>
+
+  {% if TotalTVA != nuul %}
+  <Table  FontSize="8pt">
+    <Table.Columns>
+      <TableColumn Width="70"></TableColumn>
+      <TableColumn Width="60"></TableColumn>
+      <TableColumn Width="70"></TableColumn>
+      <TableColumn Width="60"></TableColumn>
+    </Table.Columns>
+    <TableRowGroup>
+      <TableRow>
+        <TableCell>
+          <Paragraph TextAlignment="Center">Total TVA : </Paragraph>
+        </TableCell>
+        <TableCell>
+          <Paragraph TextAlignment="Right">{{TotalTVA}} €</Paragraph>
+        </TableCell>
+        <TableCell>
+          <Paragraph TextAlignment="Center">Total HT : </Paragraph>
+        </TableCell>
+        <TableCell>
+          <Paragraph TextAlignment="Right">{{TotalTVAHT}} €</Paragraph>
+        </TableCell>
+      </TableRow>
+    </TableRowGroup>
+  </Table>
+  {% endif %}
+
+  <!-- Card Discount -->
+  {% if DCBC != null %}
+  <Paragraph TextAlignment="Center" FontWeight="Bold" Margin="0,10,0,0">***CARTE FIDELITE***</Paragraph>
+  <Paragraph>{{DCBC_name}} - {{DCBC}}</Paragraph>
+  <Paragraph>Ancien solde de points : {{DCBC_BiloPoints}}</Paragraph>
+  <Paragraph>Points fidelité acquis : {{DCBC_DobavilePoints}}</Paragraph>
+  <Paragraph>Nouveau solde de points : {{DCBC_OstalosPoints}}</Paragraph>
+  {% endif %}
+
+  {% if Discount != null %}
+  <Paragraph FontWeight="Bold">Total remise sur ce ticket : {{Discount}} €</Paragraph>
+  {% endif %}
+
+  <!-- BARCODE-->  
+  <Paragraph FontFamily="Code 3 de 9" TextAlignment="Center" FontSize="27pt" > {{ incodeBarcode }} </Paragraph>
+  <Paragraph TextAlignment="Center">{{BARCODE}}</Paragraph>
+  <Paragraph TextAlignment="Center">{{NumeroTicket}}</Paragraph>
+
+  <!--FOOTER-->
+  <Paragraph TextAlignment="Center" Margin="0,10,0,0">{{ Footer }}</Paragraph>
+  
+  <!--  Pour Inconnue   -->
+  {% if DCBC_name != null %}
+  <Paragraph TextAlignment="Center" FontWeight="Bold"  Margin="0,10,0,0">Votre carte de fidélité n’est pas encore reconnu?</Paragraph>
+  <Paragraph TextAlignment="Center" FontWeight="Bold">Créer votre compte sur Anahit.fr</Paragraph>
+  <Paragraph TextAlignment="Center" FontWeight="Bold">et bénéficier d'avantages exclusifs!!!</Paragraph>
+  {% endif %}
+
+</FlowDocument>

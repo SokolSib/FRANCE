@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Palettes>
+  <Palette>
+    <Group Name="Divers" ID="1" />
+    <SubGroup Name="Divers" ID="3" />
+  </Palette>
+  <Palette>
+    <Group Name="Fruits &amp; Légumes" ID="2" />
+    <SubGroup Name="Légumes frais" ID="13" />
+    <SubGroup Name="Fruits frais" ID="14" />
+    <SubGroup Name="Soupes fraiches" ID="15" />
+    <SubGroup Name="Purées fraiches" ID="16" />
+    <SubGroup Name="Fruits secs" ID="17" />
+  </Palette>
+  <Palette>
+    <Group Name="Boucherie &amp; Volaille" ID="3" />
+    <SubGroup Name="Brochettes, Saucisses" ID="18" />
+    <SubGroup Name="Boeuf" ID="19" />
+    <SubGroup Name="Porc, Veau, Agneau" ID="20" />
+    <SubGroup Name="Poulet, Dinde, Lapin" ID="21" />
+    <SubGroup Name="Magret, Gésier, confit" ID="22" />
+    <SubGroup Name="Cordon bleu, Nuggets, Manchon" ID="23" />
+  </Palette>
+  <Palette>
+    <Group Name="Produits de la mer" ID="4" />
+    <SubGroup Name="Anchois, Poisson mariné" ID="24" />
+    <SubGroup Name="Coquillages &amp; crustacés" ID="25" />
+    <SubGroup Name="Tarama, Rillette de poisson" ID="26" />
+    <SubGroup Name="Poisson nature" ID="27" />
+    <SubGroup Name="Poisson fumé" ID="28" />
+    <SubGroup Name="Poisson préparé" ID="29" />
+    <SubGroup Name="Soupe, sauce, citron" ID="30" />
+    <SubGroup Name="Surimi" ID="31" />
+  </Palette>
+  <Palette>
+    <Group Name="Charcuterie &amp; Traiteur" ID="5" />
+    <SubGroup Name="Saucisse, saucisson" ID="32" />
+  </Palette>
+  <Palette>
+    <Group Name="CrémerieYaourt &amp; Dessert frais" ID="6" />
+  </Palette>
+  <Palette>
+    <Group Name="Surgelés" ID="7" />
+  </Palette>
+  <Palette>
+    <Group Name="Epicerie salée" ID="8" />
+  </Palette>
+  <Palette>
+    <Group Name="Epicerie sucrée" ID="9" />
+  </Palette>
+  <Palette>
+    <Group Name="Pain &amp; Viennoiserie" ID="10" />
+  </Palette>
+  <Palette>
+    <Group Name="Boissons" ID="11" />
+  </Palette>
+  <Palette>
+    <Group Name="Alcool" ID="12" />
+    <SubGroup Name="Vodka" ID="5" />
+    <SubGroup Name="Champagne" ID="6" />
+    <SubGroup Name="Cognac" ID="7" />
+    <SubGroup Name="Martini" ID="8" />
+    <SubGroup Name="Vin" ID="9" />
+    <SubGroup Name="Whisky" ID="10" />
+    <SubGroup Name="Champagne" ID="11" />
+    <SubGroup Name="Mousseux, Crémants" ID="12" />
+  </Palette>
+</Palettes>

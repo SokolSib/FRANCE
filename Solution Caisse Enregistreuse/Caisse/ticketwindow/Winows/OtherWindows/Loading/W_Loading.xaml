@@ -1,0 +1,9 @@
+﻿<Window x:Class="TicketWindow.Winows.OtherWindows.Loading.WLoading" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:WPFTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
+        xmlns:Properties="clr-namespace:TicketWindow.Properties"
+        Title="Veuillez patientez!" WindowStyle="None"  AllowsTransparency="True"  Background="Transparent"
+         WindowStartupLocation="CenterScreen" ResizeMode="NoResize" ShowInTaskbar="False" >
+
+    <xctk:BusyIndicator x:Name="BusyIndicator" IsBusy="True" BusyContent="{x:Static Properties:Resources.LabelPleaseWaitWhileLoading}" >
+
+    </xctk:BusyIndicator>
+</Window>

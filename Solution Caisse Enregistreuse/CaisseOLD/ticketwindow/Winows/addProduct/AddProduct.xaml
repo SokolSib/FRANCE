@@ -1,0 +1,138 @@
+﻿<Window x:Class="ticketwindow.Winows.addProduct.AddProduct"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Background="#333"
+       
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        Title="AddProduct" Width="1024" Height="768" WindowStartupLocation="CenterScreen" FontSize="16" WindowStyle="SingleBorderWindow" WindowState="Normal">
+    <Window.Resources>
+        <XmlDataProvider x:Key="Palettes" Source="D:\market\ticketwindow\ticketwindow\Data\GroupProduct.xml" />
+        <XmlDataProvider x:Key="TVA" Source="D:\market\ticketwindow\ticketwindow\Data\tva.xml" />
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="600"/>
+            <RowDefinition />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+        <TabControl Padding="1,1,1,1" Margin="0,1,0,2" >
+            <TabItem Header="Ajouter">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="128"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="64"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label  Name="lxCodeBar" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">Code Barre</Label>
+                    <Label  Name="lxName" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">Description</Label>
+                    <Label  Name="lxPrice" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">Prix</Label>
+                    <Label  Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">Type de TVA</Label>
+                    <Label  Name="lxQTY" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">QTY</Label>
+                    <Label  Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">Détails</Label>
+                    <Label Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">Famille</Label>
+                    <Label Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">Sous-Famille</Label>
+                    <Label Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">Ballance</Label>
+                    <Label Name="lxContenance" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">Contenance</Label>
+                    <Label Name="lxUnit_contenance" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">Unit Contenance</Label>
+                    <Label  Name="lxTare" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">Tare</Label>
+
+
+                    <TextBox  Grid.Row="0" Grid.Column="1"  FontSize="20"  Name="xCodeBar" LostFocus="_LostFocus" ></TextBox>
+                    <TextBox  Grid.Row="1" Grid.Column="1"  FontSize="20"  Name="xName" LostFocus="_LostFocus"></TextBox>
+                    <TextBox  Grid.Row="2" Grid.Column="1"  FontSize="20"  Name="xPrice" LostFocus="_LostFocus" >
+                        
+                    </TextBox>
+                    <ComboBox Grid.Row="3" Grid.Column="1"  FontSize="20"  Name="xTVA"
+                              SelectedIndex="0"
+                              DisplayMemberPath="value"
+                     SelectedValuePath="id"
+                     ItemsSource="{Binding Mode=OneWay, Source={StaticResource TVA}, XPath=/tva/rec}" ></ComboBox>
+                    <TextBox  Grid.Row="4" Grid.Column="1"  FontSize="20"  Name="xQTY" LostFocus="_LostFocus">
+                     
+                    </TextBox>
+                    <TextBox  Grid.Row="5" Grid.Column="1" FontSize="20" TextWrapping="Wrap" AcceptsReturn="True" Name="xDetails" Height="Auto"></TextBox>
+
+                    <ComboBox  Grid.Row="0" Grid.Column="3" SelectedIndex="0" FontSize="20"  Name="xGroup" 
+                     DisplayMemberPath="Group/@Name"
+                     SelectedValuePath="Group/@ID"
+                     ItemsSource="{Binding Mode=OneWay, 
+                     Source={StaticResource Palettes}, XPath=/Palettes/Palette}" 
+                     Grid.ColumnSpan="2"/>
+                    <ComboBox  Grid.Row="1" Grid.Column="3"
+                               SelectedIndex="0"
+                               FontSize="20"  Name="xSub_group"
+                     SelectedValuePath="@ID"
+                     DisplayMemberPath="@Name"
+                     DataContext="{Binding ElementName=xGroup, Path=SelectedItem}"
+                     ItemsSource="{Binding XPath=./SubGroup}"></ComboBox>
+                    <ToggleButton Grid.Row="2" Grid.Column="3"  Name="xBalance" Click="xBalance_Click" IsChecked="True" Height="76" Width="76"/>
+                    <TextBox  Grid.Row="3" Grid.Column="3"  FontSize="20"  Name="xContenance" LostFocus="_LostFocus"></TextBox>
+                    <TextBox  Grid.Row="4" Grid.Column="3"  FontSize="20"  Name="xUnit_contenance" LostFocus="_LostFocus"></TextBox>
+                    <TextBox  Grid.Row="5" Grid.Column="3"  FontSize="20"  Name="xTare" LostFocus="_LostFocus"></TextBox>
+
+                    <Button Grid.Row="0" Margin="5,15,5,15" Grid.Column="4" >+</Button>
+                    <Button Grid.Row="1" Margin="5,15,5,15" Grid.Column="4" >+</Button>
+
+                    <Button Grid.Row="6" Margin="55,10,55,10" Grid.Column="1" Name="Save"  Click="Button_Click" >Ajouter</Button>
+                    <Button Grid.Row="6" Margin="55,10,55,10" Grid.Column="3" Name="Cancel" Click="Cancel_Click" >Annuler</Button>
+
+                    </Grid>
+            </TabItem>
+            <TabItem Header="Modif">
+               
+            </TabItem>
+            <TabItem Header="Supreme">
+
+            </TabItem>
+        </TabControl>
+        <DataGrid Grid.Row="1"
+            ItemsSource="{Binding}"
+           AutoGenerateColumns="False"  
+            x:Name="dataGrid1" IsReadOnly="True"
+            VerticalAlignment="Top"
+          SelectionChanged="dataGrid1_Selected"
+            HorizontalAlignment="Stretch">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="id"                 Binding="{Binding Path=Element[id].Value}"/>
+                <DataGridTextColumn Header="code_bare"          Binding="{Binding Path=Element[code_bare].Value}"/>
+                <DataGridTextColumn Header="Name"               Binding="{Binding Path=Element[name].Value}"/>
+                <DataGridTextColumn Header="Price"              Binding="{Binding Path=Element[price].Value}" />
+                <DataGridTextColumn Header="TVA"                Binding="{Binding Path=Element[tva].Value}" />
+                <DataGridTextColumn Header="chp_cat"            Binding="{Binding Path=Element[chp_cat].Value}" />
+                <DataGridTextColumn Header="chp_cat_s"          Binding="{Binding Path=Element[chp_cat_s].Value}" />
+                <DataGridTextColumn Header="chp_fam"            Binding="{Binding Path=Element[chp_fam].Value}" />
+                <DataGridTextColumn Header="chp_fam_s"          Binding="{Binding Path=Element[chp_fam].Value}" />
+                <DataGridTextColumn Header="chp_ss_fam_s"       Binding="{Binding Path=Element[chp_ss_fam_s].Value}" />
+                <DataGridTextColumn Header="balance"            Binding="{Binding Path=Element[balance].Value}" />
+                <DataGridTextColumn Header="contenance"         Binding="{Binding Path=Element[contenance].Value}" />
+                <DataGridTextColumn Header="uniteContenance"    Binding="{Binding Path=Element[uniteContenance].Value}" />
+                <DataGridTextColumn Header="tare"               Binding="{Binding Path=Element[tare].Value}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+            <Button Grid.Row="0" Grid.Column="0" IsDefault="True" Width="150" x:Name="bSave" Click="bSave_Click">Valider</Button>
+            <Button Grid.Row="0" Grid.Column="1"  Width="150">Annuler</Button>
+        </Grid>
+    </Grid>
+</Window>

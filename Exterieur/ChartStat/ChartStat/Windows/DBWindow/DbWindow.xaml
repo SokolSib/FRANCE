@@ -1,0 +1,22 @@
+﻿<Window x:Class="ChartStat.Windows.DBWindow.DbWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Name="Window"
+        Title="Выбор базы данных" Height="500" Width="600" WindowStartupLocation="CenterScreen">
+    
+    <Grid Background="Black">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Строка подключения" Foreground="White" />
+        
+        <TextBox Grid.Row="1" Margin="3" Text="{Binding ConnectionString}" Grid.ColumnSpan="2" TextWrapping="Wrap" />
+
+        <Button Grid.Row="2" Content="Проверить" Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=Window}" />
+
+    </Grid>
+    
+</Window>

@@ -1,0 +1,53 @@
+﻿<Window x:Class="TicketWindow.Winows.OtherWindows.UpdateDB.WUpdateDb"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Properties="clr-namespace:TicketWindow.Properties"
+        mc:Ignorable="d"
+        Loaded="WindowLoaded"
+        Name="w_upd"
+        Title="W_updateDB"  Background="#333" FontSize="18" Height="768" Width="1024" WindowStyle="None"  WindowState="Maximized" >
+
+
+    <Grid Height="768" Width="1024">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="2" x:Name="xClose" ToolTip="closeWindow" IsCancel="True" FontSize="25" Foreground="Red" FontWeight="Bold" Content="{x:Static Properties:Resources.BtnClose}"/>
+
+            <Button Grid.Column="1" x:Name="xFUpd"  ToolTip="clickFullUpdateDB" FontSize="25" Foreground="Blue" FontWeight="Bold" Content="{x:Static Properties:Resources.BtnFullUpdate}"/>
+            <Button x:Name="xUpd" ToolTip="clickUpdateDB" FontSize="25" Foreground="Yellow" FontWeight="Bold" Content="{x:Static Properties:Resources.BtnUpdate}"/>
+        </Grid>
+        <DataGrid Grid.Row="1" ItemsSource="{Binding}" AutoGenerateColumns="False"  x:Name="dataGrid1" IsReadOnly="True"  VerticalAlignment="Top"  HorizontalAlignment="Stretch" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="{x:Static Properties:Resources.LabelBarcode}" Width="120" Binding="{Binding Path=Element[barcode].Value}"/>
+                <DataGridTextColumn Header="{x:Static Properties:Resources.LabelName}" Width="*" Binding="{Binding Path=Element[name].Value}"/>
+                <DataGridTextColumn Header="{x:Static Properties:Resources.LabelOld}" Width="80" Binding="{Binding Path=Element[price].Value}" />
+                <DataGridTextColumn Header="{x:Static Properties:Resources.LabelNew}" Width="70" Binding="{Binding Path=Element[price_].Value}" />
+                <DataGridTextColumn Header="{x:Static Properties:Resources.LabelType}" Width="50" Binding="{Binding Path=Element[type].Value}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button                 x:Name="xP"   ToolTip="HistoryChangeProductsPrevious" Content="{x:Static Properties:Resources.BtnPrev}"/>
+            <Button Grid.Column="1" x:Name="xPrt" ToolTip="HistoryChangeProductsPrint" Content="{x:Static Properties:Resources.BtnPrint}" />
+            <Button Grid.Column="2" x:Name="xN"   ToolTip="HistoryChangeProductsNext" Content="{x:Static Properties:Resources.BtnNext}" />
+        </Grid>
+    </Grid>
+
+</Window>

@@ -1,0 +1,24 @@
+﻿<Window x:Class="ticketwindow.Winows.Return.W_Return"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:UserControl="clr-namespace:ticketwindow.Winows.Keyboard"
+        Title="Retours et Remboursements"  Background="#333" FontSize="18" WindowStartupLocation="CenterScreen" 
+       WindowStyle="SingleBorderWindow"  Height="450" Width="512" GotFocus="Window_GotFocus" Loaded="Window_Loaded">
+    <Grid Height="450" Width="512">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="80" />
+        </Grid.RowDefinitions>
+        <TextBox x:Name="codebare"    Grid.Column="0" Grid.ColumnSpan="2" KeyUp="TextBox_KeyUp" />
+        <Button  x:Name="button"  Grid.Row="2" Grid.Column="0" ToolTip="click_return_product" Click="Button_Click" Background="Green">Valider</Button>
+        <Button  x:Name="buttonc" Grid.Row="2"  Grid.Column="1"  Background="Red" Click="buttonc_Click" >Annuler</Button>
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="2" x:Name="xNumPad" Visibility="Visible" >
+            <UserControl:W_NumPadMini x:Name="numPad" />
+        </StackPanel>
+    </Grid>
+
+</Window>

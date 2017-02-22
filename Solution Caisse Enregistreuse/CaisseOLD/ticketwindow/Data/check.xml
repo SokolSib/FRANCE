@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<checks ticket="Caisse 2" openDate="25/08/2014 23:03:07" closeDate="" idTicketWindowG="c0362c47-a8f3-4e19-98d4-cffbe1060482" idTicketWindow="2f22d8f6-de90-401c-ad4d-e55b223a50e3">
+  <check barcodeCheck="108272014152153778" Cash="10.00" BankCards="0.0" BankChecks="0.0" Resto="0.0" Rendu="-0,20" sum="9.8" date="2014-08-27T15:22:46.1591654+02:00">
+    <product>
+      <id>ce9ed679-022a-4a25-a80c-f341a399e1ff</id>
+      <categories>1</categories>
+      <qty>1</qty>
+      <name>PAIN ROND</name>
+      <barcode>22710000002</barcode>
+      <price_ht>0.80</price_ht>
+      <tva>1</tva>
+      <total>0.80</total>
+    </product>
+    <product>
+      <id>83bf7f3f-ce27-4938-ac82-7b7c1512f3b0</id>
+      <categories>1</categories>
+      <qty>1</qty>
+      <name>DIMES PECHE 24</name>
+      <barcode></barcode>
+      <price_ht>9.00</price_ht>
+      <tva>1</tva>
+      <total>9.00</total>
+    </product>
+  </check>
+</checks>

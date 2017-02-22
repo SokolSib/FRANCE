@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Grid>
+  <rec>
+    <id>0</id>
+    <Date_upd>26/08/2014 16:37:02</Date_upd>
+    <X>0</X>
+    <Y>0</Y>
+    <Caption>VIANDE /KG</Caption>
+    <Color>255,165,42,42</Color>
+    <foreground>255,0,0,0</foreground>
+    <Img></Img>
+    <Fun>Section des Articles</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>26/08/2014 15:57:35</Date_upd>
+    <X>5</X>
+    <Y>0</Y>
+    <Caption>Fermer</Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,240,248,255</foreground>
+    <Img></Img>
+    <Fun>Fermer</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>26/08/2014 16:36:50</Date_upd>
+    <X>0</X>
+    <Y>1</Y>
+    <Caption>Fruits Sec</Caption>
+    <Color>255,105,105,105</Color>
+    <foreground>255,255,255,255</foreground>
+    <Img></Img>
+    <Fun>Section des Articles</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>26/08/2014 16:36:24</Date_upd>
+    <X>0</X>
+    <Y>2</Y>
+    <Caption>Legumes Sec</Caption>
+    <Color>255,192,192,192</Color>
+    <foreground>255,0,0,0</foreground>
+    <Img></Img>
+    <Fun>Section des Articles</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>26/08/2014 16:36:04</Date_upd>
+    <X>0</X>
+    <Y>3</Y>
+    <Caption>Legumes Frais</Caption>
+    <Color>255,0,255,255</Color>
+    <foreground>255,0,0,0</foreground>
+    <Img></Img>
+    <Fun>Section des Articles</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>26/08/2014 16:37:48</Date_upd>
+    <X>0</X>
+    <Y>4</Y>
+    <Caption>Fromages</Caption>
+    <Color>255,250,235,215</Color>
+    <foreground>255,0,0,0</foreground>
+    <Img></Img>
+    <Fun>Section des Articles</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>26/08/2014 16:38:58</Date_upd>
+    <X>0</X>
+    <Y>5</Y>
+    <Caption>Pains</Caption>
+    <Color>255,255,127,80</Color>
+    <foreground>255,0,0,0</foreground>
+    <Img></Img>
+    <Fun>Section des Articles</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>26/08/2014 16:43:44</Date_upd>
+    <X>0</X>
+    <Y>6</Y>
+    <Caption>Les Olives</Caption>
+    <Color>255,0,255,127</Color>
+    <foreground>255,0,0,0</foreground>
+    <Img></Img>
+    <Fun>Section des Articles</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>26/08/2014 16:43:34</Date_upd>
+    <X>0</X>
+    <Y>7</Y>
+    <Caption>Poissons</Caption>
+    <Color>255,0,0,255</Color>
+    <foreground>255,240,248,255</foreground>
+    <Img></Img>
+    <Fun>Section des Articles</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>26/08/2014 16:44:39</Date_upd>
+    <X>0</X>
+    <Y>8</Y>
+    <Caption>BonBon</Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,240,248,255</foreground>
+    <Img></Img>
+    <Fun>Section des Articles</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>27/08/2014 14:12:04</Date_upd>
+    <X>2</X>
+    <Y>0</Y>
+    <Caption>Divers PROD</Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,255,0,0</foreground>
+    <Img></Img>
+    <Fun>ProductDivers</Fun>
+  </rec>
+  <rec>
+    <id>2</id>
+    <Date_upd>27/08/2014 15:05:27</Date_upd>
+    <X>2</X>
+    <Y>1</Y>
+    <Caption>Divers Pess</Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,240,248,255</foreground>
+    <Img></Img>
+    <Fun>ProductDivers</Fun>
+  </rec>
+  <rec>
+    <id>8</id>
+    <Date_upd>27/08/2014 17:36:41</Date_upd>
+    <X>2</X>
+    <Y>4</Y>
+    <Caption>div</Caption>
+    <Color>255,0,0,0</Color>
+    <foreground>255,0,0,0</foreground>
+    <Img></Img>
+    <Fun>ProductDivers</Fun>
+  </rec>
+</Grid>

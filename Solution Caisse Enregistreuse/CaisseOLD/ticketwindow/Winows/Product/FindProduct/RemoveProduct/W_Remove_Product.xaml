@@ -1,0 +1,78 @@
+﻿<Window x:Class="ticketwindow.Winows.Product.RemoveProduct.W_Remove_product"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 Title="W_AddProduct" Height="768" Width="1024" FontSize="20"  Background="#333">
+    <Window.Resources>
+        <XmlDataProvider x:Key="Palettes" Source="../../../Data/GroupProduct.xml"  />
+        <XmlDataProvider x:Key="TVA" Source="../../../Data/tva.xml" />
+    </Window.Resources>
+    <Grid MaxHeight="560" MaxWidth="1024" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="64"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="128"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="64"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label  Name="lxCodeBar" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">codebar</Label>
+        <Label  Name="lxName" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">name</Label>
+        <Label  Name="lxPrice" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">price</Label>
+        <Label  Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">tva</Label>
+        <Label  Name="lxQTY" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">qty</Label>
+        <Label  Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">details</Label>
+
+        <Label Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">group</Label>
+        <Label Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">sub_group</Label>
+        <Label Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">ballance</Label>
+        <Label Name="lxContenance" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">contenance</Label>
+        <Label Name="lxUnit_contenance" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">unit_contenance</Label>
+        <Label Name="lxTare" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">tare</Label>
+
+
+        <TextBox  Grid.Row="0" Grid.Column="1"  FontSize="20"  Name="xCodeBar" IsEnabled="False" ></TextBox>
+        <TextBox  Grid.Row="1" Grid.Column="1"  FontSize="20"  Name="xName" IsEnabled="False"></TextBox>
+        <TextBox  Grid.Row="2" Grid.Column="1"  FontSize="20"  Name="xPrice" IsEnabled="False" >
+
+        </TextBox>
+        <ComboBox Grid.Row="3" Grid.Column="1"  FontSize="20"  Name="xTVA"
+                              SelectedIndex="0"
+                              IsEnabled="False"
+                              DisplayMemberPath="value"
+                     SelectedValuePath="id"
+                     ItemsSource="{Binding Mode=OneWay, Source={StaticResource TVA}, XPath=/tva/rec}" ></ComboBox>
+        <TextBox  Grid.Row="4" Grid.Column="1"  FontSize="20"  Name="xQTY" IsEnabled="False">
+
+        </TextBox>
+        <TextBox IsEnabled="False" Grid.Row="5" Grid.Column="1" FontSize="20" TextWrapping="Wrap" AcceptsReturn="True" Name="xDetails" Height="Auto"></TextBox>
+
+        <ComboBox IsEnabled="False" Grid.Row="0" Grid.Column="3" SelectedIndex="0" FontSize="20"  Name="xGroup" 
+                     DisplayMemberPath="Group/@Name"
+                     SelectedValuePath="Group/@ID"
+                     ItemsSource="{Binding Mode=OneWay, 
+                     Source={StaticResource Palettes}, XPath=/Palettes/Palette}"/>
+        <ComboBox IsEnabled="False"  Grid.Row="1" Grid.Column="3"
+                               SelectedIndex="0"
+                               FontSize="20"  Name="xSub_group"
+                     SelectedValuePath="@ID"
+                     DisplayMemberPath="@Name"
+                     DataContext="{Binding ElementName=xGroup, Path=SelectedItem}"
+                     ItemsSource="{Binding XPath=./SubGroup}"></ComboBox>
+        <ToggleButton Grid.Row="2" Grid.Column="3"   Name="xBalance" IsEnabled="False" IsChecked="True" Height="76" Width="76"/>
+        <TextBox  Grid.Row="3" Grid.Column="3"  FontSize="20"  Name="xContenance" ></TextBox>
+        <TextBox  Grid.Row="4" Grid.Column="3"  FontSize="20"  Name="xUnit_contenance" ></TextBox>
+        <TextBox  Grid.Row="5" Grid.Column="3"  FontSize="20"  Name="xTare" ></TextBox>
+        <Button Grid.Row="0" Margin="5,15,5,15" Grid.Column="4" >+</Button>
+        <Button Grid.Row="1" Margin="5,15,5,15" Grid.Column="4" >+</Button>
+        <Button Grid.Row="6" Margin="55,10,55,10" Grid.Column="1" Name="Remove" Click="Remove_Click" >Remove</Button>
+        <Button Grid.Row="6" Margin="55,10,55,10" Grid.Column="3"  Name="Cancel" Click="Cancel_Click" >Cancel</Button>
+    </Grid>
+</Window>

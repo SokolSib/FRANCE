@@ -1,0 +1,35 @@
+<Grid>
+  <rec>
+    <id>0</id>
+    <Date_upd>26/11/2014 12:27:35</Date_upd>
+    <X>0</X>
+    <Y>0</Y>
+    <Caption>Especes</Caption>
+    <Color>255,0,0,255</Color>
+    <foreground>255,238,239,255</foreground>
+    <Img></Img>
+    <Fun>1</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>09/12/2014 11:22:15</Date_upd>
+    <X>0</X>
+    <Y>1</Y>
+    <Caption>CB</Caption>
+    <Color>255,0,255,255</Color>
+    <foreground>255,0,0,0</foreground>
+    <Img></Img>
+    <Fun>4</Fun>
+  </rec>
+  <rec>
+    <id>0</id>
+    <Date_upd>09/12/2014 11:22:07</Date_upd>
+    <X>0</X>
+    <Y>4</Y>
+    <Caption>Cheque</Caption>
+    <Color>255,0,255,255</Color>
+    <foreground>255,0,0,0</foreground>
+    <Img></Img>
+    <Fun>5</Fun>
+  </rec>
+</Grid>

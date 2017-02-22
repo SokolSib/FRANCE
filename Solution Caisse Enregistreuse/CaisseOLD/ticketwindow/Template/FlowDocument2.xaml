@@ -1,0 +1,166 @@
+﻿<FlowDocument xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" ColumnWidth="280" FontSize="8pt" FontFamily="Arial" LineHeight="1">
+
+    <BlockUIContainer>
+        <Image Source="images/anahit_9.jpg"/>
+    </BlockUIContainer>
+
+    <Paragraph TextAlignment="Center">
+        9 Boulevard de la Liberté - 13001 MARSEILLE
+    </Paragraph>
+    <Paragraph TextAlignment="Center">
+        Tél : 04 56 25 12 45
+    </Paragraph>
+
+    <Paragraph TextAlignment="Center" FontWeight="Bold" Margin="0,10,0,0">***VENTE***</Paragraph>
+
+
+
+
+
+    <!-- Products -->
+    <Paragraph FontSize="8pt" FontWeight="Bold">Divers</Paragraph>
+
+
+    <Table>
+        <Table.Columns>
+            <TableColumn Width="215"></TableColumn>
+            <TableColumn Width="55"></TableColumn>
+        </Table.Columns>
+        <TableRowGroup>
+
+            <TableRow>
+                <TableCell>
+                    <Paragraph>DIMES PECHE 24</Paragraph>
+                </TableCell>
+                <TableCell TextAlignment="Right">
+                    <Paragraph>9,00</Paragraph>
+                </TableCell>
+            </TableRow>
+
+
+
+            <TableRow>
+                <TableCell>
+                    <Paragraph>DIMES ABRICOT 24</Paragraph>
+                </TableCell>
+                <TableCell TextAlignment="Right">
+                    <Paragraph>9,00</Paragraph>
+                </TableCell>
+            </TableRow>
+
+
+
+            <TableRow>
+                <TableCell>
+                    <Paragraph>POISSON KILKA TOMATE 240GR RON</Paragraph>
+                </TableCell>
+                <TableCell TextAlignment="Right">
+                    <Paragraph>1,30</Paragraph>
+                </TableCell>
+            </TableRow>
+
+
+
+            <TableRow>
+                <TableCell>
+                    <Paragraph>POISSON SECHE 40GR NATUR SNACK</Paragraph>
+                </TableCell>
+                <TableCell TextAlignment="Right">
+                    <Paragraph>1,40</Paragraph>
+                </TableCell>
+            </TableRow>
+
+
+
+            <TableRow>
+                <TableCell>
+                    <Paragraph>POISSON SAYRA NATUREL HUILE 25</Paragraph>
+                </TableCell>
+                <TableCell TextAlignment="Right">
+                    <Paragraph>2,20</Paragraph>
+                </TableCell>
+            </TableRow>
+
+
+
+        </TableRowGroup>
+    </Table>
+
+
+
+
+    <!-- Total TTC -->
+    <Table>
+        <Table.Columns>
+            <TableColumn Width="215"></TableColumn>
+            <TableColumn Width="55"></TableColumn>
+        </Table.Columns>
+        <TableRowGroup>
+            <TableRow>
+                <TableCell>
+                    <Paragraph TextAlignment="Right" FontWeight="Bold" >TOTAL :</Paragraph>
+                </TableCell>
+                <TableCell>
+                    <Paragraph TextAlignment="Right" FontWeight="Bold">22,90</Paragraph>
+                </TableCell>
+            </TableRow>
+        </TableRowGroup>
+    </Table>
+
+
+    <!-- PaYs -->
+
+    <Paragraph>En Espèces : 22,90 €</Paragraph>
+
+
+    <!-- Rendu -->
+
+
+    <!-- TVA -->
+    <Paragraph TextAlignment="Center" FontWeight="Bold" Margin="0,10,0,0">***TVA***</Paragraph>
+    <Table FontSize="8pt">
+        <Table.Columns>
+            <TableColumn Width="70"></TableColumn>
+            <TableColumn Width="60"></TableColumn>
+            <TableColumn Width="70"></TableColumn>
+            <TableColumn Width="60"></TableColumn>
+        </Table.Columns>
+
+        <TableRowGroup>
+            <TableRow>
+                <TableCell>
+                    <Paragraph TextAlignment="Center">TVA 5,5% :</Paragraph>
+                </TableCell>
+                <TableCell>
+                    <Paragraph TextAlignment="Right">1,19 €</Paragraph>
+                </TableCell>
+                <TableCell>
+                    <Paragraph TextAlignment="Center">HT :</Paragraph>
+                </TableCell>
+                <TableCell>
+                    <Paragraph TextAlignment="Right">21,71 €</Paragraph>
+                </TableCell>
+            </TableRow>
+        </TableRowGroup>
+    </Table>
+
+
+
+    <!-- Card Discount -->
+
+
+
+
+    <!-- BARCODE-->
+
+    <Paragraph FontFamily="Code 128" TextAlignment="Center" FontSize="39pt" > Í5+|!HJ4/>AÎ</Paragraph>
+            <Paragraph TextAlignment="Center">211192014042202860</Paragraph>
+            <Paragraph TextAlignment="Center">
+                Caisse 2 - 19.11.2014 - 4:22</Paragraph>
+
+            <!--FOOTER-->
+            <Paragraph TextAlignment="Center" Margin="0,10,0,0">Facebook : SARL ANAHIT 
+
+*****************************************************</Paragraph>
+
+</FlowDocument>

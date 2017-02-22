@@ -1,0 +1,146 @@
+﻿<Window xmlns:controls="clr-namespace:TicketWindow.Controls"  x:Class="TicketWindow.Winows.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Background="#333"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:properties="clr-namespace:TicketWindow.Properties"
+        Title="MainWindow2" Height="500" Width="600" Loaded="WindowLoaded" AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen" FontSize="16" WindowStyle="None">
+    
+    <Grid MaxHeight="500" MaxWidth="600">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <TabControl x:Name="xtbc" >
+            <TabItem Header="{x:Static properties:Resources.TabDisplaySettings}" Height="40" Width="auto">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="256"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red" Content="{x:Static properties:Resources.LabelButtonName}" />
+                    <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red" Content="{x:Static properties:Resources.LabelButtonColor}" />
+                    <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red" Content="{x:Static properties:Resources.LabelTextColor}" />
+
+                    <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="60,20" Content="{Binding ElementName=xCaption, Path=Text}" >
+                        <Button.Background>
+                            <SolidColorBrush Color="{Binding ElementName=xColor, Path=SelectedColor}" />
+                        </Button.Background>
+                        <Button.Foreground>
+                            <SolidColorBrush Color="{Binding ElementName=xColorFont, Path=SelectedColor}" />
+                        </Button.Foreground>
+                    </Button>
+
+                    <TextBox Grid.Row="0" Grid.Column="1"  FontSize="20"  Name="xCaption" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Height="Auto" Margin="20,10,20,10" >Caption=</TextBox>
+
+                    <xctk:ColorPicker x:Name="xColor" DisplayColorAndName="True" Grid.Row="1" Grid.Column="1" Height="30" Width="150"/>
+
+                    <xctk:ColorPicker  x:Name="xColorFont" DisplayColorAndName="True" Grid.Row="2" Grid.Column="1" Height="30" Width="150"/>
+
+                    <Label Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Name="xName" Visibility="Hidden" >X=</Label>
+                    <Label Grid.Row="1" Grid.Column="1"  HorizontalAlignment="Left" VerticalAlignment="Center" Name="yName" Visibility="Hidden" >Y=</Label>
+
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="{x:Static properties:Resources.TabCashFunctions}" Height="40" Width="auto">
+                <GroupBox FontSize="16" Name="xGBFunction" Header="{x:Static properties:Resources.LabelImportantFunctions}" >
+                    <Grid Name="gridF" Margin="15">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" Name="PanelA" >
+                            <RadioButton Tag="None" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.LabelNone}"/>
+                            <RadioButton Tag="Section des Articles" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncProductMenu}"/>
+                            <!--<RadioButton Tag="CaseProducts" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncCaseProducts}"/>-->
+                            <RadioButton Tag="Fermer" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.BtnClose}"/>
+                            <RadioButton Tag="svernut" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FunTurn}"/>
+                            <!--<RadioButton Tag="Reset main Grid" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncResetBtn}"/>-->
+                            <RadioButton Tag="SetBarCode" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncSetBarCode}"/>
+                            <RadioButton Tag="Open CashBox" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncOpenCashBox}"/>
+                            <RadioButton Tag="Calculatrice" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncCalculator}"/>
+                            <RadioButton Tag="Carte de Fidélité" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncDiscountCard}"/>
+                            <RadioButton Tag="DiscountMini" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncDiscountReset}"/>
+                            <RadioButton Tag="Show Pro" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncShowPro}"/>
+                            <RadioButton Tag="toDevis" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncToPro}"/>
+                            <RadioButton Tag="Modification des Articles" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncEditProduct}"/>
+                            <RadioButton Tag="WriteOff" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.LabelWriteOff}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" Name="PanelB">
+                            <RadioButton Tag="Modifier le prix" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncEditPrice}"/>
+                            <RadioButton Tag="Afficher un Total" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncTotal}"/>
+                            <RadioButton Tag="Supprimer une Ligne" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncDelProduct}"/>
+                            <RadioButton Tag="Supprimer le Ticket" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncClearProducts}"/>
+                            <RadioButton Tag="Annulation de ticket" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncCancelBay}"/>
+                            <RadioButton Tag="Attente +1" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncToWait}"/>
+                            <RadioButton Tag="Bande de Contrôle" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncHistory}"/>
+                            <!--<RadioButton Tag="Le mode de Paiement" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncPaymentMethod}"/>-->
+                            <RadioButton Tag="Retours et Remboursements" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncReturnProduct}"/>
+                            <RadioButton Tag="General History of closing" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncHistoryOfAllCards}"/>
+                            <RadioButton Tag="Histoire de ticket" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncHistoryChecks}"/>
+                            <RadioButton Tag="Clôture" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncCloseCashbox}"/>
+                            <RadioButton Tag="UpdateDb" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.FuncUpdateDB}"/>
+                            <RadioButton Tag="SetStock" VerticalContentAlignment="Center" Content="{x:Static properties:Resources.LabelStock}"/>
+
+                            <!--<RadioButton>DiscountSet</RadioButton>-->
+                            <!--<RadioButton>ClavierNumPad</RadioButton>-->
+                            <!--<RadioButton>ProductDivers</RadioButton>-->
+                            <!--<RadioButton>ProductDiversBallance</RadioButton>-->
+                            <!--<RadioButton>Mode de clavier</RadioButton>-->
+                            <!--<RadioButton>Countrys</RadioButton>-->
+                            <!--<RadioButton>Clavier</RadioButton>-->
+                        </StackPanel>
+                    </Grid>
+                </GroupBox>
+            </TabItem>
+            <TabItem Header="{x:Static properties:Resources.TabQuickPaymentsMethods}" Height="40" Width="auto" >
+                <ComboBox Height="50" Width="300" x:Name="cb" DisplayMemberPath="Name" SelectionChanged="CbSelectionChanged" />
+            </TabItem>
+            <TabItem Header="{x:Static properties:Resources.TabProducts}" Height="auto" Width="auto">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Foreground="Orange" Content="{x:Static properties:Resources.LabelCreateProductButton}" />
+                    <Label Grid.Row="0" x:Name="StatusMes" Visibility="Collapsed" >Rechercher</Label>
+
+                    <controls:FindProductControl Grid.Row="1" x:Name="FindProduct"  />
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Row="0" Grid.Column="0" IsDefault="True" Click="ButtonClick" Background="Green" Tag="Valider la configuration" Content="{x:Static properties:Resources.BtnOk}" FontSize="25" />
+
+            <Button Grid.Row="0" Grid.Column="1" Click="ButtonClick" Tag="Réinitialiser la configuration" Background="Black" Content="{x:Static properties:Resources.BtnReset}" FontSize="25" Foreground="Red"/>
+
+            <Button Grid.Row="0" Grid.Column="2" Click="ButtonClick1" Background="Red" Content="{x:Static properties:Resources.BtnCancel}" FontSize="25" />
+
+        </Grid>
+
+    </Grid>
+    <Window.Resources>
+
+    </Window.Resources>
+</Window>
