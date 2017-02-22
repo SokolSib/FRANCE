@@ -76,7 +76,7 @@ namespace TicketWindow.DAL.Models.Base
             var payValues = new decimal[PayXmlNames.Length];
             var idx = 0;
             foreach (var attribute in PayXmlNames.Select(name => element.GetXAttributeOrNull(name)))
-                payValues[idx++] = attribute != null ? attribute.Value.ToDecimal() : 0;
+                payValues[idx++] = attribute?.Value.ToDecimal() ?? 0;
 
             return new PayTicketBase(customerId,
                 payValues[0],
@@ -110,7 +110,42 @@ namespace TicketWindow.DAL.Models.Base
             var payValues = new decimal[PayXmlNames.Length];
             var idx = 0;
             foreach (var attribute in PayXmlNames.Select(name => element.GetXAttributeOrNull("Pay" + name)))
-                payValues[idx++] = attribute != null ? attribute.Value.ToDecimal() : 0;
+                payValues[idx++] = attribute?.Value.ToDecimal() ?? 0;
+
+            return new PayTicketBase(
+                element.GetXElementValue("CustomerId").ToGuid(),
+                payValues[0],
+                payValues[1],
+                payValues[2],
+                payValues[3],
+                payValues[4],
+                payValues[5],
+                payValues[6],
+                payValues[7],
+                payValues[8],
+                payValues[9],
+                payValues[10],
+                payValues[11],
+                payValues[12],
+                payValues[13],
+                payValues[14],
+                payValues[15],
+                payValues[16],
+                payValues[17],
+                payValues[18],
+                payValues[19],
+                payValues[20],
+                payValues[21],
+                payValues[22],
+                payValues[23]);
+        }
+
+        public static PayTicketBase FromXElementElBase(XContainer element)
+        {
+            var payValues = new decimal[PayXmlNames.Length];
+            var idx = 0;
+            foreach (var el in PayXmlNames.Select(name => element.GetXElementOrNull("Pay" + name)))
+                payValues[idx++] = el?.Value.ToDecimal() ?? 0;
 
             return new PayTicketBase(
                 element.GetXElementValue("CustomerId").ToGuid(),

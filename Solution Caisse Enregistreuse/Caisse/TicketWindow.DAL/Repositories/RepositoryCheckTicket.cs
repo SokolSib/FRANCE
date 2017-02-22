@@ -59,8 +59,7 @@ namespace TicketWindow.DAL.Repositories
 
         public static List<CheckTicket> GetByCloseTicketId(Guid customerId)
         {
-            if (CheckTickets.Count == 0)
-                Sync();
+            Sync();
 
             var checkTickets = CheckTickets.FindAll(c => c.CloseTicketCustomerId == customerId);
 

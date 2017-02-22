@@ -103,7 +103,7 @@ namespace TicketWindow.DAL.Models
 
         public static CheckTicket FromXElement(XContainer element)
         {
-            var checkTicket = new CheckTicket(FromXElementBase(element))
+            var checkTicket = new CheckTicket(FromXElementElBase(element))
             {
                 BarCode = element.GetXElementValue("BarCode"),
                 Date = element.GetXElementValue("Date").ToDateTime(),

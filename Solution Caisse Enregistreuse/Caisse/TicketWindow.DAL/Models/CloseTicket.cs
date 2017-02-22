@@ -34,6 +34,62 @@ namespace TicketWindow.DAL.Models
             ChecksTicket = new List<CheckTicket>();
         }
 
+        public void SetPaysFromChecks()
+        {
+            PayCash = 0;
+            PayResto = 0;
+            PayBankCards = 0;
+            PayBankChecks = 0;
+            Pay1 = 0;
+            Pay2 = 0;
+            Pay3 = 0;
+            Pay4 = 0;
+            Pay5 = 0;
+            Pay6 = 0;
+            Pay7 = 0;
+            Pay8 = 0;
+            Pay9 = 0;
+            Pay10 = 0;
+            Pay11 = 0;
+            Pay12 = 0;
+            Pay13 = 0;
+            Pay14 = 0;
+            Pay15 = 0;
+            Pay16 = 0;
+            Pay17 = 0;
+            Pay18 = 0;
+            Pay19 = 0;
+            Pay20 = 0;
+
+            foreach (var check in ChecksTicket)
+            {
+                PayCash += check.PayCash - check.Rendu;
+                PayResto += check.PayResto;
+                PayBankCards += check.PayBankCards;
+                PayBankChecks += check.PayBankChecks;
+                Pay1 += check.Pay1;
+                Pay2 += check.Pay2;
+                Pay3 += check.Pay3;
+                Pay4 += check.Pay4;
+                Pay5 += check.Pay5;
+                Pay6 += check.Pay6;
+                Pay7 += check.Pay7;
+                Pay8 += check.Pay8;
+                Pay9 += check.Pay9;
+                Pay10 += check.Pay10;
+                Pay11 += check.Pay11;
+                Pay12 += check.Pay12;
+                Pay13 += check.Pay13;
+                Pay14 += check.Pay14;
+                Pay15 += check.Pay15;
+                Pay16 += check.Pay16;
+                Pay17 += check.Pay17;
+                Pay18 += check.Pay18;
+                Pay19 += check.Pay19;
+                Pay20 += check.Pay20;
+            }
+        }
+
         public string NameTicket { get; set; }
         public Guid CloseTicketGCustomerId { get; set; }
         public List<CheckTicket> ChecksTicket { get; set; }
@@ -48,27 +104,20 @@ namespace TicketWindow.DAL.Models
                                   DateClose = !string.IsNullOrEmpty(element.GetXAttributeValue("closeDate")) ? element.GetXAttributeValue("closeDate").ToDateTime() : DateTime.Now,
                                   CloseTicketGCustomerId = GlobalVar.TicketWindowG
                               };
-
-            closeTicket.PayCash = 0;
-            closeTicket.PayResto = 0;
-            closeTicket.PayBankCards = 0;
-            closeTicket.PayBankChecks = 0;
-
+            
             foreach (var checkTicket in element.GetXElements("check").Select(check => CheckTicket.FromCheckXElement(check, Guid.NewGuid(), closeTicket.CustomerId)))
             {
-                closeTicket.PayCash += checkTicket.PayCash - checkTicket.Rendu;
-                closeTicket.PayResto += checkTicket.PayResto;
-                closeTicket.PayBankCards += checkTicket.PayBankCards;
-                closeTicket.PayBankChecks += checkTicket.PayBankChecks;
                 closeTicket.ChecksTicket.Add(checkTicket);
             }
+
+            closeTicket.SetPaysFromChecks();
 
             return closeTicket;
         }
 
         public static CloseTicket FromXElement(XContainer element)
         {
-            var closeTicket = new CloseTicket(FromXElementBase(element))
+            var closeTicket = new CloseTicket(FromXElementElBase(element))
                               {
                                   DateOpen = element.GetXElementValue("DateOpen").ToDateTime(),
                                   DateClose = element.GetXElementValue("DateClose").ToDateTime(),

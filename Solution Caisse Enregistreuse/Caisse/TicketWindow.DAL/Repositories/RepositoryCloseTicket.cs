@@ -60,7 +60,7 @@ namespace TicketWindow.DAL.Repositories
 
         public static List<CloseTicket> GetByCloseTicketGId(Guid closeTicketGCustomerId)
         {
-            if (CloseTickets.Count == 0) Sync();
+            Sync();
 
             var closeTickets = CloseTickets.FindAll(ct => ct.CloseTicketGCustomerId == closeTicketGCustomerId);
 
@@ -71,7 +71,9 @@ namespace TicketWindow.DAL.Repositories
                 closeTicket.ChecksTicket = RepositoryCheckTicket.GetByCloseTicketId(closeTicket.CustomerId);
                 foreach (var checkTicket in closeTicket.ChecksTicket)
                     checkTicket.PayProducts = RepositoryPayProduct.GetByCheckTicketId(checkTicket.CustomerId);
+                closeTicket.SetPaysFromChecks();
             }
+
             return closeTickets;
         }
 
