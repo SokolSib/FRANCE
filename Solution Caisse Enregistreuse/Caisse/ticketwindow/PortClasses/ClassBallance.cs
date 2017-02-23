@@ -210,7 +210,7 @@ namespace TicketWindow.PortClasses
         public static void Send(decimal prix, decimal tare)
         {
 
-            if (Port.IsOpen)
+           if (Port.IsOpen)
             {
                 Error_0X15 = false;
                 Busy_0X15 = false;
@@ -222,7 +222,7 @@ namespace TicketWindow.PortClasses
 
                     Thread.Sleep(200);
 
-                    Poinds = Port.ReadExisting();
+                    Port.ReadExisting();
                 }
                 catch (System.Exception e)
                 {
@@ -236,6 +236,8 @@ namespace TicketWindow.PortClasses
                     Poinds = Poinds.Remove(0, 1).Replace(".", ",");
 
                     var poinds = (decimal.Parse(Poinds) * 1000);
+
+                    Error_0X15 = (poinds <= 0); 
 
                     Montant = (poinds * prix).ToString();
 
