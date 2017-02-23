@@ -210,7 +210,7 @@ namespace TicketWindow.PortClasses
         public static void Send(decimal prix, decimal tare)
         {
 
-           if (Port.IsOpen)
+        //  if (Port.IsOpen)
             {
                 Error_0X15 = false;
                 Busy_0X15 = false;
@@ -222,7 +222,7 @@ namespace TicketWindow.PortClasses
 
                     Thread.Sleep(200);
 
-                    Port.ReadExisting();
+                    Poinds = Port.ReadExisting();
                 }
                 catch (System.Exception e)
                 {
@@ -253,8 +253,8 @@ namespace TicketWindow.PortClasses
                     Error_0X15 = true;
                 }
             }
-            else
-                Error += "close port";
+          //  else
+            ///    Error += "close port";
         }
     }
 }

@@ -59,7 +59,7 @@ namespace TicketWindow.Services
 
             try
             {
-                var prix = ClassBallanceMAGELLAN_8400.Prix.ToDecimal()/100;
+                var prix = ClassBallanceMAGELLAN_8400.Prix.ToDecimal();
                 var qty = ClassBallanceMAGELLAN_8400.Poinds.ToDecimal()/1000;
 
                 if (qty > 0)
