@@ -119,10 +119,11 @@ namespace TicketWindow.Print.Templates
                 y += h;
 
                 var countOfPays = decimal.ToInt32(closeTicket.ChecksTicket.Sum(c => c.PayProducts.Sum(p => p.Qty)));
+                var sr = countOfPays != 0 ? ttc/countOfPays : 0;
                 var printTotal = new PrintTotal
                                  {
                                      Count = countOfPays,
-                                     SrTotal = ttc / countOfPays,
+                                     SrTotal = sr,
                                      Name = closeTicket.NameTicket,
                                      Total = sumMoney
                                  };
