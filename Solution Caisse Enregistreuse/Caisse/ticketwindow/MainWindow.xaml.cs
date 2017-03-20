@@ -142,6 +142,9 @@ namespace TicketWindow
 
         private void DispatcherTimerTick(object sender, EventArgs e)
         {
+
+           
+
             var dt = DateTime.Now;
             _countTick++;
 
@@ -167,11 +170,28 @@ namespace TicketWindow
             CommandManager.InvalidateRequerySuggested();
         }
 
+        private void startReadScan ()
+        {
+            _dispatcherTimer = new DispatcherTimer();
+            _dispatcherTimer.Tick += (s, a) =>
+            {
+                string bc = ClassScaner.Read();
+
+                if (bc != null)
+                xProduct.Text = bc; 
+            };
+
+            _dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 500);
+            _dispatcherTimer.Start();
+        }
+
         private void MainWindowLoaded(object sender, RoutedEventArgs e)
         {
             lnm.Content = Config.Name;
             lnt.Content = Config.NameTicket;
             lnu.Content = Config.User;
+
+            startReadScan();
 
             if (Config.IsUseServer)
             {
@@ -180,6 +200,8 @@ namespace TicketWindow
                 _dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 1, 0);
                 _dispatcherTimer.Start();
             }
+
+
 
             ClassBallanceMAGELLAN_8400.Opn();
             //Windows 8 API to enable touch keyboard to monitor for focus tracking in this WPF application

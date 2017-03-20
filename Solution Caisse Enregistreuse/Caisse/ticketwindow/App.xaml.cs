@@ -17,11 +17,23 @@ namespace TicketWindow
                                                         a.Handled = false;
                                                     };
 
+            PortClasses.ClassScaner.open();
+
+            PortClasses.ClassScaner.enabled();
+
+            PortClasses.ClassDrawer.load();
+
             base.OnStartup(e);
         }
 
         private void ApplicationExit(object sender, ExitEventArgs e)
         {
+            PortClasses.ClassScaner.disabled();
+
+            PortClasses.ClassScaner.close();
+
+
+
             Settings.Default.Save();
         }
     }

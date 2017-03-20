@@ -172,6 +172,8 @@
       <DependentUpon>ExceptionWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="PortClasses\ClassBallance.cs" />
+    <Compile Include="PortClasses\ClassDrawer.cs" />
+    <Compile Include="PortClasses\ClassScaner.cs" />
     <Compile Include="Properties\Resources.fr-FR.Designer.cs">
       <DependentUpon>Resources.fr-FR.resx</DependentUpon>
       <AutoGen>True</AutoGen>
