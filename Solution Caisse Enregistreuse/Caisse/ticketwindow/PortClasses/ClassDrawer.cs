@@ -45,7 +45,7 @@ namespace TicketWindow.PortClasses
             }
         }
 
-        public void open()
+        public static void open()
         {
          
             try

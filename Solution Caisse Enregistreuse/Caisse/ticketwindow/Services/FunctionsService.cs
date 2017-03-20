@@ -1368,6 +1368,9 @@ namespace TicketWindow.Services
 
         private static void OpenCashBox2()
         {
+
+            ClassDrawer.open();
+
        //     ClassUsbTicket.ReadWrite.Open();
         }
 
