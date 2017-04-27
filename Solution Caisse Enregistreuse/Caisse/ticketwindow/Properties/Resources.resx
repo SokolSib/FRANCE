@@ -1089,4 +1089,8 @@
     <value>Max</value>
     <comment>надпись максимум</comment>
   </data>
+  <data name="LabelAlreadyRunning" xml:space="preserve">
+    <value>The program is already running</value>
+    <comment>надпись программа уже запущена</comment>
+  </data>
 </root>

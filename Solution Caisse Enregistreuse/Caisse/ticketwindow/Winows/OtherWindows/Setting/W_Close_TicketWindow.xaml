@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
          xmlns:WPFTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
          xmlns:Properties="clr-namespace:TicketWindow.Properties"
-         Name="W_Close_Ticket" 
+         Name="W_Close_Ticket"  WindowState="Maximized"
         Title="W_Close_TicketWindow" Height="300" Width="600" Loaded="WindowLoaded" WindowStyle="None" WindowStartupLocation="CenterScreen">
     <WPFTool:BusyIndicator x:Name="BusyIndicator" BusyContent="Veuillez patientez pendant la Clôture!">
     <Grid>

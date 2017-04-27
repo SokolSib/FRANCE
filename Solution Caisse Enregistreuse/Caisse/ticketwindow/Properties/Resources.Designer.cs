@@ -691,6 +691,15 @@ namespace TicketWindow.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на The program is already running.
+        /// </summary>
+        public static string LabelAlreadyRunning {
+            get {
+                return ResourceManager.GetString("LabelAlreadyRunning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Amount.
         /// </summary>
         public static string LabelAmount {
